@@ -74,6 +74,7 @@
   --sp-6: 32px;
   --sp-7: 48px;
   --sp-8: 64px;
+  --side-nav-width: 240px;
 
   /* ─── Radius ─── */
   --r-pill: 9999px;
@@ -187,22 +188,34 @@ body {
   transition: background var(--ease), color var(--ease);
 }
 
-/* ─── Nav ─── */
-.nav {
-  position: sticky;
-  top: 0;
+/* ─── Side Nav ─── */
+.side-nav {
+  position: fixed;
+  inset: 0 auto 0 0;
   z-index: var(--z-sticky);
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 12px 24px;
-  background: var(--nav-bg);
-  -webkit-backdrop-filter: var(--nav-blur);
-  backdrop-filter: var(--nav-blur);
+  flex-direction: column;
+  width: var(--side-nav-width);
+  padding: 24px 18px;
+  overflow-y: auto;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  transition: background var(--ease), border-color var(--ease);
+  scrollbar-width: thin;
+  scrollbar-color: var(--coral) transparent;
+}
+.side-nav::-webkit-scrollbar { width: 8px; }
+.side-nav::-webkit-scrollbar-track { background: transparent; }
+.side-nav::-webkit-scrollbar-thumb { background: var(--coral); border-radius: var(--r-pill); }
+.side-nav-header {
+  padding-bottom: 20px;
+  margin-bottom: 18px;
   border-bottom: 1px solid var(--border);
-  transition: background var(--ease);
 }
 .nav-logo {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
   font-family: var(--mono);
   font-size: 15px;
   font-weight: 700;
@@ -210,21 +223,55 @@ body {
   color: var(--text);
   text-decoration: none;
 }
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 20px;
+.side-nav-links {
+  display: grid;
+  gap: 12px;
   list-style: none;
   padding: 0;
 }
-.nav-links a {
-  font-size: 13px;
-  font-weight: 500;
+.side-nav-section {
+  display: grid;
+  gap: 6px;
+}
+.side-nav-parent {
+  display: flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 5px 10px;
+  border-radius: var(--r-compact);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
   color: var(--text-muted);
   text-decoration: none;
-  transition: color var(--ease);
+  transition: color var(--ease), background var(--ease);
 }
-.nav-links a:hover { color: var(--coral-text); }
+.side-nav-parent:hover,
+.side-nav-parent[aria-current="true"] {
+  color: var(--coral-text);
+  background: var(--coral-tint);
+  background: color-mix(in srgb, var(--coral) 8%, var(--surface));
+}
+.side-nav-children {
+  display: grid;
+  gap: 3px;
+  padding: 0 0 0 20px;
+  list-style: none;
+}
+.side-nav-children span {
+  display: block;
+  padding: 2px 0;
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--text-meta);
+}
+.side-nav-footer {
+  display: grid;
+  gap: 12px;
+  padding-top: 20px;
+  margin-top: auto;
+  border-top: 1px solid var(--border);
+}
 .nav-toggle {
   display: inline-flex;
   align-items: center;
@@ -241,24 +288,12 @@ body {
   transition: all var(--ease);
 }
 .nav-toggle:hover { border-color: var(--coral); color: var(--text); }
-.nav-menu-btn {
-  display: none;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  padding: 0;
-  border: 1px solid var(--border);
-  border-radius: var(--r-compact);
-  background: var(--surface);
-  color: var(--text);
-  cursor: pointer;
-}
 
 /* ─── Page ─── */
 .page {
-  max-width: 1100px;
-  margin: 0 auto;
+  width: min(1100px, calc(100% - var(--side-nav-width) - 64px));
+  margin-left: calc(var(--side-nav-width) + max(32px, (100vw - var(--side-nav-width) - 1100px) / 2));
+  margin-right: auto;
   padding: 80px 32px 120px;
 }
 
@@ -291,6 +326,7 @@ body {
 /* ─── Sections ─── */
 section {
   margin-bottom: 96px;
+  scroll-margin-top: 32px;
 }
 .section-label {
   font-family: var(--mono-display);
@@ -1677,10 +1713,19 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
   .stats-row div:last-child { border-bottom: 0; }
   .stepper { align-items: flex-start; }
   .step-line { margin-top: 15px; }
-  .nav-menu-btn { display: inline-flex; }
-  .nav-links { display: none; }
-  .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; padding: 16px 24px; background: var(--nav-bg); -webkit-backdrop-filter: var(--nav-blur); backdrop-filter: var(--nav-blur); border-bottom: 1px solid var(--border); z-index: var(--z-sticky); }
-  .page { padding: 60px 16px 80px; }
+  .side-nav {
+    inset: auto 16px 16px auto;
+    width: auto;
+    padding: 0;
+    overflow: visible;
+    background: transparent;
+    border: 0;
+  }
+  .side-nav-header,
+  .side-nav-links { display: none; }
+  .side-nav-footer { padding: 0; margin: 0; border: 0; }
+  .side-nav .nav-toggle { box-shadow: var(--shadow-subtle); }
+  .page { width: auto; margin: 0; padding: 60px 16px 80px; }
   .grid-two, .grid-sidebar { grid-template-columns: 1fr; }
 }
 
@@ -1718,32 +1763,60 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
 </head>
 <body>
 
-<!-- ═══════════ NAV ═══════════ -->
-<nav class="nav" aria-label="Primary">
-  <a href="#main" class="nav-logo">postrboard</a>
-  <ul class="nav-links">
-    <li><a href="#color">Color</a></li>
-    <li><a href="#typography">Type</a></li>
-    <li><a href="#spacing">Spacing</a></li>
-    <li><a href="#foundations">Foundations</a></li>
-    <li><a href="#shape">Shape</a></li>
-    <li><a href="#components">Components</a></li>
-    <li><a href="#forms">Forms</a></li>
-    <li><a href="#data">Data</a></li>
-    <li><a href="#navigation">Nav</a></li>
-    <li><a href="#feedback">Feedback</a></li>
-    <li><a href="#more">Utilities</a></li>
-    <li><a href="#patterns">Patterns</a></li>
-    <li><a href="#ambient">Ambient</a></li>
-    <li><a href="#layout">Layout</a></li>
+<!-- ═══════════ SIDE NAV ═══════════ -->
+<nav class="side-nav" aria-label="Primary">
+  <div class="side-nav-header">
+    <a href="#main" class="nav-logo">postrboard</a>
+  </div>
+  <ul class="side-nav-links">
+    <li class="side-nav-section"><a class="side-nav-parent" href="#color">Color</a></li>
+    <li class="side-nav-section"><a class="side-nav-parent" href="#typography">Typography</a></li>
+    <li class="side-nav-section"><a class="side-nav-parent" href="#spacing">Spacing</a></li>
+    <li class="side-nav-section">
+      <a class="side-nav-parent" href="#foundations">Foundations</a>
+      <ul class="side-nav-children"><li><span>Z-index</span></li><li><span>Breakpoints</span></li><li><span>Motion</span></li><li><span>Density</span></li><li><span>Icon sizes</span></li></ul>
+    </li>
+    <li class="side-nav-section"><a class="side-nav-parent" href="#shape">Shape</a></li>
+    <li class="side-nav-section">
+      <a class="side-nav-parent" href="#components">Components</a>
+      <ul class="side-nav-children"><li><span>Button</span></li><li><span>Card</span></li><li><span>Input</span></li><li><span>Checkbox</span></li><li><span>Badge</span></li><li><span>Terminal</span></li><li><span>Code Motifs</span></li><li><span>Nav</span></li></ul>
+    </li>
+    <li class="side-nav-section">
+      <a class="side-nav-parent" href="#forms">Forms</a>
+      <ul class="side-nav-children"><li><span>Labels/Validation</span></li><li><span>Textarea/Select</span></li><li><span>Radio/Switch</span></li><li><span>Button Group</span></li><li><span>Combobox</span></li><li><span>Slider/File</span></li><li><span>FAB</span></li><li><span>Date Picker</span></li><li><span>Time Picker</span></li><li><span>OTP</span></li><li><span>Floating Labels</span></li></ul>
+    </li>
+    <li class="side-nav-section">
+      <a class="side-nav-parent" href="#data">Data</a>
+      <ul class="side-nav-children"><li><span>Table</span></li><li><span>List Group</span></li><li><span>Avatar/Tags</span></li><li><span>Data Table</span></li><li><span>Description List</span></li><li><span>Timeline</span></li><li><span>Empty State</span></li><li><span>Calendar</span></li><li><span>Chart</span></li><li><span>Figure</span></li><li><span>Video</span></li></ul>
+    </li>
+    <li class="side-nav-section">
+      <a class="side-nav-parent" href="#navigation">Navigation</a>
+      <ul class="side-nav-children"><li><span>Breadcrumb</span></li><li><span>Tabs</span></li><li><span>Pagination</span></li><li><span>Sidebar Nav</span></li><li><span>Steps</span></li><li><span>Command Palette</span></li><li><span>Skip Link</span></li><li><span>Context Menu</span></li><li><span>Nav Rail</span></li><li><span>Hover Card</span></li></ul>
+    </li>
+    <li class="side-nav-section">
+      <a class="side-nav-parent" href="#feedback">Feedback</a>
+      <ul class="side-nav-children"><li><span>Alerts</span></li><li><span>Toast/Progress</span></li><li><span>Modal/Drawer</span></li><li><span>Popover</span></li><li><span>Banner</span></li><li><span>Aspect Ratio</span></li></ul>
+    </li>
+    <li class="side-nav-section">
+      <a class="side-nav-parent" href="#more">Utilities</a>
+      <ul class="side-nav-children"><li><span>Accordion</span></li><li><span>Divider</span></li><li><span>Icon Buttons</span></li><li><span>Icon System</span></li></ul>
+    </li>
+    <li class="side-nav-section">
+      <a class="side-nav-parent" href="#patterns">Patterns</a>
+      <ul class="side-nav-children"><li><span>Hero</span></li><li><span>Features</span></li><li><span>FAQ</span></li><li><span>CTA Band</span></li><li><span>Footer</span></li><li><span>Stats</span></li><li><span>Auth Form</span></li><li><span>Responsive Image</span></li><li><span>Logo</span></li><li><span>A11y</span></li><li><span>Truncation</span></li></ul>
+    </li>
+    <li class="side-nav-section"><a class="side-nav-parent" href="#ambient">Ambient</a></li>
+    <li class="side-nav-section">
+      <a class="side-nav-parent" href="#layout">Layout</a>
+      <ul class="side-nav-children"><li><span>Auto-fit Grid</span></li><li><span>Two-column Hero</span></li><li><span>Sidebar Layout</span></li></ul>
+    </li>
   </ul>
-  <button class="nav-menu-btn" type="button" aria-label="Toggle menu" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded')==='false'?'true':'false'); this.previousElementSibling.classList.toggle('open')">
-    <svg aria-hidden="true" class="icon icon-sm" viewBox="0 0 24 24"><path d="M3 12h18"/><path d="M3 6h18"/><path d="M3 18h18"/></svg>
-  </button>
-  <button class="nav-toggle" type="button" aria-pressed="false" onclick="toggleMode()">
-    <span id="mode-icon">☀️</span>
-    <span id="mode-label">Light</span>
-  </button>
+  <div class="side-nav-footer">
+    <button class="nav-toggle" type="button" aria-pressed="false" onclick="toggleMode()">
+      <span id="mode-icon">☀️</span>
+      <span id="mode-label">Light</span>
+    </button>
+  </div>
 </nav>
 
 <a class="skip-link" href="#main">Skip to main content</a>
@@ -2192,10 +2265,10 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
 
     <!-- Nav (documented) -->
     <div class="component">
-      <div class="component-name">&lt;Nav /&gt; — sticky translucent (see top of page)</div>
+      <div class="component-name">&lt;Nav /&gt; — fixed sidebar (see left rail)</div>
       <div class="component-stage col">
-        <p class="form-helper">The navigation at the top of this page <em>is</em> the Nav component — sticky, translucent, with logo left, links center, and CTA right. Scroll up to see it in action.</p>
-        <code class="inline-code">&lt;nav class=&quot;nav&quot;&gt;&lt;a class=&quot;nav-logo&quot;&gt;…&lt;/a&gt;&lt;ul class=&quot;nav-links&quot;&gt;…&lt;/ul&gt;&lt;button class=&quot;nav-toggle&quot;&gt;…&lt;/button&gt;&lt;/nav&gt;</code>
+        <p class="form-helper">The navigation on the left of this page <em>is</em> the Nav component — fixed, scrollable, with parent anchors and quieter nested labels.</p>
+        <code class="inline-code">&lt;nav class=&quot;side-nav&quot;&gt;&lt;a class=&quot;nav-logo&quot;&gt;…&lt;/a&gt;&lt;ul class=&quot;side-nav-links&quot;&gt;…&lt;/ul&gt;&lt;button class=&quot;nav-toggle&quot;&gt;…&lt;/button&gt;&lt;/nav&gt;</code>
       </div>
     </div>
   </section>
@@ -3099,6 +3172,37 @@ function applyMode(mode) {
   const validModes = ['light', 'dark'];
   const mode = validModes.includes(saved) ? saved : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
   applyMode(mode);
+})();
+(function() {
+  const navLinks = Array.from(document.querySelectorAll('.side-nav-parent[href^="#"]'));
+  const sections = navLinks
+    .map(link => document.querySelector(link.getAttribute('href')))
+    .filter(Boolean);
+  if (!navLinks.length || !sections.length) return;
+
+  function setActive(id) {
+    navLinks.forEach(link => {
+      const isActive = link.getAttribute('href') === `#${id}`;
+      if (isActive) link.setAttribute('aria-current', 'true');
+      else link.removeAttribute('aria-current');
+    });
+  }
+
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(entries => {
+      const visible = entries
+        .filter(entry => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (visible) setActive(visible.target.id);
+    }, { rootMargin: '-20% 0px -65% 0px', threshold: [0, 0.15, 0.4] });
+    sections.forEach(section => observer.observe(section));
+  }
+
+  window.addEventListener('hashchange', () => {
+    const id = location.hash.slice(1);
+    if (id) setActive(id);
+  });
+  setActive(location.hash.slice(1) || sections[0].id);
 })();
 // Minimal dialog behavior for :target modals
 document.addEventListener('keydown', e => {
