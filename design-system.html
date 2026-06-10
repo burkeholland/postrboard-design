@@ -201,12 +201,16 @@ body {
   background: var(--surface);
   border-right: 1px solid var(--border);
   transition: background var(--ease), border-color var(--ease);
+  scrollbar-width: none;
+}
+.side-nav:hover {
   scrollbar-width: thin;
   scrollbar-color: var(--coral) transparent;
 }
 .side-nav::-webkit-scrollbar { width: 8px; }
 .side-nav::-webkit-scrollbar-track { background: transparent; }
-.side-nav::-webkit-scrollbar-thumb { background: var(--coral); border-radius: var(--r-pill); }
+.side-nav::-webkit-scrollbar-thumb { background: transparent; border-radius: var(--r-pill); }
+.side-nav:hover::-webkit-scrollbar-thumb { background: var(--coral); }
 .side-nav-header {
   padding-bottom: 20px;
   margin-bottom: 18px;
@@ -258,12 +262,18 @@ body {
   padding: 0 0 0 20px;
   list-style: none;
 }
-.side-nav-children span {
+.side-nav-children a {
   display: block;
   padding: 2px 0;
   font-size: 12px;
   line-height: 1.45;
   color: var(--text-meta);
+  text-decoration: none;
+  transition: color var(--ease);
+}
+.side-nav-children a:hover,
+.side-nav-children a:focus-visible {
+  color: var(--coral-text);
 }
 .side-nav-footer {
   display: grid;
@@ -1774,41 +1784,41 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
     <li class="side-nav-section"><a class="side-nav-parent" href="#spacing">Spacing</a></li>
     <li class="side-nav-section">
       <a class="side-nav-parent" href="#foundations">Foundations</a>
-      <ul class="side-nav-children"><li><span>Z-index</span></li><li><span>Breakpoints</span></li><li><span>Motion</span></li><li><span>Density</span></li><li><span>Icon sizes</span></li></ul>
+      <ul class="side-nav-children"><li><a href="#found-z-index">Z-index</a></li><li><a href="#found-breakpoints">Breakpoints</a></li><li><a href="#found-motion">Motion</a></li><li><a href="#found-density">Density</a></li><li><a href="#found-icon-sizes">Icon sizes</a></li></ul>
     </li>
     <li class="side-nav-section"><a class="side-nav-parent" href="#shape">Shape</a></li>
     <li class="side-nav-section">
       <a class="side-nav-parent" href="#components">Components</a>
-      <ul class="side-nav-children"><li><span>Button</span></li><li><span>Card</span></li><li><span>Input</span></li><li><span>Checkbox</span></li><li><span>Badge</span></li><li><span>Terminal</span></li><li><span>Code Motifs</span></li><li><span>Nav</span></li></ul>
+      <ul class="side-nav-children"><li><a href="#comp-button">Button</a></li><li><a href="#comp-card">Card</a></li><li><a href="#comp-input">Input</a></li><li><a href="#comp-checkbox">Checkbox</a></li><li><a href="#comp-badge">Badge</a></li><li><a href="#comp-terminal">Terminal</a></li><li><a href="#comp-code-motifs">Code Motifs</a></li><li><a href="#comp-nav">Nav</a></li></ul>
     </li>
     <li class="side-nav-section">
       <a class="side-nav-parent" href="#forms">Forms</a>
-      <ul class="side-nav-children"><li><span>Labels/Validation</span></li><li><span>Textarea/Select</span></li><li><span>Radio/Switch</span></li><li><span>Button Group</span></li><li><span>Combobox</span></li><li><span>Slider/File</span></li><li><span>FAB</span></li><li><span>Date Picker</span></li><li><span>Time Picker</span></li><li><span>OTP</span></li><li><span>Floating Labels</span></li></ul>
+      <ul class="side-nav-children"><li><a href="#form-labels">Labels/Validation</a></li><li><a href="#form-textarea">Textarea/Select</a></li><li><a href="#form-radio">Radio/Switch</a></li><li><a href="#form-button-group">Button Group</a></li><li><a href="#form-combobox">Combobox</a></li><li><a href="#form-slider">Slider/File</a></li><li><a href="#form-fab">FAB</a></li><li><a href="#form-date-picker">Date Picker</a></li><li><a href="#form-time-picker">Time Picker</a></li><li><a href="#form-otp">OTP</a></li><li><a href="#form-floating-labels">Floating Labels</a></li></ul>
     </li>
     <li class="side-nav-section">
       <a class="side-nav-parent" href="#data">Data</a>
-      <ul class="side-nav-children"><li><span>Table</span></li><li><span>List Group</span></li><li><span>Avatar/Tags</span></li><li><span>Data Table</span></li><li><span>Description List</span></li><li><span>Timeline</span></li><li><span>Empty State</span></li><li><span>Calendar</span></li><li><span>Chart</span></li><li><span>Figure</span></li><li><span>Video</span></li></ul>
+      <ul class="side-nav-children"><li><a href="#data-table">Table</a></li><li><a href="#data-list-group">List Group</a></li><li><a href="#data-avatar">Avatar/Tags</a></li><li><a href="#data-data-table">Data Table</a></li><li><a href="#data-description-list">Description List</a></li><li><a href="#data-timeline">Timeline</a></li><li><a href="#data-empty-state">Empty State</a></li><li><a href="#data-calendar">Calendar</a></li><li><a href="#data-chart">Chart</a></li><li><a href="#data-figure">Figure</a></li><li><a href="#data-video">Video</a></li></ul>
     </li>
     <li class="side-nav-section">
       <a class="side-nav-parent" href="#navigation">Navigation</a>
-      <ul class="side-nav-children"><li><span>Breadcrumb</span></li><li><span>Tabs</span></li><li><span>Pagination</span></li><li><span>Sidebar Nav</span></li><li><span>Steps</span></li><li><span>Command Palette</span></li><li><span>Skip Link</span></li><li><span>Context Menu</span></li><li><span>Nav Rail</span></li><li><span>Hover Card</span></li></ul>
+      <ul class="side-nav-children"><li><a href="#nav-breadcrumb">Breadcrumb</a></li><li><a href="#nav-tabs">Tabs</a></li><li><a href="#nav-pagination">Pagination</a></li><li><a href="#nav-sidebar">Sidebar Nav</a></li><li><a href="#nav-steps">Steps</a></li><li><a href="#nav-command-palette">Command Palette</a></li><li><a href="#nav-skip-link">Skip Link</a></li><li><a href="#nav-context-menu">Context Menu</a></li><li><a href="#nav-rail">Nav Rail</a></li><li><a href="#nav-hover-card">Hover Card</a></li></ul>
     </li>
     <li class="side-nav-section">
       <a class="side-nav-parent" href="#feedback">Feedback</a>
-      <ul class="side-nav-children"><li><span>Alerts</span></li><li><span>Toast/Progress</span></li><li><span>Modal/Drawer</span></li><li><span>Popover</span></li><li><span>Banner</span></li><li><span>Aspect Ratio</span></li></ul>
+      <ul class="side-nav-children"><li><a href="#feedback-alerts">Alerts</a></li><li><a href="#feedback-toast">Toast/Progress</a></li><li><a href="#feedback-modal">Modal/Drawer</a></li><li><a href="#feedback-popover">Popover</a></li><li><a href="#feedback-banner">Banner</a></li><li><a href="#feedback-aspect-ratio">Aspect Ratio</a></li></ul>
     </li>
     <li class="side-nav-section">
       <a class="side-nav-parent" href="#more">Utilities</a>
-      <ul class="side-nav-children"><li><span>Accordion</span></li><li><span>Divider</span></li><li><span>Icon Buttons</span></li><li><span>Icon System</span></li></ul>
+      <ul class="side-nav-children"><li><a href="#util-accordion">Accordion</a></li><li><a href="#util-divider">Divider</a></li><li><a href="#util-icon-buttons">Icon Buttons</a></li><li><a href="#util-icon-system">Icon System</a></li></ul>
     </li>
     <li class="side-nav-section">
       <a class="side-nav-parent" href="#patterns">Patterns</a>
-      <ul class="side-nav-children"><li><span>Hero</span></li><li><span>Features</span></li><li><span>FAQ</span></li><li><span>CTA Band</span></li><li><span>Footer</span></li><li><span>Stats</span></li><li><span>Auth Form</span></li><li><span>Responsive Image</span></li><li><span>Logo</span></li><li><span>A11y</span></li><li><span>Truncation</span></li></ul>
+      <ul class="side-nav-children"><li><a href="#pattern-hero">Hero</a></li><li><a href="#pattern-features">Features</a></li><li><a href="#pattern-faq">FAQ</a></li><li><a href="#pattern-cta">CTA Band</a></li><li><a href="#pattern-footer">Footer</a></li><li><a href="#pattern-stats">Stats</a></li><li><a href="#pattern-auth">Auth Form</a></li><li><a href="#pattern-responsive-image">Responsive Image</a></li><li><a href="#pattern-logo">Logo</a></li><li><a href="#pattern-a11y">A11y</a></li><li><a href="#pattern-truncation">Truncation</a></li></ul>
     </li>
     <li class="side-nav-section"><a class="side-nav-parent" href="#ambient">Ambient</a></li>
     <li class="side-nav-section">
       <a class="side-nav-parent" href="#layout">Layout</a>
-      <ul class="side-nav-children"><li><span>Auto-fit Grid</span></li><li><span>Two-column Hero</span></li><li><span>Sidebar Layout</span></li></ul>
+      <ul class="side-nav-children"><li><a href="#layout-auto-fit">Auto-fit Grid</a></li><li><a href="#layout-two-col">Two-column Hero</a></li><li><a href="#layout-sidebar">Sidebar Layout</a></li></ul>
     </li>
   </ul>
   <div class="side-nav-footer">
@@ -2075,7 +2085,7 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
     <hr class="section-rule">
 
     <div class="foundation-grid">
-      <div class="token-card">
+      <div class="token-card" id="found-z-index">
         <h3>Z-index</h3>
         <div class="token-list">
           <div><code>--z-base</code><span>0</span></div>
@@ -2085,7 +2095,7 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
           <div><code>--z-toast</code><span>40</span></div>
         </div>
       </div>
-      <div class="token-card">
+      <div class="token-card" id="found-breakpoints">
         <h3>Breakpoints</h3>
         <div class="token-list">
           <div><code>--bp-sm</code><span>640px</span></div>
@@ -2094,7 +2104,7 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
           <div><code>--bp-xl</code><span>1280px</span></div>
         </div>
       </div>
-      <div class="token-card">
+      <div class="token-card" id="found-motion">
         <h3>Motion</h3>
         <div class="token-list">
           <div><code>--duration-fast</code><span>100ms</span></div>
@@ -2104,7 +2114,7 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
           <div><code>--ease-in-out</code><span>cubic-bezier(0.65, 0, 0.35, 1)</span></div>
         </div>
       </div>
-      <div class="token-card">
+      <div class="token-card" id="found-density">
         <h3>Density</h3>
         <div class="token-list">
           <div><code>--opacity-dim</code><span>0.5</span></div>
@@ -2114,7 +2124,7 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
           <div><code>--border-thick</code><span>2px</span></div>
         </div>
       </div>
-      <div class="token-card">
+      <div class="token-card" id="found-icon-sizes">
         <h3>Icon sizes</h3>
         <div class="token-list">
           <div><code>--icon-sm</code><span>16px</span></div>
@@ -2172,7 +2182,7 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
     <hr class="section-rule">
 
     <!-- Buttons -->
-    <div class="component">
+    <div class="component" id="comp-button">
       <div class="component-name">&lt;Button /&gt; — variants</div>
       <div class="component-stage">
         <button type="button" class="btn btn-primary">Create project</button>
@@ -2185,7 +2195,7 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
     </div>
 
     <!-- Card -->
-    <div class="component">
+    <div class="component" id="comp-card">
       <div class="component-name">&lt;Card /&gt; — glass surface with hover lift</div>
       <div class="component-stage stage-page-bg gap-3">
         <div class="card max-w-card">
@@ -2200,7 +2210,7 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
     </div>
 
     <!-- Input -->
-    <div class="component">
+    <div class="component" id="comp-input">
       <div class="component-name">&lt;Input /&gt; — states</div>
       <div class="component-stage">
         <input class="input" type="text" placeholder="Search projects…" aria-label="Default input">
@@ -2211,7 +2221,7 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
     </div>
 
     <!-- Checkbox -->
-    <div class="component">
+    <div class="component" id="comp-checkbox">
       <div class="component-name">&lt;Checkbox /&gt;</div>
       <div class="component-stage">
         <label class="checkbox"><input type="checkbox"> Enable notifications</label>
@@ -2221,7 +2231,7 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
     </div>
 
     <!-- Badge / Pill -->
-    <div class="component">
+    <div class="component" id="comp-badge">
       <div class="component-name">&lt;Badge /&gt; — soft tints</div>
       <div class="component-stage">
         <span class="badge badge-neutral">Draft</span>
@@ -2232,7 +2242,7 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
     </div>
 
     <!-- Terminal Block -->
-    <div class="component">
+    <div class="component" id="comp-terminal">
       <div class="component-name">&lt;Terminal /&gt; — always dark</div>
       <div class="component-stage col stage-page-bg">
         <div class="terminal">
@@ -2253,7 +2263,7 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
     </div>
 
     <!-- Code Motifs -->
-    <div class="component">
+    <div class="component" id="comp-code-motifs">
       <div class="component-name">Code Motifs — command pills &amp; version badges</div>
       <div class="component-stage">
         <span class="cmd-pill"><span class="dollar">$</span> npm install postrboard</span>
@@ -2264,7 +2274,7 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
     </div>
 
     <!-- Nav (documented) -->
-    <div class="component">
+    <div class="component" id="comp-nav">
       <div class="component-name">&lt;Nav /&gt; — fixed sidebar (see left rail)</div>
       <div class="component-stage col">
         <p class="form-helper">The navigation on the left of this page <em>is</em> the Nav component — fixed, scrollable, with parent anchors and quieter nested labels.</p>
@@ -2280,7 +2290,7 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
     <h2 class="section-title">Forms</h2>
     <hr class="section-rule">
 
-    <div class="component">
+    <div class="component" id="form-labels">
       <div class="component-name">Form label, helper text, validation</div>
       <div class="component-stage col">
         <div class="form-stack">
@@ -2303,7 +2313,7 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
       </div>
     </div>
 
-    <div class="component">
+    <div class="component" id="form-textarea">
       <div class="component-name">Textarea and select</div>
       <div class="component-stage col">
         <div class="form-stack">
@@ -2323,7 +2333,7 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
       </div>
     </div>
 
-    <div class="component">
+    <div class="component" id="form-radio">
       <div class="component-name">Radio group, switch, input group</div>
       <div class="component-stage col">
         <div class="form-stack">
@@ -2348,7 +2358,7 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
       </div>
     </div>
 
-    <div class="component">
+    <div class="component" id="form-button-group">
       <div class="component-name">Button group and segmented control</div>
       <div class="component-stage">
         <div class="button-group" role="group" aria-label="View density">
@@ -2364,7 +2374,7 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
       </div>
     </div>
 
-    <div class="component">
+    <div class="component" id="form-combobox">
       <div class="component-name">Combobox / autocomplete</div>
       <div class="component-stage">
         <div class="combobox">
@@ -2379,7 +2389,7 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
       </div>
     </div>
 
-    <div class="component">
+    <div class="component" id="form-slider">
       <div class="component-name">Slider / range and file upload</div>
       <div class="component-stage col">
         <div class="range-field">
@@ -2394,7 +2404,7 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
       </div>
     </div>
 
-    <div class="component">
+    <div class="component" id="form-fab">
       <div class="component-name">FAB (Floating Action Button)</div>
       <div class="component-stage fab-stage">
         <p class="form-helper">Fixed to the staged viewport: bottom 32px, right 32px.</p>
@@ -2402,21 +2412,21 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
       </div>
     </div>
 
-    <div class="component">
+    <div class="component" id="form-date-picker">
       <div class="component-name">Date Picker</div>
       <div class="component-stage">
         <label class="picker-field" for="launch-date"><svg aria-hidden="true" class="icon" viewBox="0 0 24 24"><path d="M8 2v4"/><path d="M16 2v4"/><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M3 10h18"/></svg><input id="launch-date" class="picker-input" type="date" value="2026-06-10"></label>
       </div>
     </div>
 
-    <div class="component">
+    <div class="component" id="form-time-picker">
       <div class="component-name">Time Picker</div>
       <div class="component-stage">
         <label class="picker-field" for="launch-time"><svg aria-hidden="true" class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><input id="launch-time" class="picker-input" type="time" value="14:30"></label>
       </div>
     </div>
 
-    <div class="component">
+    <div class="component" id="form-otp">
       <div class="component-name">OTP / PIN input</div>
       <div class="component-stage col">
         <div class="otp-row" role="group" aria-label="Verification code">
@@ -2431,7 +2441,7 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
       </div>
     </div>
 
-    <div class="component">
+    <div class="component" id="form-floating-labels">
       <div class="component-name">Floating labels</div>
       <div class="component-stage">
         <div class="floating-field">
@@ -2453,7 +2463,7 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
     <h2 class="section-title">Data Display</h2>
     <hr class="section-rule">
 
-    <div class="component">
+    <div class="component" id="data-table">
       <div class="component-name">Table — header, zebra rows, badges</div>
       <div class="component-stage col">
         <div class="table-wrap">
@@ -2469,7 +2479,7 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
       </div>
     </div>
 
-    <div class="component">
+    <div class="component" id="data-list-group">
       <div class="component-name">List group and stat cards</div>
       <div class="component-stage col">
         <ul class="list-group">
@@ -2485,7 +2495,7 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
       </div>
     </div>
 
-    <div class="component">
+    <div class="component" id="data-avatar">
       <div class="component-name">Avatar, removable tag, tooltip, inline code, link</div>
       <div class="component-stage">
         <div class="avatar-row">
@@ -2500,7 +2510,7 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
       </div>
     </div>
 
-    <div class="component">
+    <div class="component" id="data-data-table">
       <div class="component-name">Data table — sortable headers</div>
       <div class="component-stage col">
         <div class="table-wrap">
@@ -2516,7 +2526,7 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
       </div>
     </div>
 
-    <div class="component">
+    <div class="component" id="data-description-list">
       <div class="component-name">Description list / key-value</div>
       <div class="component-stage">
         <dl class="description-list">
@@ -2528,7 +2538,7 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
       </div>
     </div>
 
-    <div class="component">
+    <div class="component" id="data-timeline">
       <div class="component-name">Timeline / activity feed</div>
       <div class="component-stage">
         <div class="timeline">
@@ -2539,7 +2549,7 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
       </div>
     </div>
 
-    <div class="component">
+    <div class="component" id="data-empty-state">
       <div class="component-name">Empty state</div>
       <div class="component-stage">
         <div class="empty-state">
@@ -2551,7 +2561,7 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
       </div>
     </div>
 
-    <div class="component">
+    <div class="component" id="data-calendar">
       <div class="component-name">Calendar</div>
       <div class="component-stage">
         <div class="calendar-card" role="group" aria-label="June 2026 calendar">
@@ -2568,7 +2578,7 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
       </div>
     </div>
 
-    <div class="component">
+    <div class="component" id="data-chart">
       <div class="component-name">Chart placeholder</div>
       <div class="component-stage">
         <div class="chart-card">
@@ -2584,7 +2594,7 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
       </div>
     </div>
 
-    <div class="component">
+    <div class="component" id="data-figure">
       <div class="component-name">Figure — image and caption</div>
       <div class="component-stage">
         <figure class="figure-demo">
@@ -2594,7 +2604,7 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
       </div>
     </div>
 
-    <div class="component">
+    <div class="component" id="data-video">
       <div class="component-name">Video embed</div>
       <div class="component-stage">
         <div class="video-embed" role="img" aria-label="Video placeholder"><span class="play-button"><svg aria-hidden="true" class="icon icon-lg" viewBox="0 0 24 24"><path d="m9 7 8 5-8 5Z"/></svg></span></div>
@@ -2609,7 +2619,7 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
     <h2 class="section-title">Navigation</h2>
     <hr class="section-rule">
 
-    <div class="component">
+    <div class="component" id="nav-breadcrumb">
       <div class="component-name">Breadcrumb</div>
       <div class="component-stage">
         <nav class="breadcrumb" aria-label="Breadcrumb">
@@ -2618,7 +2628,7 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
       </div>
     </div>
 
-    <div class="component">
+    <div class="component" id="nav-tabs">
       <div class="component-name">Tabs</div>
       <div class="component-stage col">
         <nav class="tabs" aria-label="Project settings">
@@ -2630,7 +2640,7 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
       </div>
     </div>
 
-    <div class="component">
+    <div class="component" id="nav-pagination">
       <div class="component-name">Pagination and dropdown menu</div>
       <div class="component-stage">
         <nav class="pagination" aria-label="Pagination">
@@ -2647,7 +2657,7 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
       </div>
     </div>
 
-    <div class="component">
+    <div class="component" id="nav-sidebar">
       <div class="component-name">Sidebar / vertical nav</div>
       <div class="component-stage">
         <nav class="sidebar-nav" aria-label="Workspace">
@@ -2659,7 +2669,7 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
       </div>
     </div>
 
-    <div class="component">
+    <div class="component" id="nav-steps">
       <div class="component-name">Steps / stepper</div>
       <div class="component-stage col">
         <div class="stepper" role="group" aria-label="Publish steps">
@@ -2670,7 +2680,7 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
       </div>
     </div>
 
-    <div class="component">
+    <div class="component" id="nav-command-palette">
       <div class="component-name">Command palette</div>
       <div class="component-stage col">
         <div class="command-palette" role="dialog" aria-label="Command palette">
@@ -2689,7 +2699,7 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
       </div>
     </div>
 
-    <div class="component">
+    <div class="component" id="nav-skip-link">
       <div class="component-name">Skip link and scroll area</div>
       <div class="component-stage col">
         <p class="form-helper">Tab from the browser chrome to reveal the page-level skip link. The demo link is installed before the main content.</p>
@@ -2703,7 +2713,7 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
       </div>
     </div>
 
-    <div class="component">
+    <div class="component" id="nav-context-menu">
       <div class="component-name">Context menu</div>
       <div class="component-stage">
         <div class="context-menu-demo">
@@ -2718,7 +2728,7 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
       </div>
     </div>
 
-    <div class="component">
+    <div class="component" id="nav-rail">
       <div class="component-name">Navigation rail</div>
       <div class="component-stage">
         <nav class="nav-rail" aria-label="Primary rail">
@@ -2730,7 +2740,7 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
       </div>
     </div>
 
-    <div class="component">
+    <div class="component" id="nav-hover-card">
       <div class="component-name">Hover card</div>
       <div class="component-stage">
         <div class="hover-card-wrap">
@@ -2748,7 +2758,7 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
     <h2 class="section-title">Feedback</h2>
     <hr class="section-rule">
 
-    <div class="component">
+    <div class="component" id="feedback-alerts">
       <div class="component-name">Alerts — info, success, warning, danger</div>
       <div class="component-stage col">
         <div class="alert alert-info"><svg aria-hidden="true" class="icon" viewBox="0 0 24 24"><path d="M12 16v-4"/><path d="M12 8h.01"/><circle cx="12" cy="12" r="10"/></svg><div><strong>Preview ready</strong><p>Your branch has a shareable preview URL.</p></div><button type="button" class="close-button" aria-label="Dismiss"><svg aria-hidden="true" class="icon" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></div>
@@ -2758,7 +2768,7 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
       </div>
     </div>
 
-    <div class="component">
+    <div class="component" id="feedback-toast">
       <div class="component-name">Toast, progress, spinner, skeleton</div>
       <div class="component-stage col">
         <div class="toast-region">
@@ -2774,7 +2784,7 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
       </div>
     </div>
 
-    <div class="component">
+    <div class="component" id="feedback-modal">
       <div class="component-name">Modal, alert dialog, drawer / sheet</div>
       <div class="component-stage">
         <a class="btn btn-secondary" href="#modal-demo">Open modal</a>
@@ -2784,7 +2794,7 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
       </div>
     </div>
 
-    <div class="component">
+    <div class="component" id="feedback-popover">
       <div class="component-name">Popover — focus-within</div>
       <div class="component-stage">
         <div class="popover">
@@ -2797,7 +2807,7 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
       </div>
     </div>
 
-    <div class="component">
+    <div class="component" id="feedback-banner">
       <div class="component-name">Banner</div>
       <div class="component-stage col">
         <div class="banner">
@@ -2807,7 +2817,7 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
       </div>
     </div>
 
-    <div class="component">
+    <div class="component" id="feedback-aspect-ratio">
       <div class="component-name">Aspect ratio container</div>
       <div class="component-stage">
         <div class="aspect-demo-grid">
@@ -2826,7 +2836,7 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
     <h2 class="section-title">Utilities</h2>
     <hr class="section-rule">
 
-    <div class="component">
+    <div class="component" id="util-accordion">
       <div class="component-name">Accordion — details / summary disclosure</div>
       <div class="component-stage col">
         <div class="accordion">
@@ -2837,7 +2847,7 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
       </div>
     </div>
 
-    <div class="component">
+    <div class="component" id="util-divider">
       <div class="component-name">Divider / Separator</div>
       <div class="component-stage col">
         <hr class="divider">
@@ -2845,7 +2855,7 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
       </div>
     </div>
 
-    <div class="component">
+    <div class="component" id="util-icon-buttons">
       <div class="component-name">Icon buttons and close button</div>
       <div class="component-stage">
         <button type="button" class="icon-button" aria-label="Back"><svg aria-hidden="true" class="icon" viewBox="0 0 24 24"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg></button>
@@ -2856,7 +2866,7 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
       </div>
     </div>
 
-    <div class="component">
+    <div class="component" id="util-icon-system">
       <div class="component-name">Icon system — 16 / 20 / 24 / 32px</div>
       <div class="component-stage">
         <svg aria-hidden="true" class="icon icon-sm" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>
@@ -2941,7 +2951,7 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
     <h2 class="section-title">Patterns</h2>
     <hr class="section-rule">
 
-    <div class="component">
+    <div class="component" id="pattern-hero">
       <div class="component-name">Hero section pattern</div>
       <div class="component-stage pattern-stage">
         <div class="pattern-hero">
@@ -2952,7 +2962,7 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
       </div>
     </div>
 
-    <div class="component">
+    <div class="component" id="pattern-features">
       <div class="component-name">Feature section — 3-column cards</div>
       <div class="component-stage pattern-stage">
         <div class="feature-grid">
@@ -2963,7 +2973,7 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
       </div>
     </div>
 
-    <div class="component">
+    <div class="component" id="pattern-faq">
       <div class="component-name">FAQ pattern</div>
       <div class="component-stage col">
         <div class="faq-list">
@@ -2974,14 +2984,14 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
       </div>
     </div>
 
-    <div class="component">
+    <div class="component" id="pattern-cta">
       <div class="component-name">CTA band</div>
       <div class="component-stage pattern-stage">
         <div class="cta-band"><h3>Make fewer, better screens.</h3><p>Use the system when the product needs confidence instead of decoration.</p><button class="btn" type="button">Copy section</button></div>
       </div>
     </div>
 
-    <div class="component">
+    <div class="component" id="pattern-footer">
       <div class="component-name">Footer</div>
       <div class="component-stage pattern-stage">
         <footer class="footer-pattern">
@@ -2996,14 +3006,14 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
       </div>
     </div>
 
-    <div class="component">
+    <div class="component" id="pattern-stats">
       <div class="component-name">Stats row</div>
       <div class="component-stage pattern-stage">
         <div class="stats-row"><div><strong>4.2k</strong><span>USERS</span></div><div><strong>99.9%</strong><span>UPTIME</span></div><div><strong>50ms</strong><span>EDGE LATENCY</span></div></div>
       </div>
     </div>
 
-    <div class="component">
+    <div class="component" id="pattern-auth">
       <div class="component-name">Auth form — login</div>
       <div class="component-stage col">
         <form class="auth-card">
@@ -3018,7 +3028,7 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
       </div>
     </div>
 
-    <div class="component">
+    <div class="component" id="pattern-responsive-image">
       <div class="component-name">Responsive image</div>
       <div class="component-stage">
         <div class="responsive-media">
@@ -3029,14 +3039,14 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
       </div>
     </div>
 
-    <div class="component">
+    <div class="component" id="pattern-logo">
       <div class="component-name">Logo / brand mark</div>
       <div class="component-stage">
         <div class="brand-mark-row"><span class="brand-mark sm">postrboard</span><span class="brand-mark md">postrboard</span><span class="brand-mark lg">postrboard</span></div>
       </div>
     </div>
 
-    <div class="component">
+    <div class="component" id="pattern-a11y">
       <div class="component-name">Visually hidden (a11y) and focus trap note</div>
       <div class="component-stage col">
         <div class="utility-card visually-hidden-demo"><h3>Screen reader only text</h3><p>The hidden span below remains available to assistive tech.</p><span class="sr-only-live">This text is visually hidden but announced by screen readers.</span><code>.sr-only</code></div>
@@ -3044,7 +3054,7 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
       </div>
     </div>
 
-    <div class="component">
+    <div class="component" id="pattern-truncation">
       <div class="component-name">Truncation / clamp</div>
       <div class="component-stage">
         <div class="truncate-demo">
@@ -3078,7 +3088,7 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
     <h2 class="section-title">Layout Patterns</h2>
     <hr class="section-rule">
 
-    <div class="component">
+    <div class="component" id="layout-auto-fit">
       <div class="component-name">Auto-fit Grid — repeat(auto-fit, minmax(240px, 1fr))</div>
       <div class="layout-demo">
         <div class="grid-auto">
@@ -3089,7 +3099,7 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
       </div>
     </div>
 
-    <div class="component">
+    <div class="component" id="layout-two-col">
       <div class="component-name">Two-column Hero — editorial left, artifact right</div>
       <div class="layout-demo">
         <div class="grid-two">
@@ -3099,7 +3109,7 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
       </div>
     </div>
 
-    <div class="component">
+    <div class="component" id="layout-sidebar">
       <div class="component-name">Sidebar — 260px fixed + fluid content</div>
       <div class="layout-demo">
         <div class="grid-sidebar">
