@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en" data-mode="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Postrboard Landing Page — 10 Redesign Mocks</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../postrboard.css">
+<style>
+body {
+  min-height: 100vh;
+  background: var(--bg);
+  padding: 32px 24px;
+}
+.page-header {
+  max-width: 1200px;
+  margin: 0 auto 40px;
+  text-align: center;
+}
+.mocks-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(520px, 1fr));
+  gap: 32px;
+}
+@media (max-width: 600px) {
+  .mocks-grid { grid-template-columns: 1fr; }
+}
+.mock-card {
+  background: var(--surface);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-soft);
+  overflow: hidden;
+  box-shadow: var(--shadow-subtle);
+  display: flex;
+  flex-direction: column;
+}
+.mock-preview {
+  position: relative;
+  height: 380px;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border);
+}
+.mock-preview iframe {
+  width: 200%;
+  height: 200%;
+  transform: scale(0.5);
+  transform-origin: top left;
+  border: none;
+  pointer-events: none;
+}
+.mock-info {
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+.mock-info h3 {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.mock-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding-top: 8px;
+}
+.btn-approve {
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.btn-approve.approved {
+  background: var(--sage-text);
+  border-color: var(--sage-text);
+  color: #fff;
+  cursor: default;
+  transform: none;
+  box-shadow: none;
+}
+.btn-approve.approved:hover {
+  transform: none;
+}
+.comment-area {
+  display: none;
+  margin-top: 8px;
+}
+.comment-area.visible { display: block; }
+.comment-area textarea {
+  width: 100%;
+  min-height: 60px;
+  padding: 10px 12px;
+  border: 1.5px solid var(--input-border);
+  border-radius: var(--radius-compact);
+  background: var(--surface);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 13px;
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.comment-area textarea:focus {
+  border-color: var(--coral);
+  box-shadow: var(--focus-ring);
+}
+.status-badge {
+  display: none;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--sage-text);
+  margin-left: auto;
+}
+.status-badge.visible { display: inline-flex; }
+</style>
+</head>
+<body>
+<header class="page-header stack-sm">
+  <span class="text-meta text-mono">landing page redesign</span>
+  <h1 class="text-h1">10 Concepts</h1>
+  <p class="text-body text-muted">Each mock uses the Postrboard CSS framework directly. Approve your favorites or add comments.</p>
+</header>
+
+<div class="mocks-grid" id="mocks-grid"></div>
+
+<script>
+const mocks = [
+  { file: "mock-01-terminal-hero.html", title: "Terminal Hero", desc: "Dark terminal block dominates the hero. Framework identity through its own aesthetic — code snippet front and center, stat badges below." },
+  { file: "mock-02-stats-first.html", title: "Stats-First Manifesto", desc: "Giant mono stat numbers as the primary visual. Raw typographic presence with Space Mono display. No cards, no terminal — just numbers." },
+  { file: "mock-03-split-mode.html", title: "Split Mode Preview", desc: "50/50 split showing the same card in light and dark mode simultaneously. The dual-mode system IS the hero." },
+  { file: "mock-04-mono-minimal.html", title: "Mono Minimal", desc: "Ultra-stripped: Space Mono headline, single-column, extreme whitespace. Framework speaks through typographic restraint alone." },
+  { file: "mock-05-card-mosaic.html", title: "Card Mosaic", desc: "Scattered overlapping component cards (buttons, inputs, badges, terminals) at slight rotations. Visual 'toolkit' feel." },
+  { file: "mock-06-gradient-cta.html", title: "Gradient CTA Band", desc: "Full-bleed coral-to-azure gradient hero with frosted-glass component panel floating below. Bold and conversion-focused." },
+  { file: "mock-07-code-first.html", title: "Code-First Scroll", desc: "The entire hero IS a syntax-highlighted code block showing a real Postrboard page. The code is the marketing." },
+  { file: "mock-08-editorial.html", title: "Editorial Columns", desc: "Magazine-style three-column layout. Philosophy left, install center, preview right. Sophisticated and intellectual." },
+  { file: "mock-09-playground.html", title: "Interactive Playground", desc: "Live light/dark toggle that switches a mini component preview. Demonstrates the framework's dual-mode power interactively." },
+  { file: "mock-10-brutalist.html", title: "Brutalist Clean", desc: "High-contrast black borders, mono type everywhere, generous whitespace. The anti-gradient approach. Technical and premium." }
+];
+
+const grid = document.getElementById('mocks-grid');
+
+mocks.forEach((mock, i) => {
+  const card = document.createElement('div');
+  card.className = 'mock-card';
+
+  const preview = document.createElement('div');
+  preview.className = 'mock-preview';
+  const iframe = document.createElement('iframe');
+  iframe.src = mock.file;
+  iframe.loading = 'lazy';
+  preview.appendChild(iframe);
+  card.appendChild(preview);
+
+  const info = document.createElement('div');
+  info.className = 'mock-info';
+  info.innerHTML = `
+    <span class="text-meta text-mono">Mock ${String(i+1).padStart(2,'0')}</span>
+    <h3>${mock.title}</h3>
+    <p class="text-body text-muted" style="font-size:14px">${mock.desc}</p>
+    <div class="mock-actions">
+      <button class="btn btn-primary btn-sm btn-approve" onclick="approveMock(this, ${i})">✓ Approve</button>
+      <button class="btn btn-ghost btn-sm" onclick="toggleComment(${i})">💬 Comment</button>
+      <span class="status-badge" id="status-${i}">✓ Approved</span>
+    </div>
+    <div class="comment-area" id="comment-${i}">
+      <textarea placeholder="Add comments or suggestions..."></textarea>
+    </div>
+  `;
+  card.appendChild(info);
+  grid.appendChild(card);
+});
+
+function approveMock(btn, i) {
+  if (btn.classList.contains('approved')) return;
+  btn.classList.add('approved');
+  btn.textContent = '✓ Approved';
+  document.getElementById('status-' + i).classList.add('visible');
+}
+
+function toggleComment(i) {
+  const area = document.getElementById('comment-' + i);
+  area.classList.toggle('visible');
+  if (area.classList.contains('visible')) {
+    area.querySelector('textarea').focus();
+  }
+}
+</script>
+</body>
+</html>

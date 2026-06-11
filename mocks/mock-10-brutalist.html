@@ -1,0 +1,144 @@
+<!doctype html>
+<html data-mode="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mock 10 — Brutalist Clean</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../postrboard.css">
+<style>
+body { min-height: 100vh; background: #fff; color: var(--text); }
+.site-nav {
+  padding: 20px 0;
+  border-bottom: 2px solid var(--text);
+}
+.nav-inner { justify-content: space-between; }
+.wordmark { font-family: 'Space Mono', var(--mono); font-weight: 700; letter-spacing: -0.08em; font-size: 1.3rem; color: var(--text); text-decoration: none; }
+.nav-links a {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.hero { padding: 100px 0 60px; }
+.brutal-title {
+  font-family: 'Space Mono', var(--mono-display);
+  font-size: clamp(4rem, 10vw, 9rem);
+  font-weight: 700;
+  letter-spacing: -0.12em;
+  line-height: 0.85;
+  margin-bottom: 40px;
+  border-bottom: 2px solid var(--text);
+  padding-bottom: 40px;
+}
+.brutal-title span { color: var(--coral-surface); }
+
+.hero-meta {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-bottom: 2px solid var(--text);
+}
+.hero-meta-item {
+  padding: 24px 0;
+  border-right: 2px solid var(--text);
+  padding-right: 24px;
+}
+.hero-meta-item:last-child { border-right: none; }
+.hero-meta-item strong {
+  font-family: 'Space Mono', var(--mono-display);
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: -0.08em;
+  display: block;
+}
+.hero-meta-item span {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.hero-body {
+  padding: 40px 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+}
+.hero-body p {
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: var(--text-muted);
+  max-width: 480px;
+}
+.btn-brutal {
+  height: 48px;
+  padding: 0 28px;
+  border: 2px solid var(--text);
+  background: #fff;
+  color: var(--text);
+  font-family: 'Space Mono', var(--mono);
+  font-size: 14px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  letter-spacing: -0.03em;
+  text-decoration: none;
+}
+.btn-brutal:hover { background: var(--text); color: #fff; }
+.btn-brutal-accent {
+  height: 48px;
+  padding: 0 28px;
+  border: 2px solid var(--coral-surface);
+  background: var(--coral-surface);
+  color: #fff;
+  font-family: 'Space Mono', var(--mono);
+  font-size: 14px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  letter-spacing: -0.03em;
+  text-decoration: none;
+}
+</style>
+</head>
+<body>
+<nav class="site-nav">
+  <div class="container cluster nav-inner">
+    <a class="wordmark" href="#">postrboard</a>
+    <div class="cluster nav-links">
+      <a href="#">docs</a>
+      <a href="#">examples</a>
+      <a href="#">github</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <section class="section">
+    <div class="container hero">
+      <h1 class="brutal-title">postrboard<span>.</span></h1>
+      <div class="hero-meta">
+        <div class="hero-meta-item"><strong>710</strong><span>Lines</span></div>
+        <div class="hero-meta-item"><strong>44KB</strong><span>Minified</span></div>
+        <div class="hero-meta-item"><strong>0</strong><span>Dependencies</span></div>
+        <div class="hero-meta-item"><strong>40+</strong><span>Components</span></div>
+      </div>
+      <div class="hero-body">
+        <p>A refined, airy, code-native CSS framework. Class-based but calm. Opinionated but not loud. Enough system to ship a product page before the coffee cools.</p>
+        <div class="stack-sm" style="align-items:flex-start">
+          <a class="btn-brutal-accent" href="#">GET STARTED →</a>
+          <a class="btn-brutal" href="#">VIEW DESIGN SYSTEM</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+</body>
+</html>

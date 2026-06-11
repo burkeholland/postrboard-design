@@ -1,0 +1,132 @@
+<!doctype html>
+<html data-mode="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mock 01 — Terminal Hero</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../postrboard.css">
+<style>
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  background:
+    radial-gradient(circle at 84% 8%, rgba(255,127,80,0.18), transparent 28rem),
+    radial-gradient(circle at 12% 86%, rgba(14,165,233,0.16), transparent 30rem),
+    var(--bg);
+}
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 80px;
+  align-items: center;
+  padding: 120px 0 80px;
+}
+.hero-title {
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  font-weight: 800;
+  letter-spacing: -0.07em;
+  line-height: 0.9;
+}
+.hero-subtitle {
+  margin-top: var(--space-5);
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  line-height: 1.7;
+  max-width: 480px;
+}
+.hero-ctas {
+  margin-top: var(--space-6);
+  display: flex;
+  gap: var(--space-3);
+}
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  border-bottom: 1px solid var(--border-glass);
+  background: var(--nav-bg);
+  backdrop-filter: var(--nav-blur);
+}
+.nav-inner {
+  min-height: 72px;
+  justify-content: space-between;
+}
+.wordmark {
+  font-family: 'Space Mono', var(--mono);
+  font-weight: 700;
+  letter-spacing: -0.08em;
+  font-size: 1.25rem;
+  color: var(--text);
+  text-decoration: none;
+}
+</style>
+</head>
+<body>
+<nav class="site-nav">
+  <div class="container cluster nav-inner">
+    <a class="wordmark" href="#">postrboard</a>
+    <div class="cluster">
+      <a class="btn btn-ghost btn-sm" href="#">Docs</a>
+      <a class="btn btn-ghost btn-sm" href="#">GitHub</a>
+      <a class="btn btn-primary btn-sm" href="#">Get Started</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <section class="section">
+    <div class="container hero">
+      <div class="stack">
+        <h1 class="hero-title">Ship <span class="gradient-text">quieter</span> interfaces.</h1>
+        <p class="hero-subtitle">A refined CSS framework. Zero JavaScript. Zero build step. One file, two modes, infinite restraint.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-primary btn-lg" href="#">Quick Start</a>
+          <a class="btn btn-secondary btn-lg" href="#">View System</a>
+        </div>
+      </div>
+      <div class="terminal">
+        <div class="terminal-bar"><span class="terminal-dot red"></span><span class="terminal-dot yellow"></span><span class="terminal-dot green"></span></div>
+        <div class="terminal-body"><code><span class="dim">/* one link tag, done */</span>
+&lt;link rel="stylesheet" href="postrboard.min.css"&gt;
+
+<span class="dim">/* or npm */</span>
+<span class="prompt">$</span> <span class="cmd">npm install postrboard-css</span>
+
+<span class="dim">/* start building */</span>
+&lt;main class="<span class="cmd">container stack</span>"&gt;
+  &lt;h1 class="<span class="cmd">text-display</span>"&gt;Hello&lt;/h1&gt;
+&lt;/main&gt;</code></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container stat-grid">
+      <div class="card stack-sm" style="padding:24px">
+        <span class="text-meta text-mono">source</span>
+        <strong style="font-size:2.5rem;letter-spacing:-0.05em;line-height:1">710</strong>
+        <span class="text-muted" style="font-size:14px">lines</span>
+      </div>
+      <div class="card stack-sm" style="padding:24px">
+        <span class="text-meta text-mono">payload</span>
+        <strong style="font-size:2.5rem;letter-spacing:-0.05em;line-height:1">44KB</strong>
+        <span class="text-muted" style="font-size:14px">minified</span>
+      </div>
+      <div class="card stack-sm" style="padding:24px">
+        <span class="text-meta text-mono">runtime</span>
+        <strong style="font-size:2.5rem;letter-spacing:-0.05em;line-height:1">0</strong>
+        <span class="text-muted" style="font-size:14px">dependencies</span>
+      </div>
+      <div class="card stack-sm" style="padding:24px">
+        <span class="text-meta text-mono">modes</span>
+        <strong style="font-size:2.5rem;letter-spacing:-0.05em;line-height:1">2</strong>
+        <span class="text-muted" style="font-size:14px">light + dark</span>
+      </div>
+    </div>
+  </section>
+</main>
+</body>
+</html>

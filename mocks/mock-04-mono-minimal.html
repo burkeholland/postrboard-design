@@ -1,0 +1,93 @@
+<!doctype html>
+<html data-mode="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mock 04 — Mono Minimal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../postrboard.css">
+<style>
+body { min-height: 100vh; background: var(--bg); }
+.page { max-width: 860px; margin: 0 auto; padding: 48px; }
+.hero { padding: 120px 0 80px; border-bottom: 1px solid var(--border); }
+.mono-title {
+  font-family: 'Space Mono', var(--mono-display);
+  font-size: clamp(2.5rem, 7vw, 5.5rem);
+  font-weight: 700;
+  letter-spacing: -0.1em;
+  line-height: 0.95;
+  margin-bottom: var(--space-6);
+}
+.mono-title span { color: var(--coral-surface); }
+.hero-desc {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: var(--text-muted);
+  max-width: 580px;
+  margin-bottom: var(--space-7);
+}
+.install-block {
+  font-family: var(--mono);
+  font-size: 15px;
+  background: var(--code-bg);
+  padding: 14px 20px;
+  border-radius: var(--radius-compact);
+  display: inline-block;
+  color: var(--text);
+  border: 1px solid var(--border);
+  margin-bottom: var(--space-6);
+}
+.install-block .dim { color: var(--text-muted); }
+.features { padding: 60px 0; display: grid; gap: 40px; }
+.feature {
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: var(--space-4);
+  align-items: start;
+}
+.feature-num {
+  font-family: 'Space Mono', var(--mono-display);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--coral-surface);
+  letter-spacing: -0.05em;
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <section class="hero">
+    <div class="mono-title">postrboard<span>.</span>css</div>
+    <p class="hero-desc">A refined, airy, code-native CSS framework. Token-first design, zero JavaScript, zero build step. Just link and ship.</p>
+    <div class="install-block"><span class="dim">$</span> npm install postrboard-css</div>
+    <br><br>
+    <a class="btn btn-primary btn-lg" href="#">Read the docs →</a>
+  </section>
+  <section class="features">
+    <div class="feature">
+      <span class="feature-num">01</span>
+      <div>
+        <h3 class="text-card" style="font-size:18px">Token-first architecture</h3>
+        <p class="text-body text-muted">Every value flows from a single design token contract.</p>
+      </div>
+    </div>
+    <div class="feature">
+      <span class="feature-num">02</span>
+      <div>
+        <h3 class="text-card" style="font-size:18px">Zero JavaScript required</h3>
+        <p class="text-body text-muted">Pure CSS components. Buttons, cards, terminals, forms, badges.</p>
+      </div>
+    </div>
+    <div class="feature">
+      <span class="feature-num">03</span>
+      <div>
+        <h3 class="text-card" style="font-size:18px">Dark mode built in</h3>
+        <p class="text-body text-muted">System preference detection plus manual toggles via data-mode.</p>
+      </div>
+    </div>
+  </section>
+</div>
+</body>
+</html>

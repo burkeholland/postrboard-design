@@ -1,0 +1,118 @@
+<!doctype html>
+<html data-mode="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mock 05 — Card Mosaic</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../postrboard.css">
+<style>
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  background:
+    radial-gradient(circle at 12% 8%, color-mix(in srgb, var(--azure) 10%, transparent), transparent 34rem),
+    var(--bg);
+}
+.site-nav {
+  position: sticky; top: 0; z-index: 20;
+  border-bottom: 1px solid var(--border-glass);
+  background: var(--nav-bg);
+  backdrop-filter: var(--nav-blur);
+}
+.nav-inner { min-height: 72px; justify-content: space-between; }
+.wordmark { font-family: 'Space Mono', var(--mono); font-weight: 700; letter-spacing: -0.08em; font-size: 1.25rem; color: var(--text); text-decoration: none; }
+
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 60px;
+  align-items: center;
+  padding: 100px 0;
+}
+.hero-title {
+  font-size: clamp(3rem, 6vw, 4.5rem);
+  font-weight: 800;
+  letter-spacing: -0.06em;
+  line-height: 0.95;
+  margin-bottom: var(--space-5);
+}
+.mosaic {
+  position: relative;
+  min-height: 420px;
+}
+.m-card {
+  position: absolute;
+  padding: 20px;
+  border-radius: var(--radius-soft);
+  background: var(--surface);
+  border: 1px solid var(--border-glass);
+  box-shadow: var(--shadow-subtle);
+}
+.m1 { top: 0; left: 10%; transform: rotate(-2deg); width: 220px; }
+.m2 { top: 20px; right: 5%; transform: rotate(1.5deg); width: 240px; }
+.m3 { top: 180px; left: 5%; transform: rotate(1deg); width: 260px; }
+.m4 { top: 200px; right: 12%; transform: rotate(-1.5deg); width: 200px; }
+.m5 { bottom: 0; left: 22%; transform: rotate(0.5deg); width: 280px; }
+.m-title { font-size: 15px; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.02em; }
+.m-text { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+.m-mono { font-family: var(--mono); font-size: 12px; color: var(--text-muted); margin-top: 8px; }
+</style>
+</head>
+<body>
+<nav class="site-nav">
+  <div class="container cluster nav-inner">
+    <a class="wordmark" href="#">postrboard</a>
+    <div class="cluster">
+      <a class="btn btn-ghost btn-sm" href="#">Docs</a>
+      <a class="btn btn-ghost btn-sm" href="#">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <section class="section">
+    <div class="container hero">
+      <div class="stack">
+        <h1 class="hero-title">Your entire design system in one file.</h1>
+        <p class="text-body text-muted" style="max-width:440px">40+ components, token-driven theming, light & dark modes. No build tools. No dependencies. Just CSS.</p>
+        <div class="cluster" style="margin-top:var(--space-6)">
+          <a class="btn btn-primary btn-lg" href="#">Explore Components</a>
+        </div>
+      </div>
+      <div class="mosaic">
+        <div class="m-card m1">
+          <span class="badge badge-coral">badge</span>
+          <span class="badge badge-azure" style="margin-left:6px">azure</span>
+          <span class="badge badge-sage" style="margin-left:6px">sage</span>
+        </div>
+        <div class="m-card m2">
+          <div class="m-title">Buttons</div>
+          <div class="cluster" style="gap:8px">
+            <button class="btn btn-primary btn-sm">Primary</button>
+            <button class="btn btn-secondary btn-sm">Secondary</button>
+          </div>
+        </div>
+        <div class="m-card m3">
+          <div class="m-title">Quick input</div>
+          <input class="input" placeholder="you@company.dev" style="width:100%">
+          <div class="m-mono">.input .input-lg</div>
+        </div>
+        <div class="m-card m4">
+          <div class="m-title">.terminal</div>
+          <div class="terminal" style="padding:0">
+            <div class="terminal-body" style="padding:12px;font-size:11px">$ npm install</div>
+          </div>
+        </div>
+        <div class="m-card m5">
+          <div class="m-title">Card with intent</div>
+          <div class="m-text">Use primitives as product grammar rather than a pile of utilities.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+</body>
+</html>

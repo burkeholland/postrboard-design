@@ -1,0 +1,149 @@
+<!doctype html>
+<html data-mode="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mock 09 — Interactive Playground</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../postrboard.css">
+<style>
+body { min-height: 100vh; background: var(--bg); }
+.site-nav {
+  position: sticky; top: 0; z-index: 20;
+  border-bottom: 1px solid var(--border-glass);
+  background: var(--nav-bg);
+  backdrop-filter: var(--nav-blur);
+}
+.nav-inner { min-height: 72px; justify-content: space-between; }
+.wordmark { font-family: 'Space Mono', var(--mono); font-weight: 700; letter-spacing: -0.08em; font-size: 1.25rem; color: var(--text); text-decoration: none; }
+
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 60px;
+  align-items: center;
+  padding: 80px 0;
+}
+.hero-title {
+  font-size: clamp(2.8rem, 5vw, 4rem);
+  font-weight: 800;
+  letter-spacing: -0.06em;
+  line-height: 0.95;
+  margin-bottom: var(--space-5);
+}
+.hero-title span { color: var(--coral-surface); }
+
+.mode-toggle {
+  display: inline-flex;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+  margin-bottom: var(--space-5);
+}
+.mode-toggle button {
+  height: 36px;
+  padding: 0 18px;
+  border: none;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  background: transparent;
+  color: var(--text-muted);
+  font-family: var(--sans);
+}
+.mode-toggle button.active {
+  background: var(--text);
+  color: var(--bg);
+}
+
+.playground {
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-medium);
+  transition: all 0.3s;
+}
+.playground.dark-mode { background: #0b0f14; border-color: rgba(255,255,255,0.06); }
+.playground.light-mode { background: #f8fcff; }
+
+.pg-nav {
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid;
+}
+.light-mode .pg-nav { border-color: #e2e8f0; }
+.dark-mode .pg-nav { border-color: rgba(255,255,255,0.06); }
+
+.pg-wm { font-family: 'Space Mono', var(--mono); font-weight: 700; font-size: 11px; letter-spacing: -0.06em; }
+.light-mode .pg-wm { color: #111827; }
+.dark-mode .pg-wm { color: #e2e8f0; }
+
+.pg-btn { height: 24px; padding: 0 10px; border-radius: var(--radius-pill); border: none; font-size: 10px; font-weight: 600; background: var(--coral-surface); color: #fff; }
+
+.pg-content { padding: 24px 20px; }
+.pg-card { padding: 16px; border-radius: 12px; margin-bottom: 12px; }
+.light-mode .pg-card { background: #fff; border: 1px solid #e2e8f0; }
+.dark-mode .pg-card { background: #111820; border: 1px solid rgba(255,255,255,0.06); }
+
+.pg-title { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+.light-mode .pg-title { color: #111827; }
+.dark-mode .pg-title { color: #e2e8f0; }
+
+.pg-text { font-size: 11px; line-height: 1.5; }
+.light-mode .pg-text { color: #6b7280; }
+.dark-mode .pg-text { color: #94a3b8; }
+
+.pg-badge { display: inline-flex; height: 20px; padding: 0 8px; border-radius: var(--radius-pill); font-size: 10px; font-weight: 600; align-items: center; margin-top: 8px; }
+.light-mode .pg-badge { background: #fff0eb; color: #c4460a; }
+.dark-mode .pg-badge { background: rgba(255,127,80,0.1); color: #fb923c; }
+</style>
+</head>
+<body>
+<nav class="site-nav">
+  <div class="container cluster nav-inner">
+    <a class="wordmark" href="#">postrboard</a>
+    <div class="cluster">
+      <a class="btn btn-ghost btn-sm" href="#">Docs</a>
+      <a class="btn btn-primary btn-sm" href="#">Get Started</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <section class="section">
+    <div class="container hero">
+      <div class="stack">
+        <h1 class="hero-title">See it. <span>Ship it.</span></h1>
+        <p class="text-body text-muted" style="max-width:420px">Your entire design system adapts automatically. Toggle between modes — the same components, the same classes, two entirely different vibes.</p>
+        <div class="mode-toggle">
+          <button class="active" onclick="setMode('light')">☀ Light</button>
+          <button onclick="setMode('dark')">☾ Dark</button>
+        </div>
+        <a class="btn btn-primary btn-lg" href="#">Get Started</a>
+      </div>
+      <div class="playground light-mode" id="playground">
+        <div class="pg-nav"><span class="pg-wm">my-app</span><button class="pg-btn">Launch</button></div>
+        <div class="pg-content">
+          <div class="pg-card"><div class="pg-title">Ship day</div><div class="pg-text">Use primitives as product grammar rather than utilities.</div><span class="pg-badge">v1.0</span></div>
+          <div class="pg-card"><div class="pg-title">Form input</div><div class="pg-text">Readable classes that describe interface intent.</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+function setMode(mode) {
+  const pg = document.getElementById('playground');
+  const btns = document.querySelectorAll('.mode-toggle button');
+  pg.className = 'playground ' + (mode === 'dark' ? 'dark-mode' : 'light-mode');
+  btns.forEach(b => b.classList.remove('active'));
+  btns[mode === 'light' ? 0 : 1].classList.add('active');
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!doctype html>
+<html data-mode="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mock 08 — Editorial Columns</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../postrboard.css">
+<style>
+body { min-height: 100vh; background: var(--bg); }
+.site-nav { padding: 24px 0; }
+.nav-inner { justify-content: space-between; }
+.wordmark { font-family: 'Space Mono', var(--mono); font-weight: 700; letter-spacing: -0.08em; font-size: 1.25rem; color: var(--text); text-decoration: none; }
+
+.editorial {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr;
+  gap: 48px;
+  border-top: 2px solid var(--text);
+  padding-top: var(--space-8);
+}
+.col-center {
+  border-left: 1px solid var(--border);
+  padding-left: 48px;
+}
+.col-right {
+  border-left: 1px solid var(--border);
+  padding-left: 48px;
+}
+.section-label {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 20px;
+}
+.features-list {
+  display: grid;
+  gap: 16px;
+  list-style: none;
+  padding: 0;
+}
+.features-list li {
+  padding-left: 20px;
+  position: relative;
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+.features-list li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: var(--coral-text);
+  font-weight: 700;
+}
+</style>
+</head>
+<body>
+<nav class="site-nav">
+  <div class="container cluster nav-inner">
+    <a class="wordmark" href="#">postrboard</a>
+    <div class="cluster">
+      <a class="btn btn-ghost btn-sm" href="#">Docs</a>
+      <a class="btn btn-ghost btn-sm" href="#">Examples</a>
+      <a class="btn btn-ghost btn-sm" href="#">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main class="section">
+  <div class="container editorial">
+    <div class="stack">
+      <span class="text-meta text-mono">CSS Framework / v1.0</span>
+      <h1 class="text-h1">Quiet CSS for loud products.</h1>
+      <p class="text-body text-muted">Not Tailwind. Not Bootstrap. Not classless. A point of view on type, space, radius, and tone — for developer products that want to feel premium.</p>
+      <p class="text-body text-muted">Class-based but minimal. Layout primitives, polished components, and an opinionated aesthetic.</p>
+    </div>
+
+    <div class="col-center stack">
+      <div>
+        <div class="section-label">Quick Start</div>
+        <div class="terminal">
+          <div class="terminal-bar"><span class="terminal-dot red"></span><span class="terminal-dot yellow"></span><span class="terminal-dot green"></span></div>
+          <div class="terminal-body"><code><span class="dim">&lt;!-- CDN --&gt;</span>
+&lt;link href="postrboard.min.css"&gt;
+
+<span class="dim"># or npm</span>
+<span class="prompt">$</span> <span class="cmd">npm install postrboard-css</span></code></div>
+        </div>
+      </div>
+      <div>
+        <div class="section-label">Includes</div>
+        <ul class="features-list">
+          <li>Token-first architecture</li>
+          <li>40+ components</li>
+          <li>Light & dark modes</li>
+          <li>Zero dependencies</li>
+          <li>710 lines of source</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="col-right stack">
+      <div class="section-label">Component Preview</div>
+      <div class="card stack-sm">
+        <h4 class="text-card" style="font-size:16px">Ship day</h4>
+        <p class="text-body text-muted" style="font-size:14px">Use primitives as product grammar.</p>
+        <button class="btn btn-primary btn-sm">Primary</button>
+      </div>
+      <div class="card stack-sm">
+        <h4 class="text-card" style="font-size:16px">Form input</h4>
+        <input class="input" placeholder="you@example.com" style="width:100%">
+      </div>
+    </div>
+  </div>
+</main>
+</body>
+</html>

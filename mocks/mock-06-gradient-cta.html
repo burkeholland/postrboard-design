@@ -1,0 +1,132 @@
+<!doctype html>
+<html data-mode="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mock 06 — Gradient CTA Band</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../postrboard.css">
+<style>
+body { min-height: 100vh; background: var(--bg); }
+.site-nav {
+  position: sticky; top: 0; z-index: 20;
+  background: rgba(194,65,12,0.95);
+  backdrop-filter: blur(12px);
+}
+.nav-inner { min-height: 72px; justify-content: space-between; }
+.wordmark { font-family: 'Space Mono', var(--mono); font-weight: 700; letter-spacing: -0.08em; font-size: 1.25rem; color: #fff; text-decoration: none; }
+.nav-link { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; font-weight: 500; }
+
+.gradient-hero {
+  background: linear-gradient(135deg, var(--coral-surface), #0369a1);
+  padding: 100px 48px 120px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.gradient-hero::after {
+  content: "postrboard";
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Space Mono', var(--mono-display);
+  font-size: 12rem;
+  font-weight: 700;
+  letter-spacing: -0.12em;
+  color: rgba(255,255,255,0.04);
+  white-space: nowrap;
+}
+.gradient-hero h1 {
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 800;
+  letter-spacing: -0.07em;
+  line-height: 0.9;
+  color: #fff;
+  margin-bottom: var(--space-5);
+  position: relative;
+}
+.gradient-hero p {
+  font-size: 1.2rem;
+  color: rgba(255,255,255,0.82);
+  max-width: 560px;
+  margin: 0 auto var(--space-7);
+  line-height: 1.7;
+  position: relative;
+}
+.btn-white {
+  height: 52px;
+  padding: 0 32px;
+  border-radius: var(--radius-pill);
+  background: #fff;
+  color: #111827;
+  font-size: 16px;
+  font-weight: 700;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  position: relative;
+}
+.preview-panel {
+  max-width: 800px;
+  margin: -60px auto 0;
+  background: var(--surface-glass);
+  backdrop-filter: blur(16px);
+  border-radius: 20px;
+  padding: var(--card-padding);
+  border: 1px solid var(--border-glass);
+  box-shadow: var(--shadow-high);
+  position: relative;
+  z-index: 5;
+}
+.preview-row {
+  display: flex;
+  gap: var(--space-4);
+  align-items: center;
+  flex-wrap: wrap;
+}
+.preview-label {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: var(--space-4);
+}
+</style>
+</head>
+<body>
+<nav class="site-nav">
+  <div class="container cluster nav-inner">
+    <a class="wordmark" href="#">postrboard</a>
+    <div class="cluster">
+      <a class="nav-link" href="#">Docs</a>
+      <a class="nav-link" href="#">Examples</a>
+      <a class="nav-link" href="#">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <section class="gradient-hero">
+    <h1>Quiet CSS for loud products.</h1>
+    <p>A refined, airy, code-native framework. Zero JavaScript. Zero build step. Just link and ship.</p>
+    <button class="btn-white">Get Started →</button>
+  </section>
+
+  <div class="preview-panel">
+    <div class="preview-row">
+      <button class="btn btn-primary">Primary</button>
+      <button class="btn btn-secondary">Secondary</button>
+      <button class="btn btn-ghost">Ghost</button>
+      <span class="badge badge-coral">v1.0</span>
+      <span class="badge badge-azure">css only</span>
+      <input class="input" placeholder="you@company.dev" style="flex:1;min-width:180px">
+    </div>
+    <div class="preview-label">.btn-primary &nbsp; .btn-secondary &nbsp; .btn-ghost &nbsp; .badge &nbsp; .input</div>
+  </div>
+</main>
+</body>
+</html>
