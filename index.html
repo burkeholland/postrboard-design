@@ -844,6 +844,43 @@ section {
   grid-template-columns: 260px 1fr;
   gap: 24px;
 }
+.grid-thirds {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.grid-asymmetric {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+}
+.grid-holy-grail {
+  display: grid;
+  grid-template-columns: 200px 1fr 200px;
+  grid-template-rows: auto 1fr auto;
+  gap: 16px;
+  min-height: 280px;
+}
+.grid-holy-grail .placeholder-header { grid-column: 1 / -1; }
+.grid-holy-grail .placeholder-footer { grid-column: 1 / -1; }
+.grid-masonry {
+  columns: 3;
+  column-gap: 16px;
+}
+.grid-masonry .placeholder { break-inside: avoid; margin-bottom: 16px; }
+.grid-stack-rail {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  grid-template-rows: auto auto;
+  gap: 16px;
+}
+.grid-stack-rail .placeholder-aside { grid-row: 1 / -1; }
+.grid-centered {
+  display: grid;
+  grid-template-columns: minmax(0, 640px);
+  justify-content: center;
+  gap: 16px;
+}
 
 
 /* ═══════════════════════════════════════════════════════
@@ -1749,7 +1786,11 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
   .side-nav-footer { padding: 0; margin: 0; border: 0; }
   .side-nav .nav-toggle { box-shadow: var(--shadow-subtle); }
   .page { width: auto; margin: 0; padding: 60px 16px 80px; }
-  .grid-two, .grid-sidebar { grid-template-columns: 1fr; }
+  .grid-two, .grid-sidebar, .grid-asymmetric, .grid-holy-grail, .grid-stack-rail { grid-template-columns: 1fr; }
+  .grid-thirds { grid-template-columns: 1fr; }
+  .grid-holy-grail .placeholder-header, .grid-holy-grail .placeholder-footer { grid-column: auto; }
+  .grid-stack-rail .placeholder-aside { grid-row: auto; }
+  .grid-masonry { columns: 1; }
 }
 
 @media (max-width: 640px) {
@@ -1834,7 +1875,7 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
     <li class="side-nav-section"><a class="side-nav-parent" href="#ambient">Ambient</a></li>
     <li class="side-nav-section">
       <a class="side-nav-parent" href="#layout">Layout</a>
-      <ul class="side-nav-children"><li><a href="#layout-auto-fit">Auto-fit Grid</a></li><li><a href="#layout-two-col">Two-column Hero</a></li><li><a href="#layout-sidebar">Sidebar Layout</a></li></ul>
+      <ul class="side-nav-children"><li><a href="#layout-auto-fit">Auto-fit Grid</a></li><li><a href="#layout-two-col">Split</a></li><li><a href="#layout-asymmetric">Asymmetric</a></li><li><a href="#layout-thirds">Thirds</a></li><li><a href="#layout-sidebar">Sidebar</a></li><li><a href="#layout-holy-grail">Holy Grail</a></li><li><a href="#layout-masonry">Masonry</a></li><li><a href="#layout-stack-rail">Stack + Rail</a></li><li><a href="#layout-centered">Centered Prose</a></li></ul>
     </li>
   </ul>
 </nav>
@@ -3099,9 +3140,10 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
     <hr class="section-rule">
 
     <div class="component" id="layout-auto-fit">
-      <div class="component-name">Auto-fit Grid — repeat(auto-fit, minmax(240px, 1fr))</div>
+      <div class="component-name">Auto-fit Grid — fills available columns responsively</div>
       <div class="layout-demo">
         <div class="grid-auto">
+          <div class="placeholder">Card slot</div>
           <div class="placeholder">Card slot</div>
           <div class="placeholder">Card slot</div>
           <div class="placeholder">Card slot</div>
@@ -3110,21 +3152,89 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
     </div>
 
     <div class="component" id="layout-two-col">
-      <div class="component-name">Two-column Hero — editorial left, artifact right</div>
+      <div class="component-name">Split — equal halves for editorial + artifact</div>
       <div class="layout-demo">
         <div class="grid-two">
-          <div class="placeholder">Hero copy</div>
-          <div class="placeholder">Terminal / Image</div>
+          <div class="placeholder">Copy block</div>
+          <div class="placeholder">Visual / code</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="component" id="layout-asymmetric">
+      <div class="component-name">Asymmetric — weighted 2:1 for content + aside</div>
+      <div class="layout-demo">
+        <div class="grid-asymmetric">
+          <div class="placeholder">Primary content</div>
+          <div class="placeholder">Metadata</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="component" id="layout-thirds">
+      <div class="component-name">Thirds — three equal columns for feature grids</div>
+      <div class="layout-demo">
+        <div class="grid-thirds">
+          <div class="placeholder">Feature</div>
+          <div class="placeholder">Feature</div>
+          <div class="placeholder">Feature</div>
         </div>
       </div>
     </div>
 
     <div class="component" id="layout-sidebar">
-      <div class="component-name">Sidebar — 260px fixed + fluid content</div>
+      <div class="component-name">Sidebar — fixed rail + fluid main</div>
       <div class="layout-demo">
         <div class="grid-sidebar">
-          <div class="placeholder">Sidebar nav</div>
+          <div class="placeholder">Nav</div>
           <div class="placeholder">Main content area</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="component" id="layout-holy-grail">
+      <div class="component-name">Holy Grail — header, footer, three-column body</div>
+      <div class="layout-demo">
+        <div class="grid-holy-grail">
+          <div class="placeholder placeholder-header">Header</div>
+          <div class="placeholder">Left</div>
+          <div class="placeholder">Content</div>
+          <div class="placeholder">Right</div>
+          <div class="placeholder placeholder-footer">Footer</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="component" id="layout-masonry">
+      <div class="component-name">Masonry — variable-height items in columns</div>
+      <div class="layout-demo">
+        <div class="grid-masonry">
+          <div class="placeholder" style="padding:40px 24px">Tall item</div>
+          <div class="placeholder">Short</div>
+          <div class="placeholder" style="padding:56px 24px">Taller</div>
+          <div class="placeholder">Short</div>
+          <div class="placeholder" style="padding:32px 24px">Medium</div>
+          <div class="placeholder" style="padding:48px 24px">Tall</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="component" id="layout-stack-rail">
+      <div class="component-name">Stack + Rail — stacked content with a pinned aside</div>
+      <div class="layout-demo">
+        <div class="grid-stack-rail">
+          <div class="placeholder">Post</div>
+          <div class="placeholder placeholder-aside">Sticky sidebar</div>
+          <div class="placeholder">Post</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="component" id="layout-centered">
+      <div class="component-name">Centered Prose — max-width content column</div>
+      <div class="layout-demo">
+        <div class="grid-centered">
+          <div class="placeholder">Article body at comfortable reading width</div>
         </div>
       </div>
     </div>
