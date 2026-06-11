@@ -1788,7 +1788,6 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
   <div class="side-nav-header">
     <a href="#main" class="nav-logo">postrboard</a>
     <button class="nav-toggle" type="button" aria-pressed="false" onclick="toggleMode()">
-      <span id="mode-icon">☀️</span>
       <span id="mode-label">Light</span>
     </button>
   </div>
@@ -3178,10 +3177,8 @@ function toggleMode() {
 }
 function applyMode(mode) {
   document.documentElement.setAttribute('data-mode', mode);
-  const icon = document.getElementById('mode-icon');
   const label = document.getElementById('mode-label');
   const toggle = document.querySelector('.nav-toggle');
-  if (icon) icon.textContent = mode === 'light' ? '☀️' : '🌙';
   if (label) label.textContent = mode === 'light' ? 'Light' : 'Dark';
   if (toggle) toggle.setAttribute('aria-pressed', mode === 'dark' ? 'true' : 'false');
 }
