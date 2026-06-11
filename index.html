@@ -222,8 +222,11 @@ body {
 .side-nav::-webkit-scrollbar-thumb { background: transparent; border-radius: var(--r-pill); }
 .side-nav:hover::-webkit-scrollbar-thumb { background: var(--coral); }
 .side-nav-header {
-  padding-bottom: 20px;
-  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 24px;
+  margin-bottom: 24px;
   border-bottom: 1px solid var(--border);
 }
 .nav-logo {
@@ -296,18 +299,20 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 6px 12px;
+  padding: 5px 10px;
   font-family: var(--mono);
-  font-size: 12px;
-  font-weight: 500;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   color: var(--text-muted);
-  background: var(--surface);
+  background: var(--code-bg);
   border: 1px solid var(--border);
   border-radius: var(--r-pill);
   cursor: pointer;
   transition: all var(--ease);
 }
-.nav-toggle:hover { border-color: var(--coral); color: var(--text); }
+.nav-toggle:hover { border-color: var(--coral); color: var(--text); background: var(--surface); }
 
 /* ─── Page ─── */
 .page {
