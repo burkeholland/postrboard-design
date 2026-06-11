@@ -17,7 +17,7 @@ A refined, airy, code-native CSS framework. Zero JavaScript. Zero build step. Li
 ### CDN (fastest)
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/postrboard-css@1/postrboard.min.css">
+<link rel="stylesheet" href="https://burkeholland.github.io/postrboard-design/postrboard.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 ```
 
@@ -45,7 +45,7 @@ Download [`postrboard.css`](https://burkeholland.github.io/postrboard-design/pos
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/postrboard-css@1/postrboard.min.css">
+  <link rel="stylesheet" href="https://burkeholland.github.io/postrboard-design/postrboard.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
