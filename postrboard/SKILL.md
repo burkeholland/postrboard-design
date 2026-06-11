@@ -1,6 +1,6 @@
 ---
 name: postrboard
-description: Apply the Postrboard design language to frontend work: quiet CSS for loud products, code-native, restrained, non-generic.
+description: "Apply the Postrboard design language to frontend work. Quiet CSS for loud products, code-native, restrained, non-generic."
 ---
 
 # Postrboard Skill
