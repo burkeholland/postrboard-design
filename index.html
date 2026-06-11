@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="en" data-mode="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Postrboard CSS — Quiet CSS for loud products</title>
+  <meta name="description" content="A refined, airy, code-native CSS framework. Zero JavaScript. Zero build step. Light and dark modes. Just link and ship.">
+  <link rel="canonical" href="https://burkeholland.github.io/postrboard-design/">
+
+  <meta property="og:title" content="Postrboard CSS — Quiet CSS for loud products">
+  <meta property="og:description" content="A refined, airy, code-native CSS framework. Zero JavaScript. Zero build step. Light and dark modes. Just link and ship.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://burkeholland.github.io/postrboard-design/">
+  <meta property="og:image" content="https://burkeholland.github.io/postrboard-design/og-image.svg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Postrboard CSS — Quiet CSS for loud products">
+  <meta name="twitter:description" content="A refined, airy, code-native CSS framework. Zero JavaScript. Zero build step. Light and dark modes. Just link and ship.">
+
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="postrboard.css">
+
+  <style>
+    :root { scroll-behavior: smooth; }
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+      background:
+        radial-gradient(circle at 12% 8%, color-mix(in srgb, var(--azure) 10%, transparent), transparent 34rem),
+        linear-gradient(135deg, var(--bg), color-mix(in srgb, var(--sage-tint) 55%, var(--bg)) 55%, var(--bg));
+    }
+    [data-mode="dark"] body {
+      background:
+        radial-gradient(circle at 84% 8%, rgba(255,127,80,0.18), transparent 28rem),
+        radial-gradient(circle at 12% 86%, rgba(14,165,233,0.16), transparent 30rem),
+        var(--bg);
+    }
+    [data-mode="dark"] body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.035;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+      z-index: -1;
+    }
+    .site-nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid var(--border-glass);
+      background: color-mix(in srgb, var(--surface-glass) 88%, transparent);
+      backdrop-filter: blur(14px) saturate(1.5);
+    }
+    .nav-inner { min-height: 72px; justify-content: space-between; }
+    .wordmark { font-family: 'Space Mono', var(--mono); font-weight: 700; letter-spacing: -0.08em; font-size: 1.25rem; color: var(--text); text-decoration: none; }
+    .nav-links { gap: var(--space-2); }
+    .hero {
+      position: relative;
+      padding-block: clamp(5rem, 11vw, 8.5rem) var(--space-8);
+    }
+    .hero::after {
+      content: "postrboard";
+      position: absolute;
+      right: max(1rem, 4vw);
+      bottom: 1.5rem;
+      z-index: -1;
+      font-family: 'Space Mono', var(--mono-display);
+      font-size: clamp(4.5rem, 15vw, 14rem);
+      font-weight: 700;
+      letter-spacing: -0.12em;
+      color: color-mix(in srgb, var(--text) 5%, transparent);
+      white-space: nowrap;
+    }
+    .hero-grid { display: grid; grid-template-columns: minmax(0, 1.06fr) minmax(320px, .74fr); gap: clamp(2rem, 6vw, 5rem); align-items: center; }
+    .hero-copy { max-width: 760px; }
+    .eyebrow { width: fit-content; }
+    .hero-title { font-size: clamp(4rem, 10vw, 9.5rem); letter-spacing: -0.075em; line-height: .84; max-width: 900px; }
+    .hero-subtitle { max-width: 640px; font-size: clamp(1.05rem, 1.8vw, 1.35rem); line-height: 1.75; }
+    .hero-card { transform: rotate(1.3deg); }
+    .spec-row { display: flex; justify-content: space-between; gap: var(--space-4); border-top: 1px solid var(--border); padding-top: var(--space-4); }
+    .stat { min-height: 120px; justify-content: space-between; }
+    .stat strong { font-size: clamp(2rem, 5vw, 3.6rem); letter-spacing: -0.07em; line-height: 1; }
+    .feature-icon { width: 38px; height: 38px; border-radius: var(--radius-compact); display: grid; place-items: center; background: var(--coral-tint); color: var(--coral-text); font-family: var(--mono); font-weight: 700; }
+    .quickstart { display: grid; grid-template-columns: .72fr 1fr; gap: clamp(1.5rem, 5vw, 4rem); align-items: end; }
+    .terminal code { display: block; white-space: pre-wrap; }
+    .showcase-grid { display: grid; grid-template-columns: minmax(280px, .9fr) minmax(320px, 1.1fr); gap: var(--space-4); align-items: stretch; }
+    .component-palette { align-content: start; }
+    .input-row { display: grid; grid-template-columns: 1fr auto; gap: var(--space-3); }
+    .comparison { border-block: 1px solid var(--border); }
+    .comparison-copy { max-width: 820px; }
+    .not-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-4); }
+    .not-list .card { background: color-mix(in srgb, var(--surface) 64%, transparent); }
+    .cta-band { overflow: hidden; position: relative; }
+    .cta-band::before { content: "$ link && ship"; position: absolute; right: -1rem; top: -1.4rem; font-family: 'JetBrains Mono', var(--mono); font-size: clamp(3rem, 10vw, 8rem); font-weight: 700; letter-spacing: -0.08em; color: color-mix(in srgb, var(--azure) 8%, transparent); }
+    .footer-grid { display: grid; grid-template-columns: 1.3fr repeat(3, 1fr); gap: var(--space-6); }
+    .footer-links a { display: block; color: var(--text-muted); text-decoration: none; margin-top: var(--space-2); }
+    .footer-links a:hover { color: var(--text); }
+    @media (max-width: 860px) {
+      .hero-grid, .quickstart, .showcase-grid, .not-list, .footer-grid { grid-template-columns: 1fr; }
+      .hero-card { transform: none; }
+      .nav-links a:not(.keep), .spec-row { display: none; }
+      .input-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="site-nav" aria-label="Primary navigation">
+    <div class="container cluster nav-inner">
+      <a class="wordmark" href="#top" aria-label="Postrboard CSS home">postrboard</a>
+      <div class="cluster nav-links">
+        <a class="btn btn-ghost btn-sm" href="design-system.html">Docs</a>
+        <a class="btn btn-ghost btn-sm" href="#examples">Examples</a>
+        <a class="btn btn-ghost btn-sm" href="examples/starter.html">Starter</a>
+        <a class="btn btn-ghost btn-sm" href="https://github.com/burkeholland/postrboard-design">GitHub</a>
+        <button class="btn btn-secondary btn-sm keep" id="mode-toggle" type="button" aria-label="Switch to dark mode"><span id="mode-icon">☾</span></button>
+      </div>
+    </div>
+  </nav>
+
+  <main id="top">
+    <section class="hero section">
+      <div class="container hero-grid">
+        <div class="stack stack-lg hero-copy">
+          <div class="stack stack-sm">
+            <span class="badge badge-coral eyebrow text-meta">v1.0 — Open Source</span>
+            <h1 class="text-display hero-title">Quiet CSS for <span class="gradient-text">loud</span> products.</h1>
+          </div>
+          <p class="text-body text-muted hero-subtitle">A refined, airy, code-native framework. Zero JavaScript. Zero build step. Just link and ship.</p>
+          <div class="cluster">
+            <a class="btn btn-primary btn-lg" href="#quick-start">Get Started</a>
+            <a class="btn btn-secondary btn-lg" href="design-system.html">View Design System</a>
+          </div>
+        </div>
+
+        <aside class="card hero-card stack" aria-label="Framework summary">
+          <div class="cluster">
+            <span class="badge badge-azure">v1.0</span>
+            <span class="badge badge-sage">css only</span>
+          </div>
+          <p class="quote-block">Class-based, but calm. Opinionated, but not loud. Enough system to ship a product page before the coffee cools.<cite>postrboard.css contract</cite></p>
+          <div class="spec-row text-meta text-mono">
+            <span>.btn</span><span>.card</span><span>.stack</span><span>.terminal</span>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section py-6" aria-label="Framework stats">
+      <div class="container stat-grid">
+        <div class="card stat stack-sm"><span class="text-meta text-mono">source</span><strong>710</strong><span class="text-muted">lines</span></div>
+        <div class="card stat stack-sm"><span class="text-meta text-mono">payload</span><strong>44KB</strong><span class="text-muted">minified</span></div>
+        <div class="card stat stack-sm"><span class="text-meta text-mono">runtime</span><strong>0</strong><span class="text-muted">dependencies</span></div>
+        <div class="card stat stack-sm"><span class="text-meta text-mono">modes</span><strong>2</strong><span class="text-muted">Light + Dark</span></div>
+      </div>
+    </section>
+
+    <section class="section" id="docs">
+      <div class="container stack stack-lg">
+        <div class="stack stack-sm container-sm text-center">
+          <span class="text-meta text-mono">what ships</span>
+          <h2 class="text-h1">A design system hiding in one stylesheet.</h2>
+        </div>
+        <div class="feature-grid">
+          <article class="card card-interactive stack-sm">
+            <div class="feature-icon">01</div>
+            <h3 class="text-card">Token-first</h3>
+            <p class="text-body text-muted">Every value flows from one design token contract, so surfaces, spacing, type, and focus states stay coherent.</p>
+          </article>
+          <article class="card card-interactive stack-sm">
+            <div class="feature-icon">02</div>
+            <h3 class="text-card">Zero JavaScript</h3>
+            <p class="text-body text-muted">Pure CSS components that just work: buttons, cards, terminals, forms, badges, grids, and layout primitives.</p>
+          </article>
+          <article class="card card-interactive stack-sm">
+            <div class="feature-icon">03</div>
+            <h3 class="text-card">Dark mode built in</h3>
+            <p class="text-body text-muted">System preference detection plus manual toggles via <span class="inline-code">data-mode</span>. Atmospheric dark, not inverted light.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="quick-start">
+      <div class="container quickstart">
+        <div class="stack">
+          <span class="text-meta text-mono">quick start</span>
+          <h2 class="text-h1">Install by doing almost nothing.</h2>
+          <p class="text-body text-muted">Paste a link tag, then compose real interfaces with readable classes like <span class="inline-code">container</span>, <span class="inline-code">stack</span>, <span class="inline-code">card</span>, and <span class="inline-code">btn-primary</span>.</p>
+        </div>
+        <div class="terminal" role="region" aria-label="Installation commands">
+          <div class="terminal-bar"><span class="terminal-dot red"></span><span class="terminal-dot yellow"></span><span class="terminal-dot green"></span></div>
+          <div class="terminal-body"><code><span class="dim">&lt;!-- CDN --&gt;</span>
+&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/postrboard-css@1/postrboard.min.css"&gt;
+
+<span class="dim">&lt;!-- or npm --&gt;</span>
+<span class="prompt">$</span> <span class="cmd">npm install postrboard-css</span></code></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="examples">
+      <div class="container stack stack-lg">
+        <div class="cluster" style="justify-content: space-between; align-items: end;">
+          <div class="stack-sm">
+            <span class="text-meta text-mono">component showcase</span>
+            <h2 class="text-h1">The page is the proof.</h2>
+          </div>
+          <span class="badge badge-azure">live framework classes</span>
+        </div>
+        <div class="showcase-grid">
+          <div class="card stack component-palette">
+            <h3 class="text-card">Buttons with restraint</h3>
+            <div class="cluster">
+              <button class="btn btn-primary">Primary</button>
+              <button class="btn btn-secondary">Secondary</button>
+              <button class="btn btn-ghost">Ghost</button>
+            </div>
+            <p class="text-meta">Coral carries conversion; everything else gets out of the way.</p>
+          </div>
+          <div class="card card-interactive stack">
+            <div class="cluster">
+              <span class="badge badge-coral">Product Hunt</span>
+              <span class="badge badge-sage">ready</span>
+            </div>
+            <h3 class="text-card">A card, an input, a launch ritual.</h3>
+            <p class="text-body text-muted">Use the primitives as product grammar rather than a pile of utilities.</p>
+            <form class="input-row" action="#" method="get">
+              <label class="text-meta" for="email" style="position:absolute;left:-9999px;">Email</label>
+              <input class="input" id="email" type="email" placeholder="you@company.dev">
+              <button class="btn btn-primary" type="submit">Notify me</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section comparison">
+      <div class="container stack stack-lg">
+        <div class="comparison-copy stack-sm">
+          <span class="text-meta text-mono">positioning</span>
+          <h2 class="text-h1">Not Tailwind. Not Bootstrap. Not classless.</h2>
+          <p class="text-body text-muted">Postrboard is class-based but minimal: layout primitives, polished components, and an opinionated aesthetic tuned for developer products that want to feel premium without importing a visual committee.</p>
+        </div>
+        <div class="not-list">
+          <div class="card stack-sm"><span class="text-meta text-mono">not utility soup</span><p class="text-body">Readable classes that describe interface intent.</p></div>
+          <div class="card stack-sm"><span class="text-meta text-mono">not default chrome</span><p class="text-body">A point of view on type, space, radius, and tone.</p></div>
+          <div class="card stack-sm"><span class="text-meta text-mono">not invisible</span><p class="text-body">Enough styling to be distinctive, not enough to fight you.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="card cta-band stack text-center py-8">
+          <span class="text-meta text-mono">ship day</span>
+          <h2 class="text-h1">Start shipping quieter interfaces.</h2>
+          <p class="text-body text-muted container-sm">The launch page, the docs, the app shell, the changelog — all speaking the same restrained language.</p>
+          <div class="cluster" style="justify-content:center;"><a class="btn btn-primary btn-lg" href="#quick-start">Get Started</a></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="section">
+    <div class="container footer-grid">
+      <div class="stack-sm">
+        <a class="wordmark" href="#top">postrboard</a>
+        <p class="text-body text-muted">© 2026 postrboard. Built with restraint.</p>
+      </div>
+      <div class="footer-links"><span class="text-meta text-mono">Product</span><a href="#quick-start">Quick start</a><a href="design-system.html">Design system</a><a href="examples/starter.html">Starter template</a></div>
+      <div class="footer-links"><span class="text-meta text-mono">Examples</span><a href="examples/starter.html">Starter</a><a href="examples/dashboard.html">Dashboard</a><a href="examples/login.html">Login</a></div>
+      <div class="footer-links"><span class="text-meta text-mono">Principles</span><a href="#docs">Token-first</a><a href="#docs">No build step</a><a href="#docs">Dark ready</a></div>
+    </div>
+  </footer>
+
+  <script>
+    const toggle = document.getElementById('mode-toggle');
+    const icon = document.getElementById('mode-icon');
+    const root = document.documentElement;
+    const setMode = (mode) => {
+      root.setAttribute('data-mode', mode);
+      icon.textContent = mode === 'dark' ? '☀' : '☾';
+      toggle.setAttribute('aria-label', mode === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+    };
+    toggle.addEventListener('click', () => setMode(root.getAttribute('data-mode') === 'dark' ? 'light' : 'dark'));
+    setMode(root.getAttribute('data-mode') || 'light');
+  </script>
+</body>
+</html>

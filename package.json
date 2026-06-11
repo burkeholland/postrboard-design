@@ -1,0 +1,42 @@
+{
+  "name": "postrboard-css",
+  "version": "1.0.0",
+  "description": "A refined, airy, code-native CSS framework for quiet product surfaces.",
+  "main": "postrboard.css",
+  "style": "postrboard.css",
+  "files": [
+    "postrboard.css",
+    "postrboard.min.css",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "node scripts/build.js",
+    "dev": "npx live-server --port=3000 --open=index.html"
+  },
+  "keywords": [
+    "css",
+    "css-framework",
+    "design-system",
+    "ui",
+    "components",
+    "dark-mode",
+    "light-mode",
+    "tokens",
+    "minimal",
+    "accessible"
+  ],
+  "author": "Burke Holland",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/burkeholland/postrboard-design"
+  },
+  "homepage": "https://burkeholland.github.io/postrboard-design",
+  "bugs": {
+    "url": "https://github.com/burkeholland/postrboard-design/issues"
+  },
+  "devDependencies": {
+    "clean-css": "^5.3.3"
+  }
+}
