@@ -178,7 +178,7 @@ Color mode on `<html>`:
 
 `stack` creates vertical rhythm via `margin-top` on child elements. Variants: `stack-sm` (12px), `stack-lg` (48px).
 
-**Responsive behavior:** `grid-two`, `grid-sidebar`, `feature-grid`, `pricing-grid`, and `stat-grid` collapse to single-column below 768px. `footer-grid` collapses below 860px. Use `.hide-sm`/`.show-sm` sparingly for responsive visibility.
+**Responsive behavior:** Major fixed grids (`grid-two`, `grid-sidebar`, `feature-grid`, `pricing-grid`) collapse to single-column below 768px. `footer-grid` becomes 2 columns below 1024px and single-column below 768px. `stat-grid` and `grid-auto` auto-fit naturally (minimum 180px / 240px columns). Use `.hide-sm`/`.show-sm` sparingly for responsive visibility.
 
 ---
 
