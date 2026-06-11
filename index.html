@@ -1787,6 +1787,10 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
 <nav class="side-nav" aria-label="Primary">
   <div class="side-nav-header">
     <a href="#main" class="nav-logo">postrboard</a>
+    <button class="nav-toggle" type="button" aria-pressed="false" onclick="toggleMode()">
+      <span id="mode-icon">☀️</span>
+      <span id="mode-label">Light</span>
+    </button>
   </div>
   <ul class="side-nav-links">
     <li class="side-nav-section"><a class="side-nav-parent" href="#color">Color</a></li>
@@ -1831,12 +1835,6 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
       <ul class="side-nav-children"><li><a href="#layout-auto-fit">Auto-fit Grid</a></li><li><a href="#layout-two-col">Two-column Hero</a></li><li><a href="#layout-sidebar">Sidebar Layout</a></li></ul>
     </li>
   </ul>
-  <div class="side-nav-footer">
-    <button class="nav-toggle" type="button" aria-pressed="false" onclick="toggleMode()">
-      <span id="mode-icon">☀️</span>
-      <span id="mode-label">Light</span>
-    </button>
-  </div>
 </nav>
 
 <a class="skip-link" href="#main">Skip to main content</a>
