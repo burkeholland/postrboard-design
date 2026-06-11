@@ -1,0 +1,138 @@
+<!doctype html>
+<html data-mode="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mock 03 — Split Mode Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../postrboard.css">
+<style>
+body { min-height: 100vh; background: var(--bg); overflow-x: hidden; }
+.site-nav {
+  position: sticky; top: 0; z-index: 20;
+  border-bottom: 1px solid var(--border-glass);
+  background: var(--nav-bg);
+  backdrop-filter: var(--nav-blur);
+}
+.nav-inner { min-height: 72px; justify-content: space-between; }
+.wordmark { font-family: 'Space Mono', var(--mono); font-weight: 700; letter-spacing: -0.08em; font-size: 1.25rem; color: var(--text); text-decoration: none; }
+
+.split-hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 520px;
+  position: relative;
+}
+.split-left {
+  background: #f8fcff;
+  padding: 80px 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.split-right {
+  background: #0b0f14;
+  padding: 80px 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.demo-card {
+  padding: var(--card-padding);
+  border-radius: var(--radius-soft);
+  max-width: 300px;
+  width: 100%;
+}
+.demo-card-light {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: var(--shadow-subtle);
+}
+.demo-card-dark {
+  background: #111820;
+  border: 1px solid rgba(255,255,255,0.06);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+}
+.demo-card-light h3 { color: #111827; }
+.demo-card-dark h3 { color: #e2e8f0; }
+.demo-card-light p { color: #6b7280; }
+.demo-card-dark p { color: #94a3b8; }
+.center-tag {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--radius-pill);
+  padding: 8px 20px;
+  font-family: 'Space Mono', var(--mono);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  box-shadow: var(--shadow-medium);
+  z-index: 5;
+  white-space: nowrap;
+}
+.below-hero {
+  padding: var(--space-8) 0;
+  text-align: center;
+}
+.below-hero h2 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  margin-bottom: var(--space-4);
+}
+.below-hero p {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+</style>
+</head>
+<body>
+<nav class="site-nav">
+  <div class="container cluster nav-inner">
+    <a class="wordmark" href="#">postrboard</a>
+    <div class="cluster">
+      <a class="btn btn-ghost btn-sm" href="#">Docs</a>
+      <a class="btn btn-primary btn-sm" href="#">Get Started</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <section class="split-hero">
+    <div class="split-left">
+      <div class="demo-card demo-card-light stack-sm">
+        <span class="badge badge-coral">Light</span>
+        <h3 class="text-card">Ship day</h3>
+        <p class="text-body">Pure CSS components that adapt to any mode seamlessly.</p>
+        <button class="btn btn-primary">Get Started</button>
+      </div>
+    </div>
+    <div class="split-right">
+      <div class="demo-card demo-card-dark stack-sm">
+        <span class="badge badge-coral" style="background:rgba(255,127,80,0.1);color:#fb923c">Dark</span>
+        <h3 class="text-card">Ship day</h3>
+        <p class="text-body">Pure CSS components that adapt to any mode seamlessly.</p>
+        <button class="btn btn-primary">Get Started</button>
+      </div>
+    </div>
+    <div class="center-tag">data-mode="auto"</div>
+  </section>
+
+  <section class="below-hero">
+    <div class="container">
+      <h2>One stylesheet. Two modes. Zero effort.</h2>
+      <p>System preference detection built in. Manual toggles via data-mode. Atmospheric dark, not inverted light.</p>
+    </div>
+  </section>
+</main>
+</body>
+</html>

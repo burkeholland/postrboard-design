@@ -1,0 +1,100 @@
+<!doctype html>
+<html data-mode="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mock 02 — Stats-First Manifesto</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../postrboard.css">
+<style>
+body {
+  min-height: 100vh;
+  background: var(--bg);
+}
+.site-nav {
+  position: sticky; top: 0; z-index: 20;
+  border-bottom: 1px solid var(--border-glass);
+  background: var(--nav-bg);
+  backdrop-filter: var(--nav-blur);
+}
+.nav-inner { min-height: 72px; justify-content: space-between; }
+.wordmark { font-family: 'Space Mono', var(--mono); font-weight: 700; letter-spacing: -0.08em; font-size: 1.25rem; color: var(--text); text-decoration: none; }
+.hero { padding: 100px 0 60px; }
+.hero-title {
+  font-size: clamp(3.5rem, 9vw, 7rem);
+  font-weight: 800;
+  letter-spacing: -0.07em;
+  line-height: 0.88;
+  margin-bottom: var(--space-6);
+}
+.hero-sub {
+  font-size: 1.15rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+  max-width: 560px;
+  margin-bottom: var(--space-7);
+}
+.stats-band {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  margin-top: var(--space-8);
+}
+.stat-item {
+  padding: 48px 32px;
+  border-right: 1px solid var(--border);
+  text-align: center;
+}
+.stat-item:last-child { border-right: none; }
+.stat-item strong {
+  display: block;
+  font-family: 'Space Mono', var(--mono-display);
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 700;
+  letter-spacing: -0.1em;
+  color: var(--text);
+}
+.stat-item span {
+  font-size: 14px;
+  color: var(--text-muted);
+  font-family: var(--mono);
+}
+</style>
+</head>
+<body>
+<nav class="site-nav">
+  <div class="container cluster nav-inner">
+    <a class="wordmark" href="#">postrboard</a>
+    <div class="cluster">
+      <a class="btn btn-ghost btn-sm" href="#">Docs</a>
+      <a class="btn btn-ghost btn-sm" href="#">Examples</a>
+      <a class="btn btn-primary btn-sm" href="#">Get Started</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <section class="section">
+    <div class="container hero">
+      <span class="text-meta text-mono">v1.0 — open source css framework</span>
+      <h1 class="hero-title">Quiet CSS for <span class="gradient-text">loud</span> products.</h1>
+      <p class="hero-sub">A refined, airy, code-native framework that ships a full design system in one stylesheet. No JavaScript. No build step.</p>
+      <div class="cluster">
+        <a class="btn btn-primary btn-lg" href="#">Get Started</a>
+        <a class="btn btn-secondary btn-lg" href="#">Design System →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="stats-band">
+    <div class="stat-item"><strong>710</strong><span>lines</span></div>
+    <div class="stat-item"><strong>44KB</strong><span>minified</span></div>
+    <div class="stat-item"><strong>0</strong><span>deps</span></div>
+    <div class="stat-item"><strong>40+</strong><span>components</span></div>
+  </section>
+</main>
+</body>
+</html>

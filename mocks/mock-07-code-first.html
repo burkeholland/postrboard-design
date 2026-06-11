@@ -1,0 +1,94 @@
+<!doctype html>
+<html data-mode="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mock 07 — Code-First Scroll</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../postrboard.css">
+<style>
+body { min-height: 100vh; background: var(--bg); }
+.banner {
+  padding: 16px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+}
+.wordmark { font-family: 'Space Mono', var(--mono); font-weight: 700; font-size: 1.2rem; letter-spacing: -0.08em; color: var(--text); text-decoration: none; }
+.tagline { font-size: 14px; color: var(--text-muted); }
+.tagline strong { color: var(--coral-text); }
+
+.code-hero { max-width: 900px; margin: 60px auto; padding: 0 48px; }
+.code-block {
+  border-radius: var(--radius-soft);
+  overflow: hidden;
+  box-shadow: var(--shadow-terminal);
+}
+.code-body {
+  padding: 28px;
+  font-family: var(--mono);
+  font-size: 13px;
+  line-height: 2.2;
+  overflow-x: auto;
+}
+.tag { color: #7dd3fc; }
+.attr { color: #fb923c; }
+.val { color: #a3e635; }
+.cls { color: #c4b5fd; }
+.txt { color: var(--text); }
+
+.cta-area {
+  max-width: 900px;
+  margin: 48px auto;
+  padding: 0 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.cta-area p { color: var(--text-muted); font-size: 15px; }
+</style>
+</head>
+<body>
+<div class="banner">
+  <span class="wordmark">postrboard</span>
+  <span class="tagline">Quiet CSS for <strong>loud</strong> products</span>
+</div>
+
+<main>
+  <section class="code-hero">
+    <div class="terminal code-block">
+      <div class="terminal-bar">
+        <span class="terminal-dot red"></span>
+        <span class="terminal-dot yellow"></span>
+        <span class="terminal-dot green"></span>
+        <span style="margin-left:auto;font-family:var(--mono);font-size:12px;color:var(--terminal-muted)">index.html</span>
+      </div>
+      <div class="terminal-body code-body"><code><span class="tag">&lt;link</span> <span class="attr">rel=</span><span class="val">"stylesheet"</span> <span class="attr">href=</span><span class="val">"postrboard.min.css"</span><span class="tag">&gt;</span>
+
+<span class="tag">&lt;body&gt;</span>
+  <span class="tag">&lt;nav</span> <span class="attr">class=</span><span class="val">"<span class="cls">container cluster</span>"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;a</span> <span class="attr">class=</span><span class="val">"<span class="cls">wordmark</span>"</span><span class="tag">&gt;</span><span class="txt">My App</span><span class="tag">&lt;/a&gt;</span>
+    <span class="tag">&lt;button</span> <span class="attr">class=</span><span class="val">"<span class="cls">btn btn-primary</span>"</span><span class="tag">&gt;</span><span class="txt">Launch</span><span class="tag">&lt;/button&gt;</span>
+  <span class="tag">&lt;/nav&gt;</span>
+
+  <span class="tag">&lt;main</span> <span class="attr">class=</span><span class="val">"<span class="cls">container stack</span>"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;h1</span> <span class="attr">class=</span><span class="val">"<span class="cls">text-display</span>"</span><span class="tag">&gt;</span><span class="txt">Hello World</span><span class="tag">&lt;/h1&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attr">class=</span><span class="val">"<span class="cls">card stack</span>"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;span</span> <span class="attr">class=</span><span class="val">"<span class="cls">badge badge-coral</span>"</span><span class="tag">&gt;</span><span class="txt">New</span><span class="tag">&lt;/span&gt;</span>
+      <span class="tag">&lt;p</span> <span class="attr">class=</span><span class="val">"<span class="cls">text-body text-muted</span>"</span><span class="tag">&gt;</span><span class="txt">Ship it.</span><span class="tag">&lt;/p&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+  <span class="tag">&lt;/main&gt;</span>
+<span class="tag">&lt;/body&gt;</span></code></div>
+    </div>
+  </section>
+
+  <div class="cta-area">
+    <p>710 lines · 44KB · 0 dependencies · 2 color modes</p>
+    <a class="btn btn-secondary" href="#">View Design System →</a>
+  </div>
+</main>
+</body>
+</html>
