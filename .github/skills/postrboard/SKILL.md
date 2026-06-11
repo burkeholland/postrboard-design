@@ -22,11 +22,12 @@ These rules block output. Do not emit UI until they pass.
 3. **No fake specificity.** Do not invent numbers, logos, quotes, avatars, customers, or metrics. Use honest placeholders.
 4. **No centered marketing fog.** Prefer left-aligned, information-dense layouts. Center only for narrow confirmations, empty states, or single-purpose prompts.
 5. **No rainbow styling.** One dominant accent per surface. Coral for action/brand, azure for information, sage for success/progress.
-6. **No stock icon grids.** Icons are optional, small, and clarifying. They are not content.
-7. **No bloated copy.** Labels must name the actual object, action, input, output, or consequence.
-8. **No arbitrary CSS values.** Use Postrboard tokens/classes. Custom CSS may compose tokens, not replace them.
-9. **No template recipes.** Use layout decisions from the content. Do not copy a canned page shape.
-10. **No unreviewed output.** Run the self-review scan before finalizing.
+6. **No emoji. Ever.** Never use emoji as iconography, decoration, or section markers. Use SVG icons from Lucide, Phosphor, or Tabler sized to `--icon-sm`/`--icon-md`/`--icon-lg` tokens. If no icon clarifies, use none.
+7. **No stock icon grids.** Icons are optional, small, and clarifying. They are not content.
+8. **No bloated copy.** Labels must name the actual object, action, input, output, or consequence.
+9. **No arbitrary CSS values.** Use Postrboard tokens/classes. Custom CSS may compose tokens, not replace them.
+10. **No template recipes.** Use layout decisions from the content. Do not copy a canned page shape.
+11. **No unreviewed output.** Run the self-review scan before finalizing.
 
 ---
 
