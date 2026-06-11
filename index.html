@@ -1841,6 +1841,7 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
     </button>
   </div>
   <ul class="side-nav-links">
+    <li class="side-nav-section"><a class="side-nav-parent" href="#getting-started">Getting Started</a></li>
     <li class="side-nav-section"><a class="side-nav-parent" href="#color">Color</a></li>
     <li class="side-nav-section"><a class="side-nav-parent" href="#typography">Typography</a></li>
     <li class="side-nav-section"><a class="side-nav-parent" href="#spacing">Spacing</a></li>
@@ -1894,6 +1895,46 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
     <h1 class="hero-wordmark"><span class="gradient-word">postrboard</span></h1>
     <p class="hero-sub">A refined, airy, code-native design language. Type and whitespace carry the design; color is precious.</p>
   </header>
+
+  <!-- ═══════════ GETTING STARTED ═══════════ -->
+  <section id="getting-started">
+    <div class="section-label">00 / Setup</div>
+    <h2 class="section-title">Getting Started</h2>
+    <hr class="section-rule">
+
+    <div class="component">
+      <div class="component-name">Install the Copilot skill</div>
+      <div class="component-stage">
+        <div class="terminal">
+          <div class="terminal-bar"><span class="terminal-dot"></span><span class="terminal-dot"></span><span class="terminal-dot"></span><span class="terminal-title">terminal</span></div>
+          <pre class="terminal-body"><code>npx skills add burkeholland/postrboard-design</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="component">
+      <div class="component-name">Link the stylesheet</div>
+      <div class="component-stage">
+        <div class="terminal">
+          <div class="terminal-bar"><span class="terminal-dot"></span><span class="terminal-dot"></span><span class="terminal-dot"></span><span class="terminal-title">html</span></div>
+          <pre class="terminal-body"><code>&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;
+&lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;
+&lt;link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet"&gt;
+&lt;link rel="stylesheet" href="https://burkeholland.github.io/postrboard-design/postrboard.min.css"&gt;</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="component">
+      <div class="component-name">Or install via npm</div>
+      <div class="component-stage">
+        <div class="terminal">
+          <div class="terminal-bar"><span class="terminal-dot"></span><span class="terminal-dot"></span><span class="terminal-dot"></span><span class="terminal-title">terminal</span></div>
+          <pre class="terminal-body"><code>npm install postrboard-css</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- ═══════════ COLOR ═══════════ -->
   <section id="color">
