@@ -605,6 +605,7 @@ Default to restraint. Don't decorate uncertainty.
 | `scale(1.05)` on hover | `translateY(-2px)` to `translateY(-4px)` — subtle lift only. |
 | Fade-in-on-scroll for every section | Reserve motion for meaning: show a drawer opening, a toast appearing. Static content stays static. |
 | Count-up number animations | Show the number immediately. Confident products don't perform for attention. |
+| **Left-border accent cards on everything** | A thick colored `border-left` on every card (usually purple/indigo) is the #1 AI dashboard tell. Use it only when it communicates status (e.g., `border-left: 3px solid var(--danger)` for errors). Otherwise, let cards stand without decoration. |
 
 ---
 
