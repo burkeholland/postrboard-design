@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" data-mode="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard — Postrboard CSS</title>
+  <link rel="stylesheet" href="../postrboard.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    .dashboard { display: grid; grid-template-columns: 240px 1fr; min-height: 100vh; }
+    .sidebar { padding: var(--space-5); border-right: 1px solid var(--border); background: var(--surface); }
+    .sidebar-brand { font-family: var(--mono-display); font-weight: 700; font-size: 18px; margin-bottom: var(--space-6); }
+    .sidebar-nav { display: flex; flex-direction: column; gap: var(--space-2); }
+    .sidebar-link { padding: 10px 14px; border-radius: var(--radius-compact); color: var(--text-muted); font-size: 14px; font-weight: 500; text-decoration: none; }
+    .sidebar-link:hover, .sidebar-link.active { background: var(--code-bg); color: var(--text); }
+    .main-content { padding: var(--space-6); }
+    @media (max-width: 768px) { .dashboard { grid-template-columns: 1fr; } .sidebar { display: none; } }
+  </style>
+</head>
+<body>
+  <div class="dashboard">
+    <aside class="sidebar">
+      <div class="sidebar-brand">app</div>
+      <nav class="sidebar-nav">
+        <a class="sidebar-link active" href="#">Dashboard</a>
+        <a class="sidebar-link" href="#">Projects</a>
+        <a class="sidebar-link" href="#">Team</a>
+        <a class="sidebar-link" href="#">Settings</a>
+      </nav>
+    </aside>
+
+    <main class="main-content stack">
+      <div>
+        <h1 class="text-h2">Dashboard</h1>
+        <p class="text-meta">Overview of your workspace</p>
+      </div>
+
+      <div class="stat-grid">
+        <div class="card">
+          <p class="text-meta">Total projects</p>
+          <p class="text-h2" style="margin-top:4px">24</p>
+        </div>
+        <div class="card">
+          <p class="text-meta">Active users</p>
+          <p class="text-h2" style="margin-top:4px">1,204</p>
+        </div>
+        <div class="card">
+          <p class="text-meta">Uptime</p>
+          <p class="text-h2" style="margin-top:4px">99.9%</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 class="text-card" style="margin-bottom:var(--space-4)">Recent activity</h3>
+        <div class="table-wrap" style="border:0;box-shadow:none">
+          <table class="data-table">
+            <thead>
+              <tr><th>Event</th><th>User</th><th>Time</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Deployed v2.4.1</td><td>burke</td><td><span class="text-meta">2 min ago</span></td></tr>
+              <tr><td>Merged PR #142</td><td>sarah</td><td><span class="text-meta">18 min ago</span></td></tr>
+              <tr><td>Created project</td><td>alex</td><td><span class="text-meta">1 hour ago</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" data-mode="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Login — Postrboard CSS</title>
+  <link rel="stylesheet" href="../postrboard.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body { display: grid; place-items: center; min-height: 100vh; padding: var(--space-5); }
+    .auth-box { width: 100%; max-width: 400px; }
+    .auth-box h1 { margin-bottom: var(--space-2); }
+    .auth-box p { margin-bottom: var(--space-6); }
+    .form-group { display: flex; flex-direction: column; gap: var(--space-1); margin-bottom: var(--space-4); }
+    .form-group label { font-size: 13px; font-weight: 600; color: var(--text-muted); }
+    .divider-text { display: flex; align-items: center; gap: var(--space-3); margin: var(--space-5) 0; color: var(--text-meta); font-size: 12px; }
+    .divider-text::before, .divider-text::after { content: ""; flex: 1; height: 1px; background: var(--border); }
+    .btn-full { width: 100%; }
+  </style>
+</head>
+<body>
+  <div class="auth-box">
+    <h1 class="text-card">Welcome back</h1>
+    <p class="text-body text-muted">Sign in to your account to continue.</p>
+
+    <form>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input id="email" class="input" type="email" placeholder="you@company.com" autocomplete="username">
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input id="password" class="input" type="password" autocomplete="current-password">
+      </div>
+      <button class="btn btn-primary btn-full" type="submit">Sign in</button>
+    </form>
+
+    <div class="divider-text">or</div>
+
+    <button class="btn btn-secondary btn-full" type="button">Continue with GitHub</button>
+
+    <p class="text-meta" style="text-align:center; margin-top:var(--space-5)">
+      Don't have an account? <a class="styled-link" href="#">Sign up</a>
+    </p>
+  </div>
+</body>
+</html>
