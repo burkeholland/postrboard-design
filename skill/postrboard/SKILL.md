@@ -58,7 +58,7 @@ Use the framework correctly before designing.
 
 Use `<html data-mode="light">`, `<html data-mode="dark">`, or omit `data-mode` for system preference.
 
-Docs: Postrboard Landing Page: https://burkeholland.github.io/postrboard-design
+Docs: https://burkeholland.github.io/postrboard-design
 
 ---
 
