@@ -597,7 +597,8 @@ section {
 }
 .btn-danger:hover { background: var(--danger-hover); transform: translateY(-2px); }
 .btn:disabled { opacity: 0.55; cursor: not-allowed; transform: none; box-shadow: none; }
-.btn:disabled:hover { transform: none; box-shadow: none; }
+.btn:disabled:hover { transform: none; box-shadow: none; border-color: transparent; color: inherit; }
+.btn-secondary:disabled:hover { border-color: var(--border); color: var(--text); }
 
 /* ─── Card ─── */
 .card {
@@ -679,11 +680,12 @@ section {
 .checkbox input:checked::after {
   content: "";
   position: absolute;
-  left: 6px; top: 2px;
+  left: 50%;
+  top: 50%;
   width: 6px; height: 11px;
   border: solid var(--on-accent);
   border-width: 0 2.5px 2.5px 0;
-  transform: rotate(45deg);
+  transform: translate(-50%, -60%) rotate(45deg);
 }
 
 /* ─── Badge / Pill ─── */
@@ -731,6 +733,13 @@ section {
 .terminal-body {
   padding: 16px 20px;
   line-height: 1.8;
+  overflow-x: auto;
+}
+.terminal-title {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--terminal-muted);
+  margin-left: auto;
 }
 .terminal-body .prompt { color: var(--success); }
 .terminal-body .cmd    { color: var(--terminal-text); }
@@ -1047,7 +1056,7 @@ fieldset.form-field { border: 0; padding: 0; margin: 0; }
   appearance: none;
   padding-right: 42px;
   background-image: linear-gradient(45deg, transparent 50%, var(--text-muted) 50%), linear-gradient(135deg, var(--text-muted) 50%, transparent 50%);
-  background-position: calc(100% - 18px) 18px, calc(100% - 12px) 18px;
+  background-position: calc(100% - 18px) calc(50% - 1px), calc(100% - 12px) calc(50% - 1px);
   background-size: 6px 6px, 6px 6px;
   background-repeat: no-repeat;
 }
@@ -1077,8 +1086,11 @@ fieldset.form-field { border: 0; padding: 0; margin: 0; }
 }
 .radio input:checked {
   border-color: var(--coral);
-  box-shadow: inset 0 0 0 5px var(--surface), 0 0 0 3px rgba(255,127,80,0.12);
+  box-shadow: inset 0 0 0 5px var(--surface);
   background: var(--coral);
+}
+.radio input:focus-visible {
+  box-shadow: inset 0 0 0 5px var(--surface), 0 0 0 3px rgba(255,127,80,0.12);
 }
 .switch {
   display: inline-flex;
@@ -1297,7 +1309,10 @@ code {
   gap: 4px;
   width: 100%;
   border-bottom: 1px solid var(--border);
+  overflow-x: auto;
+  scrollbar-width: none;
 }
+.tabs::-webkit-scrollbar { display: none; }
 .tab {
   padding: 10px 14px;
   margin-bottom: -1px;
@@ -1555,7 +1570,7 @@ code {
 .range-top { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 12px; color: var(--text-muted); }
 .range-input { width: 100%; accent-color: var(--coral); appearance: none; -webkit-appearance: none; height: 20px; background: transparent; cursor: pointer; }
 .range-input::-webkit-slider-runnable-track { height: 8px; border-radius: var(--r-pill); background: var(--range-fill, linear-gradient(90deg, var(--coral) 0% 62%, var(--code-bg) 62% 100%)); border: 1px solid var(--border); }
-.range-input::-webkit-slider-thumb { appearance: none; -webkit-appearance: none; width: 20px; height: 20px; margin-top: -7px; border-radius: 50%; background: var(--coral); border: 3px solid var(--surface); box-shadow: var(--shadow-subtle); }
+.range-input::-webkit-slider-thumb { appearance: none; -webkit-appearance: none; width: 20px; height: 20px; margin-top: -6px; border-radius: 50%; background: var(--coral); border: 3px solid var(--surface); box-shadow: var(--shadow-subtle); }
 .range-input::-moz-range-track { height: 8px; border-radius: var(--r-pill); background: var(--code-bg); border: 1px solid var(--border); }
 .range-input::-moz-range-progress { height: 8px; border-radius: var(--r-pill) 0 0 var(--r-pill); background: var(--coral); }
 .range-input::-moz-range-thumb { width: 14px; height: 14px; border-radius: 50%; background: var(--coral); border: 3px solid var(--surface); box-shadow: var(--shadow-subtle); }
@@ -1595,7 +1610,7 @@ code {
 .step-circle { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; border: 1.5px solid var(--border); background: var(--surface); font-family: var(--mono); }
 .step.active .step-circle { background: var(--coral-surface); border-color: var(--coral-surface); color: var(--on-accent); }
 .step.done .step-circle { border-color: var(--success); color: var(--sage-text); }
-.step-line { flex: 1; height: 1px; margin: 0 12px 22px; background: var(--border); }
+.step-line { flex: 1; height: 1px; margin: 0 12px 18px; background: var(--border); }
 .command-palette { width: min(100%, 620px); overflow: hidden; border: 1px solid var(--border); border-radius: 18px; background: var(--surface); box-shadow: var(--shadow-medium); }
 .command-palette .input { width: 100%; border: 0; border-bottom: 1px solid var(--border); border-radius: 0; }
 .command-group { padding: 12px; }
@@ -1906,7 +1921,7 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
       <div class="component-name">Install the Copilot skill</div>
       <div class="component-stage">
         <div class="terminal">
-          <div class="terminal-bar"><span class="terminal-dot"></span><span class="terminal-dot"></span><span class="terminal-dot"></span><span class="terminal-title">terminal</span></div>
+          <div class="terminal-bar"><span class="terminal-dot red"></span><span class="terminal-dot yellow"></span><span class="terminal-dot green"></span><span class="terminal-title">terminal</span></div>
           <pre class="terminal-body">npx skills add burkeholland/postrboard-design/skill</pre>
         </div>
       </div>
@@ -1916,7 +1931,7 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
       <div class="component-name">Link the stylesheet</div>
       <div class="component-stage">
         <div class="terminal">
-          <div class="terminal-bar"><span class="terminal-dot"></span><span class="terminal-dot"></span><span class="terminal-dot"></span><span class="terminal-title">html</span></div>
+          <div class="terminal-bar"><span class="terminal-dot red"></span><span class="terminal-dot yellow"></span><span class="terminal-dot green"></span><span class="terminal-title">html</span></div>
           <pre class="terminal-body">&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;
 &lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;
 &lt;link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet"&gt;
@@ -2694,7 +2709,7 @@ ol.styled-list li::marker { color: var(--coral-text); font-family: var(--mono); 
     <div class="component" id="data-video">
       <div class="component-name">Video embed</div>
       <div class="component-stage">
-        <div class="video-embed" role="img" aria-label="Video placeholder"><span class="play-button"><svg aria-hidden="true" class="icon icon-lg" viewBox="0 0 24 24"><path d="m9 7 8 5-8 5Z"/></svg></span></div>
+        <div class="video-embed" role="img" aria-label="Video placeholder"><span class="play-button"><svg aria-hidden="true" class="icon icon-lg" viewBox="0 0 24 24"><path d="m9 7 8 5-8 5Z" fill="currentColor" stroke="none"/></svg></span></div>
       </div>
     </div>
 
