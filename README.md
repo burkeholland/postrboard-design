@@ -1,6 +1,6 @@
 # Postrboard CSS
 
-A light and airy design system built entirely in CSS. No JavaScript, no build step.
+A quiet CSS framework with enough range to stop every product from looking like the same product. No JavaScript. No runtime.
 
 [![npm version](https://img.shields.io/npm/v/postrboard-css)](https://www.npmjs.com/package/postrboard-css)
 [![License: MIT](https://img.shields.io/badge/License-MIT-coral.svg)](./LICENSE)
@@ -9,29 +9,44 @@ A light and airy design system built entirely in CSS. No JavaScript, no build st
 
 ---
 
-## Colors
+## One system, many directions
 
-The palette is built around three signature accents on a neutral canvas:
+Postrboard keeps the component contract stable and lets the visual direction move. Set the axes on `<html>` for a whole page or on any container for a scoped surface:
 
-| Token | Hex | Role |
-|-------|-----|------|
-| `--coral` | `#ff7f50` | Primary accent |
-| `--azure` | `#0ea5e9` | Secondary accent |
-| `--sage` | `#84cc16` | Success / positive |
+```html
+<html
+  data-mode="light"
+  data-accent="azure"
+  data-surface="flat"
+  data-geometry="sharp"
+  data-density="compact"
+  data-type="neutral"
+  data-ambient="grid">
+```
 
-Each accent has a soft tint variant (`--coral-tint`, `--azure-tint`, `--sage-tint`) for backgrounds, and accessible text variants for use on light surfaces.
+| Axis | Values |
+|---|---|
+| Accent | `coral`, `azure`, `sage`, `violet`, `amber`, `slate` |
+| Surface | `glass`, `flat`, `outline`, `raised` |
+| Geometry | `soft`, `compact`, `sharp` |
+| Density | `comfortable`, `compact`, `roomy` |
+| Display type | `sans-tight`, `mono-lede`, `editorial`, `neutral` |
+| Ambience | `gradient`, `noise`, `grid`, `flat`, `none` |
 
-Semantic state colors (danger, warning, success) are derived from the same system.
+These axes are independent. That matters. Postrboard gives you a design space, not six new templates wearing different hats.
 
 ---
 
-## Typography
+## Layout
 
-Three typefaces at specific roles:
+Composition stays content-driven with primitives for split, asymmetric, sidebar, centered, masonry, stack-and-rail, thirds, and holy-grail layouts. They collapse responsively without changing the markup.
 
-- **Inter** — UI text (body, headings, labels)
-- **JetBrains Mono** — Code blocks, technical content
-- **Space Mono** — Display accents, terminal chrome
+```html
+<section class="grid-asymmetric">
+  <article>Primary content</article>
+  <aside>Context</aside>
+</section>
+```
 
 ---
 
@@ -46,6 +61,8 @@ Or link directly:
 ```html
 <link rel="stylesheet" href="https://burkeholland.github.io/postrboard-design/postrboard.min.css">
 ```
+
+The default remains the original coral, glass, soft, comfortable treatment. Existing pages do not change until an axis is set.
 
 ---
 

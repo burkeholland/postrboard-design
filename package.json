@@ -1,6 +1,6 @@
 {
   "name": "postrboard-css",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A refined, airy, code-native CSS framework for quiet product surfaces.",
   "main": "postrboard.css",
   "style": "postrboard.css",
@@ -11,7 +11,8 @@
     "README.md"
   ],
   "scripts": {
-    "build": "node scripts/build.js",
+    "build": "node scripts/audit-design-space.js && node scripts/build.js",
+    "audit": "node scripts/audit-design-space.js",
     "dev": "npx live-server --port=3000 --open=index.html"
   },
   "keywords": [

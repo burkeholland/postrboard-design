@@ -20,13 +20,13 @@ These rules block output. Do not emit UI until they pass.
 1. **No generic SaaS structure.** Never default to Hero → Features → Testimonials → Pricing → CTA.
 2. **No decorative emptiness.** Every card, badge, stat, gradient, icon, and section must carry product meaning.
 3. **No fake specificity.** Do not invent numbers, logos, quotes, avatars, customers, or metrics. Use honest placeholders.
-4. **No centered marketing fog.** Prefer left-aligned, information-dense layouts. Center only for narrow confirmations, empty states, or single-purpose prompts.
-5. **No rainbow styling.** One dominant accent per surface. Coral for action/brand, azure for information, sage for success/progress.
+4. **No default alignment.** Choose alignment from the content. Centered and editorial compositions are legitimate; centered marketing fog is not.
+5. **No rainbow styling.** Choose one dominant accent per surface with `data-accent`. Coral is the house default, not the mandatory brand color. Semantic information, success, warning, and danger colors keep their meaning.
 6. **No emoji. Ever.** Never use emoji as iconography, decoration, or section markers. Use SVG icons from Lucide, Phosphor, or Tabler sized to `--icon-sm`/`--icon-md`/`--icon-lg` tokens. If no icon clarifies, use none.
 7. **No stock icon grids.** Icons are optional, small, and clarifying. They are not content.
 8. **No bloated copy.** Labels must name the actual object, action, input, output, or consequence.
 9. **No arbitrary CSS values.** Use Postrboard tokens/classes. Custom CSS may compose tokens, not replace them.
-10. **No template recipes.** Use layout decisions from the content. Do not copy a canned page shape.
+10. **No template recipes.** Choose visual axes independently from product signals. Never copy a canned page shape or a favorite bundle of settings.
 11. **No unreviewed output.** Run the self-review scan before finalizing.
 
 ---
@@ -38,10 +38,10 @@ When deciding what to use:
 1. **User's requested content and product context** — source of truth for meaning.
 2. **Postrboard behavioral rules in this file** — source of truth for taste.
 3. **`postrboard.css`** — source of truth for class names, tokens, and component APIs.
-4. **`design-system.html`** — source of truth for live examples and edge cases.
+4. **`index.html`** — source of truth for live examples and edge cases.
 5. Your general design knowledge — only when it does not conflict with the above.
 
-If you need exact classes, read `postrboard.css`. If you need examples, read `design-system.html`. Do not inline the whole reference into your reasoning.
+If you need exact classes, read `postrboard.css`. If you need examples, read `index.html`. Do not inline the whole reference into your reasoning.
 
 ---
 
@@ -64,14 +64,16 @@ Docs: https://burkeholland.github.io/postrboard-design
 
 ## Postrboard Personality
 
-Postrboard feels like:
+Postrboard always feels like:
 
 - A developer tool with editorial restraint.
 - Dense information made breathable.
-- Terminal-adjacent, not cyberpunk.
+- Technically literate, but not always terminal-shaped.
 - Polished without looking venture-backed by default.
 - Confident enough to leave space empty.
 - Built from real product surfaces, not Dribbble sections.
+
+That is the contract, not a single theme. A sharp, slate audit console and a roomy, amber editorial page can both be Postrboard. They share component semantics, spacing rhythm, honest content, accessible states, and restraint. They do not need to share geometry, composition, ambience, or accent.
 
 Postrboard does **not** feel like:
 
@@ -84,9 +86,89 @@ Postrboard does **not** feel like:
 
 ---
 
+## Choose a Design Direction
+
+Do this before writing markup. This is required.
+
+### 1. Read the product signals
+
+Identify:
+
+- **Domain:** developer tool, data, security, finance, health, creative, consumer, docs, or something else.
+- **Temperature:** cool, warm, or neutral.
+- **Maturity:** exploratory, established, or institutional.
+- **Density:** sparse, balanced, or dense.
+- **Register:** serious, editorial, utilitarian, or expressive.
+
+These signals are inputs, not a lookup table. Two valid designs can interpret the same product differently.
+
+### 2. Choose the content posture and visual axes separately
+
+The **posture** decides what leads and in what order. The **visual axes** decide how it feels.
+
+Choose one value for each axis:
+
+| Axis | API | Values |
+|---|---|---|
+| Accent | `data-accent` | `coral`, `azure`, `sage`, `violet`, `amber`, `slate` |
+| Surface | `data-surface` | `glass`, `flat`, `outline`, `raised` |
+| Geometry | `data-geometry` | `soft`, `compact`, `sharp` |
+| Density | `data-density` | `comfortable`, `compact`, `roomy` |
+| Display voice | `data-type` | `sans-tight`, `mono-lede`, `editorial`, `neutral` |
+| Ambience | `data-ambient` | `gradient`, `noise`, `grid`, `flat`, `none` |
+| Composition | layout class | `grid-split`, `grid-asymmetric`, `grid-asymmetric-reverse`, `grid-thirds`, `grid-sidebar`, `grid-holy-grail`, `grid-masonry`, `grid-stack-rail`, `grid-centered` |
+| Navigation | class or structure | glass `.navbar`, `.navbar-solid`, `.navbar-bordered`, `.navbar-minimal`, or `.sidebar-nav` |
+
+Set page-wide axes on `<html>`. Scope an axis to a section only when the product meaning changes:
+
+```html
+<html
+  data-mode="light"
+  data-accent="azure"
+  data-surface="flat"
+  data-geometry="sharp"
+  data-density="compact"
+  data-type="neutral"
+  data-ambient="grid">
+```
+
+### 3. Enforce meaningful divergence
+
+The house default is:
+
+`coral / glass / soft / comfortable / sans-tight / gradient / grid-split / glass navbar`
+
+Your direction must differ from it on at least **three** axes. If another Postrboard surface already exists in the project or conversation, differ from that surface on accent and at least one of surface, geometry, composition, or navigation.
+
+Do not use randomness. Explain each choice with a product signal. The goal is not novelty. The goal is a specific answer instead of the same answer.
+
+### 4. Pass the coherence gate
+
+Some combinations naturally reinforce one another:
+
+- Technical or audit-heavy: cool/slate accent, flat or outline surface, sharp geometry, compact density, mono or neutral display, grid ambience.
+- Narrative or expressive: warm/violet accent, raised or glass surface, soft geometry, roomy density, editorial display.
+- Documentation: neutral/cool accent, outline or flat surface, comfortable density, centered prose or sidebar composition.
+
+These are leanings, not presets. Do not copy the whole row.
+
+Avoid combinations whose signals fight:
+
+- Glass on a flat or empty canvas with nothing meaningful to blur.
+- Roomy density for a data table whose job is comparison.
+- Mono display everywhere on an editorial page.
+- Sharp geometry with a page full of pill controls.
+- Amber as the page accent when warning states are prominent and could become ambiguous.
+
+If the combination is different but does not feel coherent, revise it.
+
+---
+
 ## Quick Decision Tree
 
 Choose structure from the content type, not from habit.
+
+This tree selects a content posture. It does not select the accent, geometry, density, surface, type, or ambience.
 
 ### 1. Is the user asking for a product page or landing page?
 
@@ -141,9 +223,9 @@ Choose structure from the content type, not from habit.
 
 ---
 
-## Approved Layout Postures
+## Approved Content Postures
 
-Pick one dominant posture. Do not mix all of them.
+Pick one dominant posture. Do not mix all of them. Then choose the visual axes independently; a posture is not a theme.
 
 ### Workflow-led
 Use when the product helps someone do a task.
@@ -192,7 +274,7 @@ Scan every emitted surface for these. If found, revise before output.
 | Oversized CTA band | Final gradient box repeating headline | Formulaic ending | End with next practical step, docs link, command, or compact CTA |
 | Decorative dashboard | Charts/cards with meaningless labels | Looks like mock data | Use domain-specific rows, logs, statuses, or honest placeholders |
 | Excess rounded glass | Blur, transparency, giant radius everywhere | Generic “premium” effect | Use restrained surfaces, borders, soft shadows |
-| Centered everything | All sections aligned center | No editorial judgment | Use left alignment and asymmetric content rhythm |
+| Centered everything | All sections aligned center | No editorial judgment | Choose an alignment logic that follows the content |
 
 A single P0 tell is enough to block output.
 
@@ -247,6 +329,11 @@ Core layout:
 - `container` for page width.
 - `stack` for vertical rhythm.
 - `cluster` for horizontal grouping.
+- `grid-split` for equal editorial/artifact pairs.
+- `grid-asymmetric` and `grid-asymmetric-reverse` for weighted content.
+- `grid-sidebar`, `grid-stack-rail`, and `grid-holy-grail` for persistent context.
+- `grid-centered` for prose and focused flows.
+- `grid-masonry` only when items genuinely have varied height.
 - Grid/card utilities for grouped content only when content deserves grouping.
 
 Core typography:
@@ -263,7 +350,9 @@ Core components:
 
 Customization:
 - Compose with CSS variables from `postrboard.css`.
-- Do not introduce new color systems, font stacks, shadow recipes, or spacing scales.
+- Prefer the `data-accent`, `data-surface`, `data-geometry`, `data-density`, `data-type`, and `data-ambient` APIs before writing custom theme CSS.
+- Raw coral, azure, sage, violet, amber, and slate tokens are available, but interactive components should inherit the active `--accent*` role.
+- Do not introduce new color systems, font stacks, shadow recipes, or spacing scales unless the user explicitly asks to extend the framework.
 - Custom CSS is acceptable for layout composition and product-specific surfaces.
 
 Approved component library: **shadcn/ui only if the project already uses it or the user asks for React components.** Style it with Postrboard tokens.
@@ -275,9 +364,9 @@ Approved component library: **shadcn/ui only if the project already uses it or t
 1. Start from the most truthful product artifact: table, command, editor, timeline, form, diff, log, or config.
 2. Add prose only where it clarifies the artifact.
 3. Prefer fewer sections with stronger internal structure.
-4. Use asymmetry: artifact beside claim, metadata beside content, timeline beside outcome.
+4. Choose symmetry or asymmetry on purpose: artifact beside claim, metadata beside content, centered prose, edge-to-edge data, or another content-derived relationship.
 5. Vary content shapes. Do not make every idea a card.
-6. Keep color rare. Accent action, state, or focus — not decoration.
+6. Keep color intentional. The active accent can establish identity, but state colors still communicate state.
 7. Use mono type as texture and information, not as a gimmick.
 8. Leave whitespace around important objects; do not pad weak ideas into importance.
 
@@ -298,14 +387,22 @@ Before final output, inspect every page/component you generated.
 - Did I remove invented metrics, quotes, logos, and avatars?
 
 ### Scan 3: Visual Taste
-- Is alignment mostly left or purposefully asymmetric?
-- Is there only one dominant accent?
+- Does the alignment serve this content instead of a house habit?
+- Is the active accent deliberate, with semantic state colors still unambiguous?
 - Did I avoid gradient blobs, icon grids, and repeated cards?
 
 ### Scan 4: Framework Use
 - Are fonts and CSS loaded correctly?
 - Did I use Postrboard classes/tokens before custom CSS?
 - Would reading `postrboard.css` reveal a better native class I should use?
+
+### Scan 5: Variation
+- Did I choose every visual axis from product signals?
+- Does this direction differ from the house default on at least three axes?
+- If a sibling Postrboard surface exists, did I change the accent and at least one structural axis?
+- Did I avoid turning the coherence examples into presets?
+- Does the result still keep the invariant contract: honest content, token rhythm, semantic color, visible focus, and restrained components?
+- Could I swap the logo and mistake this for the last Postrboard page I made? If yes, revise.
 
 If any answer fails, revise. Do not explain the failure; fix the output.
 

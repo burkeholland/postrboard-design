@@ -23,7 +23,7 @@ npm run dev
 
 1. Fork the repository and create a branch from `main`.
 2. Make your changes in `postrboard.css`.
-3. Update `design-system.html` to showcase new or modified components.
+3. Update `index.html` to showcase new or modified components.
 4. Run `npm run build` to generate the minified version.
 5. Open a pull request with a clear description of what you changed and why.
 

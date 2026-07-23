@@ -1,0 +1,93 @@
+<!doctype html>
+<!-- Postrboard brief: deployment operations; slate, dark, flat, sharp, compact, mono-lede, grid ambience, left rail. -->
+<html lang="en" data-mode="dark" data-accent="slate" data-surface="flat" data-geometry="sharp" data-density="compact" data-type="mono-lede" data-ambient="grid">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Relay deployment operations</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../postrboard.css">
+  <link rel="stylesheet" href="dashboard-mocks.css">
+</head>
+<body>
+  <div class="rail-shell">
+    <aside class="app-rail">
+      <a class="brand" href="#"><span class="logo-mark">R/</span> relay</a>
+      <nav class="rail-nav" aria-label="Workspace">
+        <a class="active" href="#"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z"/><path d="M4 10h16"/></svg>Overview</a>
+        <a href="#"><svg viewBox="0 0 24 24"><path d="M12 3v18"/><path d="m7 8 5-5 5 5"/></svg>Deploys</a>
+        <a href="#"><svg viewBox="0 0 24 24"><path d="M5 4h14v16H5z"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>Logs</a>
+        <a href="#"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>Incidents</a>
+      </nav>
+      <div class="rail-footer">
+        <div class="mock-note">Demonstration data</div>
+        <p class="service-meta mt-3">us-east-1 / production</p>
+      </div>
+    </aside>
+
+    <main class="app-main stack">
+      <header class="page-head">
+        <div>
+          <div class="eyebrow">Production / overview</div>
+          <h1 class="page-title">Deploy control</h1>
+          <p class="page-subtitle">What changed, what is healthy, and what needs an operator.</p>
+        </div>
+        <div class="cluster">
+          <span class="status is-success"><span class="status-dot"></span>All systems nominal</span>
+          <button class="btn btn-primary btn-sm" type="button">New deploy</button>
+        </div>
+      </header>
+
+      <section class="metric-strip" aria-label="Environment summary">
+        <div class="metric"><span class="metric-label">Active services</span><strong class="metric-value">12</strong><span class="metric-detail">sample environment</span></div>
+        <div class="metric"><span class="metric-label">Deploys today</span><strong class="metric-value">08</strong><span class="metric-detail">2 queued</span></div>
+        <div class="metric"><span class="metric-label">Median build</span><strong class="metric-value">1m42</strong><span class="metric-detail">demo duration</span></div>
+        <div class="metric"><span class="metric-label">Open incidents</span><strong class="metric-value">00</strong><span class="metric-detail">no action required</span></div>
+      </section>
+
+      <div class="deploy-grid">
+        <section class="card">
+          <div class="section-head">
+            <div><h2 class="section-title">Recent deploys</h2><span class="section-meta">main branch</span></div>
+            <button class="btn btn-secondary btn-sm" type="button">View history</button>
+          </div>
+          <div class="table-wrap">
+            <table class="data-table is-tight">
+              <thead><tr><th>Service</th><th>Commit</th><th>Status</th><th>Duration</th><th>Actor</th></tr></thead>
+              <tbody>
+                <tr><td>api-gateway</td><td><span class="commit-sha">6f82ae1</span></td><td><span class="status is-success"><span class="status-dot"></span>Ready</span></td><td>1m 18s</td><td>CI bot</td></tr>
+                <tr><td>worker-jobs</td><td><span class="commit-sha">d1c904b</span></td><td><span class="status"><span class="status-dot"></span>Building</span></td><td>0m 47s</td><td>A. Chen</td></tr>
+                <tr><td>web-shell</td><td><span class="commit-sha">18bc227</span></td><td><span class="status is-success"><span class="status-dot"></span>Ready</span></td><td>2m 03s</td><td>CI bot</td></tr>
+                <tr><td>event-router</td><td><span class="commit-sha">9a3d10c</span></td><td><span class="status is-muted"><span class="status-dot"></span>Queued</span></td><td>—</td><td>M. Ortiz</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <aside class="stack">
+          <section class="card">
+            <div class="section-head"><h2 class="section-title">Request volume</h2><span class="section-meta">sample / 6h</span></div>
+            <svg class="chart" viewBox="0 0 360 170" role="img" aria-label="Example request volume trend">
+              <path class="chart-grid" d="M0 30h360M0 85h360M0 140h360"/>
+              <path class="chart-area" d="M0 125 40 112 80 119 120 84 160 94 200 62 240 78 280 42 320 54 360 28v142H0Z"/>
+              <path class="chart-line" d="M0 125 40 112 80 119 120 84 160 94 200 62 240 78 280 42 320 54 360 28"/>
+            </svg>
+            <div class="axis-labels"><span>09:00</span><span>12:00</span><span>15:00</span></div>
+          </section>
+
+          <section>
+            <div class="section-head"><h2 class="section-title">Service health</h2><span class="section-meta">4 shown</span></div>
+            <div class="service-list">
+              <div class="service-row"><div><div class="service-name">api-gateway</div><div class="service-meta">v2.8.1 · 3 replicas</div></div><span class="status is-success"><span class="status-dot"></span>Healthy</span></div>
+              <div class="service-row"><div><div class="service-name">worker-jobs</div><div class="service-meta">v1.14.0 · 6 replicas</div></div><span class="status is-success"><span class="status-dot"></span>Healthy</span></div>
+              <div class="service-row"><div><div class="service-name">event-router</div><div class="service-meta">v4.2.3 · 2 replicas</div></div><span class="status"><span class="status-dot"></span>Deploying</span></div>
+            </div>
+          </section>
+        </aside>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
