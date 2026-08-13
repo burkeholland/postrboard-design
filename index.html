@@ -498,12 +498,12 @@
       </div>
       <nav class="docs-nav" aria-label="Reference">
         <a href="#start">Start</a>
-        <a href="#direction">Direction</a>
-        <a href="#foundations">Foundations</a>
+        <a href="#direction">Theme options</a>
+        <a href="#foundations">Tokens</a>
         <a href="#components">Components</a>
-        <a href="#patterns">Patterns</a>
-        <a href="#guardrails">Guardrails</a>
-        <a href="#api">API index</a>
+        <a href="#patterns">Layouts</a>
+        <a href="#guardrails">AI design tells</a>
+        <a href="#api">Class index</a>
         <a class="docs-nav-aside" href="examples/dashboards/index.html">Dashboard gallery</a>
       </nav>
     </aside>
@@ -512,9 +512,9 @@
       <header class="docs-intro" id="start">
         <div>
           <h1 class="docs-title">Postrboard CSS <span class="version-badge">2.0</span></h1>
-          <p class="docs-summary">A quiet component system for product interfaces. It keeps tokens, states, and accessibility consistent while composition, density, type, and color stay responsive to the actual work.</p>
+          <p class="docs-summary">A CSS framework for product interfaces. It gives you components, design tokens, and accessible states out of the box, and lets you change the color, shape, density, and typography without editing any CSS.</p>
           <div class="cluster mt-5">
-            <a class="btn btn-primary" href="#direction">Set a direction</a>
+            <a class="btn btn-primary" href="#direction">See the theme options</a>
             <a class="btn btn-secondary" href="https://github.com/burkeholland/postrboard-design">Source</a>
           </div>
         </div>
@@ -529,8 +529,8 @@
       <section class="docs-section" id="direction">
         <div class="section-header">
           <div class="section-header-main">
-            <h2 class="docs-section-title">Set the direction</h2>
-            <p class="docs-section-summary mt-3">The component contract stays fixed. Change only the axes that make sense for the product, then build around a real work surface.</p>
+            <h2 class="docs-section-title">Theme options</h2>
+            <p class="docs-section-summary mt-3">Seven attributes change how every component looks. Set them on any wrapper element. Change only the ones your product needs and leave the rest alone.</p>
           </div>
         </div>
 
@@ -597,13 +597,13 @@
                 <option>gradient</option>
               </select>
             </div>
-            <p class="axis-note text-meta">Defaults are light, coral, raised, soft, comfortable. Change only what the product needs.</p>
+            <p class="axis-note text-meta">The defaults are light, coral, raised, soft, and comfortable. Change only what your product needs.</p>
           </form>
 
           <div class="lab-stage">
             <div class="lab-stage-head">
               <span class="badge badge-status" data-state="success">Live preview</span>
-              <span class="text-meta">Nothing below the wrapper changes.</span>
+              <span class="text-meta">Only the wrapper attributes change. The markup inside stays the same.</span>
             </div>
             <article class="lab-preview" id="lab-preview" data-mode="light" data-accent="coral" data-surface="raised" data-geometry="soft" data-density="comfortable" data-type="neutral" data-ambient="none">
               <header class="page-header">
@@ -621,7 +621,7 @@
                 <div class="section-header">
                   <div class="section-header-main">
                     <h4 class="section-title">Ready revisions</h4>
-                    <span class="section-meta">demonstration data</span>
+                    <span class="section-meta">sample data</span>
                   </div>
                   <button class="btn btn-secondary btn-sm" type="button">Compare</button>
                 </div>
@@ -645,30 +645,30 @@
       <section class="docs-section" id="foundations">
         <div class="section-header">
           <div class="section-header-main">
-            <h2 class="docs-section-title">Foundations</h2>
-            <p class="docs-section-summary mt-3">Primitive tokens describe values. Semantic roles tell components what those values mean.</p>
+            <h2 class="docs-section-title">Tokens</h2>
+            <p class="docs-section-summary mt-3">CSS variables for color, spacing, shape, and motion. Use the named roles like <code>--surface</code> and <code>--text</code> instead of raw color values, so light and dark mode both work.</p>
           </div>
         </div>
 
         <div class="token-grid">
-          <div class="token-item"><div class="token-swatch" style="--token-color:var(--bg)"></div><code>--bg</code><span class="text-meta">Canvas</span></div>
-          <div class="token-item"><div class="token-swatch" style="--token-color:var(--surface)"></div><code>--surface</code><span class="text-meta">Work surface</span></div>
-          <div class="token-item"><div class="token-swatch" style="--token-color:var(--surface-subtle)"></div><code>--surface-subtle</code><span class="text-meta">Grouped region</span></div>
-          <div class="token-item"><div class="token-swatch" style="--token-color:var(--text)"></div><code>--text</code><span class="text-meta">Primary text</span></div>
-          <div class="token-item"><div class="token-swatch" style="--token-color:var(--accent-surface)"></div><code>--accent-surface</code><span class="text-meta">Text-bearing accent</span></div>
-          <div class="token-item"><div class="token-swatch" style="--token-color:var(--focus-color)"></div><code>--focus-color</code><span class="text-meta">Visible focus</span></div>
+          <div class="token-item"><div class="token-swatch" style="--token-color:var(--bg)"></div><code>--bg</code><span class="text-meta">Page background</span></div>
+          <div class="token-item"><div class="token-swatch" style="--token-color:var(--surface)"></div><code>--surface</code><span class="text-meta">Panel background</span></div>
+          <div class="token-item"><div class="token-swatch" style="--token-color:var(--surface-subtle)"></div><code>--surface-subtle</code><span class="text-meta">Grouped rows</span></div>
+          <div class="token-item"><div class="token-swatch" style="--token-color:var(--text)"></div><code>--text</code><span class="text-meta">Body text</span></div>
+          <div class="token-item"><div class="token-swatch" style="--token-color:var(--accent-surface)"></div><code>--accent-surface</code><span class="text-meta">Accent behind white text</span></div>
+          <div class="token-item"><div class="token-swatch" style="--token-color:var(--focus-color)"></div><code>--focus-color</code><span class="text-meta">Focus ring</span></div>
         </div>
 
         <div class="grid-asymmetric mt-7">
           <div>
-            <p class="text-display">Display voice follows the surface.</p>
-            <p class="text-body text-muted mt-4">IBM Plex Sans handles interface copy. Plex Serif gives editorial surfaces a real change of voice. Plex Mono is reserved for code, identifiers, and measurements.</p>
+            <p class="text-display">Three fonts, three jobs.</p>
+            <p class="text-body text-muted mt-4">IBM Plex Sans is for interface text. Plex Serif is for long-form reading. Plex Mono is for code, IDs, and numbers. Setting <code>data-type</code> changes which one headings use.</p>
           </div>
           <dl class="description-list">
             <dt>Spacing</dt><dd><code>--space-1</code> through <code>--space-8</code></dd>
-            <dt>Geometry</dt><dd><code>--radius-sharp</code> <code>--radius-compact</code> <code>--radius-soft</code></dd>
-            <dt>Motion</dt><dd><code>--duration-*</code> with exponential ease-out</dd>
-            <dt>Focus</dt><dd>Solid outline plus a supplementary halo</dd>
+            <dt>Corners</dt><dd><code>--radius-sharp</code> <code>--radius-compact</code> <code>--radius-soft</code></dd>
+            <dt>Motion</dt><dd><code>--duration-*</code>, all with an ease-out curve</dd>
+            <dt>Focus</dt><dd>A solid outline plus a soft halo behind it</dd>
           </dl>
         </div>
       </section>
@@ -676,8 +676,8 @@
       <section class="docs-section" id="components">
         <div class="section-header">
           <div class="section-header-main">
-            <h2 class="docs-section-title">Native components</h2>
-            <p class="docs-section-summary mt-3">Use these before custom equivalents. The examples show state and anatomy, not a page recipe.</p>
+            <h2 class="docs-section-title">Components</h2>
+            <p class="docs-section-summary mt-3">Everything the framework ships. Each example shows the markup and the states that component supports. Use these instead of building your own.</p>
           </div>
         </div>
 
@@ -699,7 +699,7 @@
           </article>
 
           <article class="component-row">
-            <div class="component-name">Panel anatomy</div>
+            <div class="component-name">Panels</div>
             <div class="component-demo">
               <section class="panel">
                 <header class="panel-header">
@@ -738,7 +738,7 @@
           </article>
 
           <article class="component-row">
-            <div class="component-name">Status and feedback</div>
+            <div class="component-name">Badges and alerts</div>
             <div class="component-demo">
               <div class="cluster">
                 <span class="badge badge-status" data-state="success">Ready</span>
@@ -755,18 +755,18 @@
           </article>
 
           <article class="component-row">
-            <div class="component-name">Summary data</div>
+            <div class="component-name">Stats</div>
             <div class="component-demo">
               <dl class="stat-strip">
-                <div class="stat-item"><dt class="stat-label">Ready</dt><dd class="stat-value">12</dd><dd class="stat-detail">sample services</dd></div>
-                <div class="stat-item"><dt class="stat-label">Building</dt><dd class="stat-value">4</dd><dd class="stat-detail">sample queue</dd></div>
-                <div class="stat-item"><dt class="stat-label">Needs review</dt><dd class="stat-value">1</dd><dd class="stat-detail">demonstration data</dd></div>
+                <div class="stat-item"><dt class="stat-label">Ready</dt><dd class="stat-value">12</dd><dd class="stat-detail">Waiting to promote</dd></div>
+                <div class="stat-item"><dt class="stat-label">Building</dt><dd class="stat-value">4</dd><dd class="stat-detail">In progress now</dd></div>
+                <div class="stat-item"><dt class="stat-label">Needs review</dt><dd class="stat-value">1</dd><dd class="stat-detail">Checks failed</dd></div>
               </dl>
             </div>
           </article>
 
           <article class="component-row">
-            <div class="component-name">Detailed data</div>
+            <div class="component-name">Tables</div>
             <div class="component-demo">
               <div class="table-wrap">
                 <table class="data-table is-tight">
@@ -799,7 +799,7 @@
                 <a class="tab" aria-selected="false" href="#components" role="tab">Checks</a>
                 <a class="tab" aria-selected="false" href="#components" role="tab">Settings</a>
               </nav>
-              <p class="text-meta">Other navbar surfaces. Pick one per product; do not mix them on one page.</p>
+              <p class="text-meta">Other navbar styles. Use one per site; do not mix them on a page.</p>
               <div class="stack stack-sm">
                 <nav class="navbar-glass" style="position: static;" aria-label="Glass surface"><div class="nav-inner"><a class="brand" href="#components"><span class="brand-mark">R/</span> relay</a><div class="nav-links"><a class="nav-link" href="#components">Glass</a></div></div></nav>
                 <nav class="navbar-solid" style="position: static;" aria-label="Solid surface"><div class="nav-inner"><a class="brand" href="#components"><span class="brand-mark">R/</span> relay</a><div class="nav-links"><a class="nav-link" href="#components">Solid</a></div></div></nav>
@@ -809,17 +809,17 @@
           </article>
 
           <article class="component-row">
-            <div class="component-name">Disclosure</div>
+            <div class="component-name">Accordions</div>
             <div class="component-demo">
               <div class="accordion">
-                <details open><summary>What needs application JavaScript?</summary><div class="accordion-body">Focus trapping, Escape handling, roving focus, selection state, and announcements are behavior. CSS supplies the visual shell only.</div></details>
-                <details><summary>Can axes be scoped?</summary><div class="accordion-body">Yes. Scope visual axes when product meaning changes. Keep mode on the page root; for an opposite-mode island, set its mode, accent, and surface together.</div></details>
+                <details open><summary>What do I still have to build in JavaScript?</summary><div class="accordion-body">Focus trapping, closing on Escape, arrow-key navigation, tracking which item is selected, and screen-reader announcements. The CSS only styles these components.</div></details>
+                <details><summary>Can I use different theme options in different parts of a page?</summary><div class="accordion-body">Yes. Set the attributes on any wrapper element to change just that region. Keep <code>data-mode</code> on the page root; if you want one section in the opposite mode, set its mode, accent, and surface together.</div></details>
               </div>
             </div>
           </article>
 
           <article class="component-row">
-            <div class="component-name">Identity and category</div>
+            <div class="component-name">Avatars, badges, tags</div>
             <div class="component-demo">
               <div class="cluster">
                 <span class="avatar avatar-sm">JK</span>
@@ -845,7 +845,7 @@
           </article>
 
           <article class="component-row">
-            <div class="component-name">Definitions and dividers</div>
+            <div class="component-name">Definition lists and dividers</div>
             <div class="component-demo">
               <dl class="description-list">
                 <dt>Region</dt><dd>us-east-1</dd>
@@ -890,7 +890,7 @@
           </article>
 
           <article class="component-row">
-            <div class="component-name">Choice controls</div>
+            <div class="component-name">Radios and segmented controls</div>
             <div class="component-demo">
               <div class="radio-group">
                 <label class="radio"><input type="radio" name="docs-region" checked> us-east-1</label>
@@ -905,7 +905,7 @@
           </article>
 
           <article class="component-row">
-            <div class="component-name">Floating field</div>
+            <div class="component-name">Floating labels</div>
             <div class="component-demo">
               <div class="cluster">
                 <div class="floating-field">
@@ -921,7 +921,7 @@
           </article>
 
           <article class="component-row">
-            <div class="component-name">Input compositions</div>
+            <div class="component-name">Input prefixes, validation, sliders</div>
             <div class="component-demo">
               <div class="input-group">
                 <span class="input-affix">https://</span>
@@ -978,7 +978,7 @@
           </article>
 
           <article class="component-row">
-            <div class="component-name">Wayfinding</div>
+            <div class="component-name">Breadcrumbs and pagination</div>
             <div class="component-demo">
               <nav class="breadcrumb" aria-label="Breadcrumb">
                 <a href="#components">Services</a><span class="breadcrumb-sep">/</span><a href="#components">api-gateway</a><span class="breadcrumb-sep">/</span><span>Revisions</span>
@@ -1010,7 +1010,7 @@
                 </div>
               </div>
               <div class="demo-fab-stage">
-                <span class="demo-fab-caption">Anchored to the app viewport</span>
+                <span class="demo-fab-caption">Stays fixed to the corner of the viewport</span>
                 <button class="fab" type="button" aria-label="Create deployment">
                   <svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
                 </button>
@@ -1019,9 +1019,9 @@
           </article>
 
           <article class="component-row">
-            <div class="component-name">Floating disclosure</div>
+            <div class="component-name">Dropdowns, tooltips, popovers</div>
             <div class="component-demo">
-              <p class="text-meta">Click or tab to a trigger. It opens. Tooltips also open on hover.</p>
+              <p class="text-meta">Click or tab to a trigger to open it. Tooltips also open on hover.</p>
               <div class="cluster">
                 <div class="dropdown">
                   <button class="btn btn-secondary btn-sm" type="button">Actions</button>
@@ -1048,7 +1048,7 @@
           </article>
 
           <article class="component-row">
-            <div class="component-name">Search and select</div>
+            <div class="component-name">Comboboxes and command palettes</div>
             <div class="component-demo">
               <div class="demo-combobox">
                 <div class="combobox demo-measure">
@@ -1072,9 +1072,9 @@
           </article>
 
           <article class="component-row">
-            <div class="component-name">Overlays</div>
+            <div class="component-name">Modals and drawers</div>
             <div class="component-demo">
-              <p class="text-meta">Shown open, in place, for reference. A real trigger uses <code>:target</code> or a checkbox — see the sample.</p>
+              <p class="text-meta">These are shown open so you can see them. To open one for real, use <code>:target</code> or a checkbox — see the code below.</p>
               <div class="modal-card">
                 <div class="modal-head"><h3 class="modal-title">Confirm rollback</h3><button class="close-button" type="button" aria-label="Close"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
                 <div class="modal-body">This reverts api-gateway to v2.8.0. Active sessions are not affected.</div>
@@ -1125,29 +1125,29 @@
       <section class="docs-section" id="patterns">
         <div class="section-header">
           <div class="section-header-main">
-            <h2 class="docs-section-title">Compose around the work</h2>
-            <p class="docs-section-summary mt-3">Posture decides what leads. Visual axes decide how it feels. They are separate choices.</p>
+            <h2 class="docs-section-title">Choosing a layout</h2>
+            <p class="docs-section-summary mt-3">What a page should lead with depends on what the product does. That is a separate decision from the theme options above.</p>
           </div>
-          <a class="styled-link" href="examples/dashboards/index.html">Open the variation gallery</a>
+          <a class="styled-link" href="examples/dashboards/index.html">See the dashboard examples</a>
         </div>
 
         <div class="table-wrap">
           <table class="data-table">
-            <thead><tr><th>Product need</th><th>Lead with</th><th>Useful APIs</th></tr></thead>
+            <thead><tr><th>If you are building</th><th>Lead with</th><th>Classes to use</th></tr></thead>
             <tbody>
-              <tr><td>Repeated operations</td><td>Current state, next action, result</td><td><code>.page-header .panel .form-stack</code></td></tr>
-              <tr><td>Monitoring</td><td>Exceptions, status, recent change</td><td><code>.stat-strip .data-table .timeline</code></td></tr>
-              <tr><td>Evidence and trust</td><td>Controls, policy, audit trail</td><td><code>.description-list .list-group .alert</code></td></tr>
-              <tr><td>Documentation</td><td>Smallest working example</td><td><code>.grid-sidebar .inline-code .accordion</code></td></tr>
-              <tr><td>Editorial explanation</td><td>Claim, artifact, consequence</td><td><code>data-type="editorial" .grid-asymmetric</code></td></tr>
+              <tr><td>A task people repeat daily</td><td>Where things stand, and the next thing to do</td><td><code>.page-header .panel .form-stack</code></td></tr>
+              <tr><td>Monitoring</td><td>What is broken, and what changed recently</td><td><code>.stat-strip .data-table .timeline</code></td></tr>
+              <tr><td>Settings and audit trails</td><td>The controls, and a record of past changes</td><td><code>.description-list .list-group .alert</code></td></tr>
+              <tr><td>Documentation</td><td>The smallest working example</td><td><code>.grid-sidebar .inline-code .accordion</code></td></tr>
+              <tr><td>Long-form writing</td><td>The point, then what supports it</td><td><code>data-type="editorial" .grid-asymmetric</code></td></tr>
             </tbody>
           </table>
         </div>
 
         <div class="grid-asymmetric mt-7">
           <div>
-            <h3 class="text-h2">One system, different answers.</h3>
-            <p class="text-body text-muted mt-4">The dashboard gallery uses the same native component contract for deployment operations, publishing, care coordination, support triage, and finance. Their information shapes differ before their colors do.</p>
+            <h3 class="text-h2">The same components in five products</h3>
+            <p class="text-body text-muted mt-4">The gallery has five mock dashboards: deployments, publishing, care coordination, support triage, and finance. They use the same components. Each one just sets different theme attributes on its root element, like this:</p>
           </div>
           <pre class="code-sample"><code>&lt;html
   data-accent="sage"
@@ -1163,27 +1163,27 @@
         <div class="section-header">
           <div class="section-header-main">
             <h2 class="docs-section-title">AI design tells</h2>
-            <p class="docs-section-summary mt-3">One property is rarely the problem. Repeated, context-free choices create the tell.</p>
+            <p class="docs-section-summary mt-3">Patterns that make a page look machine-generated. Each row says what it looks like and what to do instead.</p>
           </div>
         </div>
 
         <div class="table-wrap">
           <table class="data-table guardrail-table">
-            <thead><tr><th>Tell</th><th>Symptom</th><th>Replacement</th></tr></thead>
+            <thead><tr><th>Tell</th><th>What it looks like</th><th>What to do instead</th></tr></thead>
             <tbody>
-              <tr><td>Template structure</td><td>Centered hero, three equal features, oversized closing CTA</td><td>Lead with the real workflow, evidence, data, or object</td></tr>
-              <tr><td>Container reflex</td><td>Every idea is a rounded card; cards sit inside cards</td><td>Use hierarchy, spacing, rules, and one framed work surface</td></tr>
-              <tr><td>Default premium</td><td>Glass, glow, large radii, and soft shadows everywhere</td><td>Use flat or outlined surfaces; reserve depth for actual layering</td></tr>
-              <tr><td>Cold technical stacking</td><td>Dark mode, sharp corners, grid-paper texture, and heavy mono type combined by default</td><td>Keep corners moderate and texture off unless the surface is genuinely technical; use one strong technical signal at most</td></tr>
+              <tr><td>Template structure</td><td>Centered hero, three equal features, oversized closing CTA</td><td>Lead with the actual task, data, or object</td></tr>
+              <tr><td>Decorative containers</td><td>Every idea is a rounded card; cards sit inside cards</td><td>Use headings, spacing, and rules; frame only the main work area</td></tr>
+              <tr><td>Premium styling by default</td><td>Glass, glow, large radii, and soft shadows everywhere</td><td>Use flat or outlined surfaces; reserve depth for actual layering</td></tr>
+              <tr><td>Stacked technical signals</td><td>Dark mode, sharp corners, grid-paper texture, and heavy mono type all at once</td><td>Keep corners moderate and texture off unless the surface is genuinely technical; use one strong technical signal at most</td></tr>
               <tr><td>Synthetic color</td><td>Purple-blue gradients, cyan on dark, radial halos</td><td>Use one grounded accent and semantic state colors</td></tr>
-              <tr><td>Generator scaffolding</td><td>Eyebrows above headings and arbitrary section numbers</td><td>Let headings and content order carry structure</td></tr>
+              <tr><td>Filler structure</td><td>Eyebrow labels above headings and arbitrary section numbers</td><td>Let the headings and the order of the content do that job</td></tr>
               <tr><td>Icon tiles</td><td>A rounded square icon above every heading</td><td>Use icons only when they clarify an action or object</td></tr>
-              <tr><td>Fake technicality</td><td>Terminal dots, blinking cursors, or code texture without code</td><td>Show a real command, log, diff, or payload</td></tr>
-              <tr><td>Empty spectacle</td><td>Abstract blobs, fake charts, decorative dashboards</td><td>Show a product artifact or an honest empty placeholder</td></tr>
-              <tr><td>Vague copy</td><td>"Transform your workflow" and other interchangeable claims</td><td>Name the input, action, output, and consequence</td></tr>
-              <tr><td>Fake proof</td><td>Invented metrics, quotes, logos, people, and customers</td><td>Use supplied evidence, label sample data, or remove it</td></tr>
-              <tr><td>Mechanical motion</td><td>Every element lifts, glows, pulses, or reveals the same way</td><td>Use quiet state changes and one purposeful motion moment</td></tr>
-              <tr><td>Missing behavior</td><td>A polished default with no focus, error, loading, or empty state</td><td>Build the state model before decoration</td></tr>
+              <tr><td>Decorative code</td><td>Terminal dots, blinking cursors, or code texture without code</td><td>Show a real command, log, diff, or payload</td></tr>
+              <tr><td>Decorative filler</td><td>Abstract blobs, fake charts, ornamental dashboards</td><td>Show something real from the product, or an empty state</td></tr>
+              <tr><td>Vague copy</td><td>"Transform your workflow" and other interchangeable claims</td><td>Say what it does and what happens as a result</td></tr>
+              <tr><td>Invented evidence</td><td>Made-up metrics, quotes, logos, people, and customers</td><td>Use real data, label sample data as sample, or leave it out</td></tr>
+              <tr><td>Repetitive motion</td><td>Every element lifts, glows, pulses, or reveals the same way</td><td>Keep state changes quiet, and pick one place for real motion</td></tr>
+              <tr><td>Missing states</td><td>A polished default with no focus, error, loading, or empty state</td><td>Build every state first, then style them</td></tr>
             </tbody>
           </table>
         </div>
@@ -1192,8 +1192,8 @@
       <section class="docs-section" id="api">
         <div class="section-header">
           <div class="section-header-main">
-            <h2 class="docs-section-title">API index</h2>
-            <p class="docs-section-summary mt-3">Search <code>postrboard.css</code> for exact declarations. Canonical names come first; compatibility aliases are grouped last.</p>
+            <h2 class="docs-section-title">Class index</h2>
+            <p class="docs-section-summary mt-3">Every class name, grouped by what it does. Search <code>postrboard.css</code> for the exact rules. Current names come first; old names kept for compatibility are last.</p>
           </div>
         </div>
 
@@ -1212,7 +1212,7 @@
         </div>
 
         <div class="alert alert-info mt-7">
-          <div><strong class="alert-title">Behavior is not CSS</strong><p class="alert-body">Modal, drawer, dropdown, combobox, tabs, and popover classes provide presentation. Application code must provide keyboard behavior, focus management, state, and announcements.</p></div>
+          <div><strong class="alert-title">CSS does not handle behavior</strong><p class="alert-body">The modal, drawer, dropdown, combobox, tabs, and popover classes only style these components. You still have to write the JavaScript for keyboard support, focus management, open and close state, and screen-reader announcements.</p></div>
         </div>
       </section>
     </main>

@@ -5,7 +5,7 @@ description: "Build specific, restrained product interfaces with Postrboard CSS.
 
 # Postrboard
 
-Postrboard is quiet CSS for loud products. The framework must recede. The user's work, data, and decisions must lead.
+Postrboard is a CSS framework for product interfaces. Keep the framework in the background. The user's work, data, and decisions should be the most prominent things on the page.
 
 Use this skill for pages, apps, dashboards, docs, and components built with Postrboard CSS.
 
@@ -132,7 +132,7 @@ These rules block output:
 
 1. Use native Postrboard components before custom equivalents.
 2. Use Postrboard tokens for color, spacing, type, radius, shadow, motion, and focus.
-3. Never present invented metrics, testimonials, customers, logos, people, or product claims as real. Use supplied facts, honest placeholders, or clearly labeled demonstration data.
+3. Never present invented metrics, testimonials, customers, logos, people, or product claims as real. Use supplied facts, honest placeholders, or sample data that is clearly labeled as sample data.
 4. Never use emoji as interface icons. Use an existing project icon set or a small accessible SVG.
 5. Keep one dominant accent per surface. Semantic status colors keep their meanings.
 6. Do not nest cards or turn every section into a floating container.
@@ -143,24 +143,24 @@ These rules block output:
 
 ## AI design tells
 
-The pattern is the problem, not one isolated property.
+One of these on its own is rarely fatal. Several together are what make a page look machine-generated.
 
-| Tell | Typical symptom | Better move |
+| Tell | What it looks like | What to do instead |
 |---|---|---|
-| Template structure | Centered hero, three equal features, large closing CTA | Lead with the actual workflow, evidence, data, or object |
-| Decorative containers | Cards around every paragraph; cards inside cards | Use hierarchy, spacing, rules, and one framed work surface |
-| Default "premium" styling | Large radii, glass, glow, soft shadow on everything | Use flat or outlined surfaces; reserve depth for real layering |
-| Cold technical stacking | Dark mode, sharp corners, grid-paper texture, and heavy mono type combined by default | Keep corners moderate and texture off unless the surface is genuinely technical; use at most one strong technical signal |
+| Template structure | Centered hero, three equal features, large closing CTA | Lead with the actual task, data, or object |
+| Decorative containers | Cards around every paragraph; cards inside cards | Use headings, spacing, and rules; frame only the main work area |
+| Premium styling by default | Large radii, glass, glow, soft shadow on everything | Use flat or outlined surfaces; reserve depth for real layering |
+| Stacked technical signals | Dark mode, sharp corners, grid-paper texture, and heavy mono type combined by default | Keep corners moderate and texture off unless the surface is genuinely technical; use at most one strong technical signal |
 | Synthetic color | Purple-blue gradients, cyan on dark, colored radial halos | Choose one grounded accent and semantic state colors |
 | Generic typography | One overused sans family, flat scale, crushed tracking | Use the supplied Sans/Serif/Mono roles with clear hierarchy |
-| Generator scaffolding | Eyebrows above headings, arbitrary section numbers | Let headings and content order carry structure |
+| Filler structure | Eyebrows above headings, arbitrary section numbers | Let the headings and the order of the content do that job |
 | Icon tiles | Rounded square icon above every heading | Use an icon only when it clarifies an action or object |
-| Fake technicality | Terminal dots, blinking cursor, code texture with no code | Show a real command, log, diff, payload, or no terminal |
-| Empty spectacle | Abstract SVG blobs, orbs, fake charts, decorative dashboards | Show a real product artifact or an honest empty placeholder |
-| Vague copy | "Transform your workflow" and "Powerful insights" | Name the input, action, output, and consequence |
-| Fake proof | Invented users, metrics, quotes, avatars, or logos | Use supplied evidence, label demonstration data, or remove it |
-| Mechanical interaction | Same lift, glow, or reveal on every element | Use quiet state changes and one purposeful motion moment |
-| Missing behavior | Pretty default state with no focus, error, loading, or empty state | Build the state model before decoration |
+| Decorative code | Terminal dots, blinking cursor, code texture with no code | Show a real command, log, diff, payload, or no terminal |
+| Decorative filler | Abstract SVG blobs, orbs, fake charts, decorative dashboards | Show something real from the product, or an empty state |
+| Vague copy | "Transform your workflow" and "Powerful insights" | Say what it does and what happens as a result |
+| Invented evidence | Invented users, metrics, quotes, avatars, or logos | Use real data, label sample data as sample, or leave it out |
+| Repetitive motion | Same lift, glow, or reveal on every element | Keep state changes quiet, and pick one place for real motion |
+| Missing states | Pretty default state with no focus, error, loading, or empty state | Build every state first, then style them |
 
 ## Honest placeholders
 

@@ -23,7 +23,7 @@
         <a href="#"><svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>Incidents</a>
       </nav>
       <div class="rail-footer">
-        <div class="text-meta">Demonstration data</div>
+        <div class="text-meta">Sample data</div>
         <p class="service-meta mt-3">us-east-1 / production</p>
       </div>
     </aside>
@@ -32,18 +32,18 @@
       <header class="page-header">
         <div class="page-header-main">
           <h1 class="page-title">Deploy control</h1>
-          <p class="page-summary">What changed, what is healthy, and what needs an operator.</p>
+          <p class="page-summary">Recent deploys, service health, and anything that needs someone to look at it.</p>
         </div>
         <div class="page-actions">
-          <span class="badge badge-status" data-state="success">All systems nominal</span>
+          <span class="badge badge-status" data-state="success">No open incidents</span>
           <button class="btn btn-primary btn-sm" type="button">New deploy</button>
         </div>
       </header>
 
       <dl class="stat-strip" aria-label="Environment summary">
-        <div class="stat-item"><dt class="stat-label">Active services</dt><dd class="stat-value">12</dd><dd class="stat-detail">sample environment</dd></div>
+        <div class="stat-item"><dt class="stat-label">Active services</dt><dd class="stat-value">12</dd><dd class="stat-detail">across all regions</dd></div>
         <div class="stat-item"><dt class="stat-label">Deploys today</dt><dd class="stat-value">8</dd><dd class="stat-detail">2 queued</dd></div>
-        <div class="stat-item"><dt class="stat-label">Median build</dt><dd class="stat-value">1m42</dd><dd class="stat-detail">demo duration</dd></div>
+        <div class="stat-item"><dt class="stat-label">Median build</dt><dd class="stat-value">1m42</dd><dd class="stat-detail">down from 2m04</dd></div>
         <div class="stat-item"><dt class="stat-label">Open incidents</dt><dd class="stat-value">0</dd><dd class="stat-detail">no action required</dd></div>
       </dl>
 
@@ -60,7 +60,7 @@
                 <tr><td>api-gateway</td><td><span class="commit-sha">6f82ae1</span></td><td><span class="badge badge-status" data-state="success">Ready</span></td><td>1m 18s</td><td>CI bot</td></tr>
                 <tr><td>worker-jobs</td><td><span class="commit-sha">d1c904b</span></td><td><span class="badge badge-status" data-state="info">Building</span></td><td>0m 47s</td><td>Release engineer</td></tr>
                 <tr><td>web-shell</td><td><span class="commit-sha">18bc227</span></td><td><span class="badge badge-status" data-state="success">Ready</span></td><td>2m 03s</td><td>CI bot</td></tr>
-                <tr><td>event-router</td><td><span class="commit-sha">9a3d10c</span></td><td><span class="badge badge-status badge-neutral">Queued</span></td><td>—</td><td>Operator example</td></tr>
+                <tr><td>event-router</td><td><span class="commit-sha">9a3d10c</span></td><td><span class="badge badge-status badge-neutral">Queued</span></td><td>—</td><td>Operator</td></tr>
               </tbody>
             </table>
           </div>
@@ -68,7 +68,7 @@
 
         <aside class="stack">
           <section class="panel">
-            <div class="section-header"><h2 class="section-title">Request volume</h2><span class="section-meta">sample / 6h</span></div>
+            <div class="section-header"><h2 class="section-title">Request volume</h2><span class="section-meta">Last 6 hours</span></div>
             <svg class="chart" viewBox="0 0 360 170" role="img" aria-label="Example request volume trend">
               <path class="chart-grid" d="M0 30h360M0 85h360M0 140h360"/>
               <path class="chart-area" d="M0 125 40 112 80 119 120 84 160 94 200 62 240 78 280 42 320 54 360 28v142H0Z"/>

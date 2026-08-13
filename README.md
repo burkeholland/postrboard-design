@@ -1,6 +1,6 @@
 # Postrboard CSS
 
-Quiet CSS for loud products. Postrboard is a CSS-only design system for product interfaces that need range without losing coherence.
+A CSS framework for product interfaces. It gives you components, design tokens, and accessible states out of the box, and lets you change the color, shape, density, and typography without editing any CSS.
 
 [![npm version](https://img.shields.io/npm/v/postrboard-css)](https://www.npmjs.com/package/postrboard-css)
 [![License: MIT](https://img.shields.io/badge/License-MIT-coral.svg)](./LICENSE)
@@ -22,11 +22,11 @@ Or use the hosted files:
 <link rel="stylesheet" href="https://burkeholland.github.io/postrboard-design/postrboard.min.css">
 ```
 
-Postrboard has no JavaScript runtime. Add application code for focus management, keyboard behavior, state changes, and announcements in interactive widgets.
+Postrboard ships no JavaScript. For interactive components you still have to write the code for focus management, keyboard support, open and close state, and screen-reader announcements.
 
-## Set a direction
+## Theme options
 
-The component contract stays stable while six inherited axes change the visual direction. Set them on `<html>` or scope them to a container. Keep `data-mode` on `<html>`; for an opposite-mode island, set its mode, accent, and surface together.
+Seven attributes change how everything looks. The class names and markup stay the same. Set them on `<html>`, or on any wrapper element to change just that region. Keep `data-mode` on `<html>`; if you want one section in the opposite mode, set its mode, accent, and surface together.
 
 ```html
 <html
@@ -39,20 +39,21 @@ The component contract stays stable while six inherited axes change the visual d
   data-ambient="none">
 ```
 
-| Axis | Values |
+| Attribute | Values |
 |---|---|
-| Accent | `coral`, `azure`, `sage`, `violet`, `amber`, `slate` |
-| Surface | `flat`, `outline`, `raised`, `glass` |
-| Geometry | `compact`, `sharp`, `soft` |
-| Density | `comfortable`, `compact`, `roomy` |
-| Display voice | `neutral`, `sans-tight`, `mono-lede`, `editorial` |
-| Ambience | `none`, `noise`, `grid`, `gradient` |
+| `data-mode` | `light`, `dark` |
+| `data-accent` | `coral`, `azure`, `sage`, `violet`, `amber`, `slate` |
+| `data-surface` | `flat`, `outline`, `raised`, `glass` |
+| `data-geometry` | `compact`, `sharp`, `soft` |
+| `data-density` | `comfortable`, `compact`, `roomy` |
+| `data-type` | `neutral`, `sans-tight`, `mono-lede`, `editorial` |
+| `data-ambient` | `none`, `noise`, `grid`, `gradient` |
 
-The default is `coral / flat / compact / comfortable / neutral / none`. It is quiet by design.
+The default is `coral / flat / compact / comfortable / neutral / none`, which is deliberately plain. Change it when the product gives you a reason to.
 
-## Compose native parts
+## Use the components
 
-Use native classes before you add product-specific CSS.
+Use the built-in classes before you write any CSS of your own.
 
 ```html
 <main class="container section stack">
@@ -78,28 +79,28 @@ Use native classes before you add product-specific CSS.
     <header class="panel-header">
       <h2 class="panel-title">Ready builds</h2>
     </header>
-    <div class="panel-content">Your work surface</div>
+    <div class="panel-content">Your content goes here</div>
   </section>
 </main>
 ```
 
-The public API includes page and section headers, panels, buttons, forms, navigation, status badges, alerts, tables, lists, description lists, progress, timelines, code surfaces, dialogs, and responsive layout primitives. See the [live reference](https://burkeholland.github.io/postrboard-design/) for exact markup.
+The framework covers page and section headers, panels, buttons, forms, navigation, status badges, alerts, tables, lists, description lists, progress bars, timelines, code blocks, dialogs, and layout helpers. See the [documentation](https://burkeholland.github.io/postrboard-design/) for the exact markup.
 
 ## Use with an AI agent
 
 The bundled [`skill/postrboard/SKILL.md`](skill/postrboard/SKILL.md) tells an agent how to:
 
-- Ground a design in the user and primary artifact.
-- Map surfaces to native Postrboard components.
-- Choose independent axes from product signals.
-- Avoid common AI design patterns and invented proof.
-- Verify states, accessibility, responsive behavior, and framework use.
+- Start from who uses the screen and what they are looking at.
+- Match each part of the screen to a built-in component.
+- Pick theme options that fit the product, instead of defaulting to one look.
+- Avoid the patterns that make a page look machine-generated, and never invent fake logos, metrics, or testimonials.
+- Check hover, focus, disabled, error, empty, and loading states, plus accessibility and small screens.
 
 ## Upgrade from 1.x
 
-Version 2.0 changes the default from glass, soft, and ambient to flat, compact, and quiet. It also changes the font roles from Inter and Space Mono to IBM Plex Sans, Serif, and Mono.
+Version 2.0 changes the default look from glass, soft corners, and a textured background to flat, tight corners, and a plain background. It also changes the fonts from Inter and Space Mono to IBM Plex Sans, Serif, and Mono.
 
-Legacy class names remain as compatibility aliases, but new work must use `.panel`, `.stat-strip`, `.badge-status`, `.page-header`, and the documented navigation variants. Decorative gradient, feature, testimonial, and CTA classes now use restrained treatments. Review surfaces that depend on the old glass default, then set `data-surface="glass"`, `data-geometry="soft"`, or `data-ambient="gradient"` only where those choices still have meaning.
+The old class names still work as aliases, but new work should use `.panel`, `.stat-strip`, `.badge-status`, `.page-header`, and the documented navigation classes. The gradient, feature, testimonial, and CTA classes are now much plainer. Check any page that relied on the old glass default, then set `data-surface="glass"`, `data-geometry="soft"`, or `data-ambient="gradient"` only where you actually want that look.
 
 ## License
 

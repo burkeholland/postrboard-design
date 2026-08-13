@@ -26,7 +26,7 @@
       <header class="queue-head">
         <h1>Needs a reply</h1>
         <div class="cluster justify-between mt-4">
-          <span class="text-meta">Shared inbox / demo data</span>
+          <span class="text-meta">Shared inbox / sample data</span>
           <span class="badge badge-azure">6 open</span>
         </div>
       </header>
@@ -56,25 +56,25 @@
     <section class="conversation" aria-label="Selected conversation">
       <header class="conversation-head">
         <div class="section-header">
-          <div class="section-header-main"><p class="text-meta">Ticket DEMO-1842</p><h2 class="section-title mt-2">Webhook retries after deploy</h2></div>
+          <div class="section-header-main"><p class="text-meta">Ticket TCK-1842</p><h2 class="section-title mt-2">Webhook retries after deploy</h2></div>
           <div class="section-actions"><span class="badge badge-status" data-state="info">Open</span><button class="btn btn-secondary btn-sm" type="button">Assign</button></div>
         </div>
       </header>
 
       <div class="conversation-body">
         <article class="message">
-          <div class="message-author">Customer example</div>
+          <div class="message-author">Customer</div>
           <p>We deployed at 09:10 and started seeing duplicate webhook deliveries immediately afterward. The payload IDs match, but both requests returned 200.</p>
           <div class="ticket-meta mt-3">10:04 · VIA EMAIL</div>
         </article>
         <article class="message is-agent">
           <div class="message-author">Support agent</div>
-          <p>I can see the duplicate delivery pattern in the demonstration trace. I’m checking whether the retry worker kept its previous lease during the deploy.</p>
+          <p>I can see the duplicate delivery pattern in the trace. I’m checking whether the retry worker kept its previous lease during the deploy.</p>
           <div class="ticket-meta mt-3">10:11 · DRAFT</div>
         </article>
         <div class="alert alert-info mt-5">
           <svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>
-          <div><strong class="alert-title">Related deploy found</strong><p class="alert-body">worker-jobs changed 54 minutes before this ticket. This is demonstration context, not a production claim.</p></div>
+          <div><strong class="alert-title">Related deploy found</strong><p class="alert-body">worker-jobs changed 54 minutes before this ticket was opened.</p></div>
         </div>
       </div>
 
