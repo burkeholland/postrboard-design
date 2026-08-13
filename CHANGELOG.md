@@ -4,6 +4,36 @@ All notable changes to Postrboard CSS will be documented in this file.
 
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## [2.0.0] - 2026-08-13
+
+### Added
+
+- **Native work-surface anatomy** - Page headers, section headers, panels, stat strips, semantic status badges, description lists, and app-shell navigation
+- **Typography roles** - IBM Plex Sans, Serif, and Mono with a real editorial display axis
+- **Semantic states** - `data-state` and ARIA-driven styles for status, navigation, busy, invalid, and disabled states
+- **Accessibility safeguards** - Solid focus outlines, forced-colors support, and audited focus contrast
+- **Agent skill** - A five-step `Ground -> Map -> Decide -> Build -> Verify` process with anti-pattern and honest-placeholder checks
+- **Documentation coverage audit** - Checks for public API examples, one font contract, native example use, contrast, and quiet defaults
+- **Release artifact gate** - Fails when minified CSS or its published source map is stale
+
+### Changed
+
+- The default direction is now coral, flat, compact, comfortable, neutral, and without ambience
+- The canonical framed surface is `.panel`; `.card` remains a compatibility alias
+- Display typography now routes through the selected type axis
+- Ambient treatments work on scoped containers as well as the page
+- Gradient text, gradient buttons, feature icons, testimonials, and CTA sections use restrained treatments
+- Dashboard examples use native page headers, panels, stat strips, semantic badges, and sidebar navigation
+- The design reference now imports `postrboard.css` instead of duplicating framework CSS
+- Canonical API names are separated from 1.x compatibility aliases
+- The npm package now includes the Postrboard agent skill and source map
+
+### Breaking
+
+- The bundled font contract now uses IBM Plex Sans, IBM Plex Serif, and IBM Plex Mono
+- Pages that relied on the 1.x glass, soft, gradient default must opt in with data attributes
+- CSS-only overlay and selection styles do not imply complete behavior; applications must provide keyboard, focus, and state logic
+
 ## [1.1.0] — 2026-07-22
 
 ### Added
@@ -45,5 +75,6 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - **Responsive** — Mobile-first breakpoints at 640px, 768px, 1024px, 1280px
 - **Design system reference** — Full interactive showcase of all components (`index.html`)
 
+[2.0.0]: https://github.com/burkeholland/postrboard-design/releases/tag/v2.0.0
 [1.1.0]: https://github.com/burkeholland/postrboard-design/releases/tag/v1.1.0
 [1.0.0]: https://github.com/burkeholland/postrboard-design/releases/tag/v1.0.0

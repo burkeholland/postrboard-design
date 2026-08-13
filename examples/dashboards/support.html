@@ -7,26 +7,26 @@
   <title>Current support triage</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../postrboard.css">
   <link rel="stylesheet" href="dashboard-mocks.css">
 </head>
 <body>
-  <main class="support-shell">
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <main class="support-shell" id="main">
     <nav class="support-icons" aria-label="Support workspace">
-      <a class="brand" href="#" aria-label="Current"><span class="logo-mark">C</span></a>
-      <a class="icon-link active" href="#" aria-label="Inbox"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z"/><path d="m4 14 4-4h8l4 4"/></svg></a>
-      <a class="icon-link" href="#" aria-label="Saved"><svg viewBox="0 0 24 24"><path d="M6 4h12v16l-6-4-6 4z"/></svg></a>
-      <a class="icon-link" href="#" aria-label="Reports"><svg viewBox="0 0 24 24"><path d="M5 19V9M12 19V5M19 19v-7"/></svg></a>
-      <a class="icon-link" href="#" aria-label="Settings"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19 12a7 7 0 0 0-.1-1l2-1.5-2-3.4-2.4 1A7 7 0 0 0 15 6l-.3-2.6h-4L10.4 6A7 7 0 0 0 8 7.1l-2.4-1-2 3.4 2 1.5a7 7 0 0 0 0 2l-2 1.5 2 3.4 2.4-1A7 7 0 0 0 10 18l.3 2.6h4L15 18a7 7 0 0 0 1.6-1.1l2.4 1 2-3.4-2-1.5a7 7 0 0 0 0-1Z"/></svg></a>
+      <a class="brand" href="#" aria-label="Current"><span class="brand-mark">C</span></a>
+      <a class="icon-button" aria-current="page" href="#" aria-label="Inbox"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M4 5h16v14H4z"/><path d="m4 14 4-4h8l4 4"/></svg></a>
+      <a class="icon-button" href="#" aria-label="Saved"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M6 4h12v16l-6-4-6 4z"/></svg></a>
+      <a class="icon-button" href="#" aria-label="Reports"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M5 19V9M12 19V5M19 19v-7"/></svg></a>
+      <a class="icon-button" href="#" aria-label="Settings"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19 12a7 7 0 0 0-.1-1l2-1.5-2-3.4-2.4 1A7 7 0 0 0 15 6l-.3-2.6h-4L10.4 6A7 7 0 0 0 8 7.1l-2.4-1-2 3.4 2 1.5a7 7 0 0 0 0 2l-2 1.5 2 3.4 2.4-1A7 7 0 0 0 10 18l.3 2.6h4L15 18a7 7 0 0 0 1.6-1.1l2.4 1 2-3.4-2-1.5a7 7 0 0 0 0-1Z"/></svg></a>
     </nav>
 
     <section class="ticket-queue" aria-label="Ticket queue">
       <header class="queue-head">
-        <div class="eyebrow">Shared inbox</div>
         <h1>Needs a reply</h1>
-        <div class="toolbar mt-4">
-          <span class="mock-note">Demo data</span>
+        <div class="cluster justify-between mt-4">
+          <span class="text-meta">Shared inbox / demo data</span>
           <span class="badge badge-azure">6 open</span>
         </div>
       </header>
@@ -55,9 +55,9 @@
 
     <section class="conversation" aria-label="Selected conversation">
       <header class="conversation-head">
-        <div class="toolbar">
-          <div><div class="eyebrow">Ticket DEMO-1842</div><h2 class="section-title mt-2">Webhook retries after deploy</h2></div>
-          <div class="cluster"><span class="status"><span class="status-dot"></span>Open</span><button class="btn btn-secondary btn-sm" type="button">Assign</button></div>
+        <div class="section-header">
+          <div class="section-header-main"><p class="text-meta">Ticket DEMO-1842</p><h2 class="section-title mt-2">Webhook retries after deploy</h2></div>
+          <div class="section-actions"><span class="badge badge-status" data-state="info">Open</span><button class="btn btn-secondary btn-sm" type="button">Assign</button></div>
         </div>
       </header>
 
@@ -73,7 +73,7 @@
           <div class="ticket-meta mt-3">10:11 · DRAFT</div>
         </article>
         <div class="alert alert-info mt-5">
-          <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>
+          <svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>
           <div><strong class="alert-title">Related deploy found</strong><p class="alert-body">worker-jobs changed 54 minutes before this ticket. This is demonstration context, not a production claim.</p></div>
         </div>
       </div>

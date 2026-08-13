@@ -1,421 +1,178 @@
 ---
 name: postrboard
-description: "Apply the Postrboard design language to frontend work. Quiet CSS for loud products, code-native, restrained, non-generic."
+description: "Build specific, restrained product interfaces with Postrboard CSS. Native components first; honest content; no generic AI design."
 ---
 
-# Postrboard Skill
+# Postrboard
 
-You are designing with **Postrboard CSS**. Your job is not to make a pretty SaaS page. Your job is to make the product feel specific, intentional, code-native, and calm.
+Postrboard is quiet CSS for loud products. The framework must recede. The user's work, data, and decisions must lead.
 
-**Quiet CSS for loud products.** The framework should recede. The product, workflow, and data should speak.
+Use this skill for pages, apps, dashboards, docs, and components built with Postrboard CSS.
 
-If this skill conflicts with generic web-design instincts, this skill wins.
+## Authority
 
----
+Use this order when sources disagree:
 
-## P0 Behavioral Rules
+1. The user's content, users, and task.
+2. This skill's behavioral rules.
+3. `postrboard.css` for tokens and class names.
+4. `index.html` for valid markup examples.
+5. General design knowledge.
 
-These rules block output. Do not emit UI until they pass.
+Do not invent a class from memory. Search the CSS.
 
-1. **No generic SaaS structure.** Never default to Hero → Features → Testimonials → Pricing → CTA.
-2. **No decorative emptiness.** Every card, badge, stat, gradient, icon, and section must carry product meaning.
-3. **No fake specificity.** Do not invent numbers, logos, quotes, avatars, customers, or metrics. Use honest placeholders.
-4. **No default alignment.** Choose alignment from the content. Centered and editorial compositions are legitimate; centered marketing fog is not.
-5. **No rainbow styling.** Choose one dominant accent per surface with `data-accent`. Coral is the house default, not the mandatory brand color. Semantic information, success, warning, and danger colors keep their meaning.
-6. **No emoji. Ever.** Never use emoji as iconography, decoration, or section markers. Use SVG icons from Lucide, Phosphor, or Tabler sized to `--icon-sm`/`--icon-md`/`--icon-lg` tokens. If no icon clarifies, use none.
-7. **No stock icon grids.** Icons are optional, small, and clarifying. They are not content.
-8. **No bloated copy.** Labels must name the actual object, action, input, output, or consequence.
-9. **No arbitrary CSS values.** Use Postrboard tokens/classes. Custom CSS may compose tokens, not replace them.
-10. **No template recipes.** Choose visual axes independently from product signals. Never copy a canned page shape or a favorite bundle of settings.
-11. **No unreviewed output.** Run the self-review scan before finalizing.
-
----
-
-## Authority Hierarchy
-
-When deciding what to use:
-
-1. **User's requested content and product context** — source of truth for meaning.
-2. **Postrboard behavioral rules in this file** — source of truth for taste.
-3. **`postrboard.css`** — source of truth for class names, tokens, and component APIs.
-4. **`index.html`** — source of truth for live examples and edge cases.
-5. Your general design knowledge — only when it does not conflict with the above.
-
-If you need exact classes, read `postrboard.css`. If you need examples, read `index.html`. Do not inline the whole reference into your reasoning.
-
----
-
-## Required Setup
-
-Use the framework correctly before designing.
+## Setup
 
 ```html
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://burkeholland.github.io/postrboard-design/postrboard.min.css">
 ```
 
-Use `<html data-mode="light">`, `<html data-mode="dark">`, or omit `data-mode` for system preference.
+Set `data-mode="light"` or `data-mode="dark"` on `<html>` only when the use scene calls for it. Omit it to follow the system setting. For an opposite-mode island, set its mode, accent, and surface together.
 
-Docs: https://burkeholland.github.io/postrboard-design
+## The five-step protocol
 
----
+### 1. Ground
 
-## Postrboard Personality
+Before markup, write one internal sentence:
 
-Postrboard always feels like:
+`[Person] needs to [job] by working with [primary artifact].`
 
-- A developer tool with editorial restraint.
-- Dense information made breathable.
-- Technically literate, but not always terminal-shaped.
-- Polished without looking venture-backed by default.
-- Confident enough to leave space empty.
-- Built from real product surfaces, not Dribbble sections.
+Then identify:
 
-That is the contract, not a single theme. A sharp, slate audit console and a roomy, amber editorial page can both be Postrboard. They share component semantics, spacing rhythm, honest content, accessible states, and restraint. They do not need to share geometry, composition, ambience, or accent.
+- **Mode:** operate, read, persuade, or experience.
+- **Posture:** workflow-led, evidence-led, data-led, editorial-led, or conversion-led.
+- **Primary artifact:** table, form, queue, editor, schedule, log, comparison, media, or another real object.
+- **Real content:** user-provided facts and honest placeholders only.
 
-Postrboard does **not** feel like:
+An app starts with the work surface, not a landing page that explains the app.
 
-- Gradient blob SaaS.
-- Emoji-and-card dashboards.
-- “Unlock your potential” landing pages.
-- Centered hero plus three benefit cards.
-- Purple-blue glassmorphism.
-- Fake enterprise trust walls.
+### 2. Map
 
----
+Inspect `postrboard.css` and the matching examples in `index.html`. Map each major surface to a native class before you write markup.
 
-## Choose a Design Direction
+Use this format internally:
 
-Do this before writing markup. This is required.
+| Surface | Native API | Custom reason |
+|---|---|---|
+| Main action | `.btn .btn-primary` | None |
+| Work queue | `.list-group .list-item` | None |
+| Product-specific timeline | `.timeline` plus token-based layout | Domain labels need one extra grid track |
 
-### 1. Read the product signals
+A custom class is allowed only for product-specific composition or behavior that the native API cannot express. Loading Postrboard CSS without using its components does not count as using Postrboard.
 
-Identify:
+### 3. Decide
 
-- **Domain:** developer tool, data, security, finance, health, creative, consumer, docs, or something else.
-- **Temperature:** cool, warm, or neutral.
-- **Maturity:** exploratory, established, or institutional.
-- **Density:** sparse, balanced, or dense.
-- **Register:** serious, editorial, utilitarian, or expressive.
-
-These signals are inputs, not a lookup table. Two valid designs can interpret the same product differently.
-
-### 2. Choose the content posture and visual axes separately
-
-The **posture** decides what leads and in what order. The **visual axes** decide how it feels.
-
-Choose one value for each axis:
+Choose visual axes from the product signals, not from a favorite look.
 
 | Axis | API | Values |
 |---|---|---|
 | Accent | `data-accent` | `coral`, `azure`, `sage`, `violet`, `amber`, `slate` |
-| Surface | `data-surface` | `glass`, `flat`, `outline`, `raised` |
-| Geometry | `data-geometry` | `soft`, `compact`, `sharp` |
+| Surface | `data-surface` | `flat`, `outline`, `raised`, `glass` |
+| Geometry | `data-geometry` | `compact`, `sharp`, `soft` |
 | Density | `data-density` | `comfortable`, `compact`, `roomy` |
-| Display voice | `data-type` | `sans-tight`, `mono-lede`, `editorial`, `neutral` |
-| Ambience | `data-ambient` | `gradient`, `noise`, `grid`, `flat`, `none` |
-| Composition | layout class | `grid-split`, `grid-asymmetric`, `grid-asymmetric-reverse`, `grid-thirds`, `grid-sidebar`, `grid-holy-grail`, `grid-masonry`, `grid-stack-rail`, `grid-centered` |
-| Navigation | class or structure | glass `.navbar`, `.navbar-solid`, `.navbar-bordered`, `.navbar-minimal`, or `.sidebar-nav` |
+| Display voice | `data-type` | `neutral`, `sans-tight`, `mono-lede`, `editorial` |
+| Ambience | `data-ambient` | `none`, `noise`, `grid`, `gradient` |
 
-Set page-wide axes on `<html>`. Scope an axis to a section only when the product meaning changes:
+The default is:
 
-```html
-<html
-  data-mode="light"
-  data-accent="azure"
-  data-surface="flat"
-  data-geometry="sharp"
-  data-density="compact"
-  data-type="neutral"
-  data-ambient="grid">
-```
+`coral / flat / compact / comfortable / neutral / none`
 
-### 3. Enforce meaningful divergence
+For a new standalone surface, differ from the default on at least **two** of accent, surface, geometry, density, type, or composition. When you extend an existing product, preserve its established axes unless the user asks for a redesign or the product meaning changes. For a distinct variation, change one structural axis and change the accent only when brand context permits.
 
-The house default is:
+This is a divergence check, not a request for random settings. Product continuity overrides novelty. Every changed axis must support the use scene. Keep `glass`, `grid`, and `gradient` for cases where the material or data makes them useful.
 
-`coral / glass / soft / comfortable / sans-tight / gradient / grid-split / glass navbar`
+Spend visual boldness in one place. Choose one signature detail that comes from the subject: a ledger rhythm, an editor gutter, a scheduling line, a comparison rail, or another meaningful device. Keep the rest calm.
 
-Your direction must differ from it on at least **three** axes. If another Postrboard surface already exists in the project or conversation, differ from that surface on accent and at least one of surface, geometry, composition, or navigation.
+### 4. Build
 
-Do not use randomness. Explain each choice with a product signal. The goal is not novelty. The goal is a specific answer instead of the same answer.
+Start with the primary artifact. Add prose only where it helps a person use or understand that artifact.
 
-### 4. Pass the coherence gate
+Use native APIs first:
 
-Some combinations naturally reinforce one another:
+| Need | Native API |
+|---|---|
+| Page rhythm | `.container`, `.section`, `.stack`, `.stack-sm`, `.cluster` |
+| Composition | `.grid-auto`, `.grid-split`, `.grid-asymmetric`, `.grid-sidebar`, `.grid-stack-rail`, `.grid-centered`, `.grid-masonry` |
+| Headers | `.page-header`, `.page-title`, `.page-summary`, `.page-actions`, `.section-header`, `.section-title`, `.section-meta` |
+| Framed work surface | `.panel`, `.panel-header`, `.panel-content`, `.panel-footer` |
+| Actions | `.btn`, `.btn-primary`, `.btn-secondary`, `.btn-ghost`, `.btn-danger`, `.icon-button` |
+| Forms | `.form-stack`, `.form-field`, `.form-label`, `.input`, `.textarea`, `.select`, `.checkbox`, `.radio`, `.switch`, `.segmented-control` |
+| Status | `.badge`, `.badge-status`, `data-state`, `.alert`, `.progress` |
+| Summary data | `.stat-strip`, `.stat-item`, `.stat-label`, `.stat-value`, `.stat-detail` |
+| Detailed data | `.table-wrap`, `.data-table`, `.list-group`, `.list-item`, `.description-list`, `.timeline`, `.empty-state` |
+| Navigation | `.navbar`, `.navbar-solid`, `.navbar-bordered`, `.navbar-minimal`, `.navbar-glass`, `.sidebar-nav`, `.tabs`, `.breadcrumb`, `.pagination` |
+| Code and disclosure | `.terminal`, `.inline-code`, `.accordion` |
+| Feedback | `.alert`, `.toast`, `.banner`, `.modal`, `.drawer-panel`, `.popover-panel` |
 
-- Technical or audit-heavy: cool/slate accent, flat or outline surface, sharp geometry, compact density, mono or neutral display, grid ambience.
-- Narrative or expressive: warm/violet accent, raised or glass surface, soft geometry, roomy density, editorial display.
-- Documentation: neutral/cool accent, outline or flat surface, comfortable density, centered prose or sidebar composition.
+Prefer semantic state attributes when supported: `aria-current`, `aria-selected`, `aria-invalid`, `aria-busy`, `aria-disabled`, and `data-state`.
 
-These are leanings, not presets. Do not copy the whole row.
+Postrboard is CSS-only. CSS can style a modal, drawer, dropdown, combobox, tabs, and popover, but it cannot supply focus trapping, Escape handling, roving focus, selection logic, or announcements. Add the required behavior in application code. Do not claim that a CSS-only shell is a complete interactive component.
 
-Avoid combinations whose signals fight:
+### 5. Verify
 
-- Glass on a flat or empty canvas with nothing meaningful to blur.
-- Roomy density for a data table whose job is comparison.
-- Mono display everywhere on an editorial page.
-- Sharp geometry with a page full of pill controls.
-- Amber as the page accent when warning states are prominent and could become ambiguous.
+Run one bounded review, fix all failures together, and confirm once.
 
-If the combination is different but does not feel coherent, revise it.
+1. **Specificity:** Could the page belong to 500 unrelated products? If yes, make the artifact, copy, or composition more specific.
+2. **Framework use:** Does every major surface use a documented Postrboard API or have a real custom reason?
+3. **Structure:** Is the primary artifact above decoration and marketing?
+4. **Content:** Are all claims, metrics, people, logos, and quotes supplied or clearly marked as examples?
+5. **States:** Do interactive controls cover relevant default, hover, focus, active, disabled, loading, error, success, and empty states?
+6. **Accessibility:** Check semantic HTML, labels, heading order, keyboard use, visible focus, contrast, reduced motion, and forced colors.
+7. **Responsive behavior:** Check 320, 375, 768, and desktop widths. No clipped text, horizontal page scroll, hidden primary actions, or broken reading order.
+8. **Restraint and variety:** Is there one signature move, with everything else supporting it? Does it differ meaningfully from the last Postrboard surface?
 
----
+If a design detector is available, run it after the interface is complete.
 
-## Quick Decision Tree
+## Hard rules
 
-Choose structure from the content type, not from habit.
+These rules block output:
 
-This tree selects a content posture. It does not select the accent, geometry, density, surface, type, or ambience.
+1. Use native Postrboard components before custom equivalents.
+2. Use Postrboard tokens for color, spacing, type, radius, shadow, motion, and focus.
+3. Never present invented metrics, testimonials, customers, logos, people, or product claims as real. Use supplied facts, honest placeholders, or clearly labeled demonstration data.
+4. Never use emoji as interface icons. Use an existing project icon set or a small accessible SVG.
+5. Keep one dominant accent per surface. Semantic status colors keep their meanings.
+6. Do not nest cards or turn every section into a floating container.
+7. Do not build `Hero -> Features -> Testimonials -> Pricing -> CTA` unless the supplied content truly requires that sequence.
+8. Do not add motion without a functional reason. Respect `prefers-reduced-motion`.
+9. Do not replace the user's copy, routes, behavior, or information architecture during a visual refinement.
+10. Do not ship before the verification pass succeeds.
 
-### 1. Is the user asking for a product page or landing page?
+## AI design tells
 
-**If the product is technical, workflow-based, or developer-facing:**
-- Lead with a real workflow slice: command, config, diff, dashboard row, event stream, or before/after state.
-- Pair prose with an artifact, not an illustration.
-- Structure: problem context → working surface → specific capabilities → consequence/action.
+The pattern is the problem, not one isolated property.
 
-**If the product is conceptual or early-stage:**
-- Lead with a crisp positioning statement and one concrete example.
-- Use fewer sections. Show the idea operating on real inputs.
-- Structure: claim → example → mechanics → next step.
+| Tell | Typical symptom | Better move |
+|---|---|---|
+| Template structure | Centered hero, three equal features, large closing CTA | Lead with the actual workflow, evidence, data, or object |
+| Decorative containers | Cards around every paragraph; cards inside cards | Use hierarchy, spacing, rules, and one framed work surface |
+| Default "premium" styling | Large radii, glass, glow, soft shadow on everything | Use flat or outlined surfaces; reserve depth for real layering |
+| Synthetic color | Purple-blue gradients, cyan on dark, colored radial halos | Choose one grounded accent and semantic state colors |
+| Generic typography | One overused sans family, flat scale, crushed tracking | Use the supplied Sans/Serif/Mono roles with clear hierarchy |
+| Generator scaffolding | Eyebrows above headings, arbitrary section numbers | Let headings and content order carry structure |
+| Icon tiles | Rounded square icon above every heading | Use an icon only when it clarifies an action or object |
+| Fake technicality | Terminal dots, blinking cursor, code texture with no code | Show a real command, log, diff, payload, or no terminal |
+| Empty spectacle | Abstract SVG blobs, orbs, fake charts, decorative dashboards | Show a real product artifact or an honest empty placeholder |
+| Vague copy | "Transform your workflow" and "Powerful insights" | Name the input, action, output, and consequence |
+| Fake proof | Invented users, metrics, quotes, avatars, or logos | Use supplied evidence, label demonstration data, or remove it |
+| Mechanical interaction | Same lift, glow, or reveal on every element | Use quiet state changes and one purposeful motion moment |
+| Missing behavior | Pretty default state with no focus, error, loading, or empty state | Build the state model before decoration |
 
-**If the product is trust/compliance/security-led:**
-- Lead with proof, constraints, auditability, or risk reduction.
-- Use tables, logs, policies, status panels, and evidence blocks.
-- Structure: risk → control surface → verification → adoption path.
+## Honest placeholders
 
-### 2. Is the user asking for an app/dashboard?
+Use placeholders that describe what belongs:
 
-**If data is primary:**
-- Start with navigation/context, then the most important table, log, queue, chart, or status surface.
-- Keep summary cards subordinate to the work surface.
-- Structure: context bar → filters/actions → primary data surface → secondary detail.
+- `Metric not yet measured`
+- `Customer quote pending`
+- `Connect a data source to populate this table`
+- `Example event payload`
+- `Integration name`
 
-**If action is primary:**
-- Make the next action unmistakable.
-- Show required inputs and consequences before decoration.
-- Structure: current state → available action → preview/result → confirmation.
+Do not use lorem ipsum or polished-looking fake data.
 
-**If monitoring is primary:**
-- Use calm density: status, trends, exceptions, timestamps.
-- Avoid celebratory cards. Show what changed and what needs attention.
-- Structure: system state → exceptions → recent activity → drill-down.
+## Final standard
 
-### 3. Is the user asking for docs, reference, or developer education?
-
-- Lead with the smallest working example.
-- Use code, callouts, steps, and compact navigation.
-- Structure: outcome → install/setup → example → options → troubleshooting.
-
-### 4. Is the user asking for a component?
-
-- Design the component around its state model.
-- Include default, empty, loading, error, and success states when relevant.
-- Structure internally by state, not by visual flourish.
-
-### 5. Is the content sparse?
-
-- Do not inflate it into a full landing page.
-- Create a focused single-screen composition, placeholder honestly, or ask the surrounding UI to carry context.
-
----
-
-## Approved Content Postures
-
-Pick one dominant posture. Do not mix all of them. Then choose the visual axes independently; a posture is not a theme.
-
-### Workflow-led
-Use when the product helps someone do a task.
-- Anchor the page with a realistic work surface.
-- Show inputs, transformation, and output.
-- Best elements: terminal, command strip, editor pane, event timeline, task list.
-
-### Evidence-led
-Use when trust matters.
-- Put proof before persuasion.
-- Show logs, policies, checks, uptime, audit trails, typed metadata.
-- Avoid testimonials unless provided by the user.
-
-### Data-led
-Use when users manage or interpret information.
-- Prioritize tables, queues, filters, and summaries.
-- Let density be beautiful. Use whitespace to group, not to dilute.
-
-### Editorial-led
-Use when explaining an idea, announcement, or narrative.
-- Use strong hierarchy, short sections, and sharp prose.
-- Prefer pull quotes, side notes, and code-adjacent examples over feature grids.
-
-### Conversion-led
-Use only when the request is explicitly marketing/sales.
-- One primary CTA.
-- Benefits must tie to concrete product behavior.
-- Replace testimonial/pricing filler with proof, screenshots, examples, or honest placeholders.
-
----
-
-## AI Design Tells: P0 Blockers
-
-Scan every emitted surface for these. If found, revise before output.
-
-| Tell | Symptom | Why it reads as AI slop | Replacement |
-|---|---|---|---|
-| Generic hero stack | Huge centered headline, vague subhead, two CTAs | Default SaaS average | Left-aligned claim plus concrete product surface |
-| Three feature cards | “Fast / Secure / Easy” grid | Filler pretending to be structure | Show workflow steps, states, or actual capabilities |
-| Fake metrics | “10x faster”, “99.9%”, “1M users” without source | Invented credibility | Use “Metric pending”, real user-provided data, or remove |
-| Gradient blob background | Purple/blue glow with no meaning | Trend mimicry | Subtle token gradient, border, or no decoration |
-| Icon confetti | Same-size icon above every card | Visual noise | Use text hierarchy; add icons only where they disambiguate |
-| Buzzword copy | “Transform your workflow”, “unlock potential” | Says nothing testable | Name the input, action, output, and consequence |
-| Repetitive cards | Identical cards with swapped nouns | Template smell | Vary form by content: table, timeline, code, checklist, stat |
-| Floating testimonial | Quote/avatar/company invented or ornamental | Fake social proof | Use provided quotes only; otherwise show evidence or omit |
-| Oversized CTA band | Final gradient box repeating headline | Formulaic ending | End with next practical step, docs link, command, or compact CTA |
-| Decorative dashboard | Charts/cards with meaningless labels | Looks like mock data | Use domain-specific rows, logs, statuses, or honest placeholders |
-| Excess rounded glass | Blur, transparency, giant radius everywhere | Generic “premium” effect | Use restrained surfaces, borders, soft shadows |
-| Centered everything | All sections aligned center | No editorial judgment | Choose an alignment logic that follows the content |
-
-A single P0 tell is enough to block output.
-
----
-
-## Honest Placeholder Rule
-
-When real content is missing, be explicit.
-
-Use:
-- “Customer quote pending”
-- “Integration name”
-- “Metric not yet measured”
-- “Example event payload”
-- “Connect data source to populate this table”
-
-Do not use:
-- Fake people, logos, avatars, companies, or testimonials.
-- Fake growth metrics.
-- Lorem ipsum in product surfaces.
-- Placeholder copy that sounds finished.
-
-Placeholders should reveal what belongs there, not pretend the page is complete.
-
----
-
-## Copy Rules
-
-Postrboard copy is specific, compressed, and operational.
-
-Write like this:
-- “Replay failed jobs from the last deploy.”
-- “Compare config drift before merging.”
-- “Ship a hosted status page from your incident log.”
-- “Paste a webhook payload; get a typed handler.”
-
-Do not write like this:
-- “Streamline your workflow.”
-- “Powerful insights at your fingertips.”
-- “Everything you need to succeed.”
-- “Beautifully designed for modern teams.”
-
-Every headline should pass this test: **Could this appear on 500 unrelated startup sites?** If yes, rewrite.
-
----
-
-## Class Usage Guidance
-
-Do not memorize the whole framework. Use these anchors, then read `postrboard.css` for exact APIs.
-
-Core layout:
-- `container` for page width.
-- `stack` for vertical rhythm.
-- `cluster` for horizontal grouping.
-- `grid-split` for equal editorial/artifact pairs.
-- `grid-asymmetric` and `grid-asymmetric-reverse` for weighted content.
-- `grid-sidebar`, `grid-stack-rail`, and `grid-holy-grail` for persistent context.
-- `grid-centered` for prose and focused flows.
-- `grid-masonry` only when items genuinely have varied height.
-- Grid/card utilities for grouped content only when content deserves grouping.
-
-Core typography:
-- Display classes for one major claim.
-- Body/muted/meta classes for hierarchy.
-- Mono classes for commands, labels, metadata, logs, and technical texture.
-
-Core components:
-- Buttons: one primary action, secondary actions quiet.
-- Cards/panels: contain meaningful state, not filler.
-- Badges: status or metadata only.
-- Terminal/code components: use when the product is command/config/code/workflow oriented.
-- Forms/tables/nav/alerts: use native framework classes before custom CSS.
-
-Customization:
-- Compose with CSS variables from `postrboard.css`.
-- Prefer the `data-accent`, `data-surface`, `data-geometry`, `data-density`, `data-type`, and `data-ambient` APIs before writing custom theme CSS.
-- Raw coral, azure, sage, violet, amber, and slate tokens are available, but interactive components should inherit the active `--accent*` role.
-- Do not introduce new color systems, font stacks, shadow recipes, or spacing scales unless the user explicitly asks to extend the framework.
-- Custom CSS is acceptable for layout composition and product-specific surfaces.
-
-Approved component library: **shadcn/ui only if the project already uses it or the user asks for React components.** Style it with Postrboard tokens.
-
----
-
-## Composition Rules
-
-1. Start from the most truthful product artifact: table, command, editor, timeline, form, diff, log, or config.
-2. Add prose only where it clarifies the artifact.
-3. Prefer fewer sections with stronger internal structure.
-4. Choose symmetry or asymmetry on purpose: artifact beside claim, metadata beside content, centered prose, edge-to-edge data, or another content-derived relationship.
-5. Vary content shapes. Do not make every idea a card.
-6. Keep color intentional. The active accent can establish identity, but state colors still communicate state.
-7. Use mono type as texture and information, not as a gimmick.
-8. Leave whitespace around important objects; do not pad weak ideas into importance.
-
----
-
-## Self-Review Scan
-
-Before final output, inspect every page/component you generated.
-
-### Scan 1: Structure
-- Did I choose a posture from the decision tree?
-- Is the primary surface specific to the user's content?
-- Did I avoid Hero → Features → Testimonials → CTA unless explicitly required?
-
-### Scan 2: Content
-- Are all claims specific and testable?
-- Are placeholders honest?
-- Did I remove invented metrics, quotes, logos, and avatars?
-
-### Scan 3: Visual Taste
-- Does the alignment serve this content instead of a house habit?
-- Is the active accent deliberate, with semantic state colors still unambiguous?
-- Did I avoid gradient blobs, icon grids, and repeated cards?
-
-### Scan 4: Framework Use
-- Are fonts and CSS loaded correctly?
-- Did I use Postrboard classes/tokens before custom CSS?
-- Would reading `postrboard.css` reveal a better native class I should use?
-
-### Scan 5: Variation
-- Did I choose every visual axis from product signals?
-- Does this direction differ from the house default on at least three axes?
-- If a sibling Postrboard surface exists, did I change the accent and at least one structural axis?
-- Did I avoid turning the coherence examples into presets?
-- Does the result still keep the invariant contract: honest content, token rhythm, semantic color, visible focus, and restrained components?
-- Could I swap the logo and mistake this for the last Postrboard page I made? If yes, revise.
-
-If any answer fails, revise. Do not explain the failure; fix the output.
-
----
-
-## Final Output Standard
-
-A successful Postrboard result should feel:
-
-- Specific to this product.
-- Calm but not empty.
-- Technical without being hostile.
-- Editorial without being precious.
-- Polished without obvious AI tells.
-
-If the page could be renamed to another startup by changing only the logo, it is not done.
+A successful Postrboard interface is specific, calm, accessible, responsive, and made from native components. It can be sharp or soft, dense or roomy, technical or editorial. It must not look like a theme with the nouns replaced.

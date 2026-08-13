@@ -1,23 +1,24 @@
 <!doctype html>
-<!-- Postrboard brief: care coordination; sage, light, outline, compact geometry, comfortable density, neutral type, flat ambience, focused schedule. -->
-<html lang="en" data-mode="light" data-accent="sage" data-surface="outline" data-geometry="compact" data-density="comfortable" data-type="neutral" data-ambient="flat">
+<!-- Postrboard brief: care coordination; sage, light, outline, compact geometry, comfortable density, neutral type, no ambience, focused schedule. -->
+<html lang="en" data-mode="light" data-accent="sage" data-surface="outline" data-geometry="compact" data-density="comfortable" data-type="neutral" data-ambient="none">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Kindred care coordination</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../postrboard.css">
   <link rel="stylesheet" href="dashboard-mocks.css">
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to main content</a>
   <div class="care-page">
     <nav class="navbar-bordered" aria-label="Primary">
       <div class="nav-inner">
-        <a class="brand" href="#"><span class="logo-mark">K</span> Kindred</a>
+        <a class="brand" href="#"><span class="brand-mark">K</span> Kindred</a>
         <div class="nav-links">
-          <a class="nav-link active" href="#">Today</a>
+          <a class="nav-link" aria-current="page" href="#">Today</a>
           <a class="nav-link" href="#">People</a>
           <a class="nav-link" href="#">Messages</a>
         </div>
@@ -25,64 +26,63 @@
       </div>
     </nav>
 
-    <main>
-      <header class="care-summary">
-        <div>
-          <div class="eyebrow">Care team / North clinic</div>
+    <main id="main">
+      <header class="page-header care-summary">
+        <div class="page-header-main">
           <h1 class="page-title">Today’s care plan</h1>
-          <p class="page-subtitle">Appointments, handoffs, and follow-ups that need a human decision.</p>
+          <p class="page-summary">Appointments, handoffs, and follow-ups that need a human decision.</p>
         </div>
         <div>
           <div class="care-date">TUE 22</div>
-          <div class="mock-note mt-2">Demonstration data</div>
+          <div class="text-meta mt-2">North clinic / demonstration data</div>
         </div>
       </header>
 
-      <section class="metric-strip mt-5" aria-label="Care summary">
-        <div class="metric"><span class="metric-label">Appointments</span><strong class="metric-value">09</strong><span class="metric-detail">sample schedule</span></div>
-        <div class="metric"><span class="metric-label">Checked in</span><strong class="metric-value">04</strong><span class="metric-detail">2 in rooms</span></div>
-        <div class="metric"><span class="metric-label">Follow-ups</span><strong class="metric-value">03</strong><span class="metric-detail">before end of day</span></div>
-        <div class="metric"><span class="metric-label">Unassigned</span><strong class="metric-value">01</strong><span class="metric-detail">needs coordinator</span></div>
-      </section>
+      <dl class="stat-strip mt-5" aria-label="Care summary">
+        <div class="stat-item"><dt class="stat-label">Appointments</dt><dd class="stat-value">09</dd><dd class="stat-detail">sample schedule</dd></div>
+        <div class="stat-item"><dt class="stat-label">Checked in</dt><dd class="stat-value">04</dd><dd class="stat-detail">2 in rooms</dd></div>
+        <div class="stat-item"><dt class="stat-label">Follow-ups</dt><dd class="stat-value">03</dd><dd class="stat-detail">before end of day</dd></div>
+        <div class="stat-item"><dt class="stat-label">Unassigned</dt><dd class="stat-value">01</dd><dd class="stat-detail">needs coordinator</dd></div>
+      </dl>
 
       <div class="care-workspace">
-        <section class="card">
-          <div class="section-head">
-            <div><h2 class="section-title">Schedule</h2><span class="section-meta">local time</span></div>
+        <section class="panel">
+          <div class="section-header">
+            <div class="section-header-main"><h2 class="section-title">Schedule</h2><span class="section-meta">local time</span></div>
             <div class="cluster"><button class="btn btn-ghost btn-sm" type="button">Previous</button><button class="btn btn-secondary btn-sm" type="button">Next</button></div>
           </div>
           <div class="schedule">
             <div class="appointment">
               <span class="appointment-time">09:00</span><span class="appointment-line"></span>
-              <div><div class="appointment-title">Intake consultation</div><div class="appointment-detail">Person A · Room 2 · assigned to K. Morgan</div></div>
-              <span class="status is-success"><span class="status-dot"></span>Checked in</span>
+              <div><div class="appointment-title">Intake consultation</div><div class="appointment-detail">Person A · Room 2 · assigned to Clinician A</div></div>
+              <span class="badge badge-status" data-state="success">Checked in</span>
             </div>
             <div class="appointment">
               <span class="appointment-time">10:15</span><span class="appointment-line"></span>
-              <div><div class="appointment-title">Care plan review</div><div class="appointment-detail">Person B · Video visit · assigned to J. Patel</div></div>
-              <span class="status"><span class="status-dot"></span>Ready</span>
+              <div><div class="appointment-title">Care plan review</div><div class="appointment-detail">Person B · Video visit · assigned to Clinician B</div></div>
+              <span class="badge badge-status" data-state="info">Ready</span>
             </div>
             <div class="appointment">
               <span class="appointment-time">11:30</span><span class="appointment-line"></span>
-              <div><div class="appointment-title">Medication follow-up</div><div class="appointment-detail">Person C · Room 4 · assigned to K. Morgan</div></div>
-              <span class="status is-muted"><span class="status-dot"></span>Upcoming</span>
+              <div><div class="appointment-title">Medication follow-up</div><div class="appointment-detail">Person C · Room 4 · assigned to Clinician A</div></div>
+              <span class="badge badge-status badge-neutral">Upcoming</span>
             </div>
             <div class="appointment">
               <span class="appointment-time">13:00</span><span class="appointment-line"></span>
               <div><div class="appointment-title">Post-visit check-in</div><div class="appointment-detail">Person D · Phone · coordinator unassigned</div></div>
-              <span class="status is-danger"><span class="status-dot"></span>Needs owner</span>
+              <span class="badge badge-status" data-state="danger">Needs owner</span>
             </div>
           </div>
         </section>
 
         <aside class="stack">
           <section>
-            <div class="section-head"><h2 class="section-title">Needs attention</h2><span class="section-meta">3 items</span></div>
-            <div class="stack-sm">
-              <div class="care-action"><strong>Assign post-visit call</strong><p>Person D has no coordinator for the 13:00 follow-up.</p><button class="btn btn-primary btn-sm" type="button">Assign owner</button></div>
-              <div class="care-action"><strong>Review intake note</strong><p>A draft note is ready before the next handoff.</p><button class="btn btn-secondary btn-sm" type="button">Open note</button></div>
-              <div class="care-action"><strong>Confirm transport</strong><p>Transportation status has not been recorded.</p><button class="btn btn-ghost btn-sm" type="button">Add status</button></div>
-            </div>
+            <div class="section-header"><h2 class="section-title">Needs attention</h2><span class="section-meta">3 items</span></div>
+            <ul class="list-group care-actions">
+              <li class="list-item"><div class="list-item-main"><strong class="list-title">Assign post-visit call</strong><p class="list-meta">Person D has no coordinator for the 13:00 follow-up.</p></div><button class="btn btn-primary btn-sm" type="button">Assign owner</button></li>
+              <li class="list-item"><div class="list-item-main"><strong class="list-title">Review intake note</strong><p class="list-meta">A draft note is ready before the next handoff.</p></div><button class="btn btn-secondary btn-sm" type="button">Open note</button></li>
+              <li class="list-item"><div class="list-item-main"><strong class="list-title">Confirm transport</strong><p class="list-meta">Transportation status has not been recorded.</p></div><button class="btn btn-ghost btn-sm" type="button">Add status</button></li>
+            </ul>
           </section>
         </aside>
       </div>
