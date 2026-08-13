@@ -56,6 +56,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - Deploy, care, and ledger example grids stretched short panels to match a taller sibling column, leaving large voids inside framed surfaces
 - The deploy operations example combined dark mode, a colourless slate accent, and heavy mono display type; it now keeps mono as its single strong technical signal
 - `.description-list` stacked its label and value only at a viewport breakpoint, so it overflowed its own frame whenever it sat in a narrow column at desktop widths; it now uses a container query and responds to the space it is actually given
+- The docs sidebar pinned a bordered footer to the bottom of a full-height rail, leaving roughly 330px of empty space bracketed by a rule and two stranded controls, and hid that footer entirely below 980px — so mobile visitors had no way to switch modes at all. The mode toggle now sits beside the brand at the top of the rail and stays available at every width, and the gallery link reads as a nav destination instead of the loudest element in the sidebar
 
 ## [1.1.0] — 2026-07-22
 

@@ -40,7 +40,11 @@
       background: var(--surface);
     }
 
-    .docs-rail .brand {
+    .docs-rail-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-2);
       margin-bottom: var(--space-7);
     }
 
@@ -64,11 +68,17 @@
       color: var(--text);
     }
 
-    .docs-rail-footer {
-      display: grid;
-      gap: var(--space-3);
-      margin-top: auto;
-      padding-top: var(--space-5);
+    .docs-nav-aside {
+      position: relative;
+      margin-top: var(--space-4);
+    }
+
+    .docs-nav-aside::before {
+      content: "";
+      position: absolute;
+      top: calc(var(--space-2) * -1);
+      right: 0;
+      left: 0;
       border-top: 1px solid var(--border);
     }
 
@@ -383,7 +393,12 @@
     }
 
     .mode-button {
-      justify-content: flex-start;
+      flex: 0 0 auto;
+      padding-inline: var(--space-2);
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
     }
 
     @media (max-width: 980px) {
@@ -404,7 +419,7 @@
         border-bottom: 1px solid var(--border);
       }
 
-      .docs-rail .brand {
+      .docs-rail-head {
         margin-bottom: var(--space-3);
       }
 
@@ -419,8 +434,18 @@
         flex: 0 0 auto;
       }
 
-      .docs-rail-footer {
-        display: none;
+      .docs-nav-aside {
+        margin-top: 0;
+        margin-left: var(--space-3);
+      }
+
+      .docs-nav-aside::before {
+        top: var(--space-1);
+        right: auto;
+        bottom: var(--space-1);
+        left: calc(var(--space-2) * -1);
+        border-top: 0;
+        border-left: 1px solid var(--border);
       }
 
       .docs-main {
@@ -467,7 +492,10 @@
 
   <div class="docs-shell">
     <aside class="docs-rail">
-      <a class="brand" href="#start"><span class="brand-mark">P/</span> postrboard</a>
+      <div class="docs-rail-head">
+        <a class="brand" href="#start"><span class="brand-mark">P/</span> postrboard</a>
+        <button class="btn btn-secondary btn-sm mode-button" id="mode-toggle" type="button" aria-pressed="false" aria-label="Use dark mode">Dark</button>
+      </div>
       <nav class="docs-nav" aria-label="Reference">
         <a href="#start">Start</a>
         <a href="#direction">Direction</a>
@@ -476,11 +504,8 @@
         <a href="#patterns">Patterns</a>
         <a href="#guardrails">Guardrails</a>
         <a href="#api">API index</a>
+        <a class="docs-nav-aside" href="examples/dashboards/index.html">Dashboard gallery</a>
       </nav>
-      <div class="docs-rail-footer">
-        <button class="btn btn-secondary btn-sm mode-button" id="mode-toggle" type="button" aria-pressed="false">Use dark mode</button>
-        <a class="styled-link" href="examples/dashboards/index.html">View five dashboard directions</a>
-      </div>
     </aside>
 
     <main class="docs-main" id="main">
@@ -1223,7 +1248,8 @@
       const dark = root.dataset.mode !== 'dark';
       root.dataset.mode = dark ? 'dark' : 'light';
       modeButton.setAttribute('aria-pressed', String(dark));
-      modeButton.textContent = dark ? 'Use light mode' : 'Use dark mode';
+      modeButton.setAttribute('aria-label', dark ? 'Use light mode' : 'Use dark mode');
+      modeButton.textContent = dark ? 'Light' : 'Dark';
     });
 
     renderDirection();
