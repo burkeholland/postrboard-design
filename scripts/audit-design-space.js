@@ -163,7 +163,7 @@ const compactGeometry = block(css, '[data-geometry="compact"]');
 const neutralType = block(css, '[data-type="neutral"]');
 assertIncludes(defaultSurface, '--surface-1-blur: none', 'flat default surface');
 assertIncludes(defaultSurface, '--radius-surface: var(--radius-compact)', 'compact default geometry');
-assertIncludes(defaultSurface, '--radius-field: var(--radius-sharp)', 'compact default field geometry');
+assertIncludes(defaultSurface, '--radius-field: var(--radius-compact)', 'smooth default field geometry, matched to compact surface');
 assertIncludes(defaultSurface, '--display-weight: 600', 'neutral default display weight');
 assertIncludes(defaultSurface, '--display-tracking: -0.015em', 'neutral default display tracking');
 assertIncludes(defaultSurface, '--display-leading: 1.12', 'neutral default display leading');

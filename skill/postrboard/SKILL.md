@@ -82,7 +82,7 @@ The default is:
 
 For a new standalone surface, differ from the default on at least **two** of accent, surface, geometry, density, type, or composition. When you extend an existing product, preserve its established axes unless the user asks for a redesign or the product meaning changes. For a distinct variation, change one structural axis and change the accent only when brand context permits.
 
-This is a divergence check, not a request for random settings. Product continuity overrides novelty. Every changed axis must support the use scene. Keep `glass`, `grid`, and `gradient` for cases where the material or data makes them useful.
+This is a divergence check, not a request for random settings. Product continuity overrides novelty. Every changed axis must support the use scene. Keep `glass`, `grid`, and `gradient` for cases where the material or data makes them useful. Do not stack `sharp` geometry with `grid` ambience and a dark, mono-heavy display voice by default — that combination reads as a generic dev-tool template on sight. Smooth, moderate corners are the safe baseline; reach for `sharp` only when a real technical surface calls for it, and keep it to one strong technical signal at a time.
 
 Spend visual boldness in one place. Choose one signature detail that comes from the subject: a ledger rhythm, an editor gutter, a scheduling line, a comparison rail, or another meaningful device. Keep the rest calm.
 
@@ -150,6 +150,7 @@ The pattern is the problem, not one isolated property.
 | Template structure | Centered hero, three equal features, large closing CTA | Lead with the actual workflow, evidence, data, or object |
 | Decorative containers | Cards around every paragraph; cards inside cards | Use hierarchy, spacing, rules, and one framed work surface |
 | Default "premium" styling | Large radii, glass, glow, soft shadow on everything | Use flat or outlined surfaces; reserve depth for real layering |
+| Cold technical stacking | Dark mode, sharp corners, grid-paper texture, and heavy mono type combined by default | Keep corners moderate and texture off unless the surface is genuinely technical; use at most one strong technical signal |
 | Synthetic color | Purple-blue gradients, cyan on dark, colored radial halos | Choose one grounded accent and semantic state colors |
 | Generic typography | One overused sans family, flat scale, crushed tracking | Use the supplied Sans/Serif/Mono roles with clear hierarchy |
 | Generator scaffolding | Eyebrows above headings, arbitrary section numbers | Let headings and content order carry structure |

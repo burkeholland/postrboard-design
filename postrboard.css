@@ -98,13 +98,13 @@
   --sp-7: var(--space-7);
   --space-8: 64px;
   --sp-8: var(--space-8);
-  /* Radius scale */ --radius-pill: 9999px;
+  /* Radius scale. Smooth curves are the baseline; sharp is the crisp end of the scale, not a blocky one. */ --radius-pill: 9999px;
   --r-pill: var(--radius-pill);
-  --radius-soft: 16px;
+  --radius-soft: 22px;
   --r-soft: var(--radius-soft);
-  --radius-compact: 8px;
+  --radius-compact: 14px;
   --r-compact: var(--radius-compact);
-  --radius-sharp: 4px;
+  --radius-sharp: 8px;
   --r-sharp: var(--radius-sharp);
   /* Elevation */ --shadow-subtle: 0 1px 3px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.06);
   --shadow-medium: 0 4px 8px rgba(0,0,0,0.06), 0 12px 32px rgba(0,0,0,0.10);
@@ -137,7 +137,7 @@
   --density-factor: 1;
   --radius-surface: var(--radius-compact);
   --radius-control: var(--radius-compact);
-  --radius-field: var(--radius-sharp);
+  --radius-field: var(--radius-compact);
   --display-family: var(--sans);
   --display-weight: 600;
   --display-tracking: -0.015em;
@@ -195,7 +195,7 @@
 [data-surface="raised"] { --surface-1-bg: var(--surface); --surface-1-border: transparent; --surface-1-shadow: var(--shadow-medium); --surface-1-blur: none; }
 
 [data-geometry="soft"] { --radius-surface: var(--radius-soft); --radius-control: var(--radius-compact); --radius-field: var(--radius-compact); }
-[data-geometry="compact"] { --radius-surface: var(--radius-compact); --radius-control: var(--radius-compact); --radius-field: var(--radius-sharp); }
+[data-geometry="compact"] { --radius-surface: var(--radius-compact); --radius-control: var(--radius-compact); --radius-field: var(--radius-compact); }
 [data-geometry="sharp"] { --radius-surface: var(--radius-sharp); --radius-control: var(--radius-sharp); --radius-field: var(--radius-sharp); }
 
 [data-density="comfortable"] { --density-factor: 1; }
@@ -209,7 +209,7 @@
 
 [data-ambient="gradient"] { --ambient-image: var(--bg-gradient); }
 [data-ambient="noise"] { --ambient-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.1'/%3E%3C/svg%3E"); --ambient-size: 120px 120px; }
-[data-ambient="grid"] { --ambient-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px); --ambient-size: 32px 32px; }
+[data-ambient="grid"] { --ambient-image: linear-gradient(color-mix(in srgb, var(--border) 40%, transparent) 1px, transparent 1px), linear-gradient(90deg, color-mix(in srgb, var(--border) 40%, transparent) 1px, transparent 1px); --ambient-size: 48px 48px; }
 [data-ambient="flat"], [data-ambient="none"] { --ambient-image: none; --ambient-size: auto; }
 [data-ambient]:not(html) { background-color: var(--bg); background-image: var(--ambient-image); background-size: var(--ambient-size); }
 

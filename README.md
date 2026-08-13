@@ -30,13 +30,13 @@ The component contract stays stable while six inherited axes change the visual d
 
 ```html
 <html
-  data-mode="light"
-  data-accent="slate"
-  data-surface="outline"
-  data-geometry="sharp"
-  data-density="compact"
-  data-type="mono-lede"
-  data-ambient="grid">
+  data-mode="dark"
+  data-accent="violet"
+  data-surface="glass"
+  data-geometry="soft"
+  data-density="roomy"
+  data-type="editorial"
+  data-ambient="none">
 ```
 
 | Axis | Values |

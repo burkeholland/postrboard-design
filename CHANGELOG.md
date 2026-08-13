@@ -34,6 +34,15 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - Pages that relied on the 1.x glass, soft, gradient default must opt in with data attributes
 - CSS-only overlay and selection styles do not imply complete behavior; applications must provide keyboard, focus, and state logic
 
+### Fixed
+
+- The root and compact-geometry field radius was silently wired to the sharp token, so inputs, badges, tags, and tooltips rendered razor-cornered even outside `data-geometry="sharp"`; the default field radius now matches the compact surface as documented
+- The radius scale was widened (sharp 4px → 8px, compact 8px → 14px, soft 16px → 22px) so every geometry option reads as an intentional curve rather than a blocky edge
+- `[data-ambient="grid"]` used full-opacity lines at 32px spacing, a literal graph-paper texture; lines are now faint (`color-mix` at 40%) at 48px spacing
+- The "Set the direction" live demo and the flagship "01 / Deploy operations" dashboard example both defaulted to sharp corners, a visible grid, dark mode, and heavy mono type stacked together — the single most recognizable generic-AI-dashboard combination — despite the documented default being quiet, compact, and ambience-free; both now demonstrate on-contract directions
+- The README's own "Set a direction" example showcased the same sharp+grid combination one line above a claim that the default is quiet by design; replaced with a distinct, non-cliché direction
+- Added a "Cold technical stacking" row to the AI design tells guardrail table (docs and skill) warning against combining dark mode, sharp corners, grid texture, and heavy mono type by default
+
 ## [1.1.0] — 2026-07-22
 
 ### Added
