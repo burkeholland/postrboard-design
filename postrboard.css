@@ -410,9 +410,14 @@ a { color: inherit; }
 
 .quote-block cite { display: block; margin-top: 10px; font-family: var(--mono); font-size: 12px; font-style: normal; color: var(--text-meta); }
 
-kbd, .kbd { display: inline-flex; align-items: center; justify-content: center; min-width: 26px; height: 26px; padding: 0 8px; border: 1px solid var(--border); border-bottom-width: 2px; border-radius: var(--radius-field); background: var(--code-bg); color: var(--text); font-family: var(--mono); font-size: 12px; font-weight: 700; box-shadow: inset 0 1px 0 rgba(255,255,255,0.35); }
+kbd, .kbd { display: inline-flex; align-items: center; justify-content: center; min-width: 26px; height: 26px; padding: 0 8px; border: 1px solid var(--border); border-bottom-width: 2px; border-radius: clamp(3px, calc(var(--radius-field) / 2), 9px); background: var(--code-bg); color: var(--text); font-family: var(--mono); font-size: 12px; font-weight: 700; box-shadow: inset 0 1px 0 rgba(255,255,255,0.35); }
 
-.inline-code, code { padding: 2px 6px; border-radius: var(--radius-field); background: var(--code-bg); color: var(--text); font-family: var(--mono); font-size: 0.92em; }
+.inline-code, code { padding: 2px 6px; border-radius: clamp(3px, calc(var(--radius-field) / 2), 9px); background: var(--code-bg); color: var(--text); font-family: var(--mono); font-size: 0.92em; }
+
+/* An identifier must not break across lines: a token name split mid-word reads as a
+   rendering fault. Scoped to code sitting in prose so block-level listings still wrap. */
+.inline-code,
+:where(p, li, dd, dt, td, th, figcaption, strong, em) > code { white-space: nowrap; }
 
 .styled-link { color: var(--accent-text); font-weight: 600; text-decoration: none; text-underline-offset: 4px; }
 
@@ -461,7 +466,13 @@ ol.styled-list li::marker { color: var(--accent-text); font-family: var(--mono);
 
 .btn[aria-busy="true"] { color: transparent; cursor: wait; pointer-events: none; }
 
-.btn[aria-busy="true"]::after { position: absolute; width: 1em; height: 1em; border: 2px solid currentColor; border-right-color: transparent; border-radius: 50%; color: var(--accent-contrast); content: ""; animation: button-spin 700ms linear infinite; }
+/* The busy spinner needs its own colour because the label is hidden with a transparent
+   text colour. Filled buttons override this token so the spinner stays legible on them. */
+.btn[aria-busy="true"]::after { position: absolute; width: 1em; height: 1em; border: 2px solid var(--btn-busy-color, var(--text)); border-right-color: transparent; border-radius: 50%; content: ""; animation: button-spin 700ms linear infinite; }
+
+.btn-primary, .btn-gradient, .btn-danger { --btn-busy-color: var(--accent-contrast); }
+
+.btn-danger { --btn-busy-color: var(--on-accent); }
 
 @keyframes button-spin {
   to { transform: rotate(360deg); }
@@ -593,9 +604,9 @@ fieldset.form-field { padding: 0; margin: 0; border: 0; }
 
 .checkbox input, .radio input { appearance: none; width: 20px; height: 20px; margin: 0; border: var(--border-normal) solid var(--input-border); background: var(--surface); cursor: pointer; transition: background-color var(--ease), border-color var(--ease), box-shadow var(--ease); }
 
-.checkbox input { position: relative; border-radius: var(--radius-field); }
+.checkbox input { position: relative; border-radius: clamp(2px, calc(var(--radius-field) / 3), 7px); }
 
-.checkbox input:checked { background: var(--accent); border-color: var(--accent); }
+.checkbox input:checked { background: var(--accent-surface); border-color: var(--accent-surface); }
 
 .checkbox input:checked::after { content: ""; position: absolute; left: 6px; top: 2px; width: 6px; height: 11px; border: solid var(--on-accent); border-width: 0 2.5px 2.5px 0; transform: rotate(45deg); }
 
@@ -605,7 +616,7 @@ fieldset.form-field { padding: 0; margin: 0; border: 0; }
 
 .radio input { border-radius: 50%; }
 
-.radio input:checked { border-color: var(--accent); background: var(--accent); box-shadow: inset 0 0 0 5px var(--surface); }
+.radio input:checked { border-color: var(--accent-surface); background: var(--accent-surface); box-shadow: inset 0 0 0 5px var(--surface); }
 
 .switch input { position: absolute; opacity: 0; pointer-events: none; }
 
@@ -613,7 +624,7 @@ fieldset.form-field { padding: 0; margin: 0; border: 0; }
 
 .switch-track::after { content: ""; position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; border-radius: 50%; background: var(--surface); box-shadow: var(--shadow-subtle); transition: transform var(--duration-normal) var(--ease-out); }
 
-.switch input:checked + .switch-track { background: var(--accent); border-color: var(--accent); }
+.switch input:checked + .switch-track { background: var(--accent-surface); border-color: var(--accent-surface); }
 
 .switch input:checked + .switch-track::after { transform: translateX(20px); }
 
@@ -657,7 +668,7 @@ fieldset.form-field { padding: 0; margin: 0; border: 0; }
 
 .combobox-list { position: absolute; left: 0; right: 0; top: calc(100% + 8px); z-index: var(--z-dropdown); display: grid; gap: 4px; padding: 8px; list-style: none; border: 1px solid var(--border); border-radius: var(--radius-surface); background: var(--surface); box-shadow: var(--shadow-medium); opacity: 0; transform: translateY(-4px); pointer-events: none; transition: opacity var(--duration-fast) var(--ease-out), transform var(--duration-fast) var(--ease-out); }
 
-.combobox:focus-within .combobox-list { opacity: 1; transform: translateY(0); pointer-events: auto; }
+.combobox:focus-within .combobox-list, .combobox-list.is-open { opacity: 1; transform: translateY(0); pointer-events: auto; }
 
 .combobox-list li { display: flex; justify-content: space-between; gap: var(--space-3); padding: 9px 10px; border-radius: var(--radius-field); color: var(--text); font-size: 14px; }
 
@@ -667,7 +678,7 @@ fieldset.form-field { padding: 0; margin: 0; border: 0; }
 
 .range-top { display: flex; justify-content: space-between; color: var(--text-muted); font-family: var(--mono); font-size: 12px; }
 
-.range-input { width: 100%; accent-color: var(--accent); }
+.range-input { width: 100%; accent-color: var(--accent-surface); }
 
 .range-input:focus-visible { box-shadow: var(--focus-ring); }
 
@@ -758,7 +769,10 @@ fieldset.form-field { padding: 0; margin: 0; border: 0; }
 
 .navbar-minimal, .nav-minimal { position: relative; background: transparent; -webkit-backdrop-filter: none; backdrop-filter: none; border-bottom: 0; }
 
-.nav-inner { display: flex; align-items: center; justify-content: space-between; min-height: 64px; gap: var(--space-4); }
+.nav-inner { display: flex; align-items: center; justify-content: space-between; min-height: 64px; gap: var(--space-4); padding-inline: var(--space-5); }
+
+/* A navbar placed inside a container must not add a second gutter. */
+.container > .nav-inner, .container-sm > .nav-inner, .container-lg > .nav-inner { padding-inline: 0; }
 
 .nav-logo, .logo, .brand { display: inline-flex; align-items: center; gap: 10px; color: var(--text); font-weight: 700; letter-spacing: -0.025em; text-decoration: none; }
 
@@ -786,7 +800,7 @@ fieldset.form-field { padding: 0; margin: 0; border: 0; }
 
 .tab:hover { color: var(--text); }
 
-.tab.active, .tab.is-active, .tab[aria-selected="true"] { color: var(--accent-text); border-bottom-color: var(--accent); }
+.tab.active, .tab.is-active, .tab[aria-selected="true"] { color: var(--accent-text); border-bottom-color: var(--accent-surface); }
 
 .tab:focus-visible { box-shadow: var(--focus-ring); }
 
@@ -838,7 +852,7 @@ fieldset.form-field { padding: 0; margin: 0; border: 0; }
 
 .step.active .step-circle, .step.is-active .step-circle { background: var(--accent-surface); border-color: var(--accent-surface); color: var(--accent-contrast); }
 
-.step.done .step-circle, .step.is-success .step-circle { border-color: var(--success); color: var(--sage-text); }
+.step.done .step-circle, .step.is-success .step-circle { border-color: var(--sage-text); color: var(--sage-text); }
 
 .step-line { flex: 1; height: 1px; margin: 0 12px 22px; background: var(--border); }
 
@@ -891,7 +905,7 @@ fieldset.form-field { padding: 0; margin: 0; border: 0; }
 
 .list-item-value { flex: 0 0 auto; color: var(--text); font-family: var(--mono); font-size: 0.8125rem; font-variant-numeric: tabular-nums; }
 
-.description-list { display: grid; grid-template-columns: minmax(120px, 0.45fr) minmax(0, 1fr); width: 100%; overflow: hidden; border: 1px solid var(--border); border-radius: var(--radius-surface); background: var(--surface); }
+.description-list { container-type: inline-size; display: grid; grid-template-columns: minmax(120px, 0.45fr) minmax(0, 1fr); width: 100%; overflow: hidden; border: 1px solid var(--border); border-radius: var(--radius-surface); background: var(--surface); }
 
 .description-list dt, .description-list dd { padding: calc(var(--space-3) * var(--density-factor)) var(--space-4); border-bottom: 1px solid var(--border); }
 
@@ -900,6 +914,14 @@ fieldset.form-field { padding: 0; margin: 0; border: 0; }
 .description-list dd { color: var(--text); font-weight: 600; }
 
 .description-list dt:last-of-type, .description-list dd:last-of-type { border-bottom: 0; }
+
+@container (max-width: 400px) {
+  .description-list dt, .description-list dd { grid-column: 1 / -1; }
+
+  .description-list dt { padding-bottom: 0; border-bottom: 0; background: transparent; }
+
+  .description-list dd { padding-top: calc(var(--space-2) * var(--density-factor)); }
+}
 
 .avatar { display: inline-flex; align-items: center; justify-content: center; overflow: hidden; border: 1px solid var(--border); border-radius: 50%; background: color-mix(in srgb, var(--accent) 10%, var(--surface)); color: var(--accent-text); font-weight: 800; letter-spacing: -0.03em; }
 
@@ -915,7 +937,7 @@ fieldset.form-field { padding: 0; margin: 0; border: 0; }
 
 .timeline-item { position: relative; display: grid; gap: 2px; }
 
-.timeline-dot { position: absolute; left: -24px; top: 7px; width: 11px; height: 11px; border: 2px solid var(--accent); border-radius: 50%; background: var(--surface); box-shadow: 0 0 0 4px var(--surface); }
+.timeline-dot { position: absolute; left: -24px; top: 7px; width: 11px; height: 11px; border: 2px solid var(--accent-surface); border-radius: 50%; background: var(--surface); box-shadow: 0 0 0 4px var(--surface); }
 
 .timeline-title { color: var(--text); font-weight: 800; }
 
@@ -1014,16 +1036,18 @@ fieldset.form-field { padding: 0; margin: 0; border: 0; }
 
 .progress { height: 10px; overflow: hidden; border: 1px solid var(--border); border-radius: var(--radius-control); background: var(--code-bg); }
 
-.progress-fill { width: var(--value, 50%); height: 100%; border-radius: inherit; background: var(--accent); }
+.progress-fill { width: var(--value, 50%); height: 100%; border-radius: inherit; background: var(--accent-surface); }
 
-.spinner { width: 34px; height: 34px; border: 3px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 800ms linear infinite; }
+.spinner { width: 34px; height: 34px; border: 3px solid var(--border); border-top-color: var(--accent-surface); border-radius: 50%; animation: spin 800ms linear infinite; }
 
 @keyframes spin {
   to { transform: rotate(360deg); }
 
 }
 
-.skeleton { position: relative; overflow: hidden; height: 14px; border-radius: var(--radius-pill); background: var(--code-bg); }
+/* Placeholder bars must read as content-shaped blocks. Tinting only to --code-bg leaves
+   them nearly invisible on a surface of a similar value. */
+.skeleton { position: relative; overflow: hidden; height: 14px; border-radius: var(--radius-pill); background: color-mix(in srgb, var(--border) 60%, var(--code-bg)); }
 
 .skeleton::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.32), transparent); transform: translateX(-100%); animation: shimmer 1.4s infinite; }
 
@@ -1037,15 +1061,17 @@ fieldset.form-field { padding: 0; margin: 0; border: 0; }
    ========================================================================== */
 .terminal { overflow: hidden; padding: 0; border-radius: var(--radius-surface); background: var(--terminal-bg); color: var(--terminal-text); font-family: var(--mono); font-size: 13px; box-shadow: var(--shadow-terminal); }
 
-.terminal-bar { display: flex; align-items: center; gap: 8px; padding: 12px 16px; border-bottom: 1px solid var(--terminal-border); background: var(--terminal-bar); }
+.terminal-bar { display: flex; align-items: center; gap: 10px; padding: 10px 16px; border-bottom: 1px solid var(--terminal-border); background: var(--terminal-bar); color: var(--terminal-muted); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; }
 
-.terminal-dot { width: 12px; height: 12px; border-radius: 50%; }
+/* Name the host or working directory here. A terminal chrome that imitates a specific
+   desktop OS is decoration; a real label tells the reader where the command ran. */
+.terminal-title { color: var(--terminal-muted); font-family: var(--mono); }
 
-.terminal-dot.red { background: #ef4444; }
+/* Retained for compatibility. Rendered as quiet, neutral marks rather than a
+   traffic-light clone, which is decorative chrome the guardrails warn against. */
+.terminal-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--terminal-border); }
 
-.terminal-dot.yellow { background: #f59e0b; }
-
-.terminal-dot.green { background: #22c55e; }
+.terminal-dot.red, .terminal-dot.yellow, .terminal-dot.green { background: var(--terminal-border); }
 
 .terminal-body { padding: 16px 20px; line-height: 1.8; }
 
@@ -1348,7 +1374,9 @@ input:focus-visible, textarea:focus-visible, select:focus-visible { outline: 2px
 
   .description-list { grid-template-columns: 1fr; }
 
-  .description-list dt { border-bottom: 0; }
+  .description-list dt { padding-bottom: 0; border-bottom: 0; background: transparent; }
+
+  .description-list dd { padding-top: calc(var(--space-2) * var(--density-factor)); }
 
   .grid-sidebar.is-app-shell > .app-sidebar { position: relative; height: auto; border-right: 0; border-bottom: 1px solid var(--border); }
 

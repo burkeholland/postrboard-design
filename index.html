@@ -96,7 +96,10 @@
     }
 
     .docs-title .version-badge {
-      vertical-align: middle;
+      position: relative;
+      bottom: 0.55em;
+      margin-left: 0.1em;
+      vertical-align: baseline;
     }
 
     .docs-summary {
@@ -115,13 +118,19 @@
 
     .install-block pre {
       margin-top: var(--space-3);
-      overflow-x: auto;
+      padding: var(--space-3) var(--space-4);
+      border-radius: var(--radius-field);
+      background: var(--code-bg);
       color: var(--text);
       font-family: var(--mono);
       font-size: 0.8125rem;
       line-height: 1.65;
       overflow-wrap: anywhere;
       white-space: pre-wrap;
+    }
+
+    .install-block .text-meta {
+      margin-top: var(--space-3);
     }
 
     .docs-section {
@@ -158,11 +167,17 @@
     }
 
     .axis-form {
-      display: grid;
-      align-content: start;
+      display: flex;
+      flex-direction: column;
       gap: var(--space-4);
       padding: var(--space-5);
       border-right: 1px solid var(--border);
+    }
+
+    .axis-note {
+      margin-top: auto;
+      padding-top: var(--space-5);
+      border-top: 1px solid var(--border);
     }
 
     .axis-form .form-field {
@@ -170,14 +185,27 @@
     }
 
     .lab-stage {
+      display: grid;
+      align-content: start;
+      gap: var(--space-4);
       min-width: 0;
       padding: var(--space-5);
       background: var(--surface-subtle);
     }
 
+    .lab-stage-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-4);
+    }
+
     .lab-preview {
       min-height: 520px;
       padding: calc(var(--space-5) * var(--density-factor));
+      border: 1px solid var(--border);
+      border-radius: var(--radius-surface);
+      background: var(--bg);
       color: var(--text);
     }
 
@@ -244,21 +272,57 @@
       background: transparent;
     }
 
-    /* Contains a position: fixed .fab so it can sit in normal doc flow. */
+    /* `contain: layout` makes this element the containing block for the fixed-position
+       .fab, so the demo shows the control in its real corner instead of letting it
+       escape to the page. The frame stops it reading as a stray mark in whitespace. */
     .demo-fab-stage {
       position: relative;
-      min-height: 84px;
+      min-height: 132px;
+      overflow: hidden;
       contain: layout;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-surface);
+      background: var(--surface);
     }
 
+    .demo-fab-stage .fab {
+      right: var(--space-4);
+      bottom: var(--space-4);
+    }
+
+    .demo-fab-caption {
+      position: absolute;
+      left: var(--space-4);
+      top: var(--space-4);
+      color: var(--text-meta);
+      font-family: var(--mono);
+      font-size: 0.75rem;
+    }
+
+    /* Sliders and progress bars read as controls, not page rules, when they are
+       bounded to a plausible field width. */
+    .demo-measure {
+      max-width: 420px;
+    }
+
+    /* Six tokens. Column counts that divide six evenly prevent an orphan cell,
+       which would otherwise expose the separator colour as a large empty block. */
     .token-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 1px;
       overflow: hidden;
       border: 1px solid var(--border);
       border-radius: var(--radius-surface);
       background: var(--border);
+    }
+
+    @media (min-width: 620px) {
+      .token-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+
+    @media (min-width: 1180px) {
+      .token-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); }
     }
 
     .token-item {
@@ -276,8 +340,15 @@
       background: var(--token-color);
     }
 
+    .demo-combobox {
+      padding-bottom: 158px;
+    }
+
     .token-item code {
       display: block;
+      padding-inline: 5px;
+      font-size: 0.72rem;
+      letter-spacing: -0.01em;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
@@ -422,14 +493,12 @@
             <a class="btn btn-secondary" href="https://github.com/burkeholland/postrboard-design">Source</a>
           </div>
         </div>
-        <div class="install-block">
-          <strong>Install</strong>
-          <pre>npm install postrboard-css
-
-&lt;link rel="stylesheet"
-  href="https://burkeholland.github.io/postrboard-design/postrboard.min.css"&gt;</pre>
-          <p class="text-meta">The GitHub Pages URL tracks the latest published framework build.</p>
-        </div>
+          <div class="install-block">
+            <strong>Install</strong>
+            <pre>npm install postrboard-css</pre>
+            <pre>&lt;link rel="stylesheet" href="https://burkeholland.github.io/postrboard-design/postrboard.min.css"&gt;</pre>
+            <p class="text-meta">The GitHub Pages URL tracks the latest published framework build.</p>
+          </div>
       </header>
 
       <section class="docs-section" id="direction">
@@ -438,7 +507,6 @@
             <h2 class="docs-section-title">Set the direction</h2>
             <p class="docs-section-summary mt-3">The component contract stays fixed. Change only the axes that make sense for the product, then build around a real work surface.</p>
           </div>
-          <span class="badge badge-status" data-state="success">Live preview</span>
         </div>
 
         <div class="direction-lab">
@@ -504,9 +572,14 @@
                 <option>gradient</option>
               </select>
             </div>
+            <p class="axis-note text-meta">Defaults are light, coral, raised, soft, comfortable. Change only what the product needs.</p>
           </form>
 
           <div class="lab-stage">
+            <div class="lab-stage-head">
+              <span class="badge badge-status" data-state="success">Live preview</span>
+              <span class="text-meta">Nothing below the wrapper changes.</span>
+            </div>
             <article class="lab-preview" id="lab-preview" data-mode="light" data-accent="coral" data-surface="raised" data-geometry="soft" data-density="comfortable" data-type="neutral" data-ambient="none">
               <header class="page-header">
                 <div class="page-header-main">
@@ -568,7 +641,7 @@
           </div>
           <dl class="description-list">
             <dt>Spacing</dt><dd><code>--space-1</code> through <code>--space-8</code></dd>
-            <dt>Geometry</dt><dd><code>--radius-sharp</code>, <code>--radius-compact</code>, <code>--radius-soft</code></dd>
+            <dt>Geometry</dt><dd><code>--radius-sharp</code> <code>--radius-compact</code> <code>--radius-soft</code></dd>
             <dt>Motion</dt><dd><code>--duration-*</code> with exponential ease-out</dd>
             <dt>Focus</dt><dd>Solid outline plus a supplementary halo</dd>
           </dl>
@@ -661,8 +734,8 @@
             <div class="component-demo">
               <dl class="stat-strip">
                 <div class="stat-item"><dt class="stat-label">Ready</dt><dd class="stat-value">12</dd><dd class="stat-detail">sample services</dd></div>
-                <div class="stat-item"><dt class="stat-label">Building</dt><dd class="stat-value">03</dd><dd class="stat-detail">sample queue</dd></div>
-                <div class="stat-item"><dt class="stat-label">Needs review</dt><dd class="stat-value">01</dd><dd class="stat-detail">demonstration data</dd></div>
+                <div class="stat-item"><dt class="stat-label">Building</dt><dd class="stat-value">4</dd><dd class="stat-detail">sample queue</dd></div>
+                <div class="stat-item"><dt class="stat-label">Needs review</dt><dd class="stat-value">1</dd><dd class="stat-detail">demonstration data</dd></div>
               </dl>
             </div>
           </article>
@@ -833,7 +906,7 @@
                 <input class="input input-error" type="text" value="expired-key" aria-invalid="true" aria-label="API key, invalid">
                 <input class="input input-success" type="text" value="a1b2-c3d4-e5f6" aria-label="API key, verified">
               </div>
-              <div class="range-field">
+              <div class="range-field demo-measure">
                 <label class="form-label" for="docs-range">Memory limit</label>
                 <input class="range-input" id="docs-range" type="range" min="0" max="100" value="70">
               </div>
@@ -843,7 +916,7 @@
           <article class="component-row">
             <div class="component-name">Loading and progress</div>
             <div class="component-demo">
-              <div class="progress" role="progressbar" aria-valuenow="64" aria-valuemin="0" aria-valuemax="100" aria-label="Build progress">
+              <div class="progress demo-measure" role="progressbar" aria-valuenow="64" aria-valuemin="0" aria-valuemax="100" aria-label="Build progress">
                 <div class="progress-fill" style="--value: 64%"></div>
               </div>
               <div class="cluster">
@@ -860,6 +933,7 @@
               <div class="empty-state">
                 <strong class="empty-title">No failed checks</strong>
                 <p class="empty-body">Everything in this pipeline passes right now.</p>
+                <a class="styled-link" href="#components">Review the last run</a>
               </div>
             </div>
           </article>
@@ -911,6 +985,7 @@
                 </div>
               </div>
               <div class="demo-fab-stage">
+                <span class="demo-fab-caption">Anchored to the app viewport</span>
                 <button class="fab" type="button" aria-label="Create deployment">
                   <svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
                 </button>
@@ -950,15 +1025,17 @@
           <article class="component-row">
             <div class="component-name">Search and select</div>
             <div class="component-demo">
-              <div class="combobox">
-                <input class="input w-full" type="text" placeholder="Search services" role="combobox" aria-expanded="false" aria-controls="docs-combobox-list">
-                <ul class="combobox-list" id="docs-combobox-list" role="listbox">
-                  <li role="option">api-gateway</li>
-                  <li role="option" class="is-active">worker-jobs</li>
-                  <li role="option">event-router</li>
-                </ul>
+              <div class="demo-combobox">
+                <div class="combobox demo-measure">
+                  <input class="input w-full" type="text" placeholder="Search services" role="combobox" aria-expanded="true" aria-controls="docs-combobox-list">
+                  <ul class="combobox-list is-open" id="docs-combobox-list" role="listbox">
+                    <li role="option">api-gateway</li>
+                    <li role="option" class="is-active">worker-jobs</li>
+                    <li role="option">event-router</li>
+                  </ul>
+                </div>
               </div>
-              <div class="command-palette" style="max-width: 420px">
+              <div class="command-palette demo-measure">
                 <input class="input" type="text" placeholder="Type a command or search">
                 <div class="command-group">
                   <div class="command-group-label">Services</div>
@@ -997,7 +1074,7 @@
             <div class="component-demo">
               <div class="terminal">
                 <div class="terminal-bar">
-                  <span class="terminal-dot red"></span><span class="terminal-dot yellow"></span><span class="terminal-dot green"></span>
+                  <span class="terminal-title">ci-runner &middot; us-east-1</span>
                 </div>
                 <div class="terminal-body">
                   <div><span class="prompt">$</span> <span class="cmd">kubectl rollout status deploy/api-gateway</span></div>

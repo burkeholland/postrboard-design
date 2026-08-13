@@ -60,6 +60,7 @@ a {
 .deploy-grid {
   display: grid;
   grid-template-columns: minmax(0, 1.75fr) minmax(240px, 0.75fr);
+  align-items: start;
   gap: var(--space-4);
 }
 
@@ -149,7 +150,8 @@ a {
 }
 
 .story-card h2 {
-  font-size: clamp(2.4rem, 5vw, 4.6rem);
+  font-size: clamp(1.9rem, 3vw, 3.1rem);
+  overflow-wrap: break-word;
 }
 
 .story-card h3 {
@@ -198,6 +200,7 @@ a {
 .care-workspace {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 300px;
+  align-items: start;
   gap: var(--space-5);
   padding-top: var(--space-5);
 }
@@ -447,6 +450,7 @@ a {
 .ledger-columns {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 310px;
+  align-items: start;
   gap: var(--space-5);
   margin-top: var(--space-5);
 }
