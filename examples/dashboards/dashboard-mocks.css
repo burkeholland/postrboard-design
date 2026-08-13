@@ -543,11 +543,39 @@ a {
 }
 
 .gallery-item {
+  position: relative;
   overflow: hidden;
   border: 1px solid var(--border);
   border-radius: var(--radius-surface);
   background: var(--surface);
   box-shadow: var(--shadow-subtle);
+}
+
+/* Stretch the one existing link across the card so the dead preview is
+   clickable, without adding a second link to the accessibility tree. */
+.gallery-meta .styled-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.gallery-item:hover {
+  border-color: var(--input-border);
+}
+
+/* The link's hit area is the whole card, so the ring belongs on the card. Only
+   move it there where :has() can actually draw it, or focus becomes invisible. */
+@supports selector(:has(*)) {
+  .gallery-meta .styled-link:focus-visible {
+    outline: none;
+    box-shadow: none;
+  }
+
+  .gallery-item:has(.styled-link:focus-visible) {
+    outline: 2px solid var(--focus-color);
+    outline-offset: 2px;
+    box-shadow: var(--focus-ring);
+  }
 }
 
 .gallery-meta {
@@ -582,6 +610,10 @@ a {
   height: 620px;
   border: 0;
   background: var(--bg);
+  /* These are thumbnails, not embedded apps. Without this the frame swallows
+     the page scroll whenever the cursor crosses it and each preview drifts to
+     a different offset. "Open full screen" is the real affordance. */
+  pointer-events: none;
 }
 
 @media (max-width: 700px) {

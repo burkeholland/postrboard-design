@@ -765,7 +765,9 @@ fieldset.form-field { padding: 0; margin: 0; border: 0; }
 
 .navbar-solid, .nav-solid { background: var(--surface); -webkit-backdrop-filter: none; backdrop-filter: none; border-bottom-color: var(--border); }
 
-.navbar-bordered, .nav-bordered { background: transparent; -webkit-backdrop-filter: none; backdrop-filter: none; border-bottom: var(--border-normal) solid var(--border); }
+/* A sticky bar must be opaque or content scrolls through it. Bordered reads as
+   "no bar, just a rule" by matching the page canvas rather than going transparent. */
+.navbar-bordered, .nav-bordered { background: var(--bg); -webkit-backdrop-filter: none; backdrop-filter: none; border-bottom: var(--border-normal) solid var(--border); }
 
 .navbar-minimal, .nav-minimal { position: relative; background: transparent; -webkit-backdrop-filter: none; backdrop-filter: none; border-bottom: 0; }
 

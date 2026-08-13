@@ -32,7 +32,7 @@
           <div><h2 class="gallery-title">Deploy operations</h2><div class="gallery-axes">slate · light · flat · mono · rail</div></div>
           <a class="styled-link" href="deployments.html">Open full screen</a>
         </div>
-        <div class="gallery-preview"><iframe class="gallery-frame" src="deployments.html" title="Deploy operations dashboard mock" loading="lazy"></iframe></div>
+        <div class="gallery-preview"><iframe class="gallery-frame" inert tabindex="-1" src="deployments.html" title="Deploy operations dashboard mock" loading="lazy"></iframe></div>
       </article>
 
       <article class="gallery-item">
@@ -40,7 +40,7 @@
           <div><h2 class="gallery-title">Publishing studio</h2><div class="gallery-axes">violet · light · soft · roomy · editorial · masonry</div></div>
           <a class="styled-link" href="studio.html">Open full screen</a>
         </div>
-        <div class="gallery-preview"><iframe class="gallery-frame" src="studio.html" title="Publishing studio dashboard mock" loading="lazy"></iframe></div>
+        <div class="gallery-preview"><iframe class="gallery-frame" inert tabindex="-1" src="studio.html" title="Publishing studio dashboard mock" loading="lazy"></iframe></div>
       </article>
 
       <article class="gallery-item">
@@ -48,7 +48,7 @@
           <div><h2 class="gallery-title">Care coordination</h2><div class="gallery-axes">sage · light · compact · outline · neutral · schedule</div></div>
           <a class="styled-link" href="care.html">Open full screen</a>
         </div>
-        <div class="gallery-preview"><iframe class="gallery-frame" src="care.html" title="Care coordination dashboard mock" loading="lazy"></iframe></div>
+        <div class="gallery-preview"><iframe class="gallery-frame" inert tabindex="-1" src="care.html" title="Care coordination dashboard mock" loading="lazy"></iframe></div>
       </article>
 
       <article class="gallery-item">
@@ -56,7 +56,7 @@
           <div><h2 class="gallery-title">Support triage</h2><div class="gallery-axes">azure · dark · glass · comfortable · sans · three-pane</div></div>
           <a class="styled-link" href="support.html">Open full screen</a>
         </div>
-        <div class="gallery-preview"><iframe class="gallery-frame" src="support.html" title="Support triage dashboard mock" loading="lazy"></iframe></div>
+        <div class="gallery-preview"><iframe class="gallery-frame" inert tabindex="-1" src="support.html" title="Support triage dashboard mock" loading="lazy"></iframe></div>
       </article>
 
       <article class="gallery-item">
@@ -64,9 +64,23 @@
           <div><h2 class="gallery-title">Finance ledger</h2><div class="gallery-axes">amber · light · sharp · compact · neutral · asymmetric</div></div>
           <a class="styled-link" href="ledger.html">Open full screen</a>
         </div>
-        <div class="gallery-preview"><iframe class="gallery-frame" src="ledger.html" title="Finance ledger dashboard mock" loading="lazy"></iframe></div>
+        <div class="gallery-preview"><iframe class="gallery-frame" inert tabindex="-1" src="ledger.html" title="Finance ledger dashboard mock" loading="lazy"></iframe></div>
       </article>
     </section>
   </main>
+
+  <script>
+    // The previews are thumbnails. The `inert` attribute on a frame element does
+    // not reach the document inside it, so without this every preview donates its
+    // buttons and links to the tab order and keyboard users pay ~50 stops to
+    // cross the page.
+    document.querySelectorAll('.gallery-frame').forEach(function (frame) {
+      function seal() {
+        try { frame.contentDocument.body.inert = true; } catch (e) { /* cross-origin */ }
+      }
+      frame.addEventListener('load', seal);
+      if (frame.contentDocument && frame.contentDocument.readyState === 'complete') seal();
+    });
+  </script>
 </body>
 </html>
