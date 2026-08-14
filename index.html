@@ -155,63 +155,34 @@
 
     .direction-lab {
       display: grid;
-      grid-template-columns: minmax(240px, 0.45fr) minmax(0, 1.55fr);
-      overflow: hidden;
+      gap: var(--space-5);
+      padding: var(--space-5);
       border: 1px solid var(--border);
       border-radius: var(--radius-surface);
       background: var(--surface);
     }
 
     .axis-form {
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
       gap: var(--space-4);
-      padding: var(--space-5);
-      border-right: 1px solid var(--border);
-    }
-
-    .axis-note {
-      margin-top: auto;
-      padding-top: var(--space-5);
-      border-top: 1px solid var(--border);
     }
 
     .axis-form .form-field {
       gap: var(--space-1);
+      margin: 0;
     }
 
-    .lab-stage {
+    .axis-footer {
       display: grid;
-      align-content: start;
-      gap: var(--space-4);
-      min-width: 0;
-      padding: var(--space-5);
-      background: var(--surface-subtle);
-    }
-
-    .lab-stage-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: var(--space-4);
-    }
-
-    .lab-preview {
-      min-height: 520px;
-      padding: calc(var(--space-5) * var(--density-factor));
-      border: 1px solid var(--border);
-      border-radius: var(--radius-surface);
-      background: var(--bg);
-      color: var(--text);
-    }
-
-    .lab-preview .panel {
-      margin-top: var(--space-5);
+      gap: var(--space-3);
+      padding-top: var(--space-4);
+      border-top: 1px solid var(--border);
     }
 
     .lab-code {
-      margin-top: var(--space-4);
-      padding: var(--space-3);
+      margin: 0;
+      padding: var(--space-3) var(--space-4);
       overflow-x: auto;
       border: 1px solid var(--border);
       border-radius: var(--radius-field);
@@ -480,7 +451,6 @@
 
     @media (max-width: 760px) {
       .docs-intro,
-      .direction-lab,
       .component-row {
         grid-template-columns: 1fr;
       }
@@ -493,16 +463,6 @@
 
       .docs-intro {
         gap: var(--space-6);
-      }
-
-      .axis-form {
-        border-right: 0;
-        border-bottom: 1px solid var(--border);
-      }
-
-      .lab-stage,
-      .lab-preview {
-        padding: var(--space-4);
       }
 
       .component-row {
@@ -551,12 +511,12 @@
         <div class="section-header">
           <div class="section-header-main">
             <h2 class="docs-section-title">Theme options</h2>
-            <p class="docs-section-summary mt-3">Seven attributes change how every component looks. Set them on any wrapper element. Change only the ones your product needs and leave the rest alone.</p>
+            <p class="docs-section-summary mt-3">These controls change this whole page. The same attributes go on <code class="inline-code">&lt;html&gt;</code> in your product, or on any wrapper when only one region should change.</p>
           </div>
         </div>
 
         <div class="direction-lab">
-          <form class="axis-form" id="axis-form">
+          <form class="axis-form" id="axis-form" aria-label="Theme options for this page">
             <div class="form-field">
               <label class="form-label" for="axis-mode">Mode</label>
               <select class="select" id="axis-mode" data-axis="mode">
@@ -578,18 +538,18 @@
             <div class="form-field">
               <label class="form-label" for="axis-surface">Surface</label>
               <select class="select" id="axis-surface" data-axis="surface">
-                <option>flat</option>
+                <option selected>flat</option>
                 <option>outline</option>
-                <option selected>raised</option>
+                <option>raised</option>
                 <option>glass</option>
               </select>
             </div>
             <div class="form-field">
               <label class="form-label" for="axis-geometry">Geometry</label>
               <select class="select" id="axis-geometry" data-axis="geometry">
-                <option>compact</option>
+                <option selected>compact</option>
                 <option>sharp</option>
-                <option selected>soft</option>
+                <option>soft</option>
               </select>
             </div>
             <div class="form-field">
@@ -618,46 +578,9 @@
                 <option>gradient</option>
               </select>
             </div>
-            <p class="axis-note text-meta">The defaults are light, coral, raised, soft, and comfortable. Change only what your product needs.</p>
           </form>
-
-          <div class="lab-stage">
-            <div class="lab-stage-head">
-              <span class="badge badge-status" data-state="success">Live preview</span>
-              <span class="text-meta">Only the wrapper attributes change. The markup inside stays the same.</span>
-            </div>
-            <article class="lab-preview" id="lab-preview" data-mode="light" data-accent="coral" data-surface="raised" data-geometry="soft" data-density="comfortable" data-type="neutral" data-ambient="none">
-              <header class="page-header">
-                <div class="page-header-main">
-                  <h3 class="page-title">Deploy control</h3>
-                  <p class="page-summary">Review what changed before production traffic moves to the new revision.</p>
-                </div>
-                <div class="page-actions">
-                  <span class="badge badge-status" data-state="success">Checks passed</span>
-                  <button class="btn btn-primary btn-sm" type="button">Promote revision</button>
-                </div>
-              </header>
-
-              <section class="panel">
-                <div class="section-header">
-                  <div class="section-header-main">
-                    <h4 class="section-title">Ready revisions</h4>
-                    <span class="section-meta">sample data</span>
-                  </div>
-                  <button class="btn btn-secondary btn-sm" type="button">Compare</button>
-                </div>
-                <ul class="list-group mt-4">
-                  <li class="list-item">
-                    <div class="list-item-main"><strong class="list-title">api-gateway</strong><div class="list-meta">6f82ae1 / 3 checks</div></div>
-                    <span class="badge badge-status" data-state="success">Ready</span>
-                  </li>
-                  <li class="list-item">
-                    <div class="list-item-main"><strong class="list-title">worker-jobs</strong><div class="list-meta">d1c904b / build running</div></div>
-                    <span class="badge badge-status" data-state="info">Building</span>
-                  </li>
-                </ul>
-              </section>
-            </article>
+          <div class="axis-footer">
+            <p class="text-meta">The page default is light, coral, flat, compact, comfortable, neutral, and none. Change only what your product needs.</p>
             <pre class="lab-code" id="lab-code" aria-live="polite"></pre>
           </div>
         </div>
@@ -3857,18 +3780,26 @@
     const root = document.documentElement;
     const modeButton = document.getElementById('mode-toggle');
     const axisForm = document.getElementById('axis-form');
-    const preview = document.getElementById('lab-preview');
+    const modeSelect = document.getElementById('axis-mode');
     const output = document.getElementById('lab-code');
+
+    function syncModeButton(mode) {
+      const dark = mode === 'dark';
+      modeButton.setAttribute('aria-pressed', String(dark));
+      modeButton.setAttribute('aria-label', dark ? 'Use light mode' : 'Use dark mode');
+      modeButton.textContent = dark ? 'Light' : 'Dark';
+    }
 
     function renderDirection() {
       const values = {};
       axisForm.querySelectorAll('[data-axis]').forEach((control) => {
         const axis = control.dataset.axis;
         values[axis] = control.value;
-        preview.dataset[axis] = control.value;
+        root.dataset[axis] = control.value;
       });
 
-      output.textContent = `<section
+      syncModeButton(values.mode);
+      output.textContent = `<html
   data-mode="${values.mode}"
   data-accent="${values.accent}"
   data-surface="${values.surface}"
@@ -3880,11 +3811,8 @@
 
     axisForm.addEventListener('input', renderDirection);
     modeButton.addEventListener('click', () => {
-      const dark = root.dataset.mode !== 'dark';
-      root.dataset.mode = dark ? 'dark' : 'light';
-      modeButton.setAttribute('aria-pressed', String(dark));
-      modeButton.setAttribute('aria-label', dark ? 'Use light mode' : 'Use dark mode');
-      modeButton.textContent = dark ? 'Light' : 'Dark';
+      modeSelect.value = root.dataset.mode === 'dark' ? 'light' : 'dark';
+      renderDirection();
     });
 
     renderDirection();
