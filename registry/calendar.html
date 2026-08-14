@@ -1,0 +1,34 @@
+<!--
+name: calendar
+title: Calendar
+category: data
+description: A month grid with today, selection, and adjacent-month days.
+use: Showing a month in place, when the dates carry information a person must see: bookings, incidents, or scheduled runs.
+avoid: Using it as a date field. A date input is smaller, faster, and already accessible.
+note: The grid is presentation. Month changes and selection need JavaScript.
+variants: is-today = a ring on the current day; is-selected = the chosen day; is-outside = a day from the neighbouring month
+-->
+<div class="calendar">
+  <div class="calendar-head">
+    <button class="icon-button" type="button" aria-label="Previous month"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
+    <span class="calendar-title">June 2026</span>
+    <button class="icon-button" type="button" aria-label="Next month"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
+  </div>
+  <div class="calendar-grid">
+    <span class="calendar-dow">Mo</span><span class="calendar-dow">Tu</span><span class="calendar-dow">We</span><span class="calendar-dow">Th</span><span class="calendar-dow">Fr</span><span class="calendar-dow">Sa</span><span class="calendar-dow">Su</span>
+    <button class="calendar-day is-outside" type="button">31</button>
+    <button class="calendar-day" type="button">1</button>
+    <button class="calendar-day" type="button">2</button>
+    <button class="calendar-day" type="button">3</button>
+    <button class="calendar-day" type="button">4</button>
+    <button class="calendar-day" type="button">5</button>
+    <button class="calendar-day" type="button">6</button>
+    <button class="calendar-day" type="button">7</button>
+    <button class="calendar-day" type="button">8</button>
+    <button class="calendar-day is-today" type="button" aria-current="date">9</button>
+    <button class="calendar-day" type="button" aria-selected="true">10</button>
+    <button class="calendar-day" type="button">11</button>
+    <button class="calendar-day" type="button">12</button>
+    <button class="calendar-day" type="button">13</button>
+  </div>
+</div>

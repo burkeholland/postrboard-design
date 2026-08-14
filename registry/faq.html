@@ -1,0 +1,23 @@
+<!--
+name: faq
+title: FAQ
+category: marketing
+description: A stack of accordions for real, repeated questions.
+use: Questions your support channel actually receives. Write the question the way a person asks it.
+avoid: Inventing questions to fill a section, and answering with a sales line. If the answer is "yes, and it is great", delete the entry.
+requires: accordion
+-->
+<div class="faq">
+  <details class="accordion">
+    <summary>Does a rollback re-run the build?</summary>
+    <div class="accordion-body">No. A rollback repoints traffic at an artefact that already passed. It takes about four seconds.</div>
+  </details>
+  <details class="accordion">
+    <summary>Can two people deploy at once?</summary>
+    <div class="accordion-body">The queue is per environment. The second deploy waits, and the person who started it sees who is ahead of them.</div>
+  </details>
+  <details class="accordion">
+    <summary>What happens to in-flight requests?</summary>
+    <div class="accordion-body">The old revision keeps serving until it drains, up to 30 seconds. You can raise the limit per service.</div>
+  </details>
+</div>

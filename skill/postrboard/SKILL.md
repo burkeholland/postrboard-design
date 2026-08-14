@@ -98,15 +98,16 @@ Paste components from `components.md`, then replace the content. These are the n
 | Page rhythm | `container`, `stack`, `type` |
 | Composition | `grid-split`, `grid-asymmetric`, `grid-thirds`, `grid-sidebar`, `grid-stack-rail`, `grid-holy-grail`, `grid-centered`, `grid-auto`, `grid-masonry`, `app-shell` |
 | Headers | `page-header`, `section-header` |
-| Framed work surface | `panel`, `card`, `divider`, `accordion` |
+| Framed work surface | `panel`, `card`, `divider`, `accordion`, `scroll-area` |
 | Actions | `button`, `button-group`, `icon-button`, `fab` |
-| Forms | `form`, `input`, `select`, `textarea`, `checkbox`, `radio`, `switch`, `segmented-control`, `range`, `combobox`, `floating-label`, `input-group`, `input-validation`, `dropzone` |
-| Status | `badge`, `tag`, `alert`, `banner`, `toast`, `progress`, `spinner` |
-| Data | `stat-strip`, `stat-card`, `data-table`, `list-group`, `description-list`, `timeline`, `stepper`, `styled-list`, `avatar`, `empty-state` |
-| Navigation | `navbar`, `sidebar-nav`, `tabs`, `breadcrumb`, `pagination` |
-| Overlays | `modal`, `drawer`, `dropdown`, `tooltip`, `popover`, `command-palette` |
+| Forms | `form`, `input`, `select`, `textarea`, `checkbox`, `radio`, `switch`, `segmented-control`, `range`, `combobox`, `floating-label`, `input-group`, `input-validation`, `dropzone`, `date-picker`, `time-picker`, `otp-input`, `auth-card` |
+| Status | `badge`, `tag`, `alert`, `banner`, `toast`, `toast-region`, `progress`, `spinner`, `skeleton` |
+| Data | `stat-strip`, `stat-card`, `data-table`, `sortable-table`, `list-group`, `description-list`, `timeline`, `stepper`, `styled-list`, `avatar`, `avatar-group`, `calendar`, `chart`, `empty-state` |
+| Navigation | `navbar`, `sidebar-nav`, `nav-rail`, `tabs`, `breadcrumb`, `pagination` |
+| Overlays | `modal`, `alert-dialog`, `drawer`, `dropdown`, `context-menu`, `tooltip`, `popover`, `hover-card`, `command-palette` |
 | Code and content | `terminal`, `inline-code`, `cmd-pill`, `icon`, `quote-block`, `footer` |
-| Marketing | `feature-card`, `pricing-card`, `testimonial-card`, `cta-band` — read their **Avoid** notes first |
+| Media | `aspect-ratio`, `frame`, `figure`, `media-embed` |
+| Marketing | `feature-card`, `pricing-card`, `testimonial-card`, `cta-band`, `logo-cloud`, `newsletter`, `faq` — read their **Avoid** notes first |
 | Utilities | `utility-spacing`, `utility-layout`, `utility-text`, `utility-sizing`, `utility-surface`, `utility-responsive` — one-purpose classes for gaps a component leaves |
 
 Prefer semantic state attributes when supported: `aria-current`, `aria-selected`, `aria-invalid`, `aria-busy`, `aria-disabled`, and `data-state`.

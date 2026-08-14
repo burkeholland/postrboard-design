@@ -197,6 +197,26 @@ Three equal columns.
 </div>
 ```
 
+### scroll-area
+
+A bounded region that scrolls on its own, with a thin scrollbar.
+
+- **Use:** A long list inside a panel, where the page itself should not grow: log lines, results, a picker.
+- **Avoid:** Nesting one inside another scrolling region. Two scrollbars in one place is a trap.
+
+```html
+<div class="scroll-area">
+  <ul class="list-group">
+    <li class="list-item"><span class="list-title">api-gateway</span><span class="list-meta">2h ago</span></li>
+    <li class="list-item"><span class="list-title">billing-worker</span><span class="list-meta">5h ago</span></li>
+    <li class="list-item"><span class="list-title">webhook-relay</span><span class="list-meta">yesterday</span></li>
+    <li class="list-item"><span class="list-title">search-indexer</span><span class="list-meta">2d ago</span></li>
+    <li class="list-item"><span class="list-title">image-resizer</span><span class="list-meta">4d ago</span></li>
+    <li class="list-item"><span class="list-title">audit-log</span><span class="list-meta">last week</span></li>
+  </ul>
+</div>
+```
+
 ### stack
 
 Vertical rhythm (stack) and horizontal grouping that wraps (cluster).
@@ -288,6 +308,40 @@ A square control carrying only an icon. Always needs an accessible label.
 
 ## Forms
 
+### auth-card
+
+A narrow card holding a sign-in form and its secondary links.
+
+- **Use:** Sign in, sign up, and reset, on a page with nothing else competing for attention.
+- **Avoid:** A marketing panel beside it. The person is here to get in.
+- **Requires:** form
+
+```html
+<div class="auth-card">
+  <div class="stack">
+    <div class="stack stack-sm">
+      <h1 class="text-card">Sign in</h1>
+      <p class="text-body text-muted">Use the account your organisation issued.</p>
+    </div>
+    <form class="form-stack">
+      <div class="form-field">
+        <label class="form-label" for="auth-mail">Email</label>
+        <input class="input" id="auth-mail" type="email" autocomplete="username">
+      </div>
+      <div class="form-field">
+        <label class="form-label" for="auth-pass">Password</label>
+        <input class="input" id="auth-pass" type="password" autocomplete="current-password">
+      </div>
+      <button class="btn btn-primary" type="submit">Sign in</button>
+    </form>
+    <div class="auth-links">
+      <a href="/reset">Forgot password</a>
+      <a href="/sso">Use single sign-on</a>
+    </div>
+  </div>
+</div>
+```
+
 ### checkbox
 
 A boolean control for options that apply independently.
@@ -300,6 +354,20 @@ A boolean control for options that apply independently.
   <label class="checkbox"><input type="checkbox" checked> Include failed jobs</label>
   <label class="checkbox"><input type="checkbox"> Notify the on-call channel</label>
 </div>
+```
+
+### date-picker
+
+A native date input in a framed field with a leading icon.
+
+- **Use:** Picking a single date. The native control brings the calendar, the keyboard support, and the locale format for free.
+- **Avoid:** Building a custom popup calendar for a plain date field. Use the calendar component only when you must render a month in place.
+
+```html
+<label class="picker-field" for="cutover-date">
+  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M8 2v4"/><path d="M16 2v4"/><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M3 10h18"/></svg>
+  <input class="picker-input" id="cutover-date" type="date" value="2026-06-10">
+</label>
 ```
 
 ### dropzone
@@ -407,6 +475,28 @@ A labelled text field with optional helper text. The atom every form is built fr
 </div>
 ```
 
+### otp-input
+
+Single-character boxes for a verification code.
+
+- **Use:** A code sent by mail or an authenticator app, where the length is fixed and known.
+- **Avoid:** Using it for a password or a long token. Split boxes stop working once a person cannot see the whole value.
+- **Note:** The boxes are presentation. Advancing focus on input, and handling a pasted code, needs JavaScript. Set aria-invalid="true" on every box when a code is rejected.
+
+```html
+<div class="stack stack-sm">
+  <div class="otp-row" role="group" aria-label="Verification code">
+    <input class="otp-input" inputmode="numeric" maxlength="1" value="4" aria-label="Digit 1">
+    <input class="otp-input" inputmode="numeric" maxlength="1" value="2" aria-label="Digit 2">
+    <input class="otp-input" inputmode="numeric" maxlength="1" value="8" aria-label="Digit 3">
+    <input class="otp-input" inputmode="numeric" maxlength="1" aria-label="Digit 4">
+    <input class="otp-input" inputmode="numeric" maxlength="1" aria-label="Digit 5">
+    <input class="otp-input" inputmode="numeric" maxlength="1" aria-label="Digit 6">
+  </div>
+  <p class="form-helper">Six characters, sent to the address on the account.</p>
+</div>
+```
+
 ### radio
 
 A set of mutually exclusive options, all visible at once.
@@ -491,6 +581,20 @@ A multi-line text input that grows vertically.
   <label class="form-label" for="release-notes">Release notes</label>
   <textarea class="textarea" id="release-notes" placeholder="What changed in this revision?"></textarea>
 </div>
+```
+
+### time-picker
+
+A native time input in the same framed field as the date picker.
+
+- **Use:** Picking a time of day, usually beside a date picker in a scheduling row.
+- **Avoid:** Using it for a duration. A duration is a number with a unit, not a clock time.
+
+```html
+<label class="picker-field" for="cutover-time">
+  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+  <input class="picker-input" id="cutover-time" type="time" value="14:30">
+</label>
 ```
 
 ## Surfaces
@@ -599,6 +703,25 @@ A smaller heading block for a section inside a page.
 
 ## Data
 
+### avatar-group
+
+Overlapping avatars for the people on a thing.
+
+- **Use:** Showing who is assigned, watching, or reviewing, when the count is small.
+- **Avoid:** More than about five. Past that, show three and a count.
+- **Requires:** avatar
+
+```html
+<div class="cluster">
+  <div class="avatar-group">
+    <span class="avatar avatar-md">AR</span>
+    <span class="avatar avatar-md">MK</span>
+    <span class="avatar avatar-md">JT</span>
+  </div>
+  <span class="text-meta">and 4 more</span>
+</div>
+```
+
 ### avatar
 
 A person or service marker in three sizes.
@@ -632,6 +755,68 @@ A small label for a status or a category.
   <span class="badge badge-status" data-state="warning">Review</span>
   <span class="badge badge-status" data-state="danger">Failed</span>
   <span class="badge badge-status badge-neutral">Queued</span>
+</div>
+```
+
+### calendar
+
+A month grid with today, selection, and adjacent-month days.
+
+- **Use:** Showing a month in place, when the dates carry information a person must see: bookings, incidents, or scheduled runs.
+- **Avoid:** Using it as a date field. A date input is smaller, faster, and already accessible.
+- **`.is-today`:** a ring on the current day
+- **`.is-selected`:** the chosen day
+- **`.is-outside`:** a day from the neighbouring month
+- **Note:** The grid is presentation. Month changes and selection need JavaScript.
+
+```html
+<div class="calendar">
+  <div class="calendar-head">
+    <button class="icon-button" type="button" aria-label="Previous month"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
+    <span class="calendar-title">June 2026</span>
+    <button class="icon-button" type="button" aria-label="Next month"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
+  </div>
+  <div class="calendar-grid">
+    <span class="calendar-dow">Mo</span><span class="calendar-dow">Tu</span><span class="calendar-dow">We</span><span class="calendar-dow">Th</span><span class="calendar-dow">Fr</span><span class="calendar-dow">Sa</span><span class="calendar-dow">Su</span>
+    <button class="calendar-day is-outside" type="button">31</button>
+    <button class="calendar-day" type="button">1</button>
+    <button class="calendar-day" type="button">2</button>
+    <button class="calendar-day" type="button">3</button>
+    <button class="calendar-day" type="button">4</button>
+    <button class="calendar-day" type="button">5</button>
+    <button class="calendar-day" type="button">6</button>
+    <button class="calendar-day" type="button">7</button>
+    <button class="calendar-day" type="button">8</button>
+    <button class="calendar-day is-today" type="button" aria-current="date">9</button>
+    <button class="calendar-day" type="button" aria-selected="true">10</button>
+    <button class="calendar-day" type="button">11</button>
+    <button class="calendar-day" type="button">12</button>
+    <button class="calendar-day" type="button">13</button>
+  </div>
+</div>
+```
+
+### chart
+
+Bars sized by a --value custom property, from 0 to 100.
+
+- **Use:** A small comparison that sits beside prose or inside a panel, where a charting library would be too much.
+- **Avoid:** Inventing the numbers. If you have no data, say so with an empty state. A chart of made-up bars is the clearest AI tell there is.
+- **`.is-active`:** the highlighted bar, in the solid accent
+- **Note:** Set --value per bar as a percentage of the tallest value. For real analysis, use a charting library and keep these tokens.
+
+```html
+<div class="panel">
+  <div class="panel-content stack stack-sm">
+    <p class="text-meta">Build minutes by day. Connect a data source to populate this chart.</p>
+    <div class="chart">
+      <span class="chart-bar" style="--value: 42">Mon</span>
+      <span class="chart-bar" style="--value: 61">Tue</span>
+      <span class="chart-bar" style="--value: 38">Wed</span>
+      <span class="chart-bar is-active" style="--value: 88">Thu</span>
+      <span class="chart-bar" style="--value: 54">Fri</span>
+    </div>
+  </div>
 </div>
 ```
 
@@ -682,6 +867,34 @@ Rows sharing one frame, each with a main label and a trailing value.
 <div class="list-group">
   <div class="list-item"><div class="list-item-main"><span class="list-title">api-gateway</span><span class="list-meta">v2.8.1 &middot; 3 replicas</span></div><span class="list-item-value"><span class="badge badge-status" data-state="success">Healthy</span></span></div>
   <div class="list-item"><div class="list-item-main"><span class="list-title">worker-jobs</span><span class="list-meta">v1.14.0 &middot; 6 replicas</span></div><span class="list-item-value"><span class="badge badge-status" data-state="info">Deploying</span></span></div>
+</div>
+```
+
+### sortable-table
+
+A data table whose headers are buttons that re-sort the rows.
+
+- **Use:** A table a person will scan by different columns: newest, slowest, largest.
+- **Avoid:** Making every column sortable. Sort the columns people compare, not the ones they read.
+- **Requires:** data-table
+- **Note:** aria-sort goes on the sorted th, and takes "ascending" or "descending". Sorting itself needs JavaScript.
+
+```html
+<div class="table-wrap">
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th scope="col" class="sortable"><button type="button">Service<svg class="sort-indicator" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 15 6 6 6-6"/><path d="m6 9 6-6 6 6"/></svg></button></th>
+        <th scope="col" class="sortable" aria-sort="descending"><button type="button">Duration<svg class="sort-indicator" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 15 6 6 6-6"/><path d="m6 9 6-6 6 6"/></svg></button></th>
+        <th scope="col">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>image-resizer</td><td class="is-numeric">4m 12s</td><td><span class="badge badge-danger">Failed</span></td></tr>
+      <tr><td>api-gateway</td><td class="is-numeric">1m 48s</td><td><span class="badge badge-success">Passed</span></td></tr>
+      <tr><td>webhook-relay</td><td class="is-numeric">0m 39s</td><td><span class="badge badge-success">Passed</span></td></tr>
+    </tbody>
+  </table>
 </div>
 ```
 
@@ -790,6 +1003,31 @@ The path back up a hierarchy.
 ```html
 <nav class="breadcrumb" aria-label="Breadcrumb">
   <a href="/services">Services</a><span class="breadcrumb-sep">/</span><a href="/services/api-gateway">api-gateway</a><span class="breadcrumb-sep">/</span><span>Revisions</span>
+</nav>
+```
+
+### nav-rail
+
+A narrow vertical strip of icon-and-label destinations.
+
+- **Use:** An app with a handful of top-level areas, where a full sidebar would waste width.
+- **Avoid:** A rail with icon-only items. An unlabelled icon is a guess. Keep the label, however small.
+- **Note:** Mark the current destination with aria-current="page", or with the is-active class.
+
+```html
+<nav class="nav-rail" aria-label="Sections">
+  <a class="nav-rail-item" href="/overview" aria-current="page">
+    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>
+    Overview
+  </a>
+  <a class="nav-rail-item" href="/deploys">
+    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 19V5"/><path d="m5 12 7-7 7 7"/></svg>
+    Deploys
+  </a>
+  <a class="nav-rail-item" href="/logs">
+    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h10"/></svg>
+    Logs
+  </a>
 </nav>
 ```
 
@@ -960,6 +1198,25 @@ A determinate bar for work with a known percentage.
 </div>
 ```
 
+### skeleton
+
+Grey blocks in the shape of the content that is loading.
+
+- **Use:** A first load where you know the shape of what is coming. It reads faster than a spinner because the page does not jump.
+- **Avoid:** Skeletons for an action a person just took. Use a busy state on the control they pressed.
+- **Note:** skeleton-text shortens each following line so it reads as a paragraph. Mark the region aria-busy so it is announced.
+
+```html
+<div class="stack stack-sm" aria-busy="true" aria-label="Loading">
+  <div class="skeleton-text">
+    <div class="skeleton"></div>
+    <div class="skeleton"></div>
+    <div class="skeleton"></div>
+    <div class="skeleton"></div>
+  </div>
+</div>
+```
+
 ### spinner
 
 Indeterminate loading marks: a spinner for actions, a skeleton for content.
@@ -972,6 +1229,24 @@ Indeterminate loading marks: a spinner for actions, a skeleton for content.
   <span class="spinner" role="status" aria-label="Loading"></span>
   <span class="skeleton" style="width: 160px"></span>
   <span class="skeleton" style="width: 90px"></span>
+</div>
+```
+
+### toast-region
+
+The fixed corner container that stacks toasts.
+
+- **Use:** One per page. Put every toast in it so they queue instead of overlapping.
+- **Avoid:** Toasting an error a person must act on. A toast leaves. Use an alert or keep the error beside the control.
+- **Requires:** toast
+- **Note:** aria-live="polite" announces new toasts without cutting off the current sentence.
+
+```html
+<div class="toast-region" role="status" aria-live="polite">
+  <div class="toast">
+    <svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="10"/></svg>
+    <div><strong class="toast-title">Build queued</strong><p class="toast-body">Revision 4f2c1ab is waiting for a runner.</p></div>
+  </div>
 </div>
 ```
 
@@ -990,6 +1265,29 @@ A transient confirmation of something that just happened.
 ```
 
 ## Overlays
+
+### alert-dialog
+
+A modal that asks a person to confirm something they cannot undo.
+
+- **Use:** Deleting, revoking, or anything irreversible. Name the object in the button, not just "Confirm".
+- **Avoid:** Using it for a save or a routine action. If it can be undone, do it and offer an undo instead.
+- **Requires:** modal
+- **Note:** An alert dialog takes role="alertdialog". Escape should cancel, never confirm. Focus trapping is yours to build.
+
+```html
+<a href="#revoke-key" class="btn btn-danger">Revoke key</a>
+<div class="modal modal-alert" id="revoke-key" role="alertdialog" aria-labelledby="revoke-title">
+  <div class="modal-card">
+    <div class="modal-head">
+      <span class="modal-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg></span>
+      <h3 class="modal-title" id="revoke-title">Revoke this key?</h3>
+    </div>
+    <div class="modal-body">Any service using <code class="inline-code">deploy-bot-prod</code> stops authenticating straight away. This cannot be undone.</div>
+    <div class="modal-actions"><a class="btn btn-ghost" href="#components">Keep the key</a><button class="btn btn-danger" type="button">Revoke the key</button></div>
+  </div>
+</div>
+```
 
 ### combobox
 
@@ -1028,6 +1326,34 @@ A keyboard-first search over commands and objects.
 </div>
 ```
 
+### context-menu
+
+A small menu of actions for one object.
+
+- **Use:** Row actions, right-click menus, and overflow menus where the actions belong to a specific item.
+- **Avoid:** Hiding the primary action in here. A menu is for the secondary and the rare.
+- **`.is-danger`:** a destructive item, in the danger colour
+- **Note:** Position it and handle Escape, arrow keys, and outside clicks in application code.
+
+```html
+<div class="context-menu" role="menu" aria-label="Deploy actions">
+  <button class="context-menu-item" type="button" role="menuitem">
+    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 19V5"/><path d="m5 12 7-7 7 7"/></svg>
+    Promote to production
+  </button>
+  <button class="context-menu-item" type="button" role="menuitem">
+    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>
+    Roll back
+    <kbd>R</kbd>
+  </button>
+  <hr class="context-menu-separator">
+  <button class="context-menu-item is-danger" type="button" role="menuitem">
+    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M19 6v14H5V6"/></svg>
+    Delete build
+  </button>
+</div>
+```
+
 ### drawer
 
 A panel that slides in from the edge, driven by a checkbox toggle.
@@ -1062,6 +1388,27 @@ A menu of actions attached to a trigger.
     <button type="button">Roll back</button>
   </div>
 </div>
+```
+
+### hover-card
+
+A panel of detail that opens on hover or focus.
+
+- **Use:** Previewing the thing behind a link: a user, a commit, a service. It saves a trip.
+- **Avoid:** Putting anything essential or interactive in it. It is unreachable on a touch screen, so the content must be a bonus.
+- **Note:** Opens on hover and on focus-within, so keyboard users get it too.
+
+```html
+<span class="hover-card">
+  <a class="text-accent" href="/services/api-gateway">api-gateway</a>
+  <span class="hover-card-panel">
+    <span class="stack stack-sm">
+      <span class="text-card">api-gateway</span>
+      <span class="text-meta">Owned by Platform. Last deployed 2 hours ago.</span>
+      <span class="badge badge-success">Healthy</span>
+    </span>
+  </span>
+</span>
 ```
 
 ### modal
@@ -1118,6 +1465,21 @@ A short hint attached to a control, shown on hover and focus.
 
 ## Content
 
+### aspect-ratio
+
+A box that holds its shape while the media inside fills it.
+
+- **Use:** Any image, video, or map that must not change the page height as it loads.
+- **Avoid:** Wrapping text in it. Text should set its own height.
+- **`.aspect-16-9` `.aspect-4-3` `.aspect-1-1`:** the shape of the box
+- **Note:** The default shape is 16 by 9.
+
+```html
+<div class="aspect aspect-4-3">
+  <img src="/media/deploy-graph.png" alt="Deploy frequency over the last 30 days">
+</div>
+```
+
 ### cmd-pill
 
 A single copyable command shown as a compact pill.
@@ -1127,6 +1489,35 @@ A single copyable command shown as a compact pill.
 
 ```html
 <span class="cmd-pill"><span class="dollar">$</span> npm install postrboard-css</span>
+```
+
+### figure
+
+Media with a caption underneath.
+
+- **Use:** A diagram or screenshot that needs a sentence to explain what a person is looking at.
+- **Avoid:** A caption that repeats the alt text. The alt text describes it; the caption says why it matters.
+
+```html
+<figure class="figure">
+  <div class="frame">
+    <img src="/media/pipeline.png" alt="A pipeline with build, test, and deploy stages">
+  </div>
+  <figcaption class="figure-caption">Each stage runs on the merge commit, not the branch tip.</figcaption>
+</figure>
+```
+
+### frame
+
+A bordered, rounded, clipping container for an image or a screenshot.
+
+- **Use:** Giving a screenshot an edge, so a light interface does not bleed into a light page.
+- **Avoid:** Framing an illustration that already has its own edge.
+
+```html
+<div class="frame">
+  <img src="/media/console.png" alt="The deploy console showing three queued builds">
+</div>
 ```
 
 ### icon
@@ -1154,6 +1545,23 @@ Identifiers inside prose, and keyboard keys.
 
 ```html
 <p class="text-body">Run <code class="inline-code">npm run build</code>, then press <kbd class="kbd">Ctrl</kbd> <kbd class="kbd">C</kbd> to stop the watcher.</p>
+```
+
+### media-embed
+
+A fixed-shape frame with a play control over it.
+
+- **Use:** A video you load only after a person asks for it, which keeps the third-party script off the first paint.
+- **Avoid:** Autoplay with sound. Also avoid a play button that does nothing; wire it up or use a plain image.
+- **Requires:** aspect-ratio
+
+```html
+<div class="aspect media-embed">
+  <img src="/media/walkthrough-poster.png" alt="">
+  <button class="media-play" type="button" aria-label="Play the walkthrough">
+    <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+  </button>
+</div>
 ```
 
 ### quote-block
@@ -1232,6 +1640,31 @@ A closing block with one action.
 </div>
 ```
 
+### faq
+
+A stack of accordions for real, repeated questions.
+
+- **Use:** Questions your support channel actually receives. Write the question the way a person asks it.
+- **Avoid:** Inventing questions to fill a section, and answering with a sales line. If the answer is "yes, and it is great", delete the entry.
+- **Requires:** accordion
+
+```html
+<div class="faq">
+  <details class="accordion">
+    <summary>Does a rollback re-run the build?</summary>
+    <div class="accordion-body">No. A rollback repoints traffic at an artefact that already passed. It takes about four seconds.</div>
+  </details>
+  <details class="accordion">
+    <summary>Can two people deploy at once?</summary>
+    <div class="accordion-body">The queue is per environment. The second deploy waits, and the person who started it sees who is ahead of them.</div>
+  </details>
+  <details class="accordion">
+    <summary>What happens to in-flight requests?</summary>
+    <div class="accordion-body">The old revision keeps serving until it drains, up to 30 seconds. You can raise the limit per service.</div>
+  </details>
+</div>
+```
+
 ### feature-card
 
 A rule-separated block for one capability.
@@ -1245,6 +1678,43 @@ A rule-separated block for one capability.
   <svg class="icon feature-icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
   <h3 class="feature-title">Promote by revision</h3>
   <p class="feature-body">Pick any revision that passed checks and move traffic to it.</p>
+</div>
+```
+
+### logo-cloud
+
+A labelled row of integration or customer slots.
+
+- **Use:** Naming the systems you connect to, when those names are real and you may show them.
+- **Avoid:** Filling it with invented companies or grey blobs. The dashed slots are honest placeholders. Leave them until you have permission to use a real mark.
+
+```html
+<div class="logo-cloud">
+  <p class="logo-cloud-label">Connects to</p>
+  <div class="logo-cloud-row">
+    <span class="logo-cloud-item">Integration name</span>
+    <span class="logo-cloud-item">Integration name</span>
+    <span class="logo-cloud-item">Integration name</span>
+    <span class="logo-cloud-item">Integration name</span>
+  </div>
+</div>
+```
+
+### newsletter
+
+One field and one button, with a line about what arrives.
+
+- **Use:** A changelog or release list a person can opt into.
+- **Avoid:** A whole section built around it. This is a footer-sized thing. And say what you send, and how often, before you ask.
+
+```html
+<div class="newsletter">
+  <p class="text-body">Release notes, once a fortnight. No other mail.</p>
+  <form class="newsletter-form">
+    <label class="sr-only" for="release-mail">Email address</label>
+    <input class="input" id="release-mail" type="email" placeholder="you@company.com" autocomplete="email">
+    <button class="btn btn-primary" type="submit">Subscribe</button>
+  </form>
 </div>
 ```
 
@@ -1294,6 +1764,7 @@ Display mode, flex direction, alignment, and positioning.
 - **`.items-start` `.items-center` `.items-end`:** cross-axis alignment
 - **`.justify-start` `.justify-center` `.justify-end` `.justify-between`:** main-axis alignment
 - **`.relative` `.absolute` `.fixed` `.sticky`:** positioning
+- **`.spacer`:** push the next flex child to the far end
 
 ```html
 <div class="flex items-center justify-between">
@@ -1386,6 +1857,7 @@ Alignment, semantic colour, and truncation for text.
 - **`.text-accent`:** the active accent
 - **`.text-success` `.text-warning` `.text-danger` `.text-info`:** semantic state colours
 - **`.truncate`:** clip to one line with an ellipsis
+- **`.clamp-2` `.clamp-3`:** clip to that many lines
 
 ```html
 <div class="stack stack-sm">

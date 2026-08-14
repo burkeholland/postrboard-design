@@ -8,7 +8,8 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Added
 
-- **Component registry** - 81 components in `registry/`, each with complete copy-and-paste markup plus `Use` and `Avoid` guidance. Published as `components.md` for reading and `registry/index.json` for tooling, and rendered into the documentation. An agent now retrieves markup by name instead of inferring it from class names
+- **22 components restored from 1.x** - Date and time pickers, one-time code, calendar, bar chart, avatar group, sortable table, skeleton, navigation rail, context menu, hover card, toast region, alert dialog, aspect ratio, frame, figure, media embed, scroll area, logo cloud, newsletter, FAQ, and auth card. In 1.x these existed only in the documentation page's own `<style>` block, so a project that loaded `postrboard.css` got nothing for them. They are now framework CSS with registry entries
+- **Component registry** - 103 components in `registry/`, each with complete copy-and-paste markup plus `Use` and `Avoid` guidance. Published as `components.md` for reading and `registry/index.json` for tooling, and rendered into the documentation. An agent now retrieves markup by name instead of inferring it from class names
 - **Registry gates** - The build fails when a component uses a class the framework does not define, when a public class has no registry coverage, and when the generated documentation, `components.md`, or the JSON index drift from the source files. Coverage is total: every utility and modifier class is documented, with no exemption list
 - **`--accent-ink`** - Ink that reads on the vivid `--accent` hue. The bright accents are light, so they take dark ink; violet and slate take white. The audit enforces the pairing
 - **Native work-surface anatomy** - Page headers, section headers, panels, stat strips, semantic status badges, description lists, and app-shell navigation

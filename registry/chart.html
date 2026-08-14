@@ -1,0 +1,22 @@
+<!--
+name: chart
+title: Bar chart
+category: data
+description: Bars sized by a --value custom property, from 0 to 100.
+use: A small comparison that sits beside prose or inside a panel, where a charting library would be too much.
+avoid: Inventing the numbers. If you have no data, say so with an empty state. A chart of made-up bars is the clearest AI tell there is.
+note: Set --value per bar as a percentage of the tallest value. For real analysis, use a charting library and keep these tokens.
+variants: is-active = the highlighted bar, in the solid accent
+-->
+<div class="panel">
+  <div class="panel-content stack stack-sm">
+    <p class="text-meta">Build minutes by day. Connect a data source to populate this chart.</p>
+    <div class="chart">
+      <span class="chart-bar" style="--value: 42">Mon</span>
+      <span class="chart-bar" style="--value: 61">Tue</span>
+      <span class="chart-bar" style="--value: 38">Wed</span>
+      <span class="chart-bar is-active" style="--value: 88">Thu</span>
+      <span class="chart-bar" style="--value: 54">Fri</span>
+    </div>
+  </div>
+</div>

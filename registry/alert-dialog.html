@@ -1,0 +1,21 @@
+<!--
+name: alert-dialog
+title: Alert dialog
+category: overlays
+description: A modal that asks a person to confirm something they cannot undo.
+use: Deleting, revoking, or anything irreversible. Name the object in the button, not just "Confirm".
+avoid: Using it for a save or a routine action. If it can be undone, do it and offer an undo instead.
+requires: modal
+note: An alert dialog takes role="alertdialog". Escape should cancel, never confirm. Focus trapping is yours to build.
+-->
+<a href="#revoke-key" class="btn btn-danger">Revoke key</a>
+<div class="modal modal-alert" id="revoke-key" role="alertdialog" aria-labelledby="revoke-title">
+  <div class="modal-card">
+    <div class="modal-head">
+      <span class="modal-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg></span>
+      <h3 class="modal-title" id="revoke-title">Revoke this key?</h3>
+    </div>
+    <div class="modal-body">Any service using <code class="inline-code">deploy-bot-prod</code> stops authenticating straight away. This cannot be undone.</div>
+    <div class="modal-actions"><a class="btn btn-ghost" href="#components">Keep the key</a><button class="btn btn-danger" type="button">Revoke the key</button></div>
+  </div>
+</div>

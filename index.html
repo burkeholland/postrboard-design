@@ -330,6 +330,23 @@
       height: 100%;
     }
 
+    /* Media fills its container by design. The docs column is wide, so cap the
+       demo instead of letting one screenshot dominate the row. */
+    .component-demo .aspect,
+    .component-demo .frame {
+      max-width: 420px;
+    }
+
+    /* A containing block for position:fixed, so an overlay demo stays in its row. */    .demo-stage {
+      position: relative;
+      height: 220px;
+      overflow: hidden;
+      transform: translateZ(0);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-surface);
+      background: var(--surface-subtle);
+    }
+
     .demo-fab-caption {
       position: absolute;
       left: var(--space-4);
@@ -960,6 +977,36 @@
 &lt;/div&gt;</code></pre>
             </div>
           </article>
+          <article class="component-row" id="c-scroll-area">
+            <div class="component-meta">
+              <h4 class="component-name">scroll-area</h4>
+              <p class="text-body text-muted">A bounded region that scrolls on its own, with a thin scrollbar.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> A long list inside a panel, where the page itself should not grow: log lines, results, a picker.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Nesting one inside another scrolling region. Two scrollbars in one place is a trap.</p>
+            </div>
+            <div class="component-demo">
+              <div class="scroll-area">
+                <ul class="list-group">
+                  <li class="list-item"><span class="list-title">api-gateway</span><span class="list-meta">2h ago</span></li>
+                  <li class="list-item"><span class="list-title">billing-worker</span><span class="list-meta">5h ago</span></li>
+                  <li class="list-item"><span class="list-title">webhook-relay</span><span class="list-meta">yesterday</span></li>
+                  <li class="list-item"><span class="list-title">search-indexer</span><span class="list-meta">2d ago</span></li>
+                  <li class="list-item"><span class="list-title">image-resizer</span><span class="list-meta">4d ago</span></li>
+                  <li class="list-item"><span class="list-title">audit-log</span><span class="list-meta">last week</span></li>
+                </ul>
+              </div>
+              <pre class="code-sample"><code>&lt;div class="scroll-area"&gt;
+  &lt;ul class="list-group"&gt;
+    &lt;li class="list-item"&gt;&lt;span class="list-title"&gt;api-gateway&lt;/span&gt;&lt;span class="list-meta"&gt;2h ago&lt;/span&gt;&lt;/li&gt;
+    &lt;li class="list-item"&gt;&lt;span class="list-title"&gt;billing-worker&lt;/span&gt;&lt;span class="list-meta"&gt;5h ago&lt;/span&gt;&lt;/li&gt;
+    &lt;li class="list-item"&gt;&lt;span class="list-title"&gt;webhook-relay&lt;/span&gt;&lt;span class="list-meta"&gt;yesterday&lt;/span&gt;&lt;/li&gt;
+    &lt;li class="list-item"&gt;&lt;span class="list-title"&gt;search-indexer&lt;/span&gt;&lt;span class="list-meta"&gt;2d ago&lt;/span&gt;&lt;/li&gt;
+    &lt;li class="list-item"&gt;&lt;span class="list-title"&gt;image-resizer&lt;/span&gt;&lt;span class="list-meta"&gt;4d ago&lt;/span&gt;&lt;/li&gt;
+    &lt;li class="list-item"&gt;&lt;span class="list-title"&gt;audit-log&lt;/span&gt;&lt;span class="list-meta"&gt;last week&lt;/span&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </article>
           <article class="component-row" id="c-stack">
             <div class="component-meta">
               <h4 class="component-name">stack</h4>
@@ -1092,6 +1139,62 @@
         </div>
         <h3 class="text-h2 component-category">Forms</h3>
         <div class="component-list">
+          <article class="component-row" id="c-auth-card">
+            <div class="component-meta">
+              <h4 class="component-name">auth-card</h4>
+              <p class="text-body text-muted">A narrow card holding a sign-in form and its secondary links.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> Sign in, sign up, and reset, on a page with nothing else competing for attention.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> A marketing panel beside it. The person is here to get in.</p>
+            </div>
+            <div class="component-demo">
+              <div class="auth-card">
+                <div class="stack">
+                  <div class="stack stack-sm">
+                    <h1 class="text-card">Sign in</h1>
+                    <p class="text-body text-muted">Use the account your organisation issued.</p>
+                  </div>
+                  <form class="form-stack">
+                    <div class="form-field">
+                      <label class="form-label" for="auth-card-auth-mail">Email</label>
+                      <input class="input" id="auth-card-auth-mail" type="email" autocomplete="username">
+                    </div>
+                    <div class="form-field">
+                      <label class="form-label" for="auth-card-auth-pass">Password</label>
+                      <input class="input" id="auth-card-auth-pass" type="password" autocomplete="current-password">
+                    </div>
+                    <button class="btn btn-primary" type="submit">Sign in</button>
+                  </form>
+                  <div class="auth-links">
+                    <a href="#components">Forgot password</a>
+                    <a href="#components">Use single sign-on</a>
+                  </div>
+                </div>
+              </div>
+              <pre class="code-sample"><code>&lt;div class="auth-card"&gt;
+  &lt;div class="stack"&gt;
+    &lt;div class="stack stack-sm"&gt;
+      &lt;h1 class="text-card"&gt;Sign in&lt;/h1&gt;
+      &lt;p class="text-body text-muted"&gt;Use the account your organisation issued.&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;form class="form-stack"&gt;
+      &lt;div class="form-field"&gt;
+        &lt;label class="form-label" for="auth-mail"&gt;Email&lt;/label&gt;
+        &lt;input class="input" id="auth-mail" type="email" autocomplete="username"&gt;
+      &lt;/div&gt;
+      &lt;div class="form-field"&gt;
+        &lt;label class="form-label" for="auth-pass"&gt;Password&lt;/label&gt;
+        &lt;input class="input" id="auth-pass" type="password" autocomplete="current-password"&gt;
+      &lt;/div&gt;
+      &lt;button class="btn btn-primary" type="submit"&gt;Sign in&lt;/button&gt;
+    &lt;/form&gt;
+    &lt;div class="auth-links"&gt;
+      &lt;a href="/reset"&gt;Forgot password&lt;/a&gt;
+      &lt;a href="/sso"&gt;Use single sign-on&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </article>
           <article class="component-row" id="c-checkbox">
             <div class="component-meta">
               <h4 class="component-name">checkbox</h4>
@@ -1108,6 +1211,24 @@
   &lt;label class="checkbox"&gt;&lt;input type="checkbox" checked&gt; Include failed jobs&lt;/label&gt;
   &lt;label class="checkbox"&gt;&lt;input type="checkbox"&gt; Notify the on-call channel&lt;/label&gt;
 &lt;/div&gt;</code></pre>
+            </div>
+          </article>
+          <article class="component-row" id="c-date-picker">
+            <div class="component-meta">
+              <h4 class="component-name">date-picker</h4>
+              <p class="text-body text-muted">A native date input in a framed field with a leading icon.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> Picking a single date. The native control brings the calendar, the keyboard support, and the locale format for free.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Building a custom popup calendar for a plain date field. Use the calendar component only when you must render a month in place.</p>
+            </div>
+            <div class="component-demo">
+              <label class="picker-field" for="date-picker-cutover-date">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M8 2v4"/><path d="M16 2v4"/><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M3 10h18"/></svg>
+                <input class="picker-input" id="date-picker-cutover-date" type="date" value="2026-06-10">
+              </label>
+              <pre class="code-sample"><code>&lt;label class="picker-field" for="cutover-date"&gt;
+  &lt;svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"&gt;&lt;path d="M8 2v4"/&gt;&lt;path d="M16 2v4"/&gt;&lt;rect x="3" y="4" width="18" height="18" rx="2"/&gt;&lt;path d="M3 10h18"/&gt;&lt;/svg&gt;
+  &lt;input class="picker-input" id="cutover-date" type="date" value="2026-06-10"&gt;
+&lt;/label&gt;</code></pre>
             </div>
           </article>
           <article class="component-row" id="c-dropzone">
@@ -1259,6 +1380,39 @@
 &lt;/div&gt;</code></pre>
             </div>
           </article>
+          <article class="component-row" id="c-otp-input">
+            <div class="component-meta">
+              <h4 class="component-name">otp-input</h4>
+              <p class="text-body text-muted">Single-character boxes for a verification code.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> A code sent by mail or an authenticator app, where the length is fixed and known.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Using it for a password or a long token. Split boxes stop working once a person cannot see the whole value.</p>
+            </div>
+            <div class="component-demo">
+              <div class="stack stack-sm">
+                <div class="otp-row" role="group" aria-label="Verification code">
+                  <input class="otp-input" inputmode="numeric" maxlength="1" value="4" aria-label="Digit 1">
+                  <input class="otp-input" inputmode="numeric" maxlength="1" value="2" aria-label="Digit 2">
+                  <input class="otp-input" inputmode="numeric" maxlength="1" value="8" aria-label="Digit 3">
+                  <input class="otp-input" inputmode="numeric" maxlength="1" aria-label="Digit 4">
+                  <input class="otp-input" inputmode="numeric" maxlength="1" aria-label="Digit 5">
+                  <input class="otp-input" inputmode="numeric" maxlength="1" aria-label="Digit 6">
+                </div>
+                <p class="form-helper">Six characters, sent to the address on the account.</p>
+              </div>
+              <p class="text-meta">The boxes are presentation. Advancing focus on input, and handling a pasted code, needs JavaScript. Set aria-invalid="true" on every box when a code is rejected.</p>
+              <pre class="code-sample"><code>&lt;div class="stack stack-sm"&gt;
+  &lt;div class="otp-row" role="group" aria-label="Verification code"&gt;
+    &lt;input class="otp-input" inputmode="numeric" maxlength="1" value="4" aria-label="Digit 1"&gt;
+    &lt;input class="otp-input" inputmode="numeric" maxlength="1" value="2" aria-label="Digit 2"&gt;
+    &lt;input class="otp-input" inputmode="numeric" maxlength="1" value="8" aria-label="Digit 3"&gt;
+    &lt;input class="otp-input" inputmode="numeric" maxlength="1" aria-label="Digit 4"&gt;
+    &lt;input class="otp-input" inputmode="numeric" maxlength="1" aria-label="Digit 5"&gt;
+    &lt;input class="otp-input" inputmode="numeric" maxlength="1" aria-label="Digit 6"&gt;
+  &lt;/div&gt;
+  &lt;p class="form-helper"&gt;Six characters, sent to the address on the account.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </article>
           <article class="component-row" id="c-radio">
             <div class="component-meta">
               <h4 class="component-name">radio</h4>
@@ -1373,6 +1527,24 @@
   &lt;label class="form-label" for="release-notes"&gt;Release notes&lt;/label&gt;
   &lt;textarea class="textarea" id="release-notes" placeholder="What changed in this revision?"&gt;&lt;/textarea&gt;
 &lt;/div&gt;</code></pre>
+            </div>
+          </article>
+          <article class="component-row" id="c-time-picker">
+            <div class="component-meta">
+              <h4 class="component-name">time-picker</h4>
+              <p class="text-body text-muted">A native time input in the same framed field as the date picker.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> Picking a time of day, usually beside a date picker in a scheduling row.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Using it for a duration. A duration is a number with a unit, not a clock time.</p>
+            </div>
+            <div class="component-demo">
+              <label class="picker-field" for="time-picker-cutover-time">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                <input class="picker-input" id="time-picker-cutover-time" type="time" value="14:30">
+              </label>
+              <pre class="code-sample"><code>&lt;label class="picker-field" for="cutover-time"&gt;
+  &lt;svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;path d="M12 6v6l4 2"/&gt;&lt;/svg&gt;
+  &lt;input class="picker-input" id="cutover-time" type="time" value="14:30"&gt;
+&lt;/label&gt;</code></pre>
             </div>
           </article>
         </div>
@@ -1523,6 +1695,32 @@
         </div>
         <h3 class="text-h2 component-category">Data</h3>
         <div class="component-list">
+          <article class="component-row" id="c-avatar-group">
+            <div class="component-meta">
+              <h4 class="component-name">avatar-group</h4>
+              <p class="text-body text-muted">Overlapping avatars for the people on a thing.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> Showing who is assigned, watching, or reviewing, when the count is small.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> More than about five. Past that, show three and a count.</p>
+            </div>
+            <div class="component-demo">
+              <div class="cluster">
+                <div class="avatar-group">
+                  <span class="avatar avatar-md">AR</span>
+                  <span class="avatar avatar-md">MK</span>
+                  <span class="avatar avatar-md">JT</span>
+                </div>
+                <span class="text-meta">and 4 more</span>
+              </div>
+              <pre class="code-sample"><code>&lt;div class="cluster"&gt;
+  &lt;div class="avatar-group"&gt;
+    &lt;span class="avatar avatar-md"&gt;AR&lt;/span&gt;
+    &lt;span class="avatar avatar-md"&gt;MK&lt;/span&gt;
+    &lt;span class="avatar avatar-md"&gt;JT&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;span class="text-meta"&gt;and 4 more&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </article>
           <article class="component-row" id="c-avatar">
             <div class="component-meta">
               <h4 class="component-name">avatar</h4>
@@ -1570,6 +1768,108 @@
   &lt;span class="badge badge-status" data-state="warning"&gt;Review&lt;/span&gt;
   &lt;span class="badge badge-status" data-state="danger"&gt;Failed&lt;/span&gt;
   &lt;span class="badge badge-status badge-neutral"&gt;Queued&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </article>
+          <article class="component-row" id="c-calendar">
+            <div class="component-meta">
+              <h4 class="component-name">calendar</h4>
+              <p class="text-body text-muted">A month grid with today, selection, and adjacent-month days.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> Showing a month in place, when the dates carry information a person must see: bookings, incidents, or scheduled runs.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Using it as a date field. A date input is smaller, faster, and already accessible.</p>
+              <p class="component-guide"><span class="component-guide-label">Swap</span>
+                <code class="inline-code">.is-today</code> a ring on the current day<br>
+                <code class="inline-code">.is-selected</code> the chosen day<br>
+                <code class="inline-code">.is-outside</code> a day from the neighbouring month
+              </p>
+            </div>
+            <div class="component-demo">
+              <div class="calendar">
+                <div class="calendar-head">
+                  <button class="icon-button" type="button" aria-label="Previous month"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
+                  <span class="calendar-title">June 2026</span>
+                  <button class="icon-button" type="button" aria-label="Next month"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
+                </div>
+                <div class="calendar-grid">
+                  <span class="calendar-dow">Mo</span><span class="calendar-dow">Tu</span><span class="calendar-dow">We</span><span class="calendar-dow">Th</span><span class="calendar-dow">Fr</span><span class="calendar-dow">Sa</span><span class="calendar-dow">Su</span>
+                  <button class="calendar-day is-outside" type="button">31</button>
+                  <button class="calendar-day" type="button">1</button>
+                  <button class="calendar-day" type="button">2</button>
+                  <button class="calendar-day" type="button">3</button>
+                  <button class="calendar-day" type="button">4</button>
+                  <button class="calendar-day" type="button">5</button>
+                  <button class="calendar-day" type="button">6</button>
+                  <button class="calendar-day" type="button">7</button>
+                  <button class="calendar-day" type="button">8</button>
+                  <button class="calendar-day is-today" type="button" aria-current="date">9</button>
+                  <button class="calendar-day" type="button" aria-selected="true">10</button>
+                  <button class="calendar-day" type="button">11</button>
+                  <button class="calendar-day" type="button">12</button>
+                  <button class="calendar-day" type="button">13</button>
+                </div>
+              </div>
+              <p class="text-meta">The grid is presentation. Month changes and selection need JavaScript.</p>
+              <pre class="code-sample"><code>&lt;div class="calendar"&gt;
+  &lt;div class="calendar-head"&gt;
+    &lt;button class="icon-button" type="button" aria-label="Previous month"&gt;&lt;svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"&gt;&lt;path d="m15 18-6-6 6-6"/&gt;&lt;/svg&gt;&lt;/button&gt;
+    &lt;span class="calendar-title"&gt;June 2026&lt;/span&gt;
+    &lt;button class="icon-button" type="button" aria-label="Next month"&gt;&lt;svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"&gt;&lt;path d="m9 18 6-6-6-6"/&gt;&lt;/svg&gt;&lt;/button&gt;
+  &lt;/div&gt;
+  &lt;div class="calendar-grid"&gt;
+    &lt;span class="calendar-dow"&gt;Mo&lt;/span&gt;&lt;span class="calendar-dow"&gt;Tu&lt;/span&gt;&lt;span class="calendar-dow"&gt;We&lt;/span&gt;&lt;span class="calendar-dow"&gt;Th&lt;/span&gt;&lt;span class="calendar-dow"&gt;Fr&lt;/span&gt;&lt;span class="calendar-dow"&gt;Sa&lt;/span&gt;&lt;span class="calendar-dow"&gt;Su&lt;/span&gt;
+    &lt;button class="calendar-day is-outside" type="button"&gt;31&lt;/button&gt;
+    &lt;button class="calendar-day" type="button"&gt;1&lt;/button&gt;
+    &lt;button class="calendar-day" type="button"&gt;2&lt;/button&gt;
+    &lt;button class="calendar-day" type="button"&gt;3&lt;/button&gt;
+    &lt;button class="calendar-day" type="button"&gt;4&lt;/button&gt;
+    &lt;button class="calendar-day" type="button"&gt;5&lt;/button&gt;
+    &lt;button class="calendar-day" type="button"&gt;6&lt;/button&gt;
+    &lt;button class="calendar-day" type="button"&gt;7&lt;/button&gt;
+    &lt;button class="calendar-day" type="button"&gt;8&lt;/button&gt;
+    &lt;button class="calendar-day is-today" type="button" aria-current="date"&gt;9&lt;/button&gt;
+    &lt;button class="calendar-day" type="button" aria-selected="true"&gt;10&lt;/button&gt;
+    &lt;button class="calendar-day" type="button"&gt;11&lt;/button&gt;
+    &lt;button class="calendar-day" type="button"&gt;12&lt;/button&gt;
+    &lt;button class="calendar-day" type="button"&gt;13&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </article>
+          <article class="component-row" id="c-chart">
+            <div class="component-meta">
+              <h4 class="component-name">chart</h4>
+              <p class="text-body text-muted">Bars sized by a --value custom property, from 0 to 100.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> A small comparison that sits beside prose or inside a panel, where a charting library would be too much.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Inventing the numbers. If you have no data, say so with an empty state. A chart of made-up bars is the clearest AI tell there is.</p>
+              <p class="component-guide"><span class="component-guide-label">Swap</span>
+                <code class="inline-code">.is-active</code> the highlighted bar, in the solid accent
+              </p>
+            </div>
+            <div class="component-demo">
+              <div class="panel">
+                <div class="panel-content stack stack-sm">
+                  <p class="text-meta">Build minutes by day. Connect a data source to populate this chart.</p>
+                  <div class="chart">
+                    <span class="chart-bar" style="--value: 42">Mon</span>
+                    <span class="chart-bar" style="--value: 61">Tue</span>
+                    <span class="chart-bar" style="--value: 38">Wed</span>
+                    <span class="chart-bar is-active" style="--value: 88">Thu</span>
+                    <span class="chart-bar" style="--value: 54">Fri</span>
+                  </div>
+                </div>
+              </div>
+              <p class="text-meta">Set --value per bar as a percentage of the tallest value. For real analysis, use a charting library and keep these tokens.</p>
+              <pre class="code-sample"><code>&lt;div class="panel"&gt;
+  &lt;div class="panel-content stack stack-sm"&gt;
+    &lt;p class="text-meta"&gt;Build minutes by day. Connect a data source to populate this chart.&lt;/p&gt;
+    &lt;div class="chart"&gt;
+      &lt;span class="chart-bar" style="--value: 42"&gt;Mon&lt;/span&gt;
+      &lt;span class="chart-bar" style="--value: 61"&gt;Tue&lt;/span&gt;
+      &lt;span class="chart-bar" style="--value: 38"&gt;Wed&lt;/span&gt;
+      &lt;span class="chart-bar is-active" style="--value: 88"&gt;Thu&lt;/span&gt;
+      &lt;span class="chart-bar" style="--value: 54"&gt;Fri&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
 &lt;/div&gt;</code></pre>
             </div>
           </article>
@@ -1636,6 +1936,49 @@
               <pre class="code-sample"><code>&lt;div class="list-group"&gt;
   &lt;div class="list-item"&gt;&lt;div class="list-item-main"&gt;&lt;span class="list-title"&gt;api-gateway&lt;/span&gt;&lt;span class="list-meta"&gt;v2.8.1 &amp;middot; 3 replicas&lt;/span&gt;&lt;/div&gt;&lt;span class="list-item-value"&gt;&lt;span class="badge badge-status" data-state="success"&gt;Healthy&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
   &lt;div class="list-item"&gt;&lt;div class="list-item-main"&gt;&lt;span class="list-title"&gt;worker-jobs&lt;/span&gt;&lt;span class="list-meta"&gt;v1.14.0 &amp;middot; 6 replicas&lt;/span&gt;&lt;/div&gt;&lt;span class="list-item-value"&gt;&lt;span class="badge badge-status" data-state="info"&gt;Deploying&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </article>
+          <article class="component-row" id="c-sortable-table">
+            <div class="component-meta">
+              <h4 class="component-name">sortable-table</h4>
+              <p class="text-body text-muted">A data table whose headers are buttons that re-sort the rows.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> A table a person will scan by different columns: newest, slowest, largest.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Making every column sortable. Sort the columns people compare, not the ones they read.</p>
+            </div>
+            <div class="component-demo">
+              <div class="table-wrap">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th scope="col" class="sortable"><button type="button">Service<svg class="sort-indicator" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 15 6 6 6-6"/><path d="m6 9 6-6 6 6"/></svg></button></th>
+                      <th scope="col" class="sortable" aria-sort="descending"><button type="button">Duration<svg class="sort-indicator" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 15 6 6 6-6"/><path d="m6 9 6-6 6 6"/></svg></button></th>
+                      <th scope="col">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>image-resizer</td><td class="is-numeric">4m 12s</td><td><span class="badge badge-danger">Failed</span></td></tr>
+                    <tr><td>api-gateway</td><td class="is-numeric">1m 48s</td><td><span class="badge badge-success">Passed</span></td></tr>
+                    <tr><td>webhook-relay</td><td class="is-numeric">0m 39s</td><td><span class="badge badge-success">Passed</span></td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <p class="text-meta">aria-sort goes on the sorted th, and takes "ascending" or "descending". Sorting itself needs JavaScript.</p>
+              <pre class="code-sample"><code>&lt;div class="table-wrap"&gt;
+  &lt;table class="data-table"&gt;
+    &lt;thead&gt;
+      &lt;tr&gt;
+        &lt;th scope="col" class="sortable"&gt;&lt;button type="button"&gt;Service&lt;svg class="sort-indicator" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"&gt;&lt;path d="m6 15 6 6 6-6"/&gt;&lt;path d="m6 9 6-6 6 6"/&gt;&lt;/svg&gt;&lt;/button&gt;&lt;/th&gt;
+        &lt;th scope="col" class="sortable" aria-sort="descending"&gt;&lt;button type="button"&gt;Duration&lt;svg class="sort-indicator" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"&gt;&lt;path d="m6 15 6 6 6-6"/&gt;&lt;path d="m6 9 6-6 6 6"/&gt;&lt;/svg&gt;&lt;/button&gt;&lt;/th&gt;
+        &lt;th scope="col"&gt;Status&lt;/th&gt;
+      &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+      &lt;tr&gt;&lt;td&gt;image-resizer&lt;/td&gt;&lt;td class="is-numeric"&gt;4m 12s&lt;/td&gt;&lt;td&gt;&lt;span class="badge badge-danger"&gt;Failed&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;api-gateway&lt;/td&gt;&lt;td class="is-numeric"&gt;1m 48s&lt;/td&gt;&lt;td&gt;&lt;span class="badge badge-success"&gt;Passed&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;webhook-relay&lt;/td&gt;&lt;td class="is-numeric"&gt;0m 39s&lt;/td&gt;&lt;td&gt;&lt;span class="badge badge-success"&gt;Passed&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
 &lt;/div&gt;</code></pre>
             </div>
           </article>
@@ -1791,6 +2134,45 @@
               </nav>
               <pre class="code-sample"><code>&lt;nav class="breadcrumb" aria-label="Breadcrumb"&gt;
   &lt;a href="/services"&gt;Services&lt;/a&gt;&lt;span class="breadcrumb-sep"&gt;/&lt;/span&gt;&lt;a href="/services/api-gateway"&gt;api-gateway&lt;/a&gt;&lt;span class="breadcrumb-sep"&gt;/&lt;/span&gt;&lt;span&gt;Revisions&lt;/span&gt;
+&lt;/nav&gt;</code></pre>
+            </div>
+          </article>
+          <article class="component-row" id="c-nav-rail">
+            <div class="component-meta">
+              <h4 class="component-name">nav-rail</h4>
+              <p class="text-body text-muted">A narrow vertical strip of icon-and-label destinations.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> An app with a handful of top-level areas, where a full sidebar would waste width.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> A rail with icon-only items. An unlabelled icon is a guess. Keep the label, however small.</p>
+            </div>
+            <div class="component-demo">
+              <nav class="nav-rail" aria-label="Sections">
+                <a class="nav-rail-item" href="#components" aria-current="page">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>
+                  Overview
+                </a>
+                <a class="nav-rail-item" href="#components">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 19V5"/><path d="m5 12 7-7 7 7"/></svg>
+                  Deploys
+                </a>
+                <a class="nav-rail-item" href="#components">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h10"/></svg>
+                  Logs
+                </a>
+              </nav>
+              <p class="text-meta">Mark the current destination with aria-current="page", or with the is-active class.</p>
+              <pre class="code-sample"><code>&lt;nav class="nav-rail" aria-label="Sections"&gt;
+  &lt;a class="nav-rail-item" href="/overview" aria-current="page"&gt;
+    &lt;svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"&gt;&lt;rect x="3" y="3" width="7" height="9" rx="1"/&gt;&lt;rect x="14" y="3" width="7" height="5" rx="1"/&gt;&lt;rect x="14" y="12" width="7" height="9" rx="1"/&gt;&lt;rect x="3" y="16" width="7" height="5" rx="1"/&gt;&lt;/svg&gt;
+    Overview
+  &lt;/a&gt;
+  &lt;a class="nav-rail-item" href="/deploys"&gt;
+    &lt;svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"&gt;&lt;path d="M12 19V5"/&gt;&lt;path d="m5 12 7-7 7 7"/&gt;&lt;/svg&gt;
+    Deploys
+  &lt;/a&gt;
+  &lt;a class="nav-rail-item" href="/logs"&gt;
+    &lt;svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"&gt;&lt;path d="M4 6h16"/&gt;&lt;path d="M4 12h16"/&gt;&lt;path d="M4 18h10"/&gt;&lt;/svg&gt;
+    Logs
+  &lt;/a&gt;
 &lt;/nav&gt;</code></pre>
             </div>
           </article>
@@ -2033,6 +2415,33 @@
 &lt;/div&gt;</code></pre>
             </div>
           </article>
+          <article class="component-row" id="c-skeleton">
+            <div class="component-meta">
+              <h4 class="component-name">skeleton</h4>
+              <p class="text-body text-muted">Grey blocks in the shape of the content that is loading.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> A first load where you know the shape of what is coming. It reads faster than a spinner because the page does not jump.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Skeletons for an action a person just took. Use a busy state on the control they pressed.</p>
+            </div>
+            <div class="component-demo">
+              <div class="stack stack-sm" aria-busy="true" aria-label="Loading">
+                <div class="skeleton-text">
+                  <div class="skeleton"></div>
+                  <div class="skeleton"></div>
+                  <div class="skeleton"></div>
+                  <div class="skeleton"></div>
+                </div>
+              </div>
+              <p class="text-meta">skeleton-text shortens each following line so it reads as a paragraph. Mark the region aria-busy so it is announced.</p>
+              <pre class="code-sample"><code>&lt;div class="stack stack-sm" aria-busy="true" aria-label="Loading"&gt;
+  &lt;div class="skeleton-text"&gt;
+    &lt;div class="skeleton"&gt;&lt;/div&gt;
+    &lt;div class="skeleton"&gt;&lt;/div&gt;
+    &lt;div class="skeleton"&gt;&lt;/div&gt;
+    &lt;div class="skeleton"&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </article>
           <article class="component-row" id="c-spinner">
             <div class="component-meta">
               <h4 class="component-name">spinner</h4>
@@ -2050,6 +2459,31 @@
   &lt;span class="spinner" role="status" aria-label="Loading"&gt;&lt;/span&gt;
   &lt;span class="skeleton" style="width: 160px"&gt;&lt;/span&gt;
   &lt;span class="skeleton" style="width: 90px"&gt;&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </article>
+          <article class="component-row" id="c-toast-region">
+            <div class="component-meta">
+              <h4 class="component-name">toast-region</h4>
+              <p class="text-body text-muted">The fixed corner container that stacks toasts.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> One per page. Put every toast in it so they queue instead of overlapping.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Toasting an error a person must act on. A toast leaves. Use an alert or keep the error beside the control.</p>
+            </div>
+            <div class="component-demo">
+              <div class="demo-stage">
+                <div class="toast-region" role="status" aria-live="polite">
+                  <div class="toast">
+                    <svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="10"/></svg>
+                    <div><strong class="toast-title">Build queued</strong><p class="toast-body">Revision 4f2c1ab is waiting for a runner.</p></div>
+                  </div>
+                </div>
+              </div>
+              <p class="text-meta">aria-live="polite" announces new toasts without cutting off the current sentence.</p>
+              <pre class="code-sample"><code>&lt;div class="toast-region" role="status" aria-live="polite"&gt;
+  &lt;div class="toast"&gt;
+    &lt;svg class="icon" aria-hidden="true" viewBox="0 0 24 24"&gt;&lt;path d="M12 6v6l4 2"/&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;/svg&gt;
+    &lt;div&gt;&lt;strong class="toast-title"&gt;Build queued&lt;/strong&gt;&lt;p class="toast-body"&gt;Revision 4f2c1ab is waiting for a runner.&lt;/p&gt;&lt;/div&gt;
+  &lt;/div&gt;
 &lt;/div&gt;</code></pre>
             </div>
           </article>
@@ -2074,6 +2508,39 @@
         </div>
         <h3 class="text-h2 component-category">Overlays</h3>
         <div class="component-list">
+          <article class="component-row" id="c-alert-dialog">
+            <div class="component-meta">
+              <h4 class="component-name">alert-dialog</h4>
+              <p class="text-body text-muted">A modal that asks a person to confirm something they cannot undo.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> Deleting, revoking, or anything irreversible. Name the object in the button, not just "Confirm".</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Using it for a save or a routine action. If it can be undone, do it and offer an undo instead.</p>
+            </div>
+            <div class="component-demo">
+              <a href="#alert-dialog-revoke-key" class="btn btn-danger">Revoke key</a>
+              <div class="modal modal-alert" id="alert-dialog-revoke-key" role="alertdialog" aria-labelledby="alert-dialog-revoke-title">
+                <div class="modal-card">
+                  <div class="modal-head">
+                    <span class="modal-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg></span>
+                    <h3 class="modal-title" id="alert-dialog-revoke-title">Revoke this key?</h3>
+                  </div>
+                  <div class="modal-body">Any service using <code class="inline-code">deploy-bot-prod</code> stops authenticating straight away. This cannot be undone.</div>
+                  <div class="modal-actions"><a class="btn btn-ghost" href="#components">Keep the key</a><button class="btn btn-danger" type="button">Revoke the key</button></div>
+                </div>
+              </div>
+              <p class="text-meta">An alert dialog takes role="alertdialog". Escape should cancel, never confirm. Focus trapping is yours to build.</p>
+              <pre class="code-sample"><code>&lt;a href="#revoke-key" class="btn btn-danger"&gt;Revoke key&lt;/a&gt;
+&lt;div class="modal modal-alert" id="revoke-key" role="alertdialog" aria-labelledby="revoke-title"&gt;
+  &lt;div class="modal-card"&gt;
+    &lt;div class="modal-head"&gt;
+      &lt;span class="modal-icon"&gt;&lt;svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"&gt;&lt;path d="M12 9v4"/&gt;&lt;path d="M12 17h.01"/&gt;&lt;path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/&gt;&lt;/svg&gt;&lt;/span&gt;
+      &lt;h3 class="modal-title" id="revoke-title"&gt;Revoke this key?&lt;/h3&gt;
+    &lt;/div&gt;
+    &lt;div class="modal-body"&gt;Any service using &lt;code class="inline-code"&gt;deploy-bot-prod&lt;/code&gt; stops authenticating straight away. This cannot be undone.&lt;/div&gt;
+    &lt;div class="modal-actions"&gt;&lt;a class="btn btn-ghost" href="#components"&gt;Keep the key&lt;/a&gt;&lt;button class="btn btn-danger" type="button"&gt;Revoke the key&lt;/button&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </article>
           <article class="component-row" id="c-combobox">
             <div class="component-meta">
               <h4 class="component-name">combobox</h4>
@@ -2131,6 +2598,52 @@
 &lt;/div&gt;</code></pre>
             </div>
           </article>
+          <article class="component-row" id="c-context-menu">
+            <div class="component-meta">
+              <h4 class="component-name">context-menu</h4>
+              <p class="text-body text-muted">A small menu of actions for one object.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> Row actions, right-click menus, and overflow menus where the actions belong to a specific item.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Hiding the primary action in here. A menu is for the secondary and the rare.</p>
+              <p class="component-guide"><span class="component-guide-label">Swap</span>
+                <code class="inline-code">.is-danger</code> a destructive item, in the danger colour
+              </p>
+            </div>
+            <div class="component-demo">
+              <div class="context-menu" role="menu" aria-label="Deploy actions">
+                <button class="context-menu-item" type="button" role="menuitem">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 19V5"/><path d="m5 12 7-7 7 7"/></svg>
+                  Promote to production
+                </button>
+                <button class="context-menu-item" type="button" role="menuitem">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>
+                  Roll back
+                  <kbd>R</kbd>
+                </button>
+                <hr class="context-menu-separator">
+                <button class="context-menu-item is-danger" type="button" role="menuitem">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M19 6v14H5V6"/></svg>
+                  Delete build
+                </button>
+              </div>
+              <p class="text-meta">Position it and handle Escape, arrow keys, and outside clicks in application code.</p>
+              <pre class="code-sample"><code>&lt;div class="context-menu" role="menu" aria-label="Deploy actions"&gt;
+  &lt;button class="context-menu-item" type="button" role="menuitem"&gt;
+    &lt;svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"&gt;&lt;path d="M12 19V5"/&gt;&lt;path d="m5 12 7-7 7 7"/&gt;&lt;/svg&gt;
+    Promote to production
+  &lt;/button&gt;
+  &lt;button class="context-menu-item" type="button" role="menuitem"&gt;
+    &lt;svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"&gt;&lt;path d="M3 12a9 9 0 1 0 3-6.7L3 8"/&gt;&lt;path d="M3 3v5h5"/&gt;&lt;/svg&gt;
+    Roll back
+    &lt;kbd&gt;R&lt;/kbd&gt;
+  &lt;/button&gt;
+  &lt;hr class="context-menu-separator"&gt;
+  &lt;button class="context-menu-item is-danger" type="button" role="menuitem"&gt;
+    &lt;svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"&gt;&lt;path d="M3 6h18"/&gt;&lt;path d="M8 6V4h8v2"/&gt;&lt;path d="M19 6v14H5V6"/&gt;&lt;/svg&gt;
+    Delete build
+  &lt;/button&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </article>
           <article class="component-row" id="c-drawer">
             <div class="component-meta">
               <h4 class="component-name">drawer</h4>
@@ -2180,6 +2693,37 @@
     &lt;button type="button"&gt;Roll back&lt;/button&gt;
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
+            </div>
+          </article>
+          <article class="component-row" id="c-hover-card">
+            <div class="component-meta">
+              <h4 class="component-name">hover-card</h4>
+              <p class="text-body text-muted">A panel of detail that opens on hover or focus.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> Previewing the thing behind a link: a user, a commit, a service. It saves a trip.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Putting anything essential or interactive in it. It is unreachable on a touch screen, so the content must be a bonus.</p>
+            </div>
+            <div class="component-demo">
+              <span class="hover-card">
+                <a class="text-accent" href="#components">api-gateway</a>
+                <span class="hover-card-panel">
+                  <span class="stack stack-sm">
+                    <span class="text-card">api-gateway</span>
+                    <span class="text-meta">Owned by Platform. Last deployed 2 hours ago.</span>
+                    <span class="badge badge-success">Healthy</span>
+                  </span>
+                </span>
+              </span>
+              <p class="text-meta">Opens on hover and on focus-within, so keyboard users get it too.</p>
+              <pre class="code-sample"><code>&lt;span class="hover-card"&gt;
+  &lt;a class="text-accent" href="/services/api-gateway"&gt;api-gateway&lt;/a&gt;
+  &lt;span class="hover-card-panel"&gt;
+    &lt;span class="stack stack-sm"&gt;
+      &lt;span class="text-card"&gt;api-gateway&lt;/span&gt;
+      &lt;span class="text-meta"&gt;Owned by Platform. Last deployed 2 hours ago.&lt;/span&gt;
+      &lt;span class="badge badge-success"&gt;Healthy&lt;/span&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+&lt;/span&gt;</code></pre>
             </div>
           </article>
           <article class="component-row" id="c-modal">
@@ -2256,6 +2800,26 @@
         </div>
         <h3 class="text-h2 component-category">Content</h3>
         <div class="component-list">
+          <article class="component-row" id="c-aspect-ratio">
+            <div class="component-meta">
+              <h4 class="component-name">aspect-ratio</h4>
+              <p class="text-body text-muted">A box that holds its shape while the media inside fills it.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> Any image, video, or map that must not change the page height as it loads.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Wrapping text in it. Text should set its own height.</p>
+              <p class="component-guide"><span class="component-guide-label">Swap</span>
+                <code class="inline-code">.aspect-16-9</code> <code class="inline-code">.aspect-4-3</code> <code class="inline-code">.aspect-1-1</code> the shape of the box
+              </p>
+            </div>
+            <div class="component-demo">
+              <div class="aspect aspect-4-3">
+                <img src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22640%22%20height%3D%22360%22%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22%23e9edf1%22%2F%3E%3Cpath%20d%3D%22M0%20360%20240%20170l120%2090%2090-70%20190%20170z%22%20fill%3D%22%23cdd5dd%22%2F%3E%3Ccircle%20cx%3D%22470%22%20cy%3D%2296%22%20r%3D%2240%22%20fill%3D%22%23dbe2e8%22%2F%3E%3C%2Fsvg%3E" alt="Deploy frequency over the last 30 days">
+              </div>
+              <p class="text-meta">The default shape is 16 by 9.</p>
+              <pre class="code-sample"><code>&lt;div class="aspect aspect-4-3"&gt;
+  &lt;img src="/media/deploy-graph.png" alt="Deploy frequency over the last 30 days"&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </article>
           <article class="component-row" id="c-cmd-pill">
             <div class="component-meta">
               <h4 class="component-name">cmd-pill</h4>
@@ -2266,6 +2830,44 @@
             <div class="component-demo">
               <span class="cmd-pill"><span class="dollar">$</span> npm install postrboard-css</span>
               <pre class="code-sample"><code>&lt;span class="cmd-pill"&gt;&lt;span class="dollar"&gt;$&lt;/span&gt; npm install postrboard-css&lt;/span&gt;</code></pre>
+            </div>
+          </article>
+          <article class="component-row" id="c-figure">
+            <div class="component-meta">
+              <h4 class="component-name">figure</h4>
+              <p class="text-body text-muted">Media with a caption underneath.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> A diagram or screenshot that needs a sentence to explain what a person is looking at.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> A caption that repeats the alt text. The alt text describes it; the caption says why it matters.</p>
+            </div>
+            <div class="component-demo">
+              <figure class="figure">
+                <div class="frame">
+                  <img src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22640%22%20height%3D%22360%22%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22%23e9edf1%22%2F%3E%3Cpath%20d%3D%22M0%20360%20240%20170l120%2090%2090-70%20190%20170z%22%20fill%3D%22%23cdd5dd%22%2F%3E%3Ccircle%20cx%3D%22470%22%20cy%3D%2296%22%20r%3D%2240%22%20fill%3D%22%23dbe2e8%22%2F%3E%3C%2Fsvg%3E" alt="A pipeline with build, test, and deploy stages">
+                </div>
+                <figcaption class="figure-caption">Each stage runs on the merge commit, not the branch tip.</figcaption>
+              </figure>
+              <pre class="code-sample"><code>&lt;figure class="figure"&gt;
+  &lt;div class="frame"&gt;
+    &lt;img src="/media/pipeline.png" alt="A pipeline with build, test, and deploy stages"&gt;
+  &lt;/div&gt;
+  &lt;figcaption class="figure-caption"&gt;Each stage runs on the merge commit, not the branch tip.&lt;/figcaption&gt;
+&lt;/figure&gt;</code></pre>
+            </div>
+          </article>
+          <article class="component-row" id="c-frame">
+            <div class="component-meta">
+              <h4 class="component-name">frame</h4>
+              <p class="text-body text-muted">A bordered, rounded, clipping container for an image or a screenshot.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> Giving a screenshot an edge, so a light interface does not bleed into a light page.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Framing an illustration that already has its own edge.</p>
+            </div>
+            <div class="component-demo">
+              <div class="frame">
+                <img src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22640%22%20height%3D%22360%22%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22%23e9edf1%22%2F%3E%3Cpath%20d%3D%22M0%20360%20240%20170l120%2090%2090-70%20190%20170z%22%20fill%3D%22%23cdd5dd%22%2F%3E%3Ccircle%20cx%3D%22470%22%20cy%3D%2296%22%20r%3D%2240%22%20fill%3D%22%23dbe2e8%22%2F%3E%3C%2Fsvg%3E" alt="The deploy console showing three queued builds">
+              </div>
+              <pre class="code-sample"><code>&lt;div class="frame"&gt;
+  &lt;img src="/media/console.png" alt="The deploy console showing three queued builds"&gt;
+&lt;/div&gt;</code></pre>
             </div>
           </article>
           <article class="component-row" id="c-icon">
@@ -2300,6 +2902,28 @@
             <div class="component-demo">
               <p class="text-body">Run <code class="inline-code">npm run build</code>, then press <kbd class="kbd">Ctrl</kbd> <kbd class="kbd">C</kbd> to stop the watcher.</p>
               <pre class="code-sample"><code>&lt;p class="text-body"&gt;Run &lt;code class="inline-code"&gt;npm run build&lt;/code&gt;, then press &lt;kbd class="kbd"&gt;Ctrl&lt;/kbd&gt; &lt;kbd class="kbd"&gt;C&lt;/kbd&gt; to stop the watcher.&lt;/p&gt;</code></pre>
+            </div>
+          </article>
+          <article class="component-row" id="c-media-embed">
+            <div class="component-meta">
+              <h4 class="component-name">media-embed</h4>
+              <p class="text-body text-muted">A fixed-shape frame with a play control over it.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> A video you load only after a person asks for it, which keeps the third-party script off the first paint.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Autoplay with sound. Also avoid a play button that does nothing; wire it up or use a plain image.</p>
+            </div>
+            <div class="component-demo">
+              <div class="aspect media-embed">
+                <img src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22640%22%20height%3D%22360%22%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22%23e9edf1%22%2F%3E%3Cpath%20d%3D%22M0%20360%20240%20170l120%2090%2090-70%20190%20170z%22%20fill%3D%22%23cdd5dd%22%2F%3E%3Ccircle%20cx%3D%22470%22%20cy%3D%2296%22%20r%3D%2240%22%20fill%3D%22%23dbe2e8%22%2F%3E%3C%2Fsvg%3E" alt="">
+                <button class="media-play" type="button" aria-label="Play the walkthrough">
+                  <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+                </button>
+              </div>
+              <pre class="code-sample"><code>&lt;div class="aspect media-embed"&gt;
+  &lt;img src="/media/walkthrough-poster.png" alt=""&gt;
+  &lt;button class="media-play" type="button" aria-label="Play the walkthrough"&gt;
+    &lt;svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"&gt;&lt;path d="M8 5v14l11-7z"/&gt;&lt;/svg&gt;
+  &lt;/button&gt;
+&lt;/div&gt;</code></pre>
             </div>
           </article>
           <article class="component-row" id="c-quote-block">
@@ -2411,6 +3035,44 @@
 &lt;/div&gt;</code></pre>
             </div>
           </article>
+          <article class="component-row" id="c-faq">
+            <div class="component-meta">
+              <h4 class="component-name">faq</h4>
+              <p class="text-body text-muted">A stack of accordions for real, repeated questions.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> Questions your support channel actually receives. Write the question the way a person asks it.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Inventing questions to fill a section, and answering with a sales line. If the answer is "yes, and it is great", delete the entry.</p>
+            </div>
+            <div class="component-demo">
+              <div class="faq">
+                <details class="accordion">
+                  <summary>Does a rollback re-run the build?</summary>
+                  <div class="accordion-body">No. A rollback repoints traffic at an artefact that already passed. It takes about four seconds.</div>
+                </details>
+                <details class="accordion">
+                  <summary>Can two people deploy at once?</summary>
+                  <div class="accordion-body">The queue is per environment. The second deploy waits, and the person who started it sees who is ahead of them.</div>
+                </details>
+                <details class="accordion">
+                  <summary>What happens to in-flight requests?</summary>
+                  <div class="accordion-body">The old revision keeps serving until it drains, up to 30 seconds. You can raise the limit per service.</div>
+                </details>
+              </div>
+              <pre class="code-sample"><code>&lt;div class="faq"&gt;
+  &lt;details class="accordion"&gt;
+    &lt;summary&gt;Does a rollback re-run the build?&lt;/summary&gt;
+    &lt;div class="accordion-body"&gt;No. A rollback repoints traffic at an artefact that already passed. It takes about four seconds.&lt;/div&gt;
+  &lt;/details&gt;
+  &lt;details class="accordion"&gt;
+    &lt;summary&gt;Can two people deploy at once?&lt;/summary&gt;
+    &lt;div class="accordion-body"&gt;The queue is per environment. The second deploy waits, and the person who started it sees who is ahead of them.&lt;/div&gt;
+  &lt;/details&gt;
+  &lt;details class="accordion"&gt;
+    &lt;summary&gt;What happens to in-flight requests?&lt;/summary&gt;
+    &lt;div class="accordion-body"&gt;The old revision keeps serving until it drains, up to 30 seconds. You can raise the limit per service.&lt;/div&gt;
+  &lt;/details&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </article>
           <article class="component-row" id="c-feature-card">
             <div class="component-meta">
               <h4 class="component-name">feature-card</h4>
@@ -2431,6 +3093,60 @@
   &lt;svg class="icon feature-icon" aria-hidden="true" viewBox="0 0 24 24"&gt;&lt;path d="M12 19V5M5 12l7-7 7 7"/&gt;&lt;/svg&gt;
   &lt;h3 class="feature-title"&gt;Promote by revision&lt;/h3&gt;
   &lt;p class="feature-body"&gt;Pick any revision that passed checks and move traffic to it.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </article>
+          <article class="component-row" id="c-logo-cloud">
+            <div class="component-meta">
+              <h4 class="component-name">logo-cloud</h4>
+              <p class="text-body text-muted">A labelled row of integration or customer slots.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> Naming the systems you connect to, when those names are real and you may show them.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Filling it with invented companies or grey blobs. The dashed slots are honest placeholders. Leave them until you have permission to use a real mark.</p>
+            </div>
+            <div class="component-demo">
+              <div class="logo-cloud">
+                <p class="logo-cloud-label">Connects to</p>
+                <div class="logo-cloud-row">
+                  <span class="logo-cloud-item">Integration name</span>
+                  <span class="logo-cloud-item">Integration name</span>
+                  <span class="logo-cloud-item">Integration name</span>
+                  <span class="logo-cloud-item">Integration name</span>
+                </div>
+              </div>
+              <pre class="code-sample"><code>&lt;div class="logo-cloud"&gt;
+  &lt;p class="logo-cloud-label"&gt;Connects to&lt;/p&gt;
+  &lt;div class="logo-cloud-row"&gt;
+    &lt;span class="logo-cloud-item"&gt;Integration name&lt;/span&gt;
+    &lt;span class="logo-cloud-item"&gt;Integration name&lt;/span&gt;
+    &lt;span class="logo-cloud-item"&gt;Integration name&lt;/span&gt;
+    &lt;span class="logo-cloud-item"&gt;Integration name&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </article>
+          <article class="component-row" id="c-newsletter">
+            <div class="component-meta">
+              <h4 class="component-name">newsletter</h4>
+              <p class="text-body text-muted">One field and one button, with a line about what arrives.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> A changelog or release list a person can opt into.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> A whole section built around it. This is a footer-sized thing. And say what you send, and how often, before you ask.</p>
+            </div>
+            <div class="component-demo">
+              <div class="newsletter">
+                <p class="text-body">Release notes, once a fortnight. No other mail.</p>
+                <form class="newsletter-form">
+                  <label class="sr-only" for="newsletter-release-mail">Email address</label>
+                  <input class="input" id="newsletter-release-mail" type="email" placeholder="you@company.com" autocomplete="email">
+                  <button class="btn btn-primary" type="submit">Subscribe</button>
+                </form>
+              </div>
+              <pre class="code-sample"><code>&lt;div class="newsletter"&gt;
+  &lt;p class="text-body"&gt;Release notes, once a fortnight. No other mail.&lt;/p&gt;
+  &lt;form class="newsletter-form"&gt;
+    &lt;label class="sr-only" for="release-mail"&gt;Email address&lt;/label&gt;
+    &lt;input class="input" id="release-mail" type="email" placeholder="you@company.com" autocomplete="email"&gt;
+    &lt;button class="btn btn-primary" type="submit"&gt;Subscribe&lt;/button&gt;
+  &lt;/form&gt;
 &lt;/div&gt;</code></pre>
             </div>
           </article>
@@ -2492,7 +3208,8 @@
                 <code class="inline-code">.flex-col</code> <code class="inline-code">.flex-wrap</code> flex direction and wrapping<br>
                 <code class="inline-code">.items-start</code> <code class="inline-code">.items-center</code> <code class="inline-code">.items-end</code> cross-axis alignment<br>
                 <code class="inline-code">.justify-start</code> <code class="inline-code">.justify-center</code> <code class="inline-code">.justify-end</code> <code class="inline-code">.justify-between</code> main-axis alignment<br>
-                <code class="inline-code">.relative</code> <code class="inline-code">.absolute</code> <code class="inline-code">.fixed</code> <code class="inline-code">.sticky</code> positioning
+                <code class="inline-code">.relative</code> <code class="inline-code">.absolute</code> <code class="inline-code">.fixed</code> <code class="inline-code">.sticky</code> positioning<br>
+                <code class="inline-code">.spacer</code> push the next flex child to the far end
               </p>
             </div>
             <div class="component-demo">
@@ -2614,7 +3331,8 @@
                 <code class="inline-code">.text-left</code> <code class="inline-code">.text-center</code> <code class="inline-code">.text-right</code> alignment<br>
                 <code class="inline-code">.text-accent</code> the active accent<br>
                 <code class="inline-code">.text-success</code> <code class="inline-code">.text-warning</code> <code class="inline-code">.text-danger</code> <code class="inline-code">.text-info</code> semantic state colours<br>
-                <code class="inline-code">.truncate</code> clip to one line with an ellipsis
+                <code class="inline-code">.truncate</code> clip to one line with an ellipsis<br>
+                <code class="inline-code">.clamp-2</code> <code class="inline-code">.clamp-3</code> clip to that many lines
               </p>
             </div>
             <div class="component-demo">

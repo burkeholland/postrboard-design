@@ -1,0 +1,17 @@
+<!--
+name: toast-region
+title: Toast region
+category: feedback
+description: The fixed corner container that stacks toasts.
+use: One per page. Put every toast in it so they queue instead of overlapping.
+avoid: Toasting an error a person must act on. A toast leaves. Use an alert or keep the error beside the control.
+note: aria-live="polite" announces new toasts without cutting off the current sentence.
+requires: toast
+preview: stage
+-->
+<div class="toast-region" role="status" aria-live="polite">
+  <div class="toast">
+    <svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="10"/></svg>
+    <div><strong class="toast-title">Build queued</strong><p class="toast-body">Revision 4f2c1ab is waiting for a runner.</p></div>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+<!--
+name: figure
+title: Figure
+category: content
+description: Media with a caption underneath.
+use: A diagram or screenshot that needs a sentence to explain what a person is looking at.
+avoid: A caption that repeats the alt text. The alt text describes it; the caption says why it matters.
+-->
+<figure class="figure">
+  <div class="frame">
+    <img src="/media/pipeline.png" alt="A pipeline with build, test, and deploy stages">
+  </div>
+  <figcaption class="figure-caption">Each stage runs on the merge commit, not the branch tip.</figcaption>
+</figure>

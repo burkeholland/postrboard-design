@@ -1,0 +1,19 @@
+<!--
+name: hover-card
+title: Hover card
+category: overlays
+description: A panel of detail that opens on hover or focus.
+use: Previewing the thing behind a link: a user, a commit, a service. It saves a trip.
+avoid: Putting anything essential or interactive in it. It is unreachable on a touch screen, so the content must be a bonus.
+note: Opens on hover and on focus-within, so keyboard users get it too.
+-->
+<span class="hover-card">
+  <a class="text-accent" href="/services/api-gateway">api-gateway</a>
+  <span class="hover-card-panel">
+    <span class="stack stack-sm">
+      <span class="text-card">api-gateway</span>
+      <span class="text-meta">Owned by Platform. Last deployed 2 hours ago.</span>
+      <span class="badge badge-success">Healthy</span>
+    </span>
+  </span>
+</span>

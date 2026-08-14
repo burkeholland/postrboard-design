@@ -36,7 +36,19 @@ const PREVIEWS = {
   combobox: 'demo-combobox',
   fab: 'demo-fab-stage',
   frame: 'demo-frame',
+  stage: 'demo-stage',
 };
+
+/** Stand-in for a media path, so a docs demo never renders a broken image. */
+const PLACEHOLDER_MEDIA =
+  'data:image/svg+xml;utf8,' +
+  encodeURIComponent(
+    '<svg xmlns="http://www.w3.org/2000/svg" width="640" height="360">' +
+    '<rect width="640" height="360" fill="%23e9edf1"/>' +
+    '<path d="M0 360 240 170l120 90 90-70 190 170z" fill="%23cdd5dd"/>' +
+    '<circle cx="470" cy="96" r="40" fill="%23dbe2e8"/>' +
+    '</svg>'
+  ).replace(/%2523/g, '%23');
 
 const REQUIRED = ['name', 'title', 'category', 'description', 'use', 'avoid'];
 const OPTIONAL = ['requires', 'note', 'preview', 'variants'];
@@ -168,6 +180,8 @@ function toPreview(item) {
   html = html.replace(/\bname="([^"]+)"/g, (all, value) => `name="${item.name}-${value}"`);
   // Registry markup uses realistic paths. In the docs they would leave the page.
   html = html.replace(/\bhref="\/[^"]*"/g, 'href="#components"');
+  // Likewise for media: the sample keeps the honest path, the demo shows a stand-in.
+  html = html.replace(/\bsrc="\/[^"]*"/g, `src="${PLACEHOLDER_MEDIA}"`);
   return html;
 }
 

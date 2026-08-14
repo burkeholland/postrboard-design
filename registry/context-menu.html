@@ -1,0 +1,26 @@
+<!--
+name: context-menu
+title: Context menu
+category: overlays
+description: A small menu of actions for one object.
+use: Row actions, right-click menus, and overflow menus where the actions belong to a specific item.
+avoid: Hiding the primary action in here. A menu is for the secondary and the rare.
+note: Position it and handle Escape, arrow keys, and outside clicks in application code.
+variants: is-danger = a destructive item, in the danger colour
+-->
+<div class="context-menu" role="menu" aria-label="Deploy actions">
+  <button class="context-menu-item" type="button" role="menuitem">
+    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 19V5"/><path d="m5 12 7-7 7 7"/></svg>
+    Promote to production
+  </button>
+  <button class="context-menu-item" type="button" role="menuitem">
+    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>
+    Roll back
+    <kbd>R</kbd>
+  </button>
+  <hr class="context-menu-separator">
+  <button class="context-menu-item is-danger" type="button" role="menuitem">
+    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M19 6v14H5V6"/></svg>
+    Delete build
+  </button>
+</div>

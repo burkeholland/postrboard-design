@@ -1,0 +1,18 @@
+<!--
+name: scroll-area
+title: Scroll area
+category: layout
+description: A bounded region that scrolls on its own, with a thin scrollbar.
+use: A long list inside a panel, where the page itself should not grow: log lines, results, a picker.
+avoid: Nesting one inside another scrolling region. Two scrollbars in one place is a trap.
+-->
+<div class="scroll-area">
+  <ul class="list-group">
+    <li class="list-item"><span class="list-title">api-gateway</span><span class="list-meta">2h ago</span></li>
+    <li class="list-item"><span class="list-title">billing-worker</span><span class="list-meta">5h ago</span></li>
+    <li class="list-item"><span class="list-title">webhook-relay</span><span class="list-meta">yesterday</span></li>
+    <li class="list-item"><span class="list-title">search-indexer</span><span class="list-meta">2d ago</span></li>
+    <li class="list-item"><span class="list-title">image-resizer</span><span class="list-meta">4d ago</span></li>
+    <li class="list-item"><span class="list-title">audit-log</span><span class="list-meta">last week</span></li>
+  </ul>
+</div>

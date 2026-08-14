@@ -15,6 +15,20 @@
       "html": "<details class=\"accordion\">\n  <summary>What do I still have to build in JavaScript?</summary>\n  <div class=\"accordion-body\">Focus trapping, closing on Escape, arrow-key navigation, tracking which item is selected, and screen-reader announcements. The CSS only styles these components.</div>\n</details>"
     },
     {
+      "name": "alert-dialog",
+      "title": "Alert dialog",
+      "category": "overlays",
+      "description": "A modal that asks a person to confirm something they cannot undo.",
+      "use": "Deleting, revoking, or anything irreversible. Name the object in the button, not just \"Confirm\".",
+      "avoid": "Using it for a save or a routine action. If it can be undone, do it and offer an undo instead.",
+      "variants": [],
+      "requires": [
+        "modal"
+      ],
+      "note": "An alert dialog takes role=\"alertdialog\". Escape should cancel, never confirm. Focus trapping is yours to build.",
+      "html": "<a href=\"#revoke-key\" class=\"btn btn-danger\">Revoke key</a>\n<div class=\"modal modal-alert\" id=\"revoke-key\" role=\"alertdialog\" aria-labelledby=\"revoke-title\">\n  <div class=\"modal-card\">\n    <div class=\"modal-head\">\n      <span class=\"modal-icon\"><svg class=\"icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"M12 9v4\"/><path d=\"M12 17h.01\"/><path d=\"M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z\"/></svg></span>\n      <h3 class=\"modal-title\" id=\"revoke-title\">Revoke this key?</h3>\n    </div>\n    <div class=\"modal-body\">Any service using <code class=\"inline-code\">deploy-bot-prod</code> stops authenticating straight away. This cannot be undone.</div>\n    <div class=\"modal-actions\"><a class=\"btn btn-ghost\" href=\"#components\">Keep the key</a><button class=\"btn btn-danger\" type=\"button\">Revoke the key</button></div>\n  </div>\n</div>"
+    },
+    {
       "name": "alert",
       "title": "Alert",
       "category": "feedback",
@@ -37,6 +51,53 @@
         "sidebar-nav"
       ],
       "html": "<div class=\"grid-sidebar is-app-shell\">\n  <aside class=\"app-sidebar\">\n    <a class=\"brand\" href=\"/\"><span class=\"brand-mark\">R/</span> relay</a>\n    <nav class=\"sidebar-nav\" aria-label=\"Sections\">\n      <a href=\"/\" aria-current=\"page\">Overview</a>\n      <a href=\"/deploys\">Deploys</a>\n    </nav>\n  </aside>\n  <main class=\"app-main\" id=\"main\">\n    <h1 class=\"page-title\">Overview</h1>\n  </main>\n</div>"
+    },
+    {
+      "name": "aspect-ratio",
+      "title": "Aspect ratio",
+      "category": "content",
+      "description": "A box that holds its shape while the media inside fills it.",
+      "use": "Any image, video, or map that must not change the page height as it loads.",
+      "avoid": "Wrapping text in it. Text should set its own height.",
+      "variants": [
+        {
+          "classes": [
+            "aspect-16-9",
+            "aspect-4-3",
+            "aspect-1-1"
+          ],
+          "description": "the shape of the box"
+        }
+      ],
+      "requires": [],
+      "note": "The default shape is 16 by 9.",
+      "html": "<div class=\"aspect aspect-4-3\">\n  <img src=\"/media/deploy-graph.png\" alt=\"Deploy frequency over the last 30 days\">\n</div>"
+    },
+    {
+      "name": "auth-card",
+      "title": "Auth card",
+      "category": "forms",
+      "description": "A narrow card holding a sign-in form and its secondary links.",
+      "use": "Sign in, sign up, and reset, on a page with nothing else competing for attention.",
+      "avoid": "A marketing panel beside it. The person is here to get in.",
+      "variants": [],
+      "requires": [
+        "form"
+      ],
+      "html": "<div class=\"auth-card\">\n  <div class=\"stack\">\n    <div class=\"stack stack-sm\">\n      <h1 class=\"text-card\">Sign in</h1>\n      <p class=\"text-body text-muted\">Use the account your organisation issued.</p>\n    </div>\n    <form class=\"form-stack\">\n      <div class=\"form-field\">\n        <label class=\"form-label\" for=\"auth-mail\">Email</label>\n        <input class=\"input\" id=\"auth-mail\" type=\"email\" autocomplete=\"username\">\n      </div>\n      <div class=\"form-field\">\n        <label class=\"form-label\" for=\"auth-pass\">Password</label>\n        <input class=\"input\" id=\"auth-pass\" type=\"password\" autocomplete=\"current-password\">\n      </div>\n      <button class=\"btn btn-primary\" type=\"submit\">Sign in</button>\n    </form>\n    <div class=\"auth-links\">\n      <a href=\"/reset\">Forgot password</a>\n      <a href=\"/sso\">Use single sign-on</a>\n    </div>\n  </div>\n</div>"
+    },
+    {
+      "name": "avatar-group",
+      "title": "Avatar group",
+      "category": "data",
+      "description": "Overlapping avatars for the people on a thing.",
+      "use": "Showing who is assigned, watching, or reviewing, when the count is small.",
+      "avoid": "More than about five. Past that, show three and a count.",
+      "variants": [],
+      "requires": [
+        "avatar"
+      ],
+      "html": "<div class=\"cluster\">\n  <div class=\"avatar-group\">\n    <span class=\"avatar avatar-md\">AR</span>\n    <span class=\"avatar avatar-md\">MK</span>\n    <span class=\"avatar avatar-md\">JT</span>\n  </div>\n  <span class=\"text-meta\">and 4 more</span>\n</div>"
     },
     {
       "name": "avatar",
@@ -151,6 +212,37 @@
       "html": "<div class=\"cluster\">\n  <button class=\"btn btn-primary\" type=\"button\">Save changes</button>\n  <button class=\"btn btn-secondary\" type=\"button\">Preview</button>\n  <button class=\"btn btn-ghost\" type=\"button\">Cancel</button>\n  <button class=\"btn btn-danger\" type=\"button\">Delete</button>\n  <button class=\"btn btn-primary\" type=\"button\" aria-busy=\"true\">Saving</button>\n  <button class=\"btn btn-secondary\" type=\"button\" disabled>Unavailable</button>\n</div>"
     },
     {
+      "name": "calendar",
+      "title": "Calendar",
+      "category": "data",
+      "description": "A month grid with today, selection, and adjacent-month days.",
+      "use": "Showing a month in place, when the dates carry information a person must see: bookings, incidents, or scheduled runs.",
+      "avoid": "Using it as a date field. A date input is smaller, faster, and already accessible.",
+      "variants": [
+        {
+          "classes": [
+            "is-today"
+          ],
+          "description": "a ring on the current day"
+        },
+        {
+          "classes": [
+            "is-selected"
+          ],
+          "description": "the chosen day"
+        },
+        {
+          "classes": [
+            "is-outside"
+          ],
+          "description": "a day from the neighbouring month"
+        }
+      ],
+      "requires": [],
+      "note": "The grid is presentation. Month changes and selection need JavaScript.",
+      "html": "<div class=\"calendar\">\n  <div class=\"calendar-head\">\n    <button class=\"icon-button\" type=\"button\" aria-label=\"Previous month\"><svg class=\"icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"m15 18-6-6 6-6\"/></svg></button>\n    <span class=\"calendar-title\">June 2026</span>\n    <button class=\"icon-button\" type=\"button\" aria-label=\"Next month\"><svg class=\"icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"m9 18 6-6-6-6\"/></svg></button>\n  </div>\n  <div class=\"calendar-grid\">\n    <span class=\"calendar-dow\">Mo</span><span class=\"calendar-dow\">Tu</span><span class=\"calendar-dow\">We</span><span class=\"calendar-dow\">Th</span><span class=\"calendar-dow\">Fr</span><span class=\"calendar-dow\">Sa</span><span class=\"calendar-dow\">Su</span>\n    <button class=\"calendar-day is-outside\" type=\"button\">31</button>\n    <button class=\"calendar-day\" type=\"button\">1</button>\n    <button class=\"calendar-day\" type=\"button\">2</button>\n    <button class=\"calendar-day\" type=\"button\">3</button>\n    <button class=\"calendar-day\" type=\"button\">4</button>\n    <button class=\"calendar-day\" type=\"button\">5</button>\n    <button class=\"calendar-day\" type=\"button\">6</button>\n    <button class=\"calendar-day\" type=\"button\">7</button>\n    <button class=\"calendar-day\" type=\"button\">8</button>\n    <button class=\"calendar-day is-today\" type=\"button\" aria-current=\"date\">9</button>\n    <button class=\"calendar-day\" type=\"button\" aria-selected=\"true\">10</button>\n    <button class=\"calendar-day\" type=\"button\">11</button>\n    <button class=\"calendar-day\" type=\"button\">12</button>\n    <button class=\"calendar-day\" type=\"button\">13</button>\n  </div>\n</div>"
+    },
+    {
       "name": "card",
       "title": "Card",
       "category": "surfaces",
@@ -167,6 +259,25 @@
       ],
       "requires": [],
       "html": "<article class=\"card\">\n  <div class=\"card-header\"><h3 class=\"card-title\">api-gateway</h3></div>\n  <div class=\"card-content\"><p class=\"card-body\">Three replicas healthy in us-east-1.</p></div>\n  <div class=\"card-footer\"><button class=\"btn btn-secondary btn-sm\" type=\"button\">Open</button></div>\n</article>"
+    },
+    {
+      "name": "chart",
+      "title": "Bar chart",
+      "category": "data",
+      "description": "Bars sized by a --value custom property, from 0 to 100.",
+      "use": "A small comparison that sits beside prose or inside a panel, where a charting library would be too much.",
+      "avoid": "Inventing the numbers. If you have no data, say so with an empty state. A chart of made-up bars is the clearest AI tell there is.",
+      "variants": [
+        {
+          "classes": [
+            "is-active"
+          ],
+          "description": "the highlighted bar, in the solid accent"
+        }
+      ],
+      "requires": [],
+      "note": "Set --value per bar as a percentage of the tallest value. For real analysis, use a charting library and keep these tokens.",
+      "html": "<div class=\"panel\">\n  <div class=\"panel-content stack stack-sm\">\n    <p class=\"text-meta\">Build minutes by day. Connect a data source to populate this chart.</p>\n    <div class=\"chart\">\n      <span class=\"chart-bar\" style=\"--value: 42\">Mon</span>\n      <span class=\"chart-bar\" style=\"--value: 61\">Tue</span>\n      <span class=\"chart-bar\" style=\"--value: 38\">Wed</span>\n      <span class=\"chart-bar is-active\" style=\"--value: 88\">Thu</span>\n      <span class=\"chart-bar\" style=\"--value: 54\">Fri</span>\n    </div>\n  </div>\n</div>"
     },
     {
       "name": "checkbox",
@@ -244,6 +355,25 @@
       "html": "<div class=\"container\">\n  <p class=\"text-body\">Default width, 1200px. Use container-sm for prose and container-lg for dense tools.</p>\n</div>"
     },
     {
+      "name": "context-menu",
+      "title": "Context menu",
+      "category": "overlays",
+      "description": "A small menu of actions for one object.",
+      "use": "Row actions, right-click menus, and overflow menus where the actions belong to a specific item.",
+      "avoid": "Hiding the primary action in here. A menu is for the secondary and the rare.",
+      "variants": [
+        {
+          "classes": [
+            "is-danger"
+          ],
+          "description": "a destructive item, in the danger colour"
+        }
+      ],
+      "requires": [],
+      "note": "Position it and handle Escape, arrow keys, and outside clicks in application code.",
+      "html": "<div class=\"context-menu\" role=\"menu\" aria-label=\"Deploy actions\">\n  <button class=\"context-menu-item\" type=\"button\" role=\"menuitem\">\n    <svg class=\"icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"M12 19V5\"/><path d=\"m5 12 7-7 7 7\"/></svg>\n    Promote to production\n  </button>\n  <button class=\"context-menu-item\" type=\"button\" role=\"menuitem\">\n    <svg class=\"icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"M3 12a9 9 0 1 0 3-6.7L3 8\"/><path d=\"M3 3v5h5\"/></svg>\n    Roll back\n    <kbd>R</kbd>\n  </button>\n  <hr class=\"context-menu-separator\">\n  <button class=\"context-menu-item is-danger\" type=\"button\" role=\"menuitem\">\n    <svg class=\"icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"M3 6h18\"/><path d=\"M8 6V4h8v2\"/><path d=\"M19 6v14H5V6\"/></svg>\n    Delete build\n  </button>\n</div>"
+    },
+    {
       "name": "cta-band",
       "title": "Call to action band",
       "category": "marketing",
@@ -275,6 +405,17 @@
         "badge"
       ],
       "html": "<div class=\"table-wrap\">\n  <table class=\"data-table is-tight\">\n    <caption class=\"sr-only\">Deployment revisions</caption>\n    <thead><tr><th>Service</th><th>Revision</th><th>Status</th><th class=\"is-numeric\">Duration</th></tr></thead>\n    <tbody>\n      <tr><td>api-gateway</td><td><code>6f82ae1</code></td><td><span class=\"badge badge-status\" data-state=\"success\">Ready</span></td><td class=\"is-numeric\">1m 18s</td></tr>\n      <tr><td>worker-jobs</td><td><code>d1c904b</code></td><td><span class=\"badge badge-status\" data-state=\"info\">Building</span></td><td class=\"is-numeric\">0m 47s</td></tr>\n    </tbody>\n  </table>\n</div>"
+    },
+    {
+      "name": "date-picker",
+      "title": "Date picker",
+      "category": "forms",
+      "description": "A native date input in a framed field with a leading icon.",
+      "use": "Picking a single date. The native control brings the calendar, the keyboard support, and the locale format for free.",
+      "avoid": "Building a custom popup calendar for a plain date field. Use the calendar component only when you must render a month in place.",
+      "variants": [],
+      "requires": [],
+      "html": "<label class=\"picker-field\" for=\"cutover-date\">\n  <svg class=\"icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"M8 2v4\"/><path d=\"M16 2v4\"/><rect x=\"3\" y=\"4\" width=\"18\" height=\"18\" rx=\"2\"/><path d=\"M3 10h18\"/></svg>\n  <input class=\"picker-input\" id=\"cutover-date\" type=\"date\" value=\"2026-06-10\">\n</label>"
     },
     {
       "name": "description-list",
@@ -357,6 +498,19 @@
       "html": "<button class=\"fab\" type=\"button\" aria-label=\"Create deployment\">\n  <svg class=\"icon\" aria-hidden=\"true\" viewBox=\"0 0 24 24\"><path d=\"M12 5v14M5 12h14\"/></svg>\n</button>"
     },
     {
+      "name": "faq",
+      "title": "FAQ",
+      "category": "marketing",
+      "description": "A stack of accordions for real, repeated questions.",
+      "use": "Questions your support channel actually receives. Write the question the way a person asks it.",
+      "avoid": "Inventing questions to fill a section, and answering with a sales line. If the answer is \"yes, and it is great\", delete the entry.",
+      "variants": [],
+      "requires": [
+        "accordion"
+      ],
+      "html": "<div class=\"faq\">\n  <details class=\"accordion\">\n    <summary>Does a rollback re-run the build?</summary>\n    <div class=\"accordion-body\">No. A rollback repoints traffic at an artefact that already passed. It takes about four seconds.</div>\n  </details>\n  <details class=\"accordion\">\n    <summary>Can two people deploy at once?</summary>\n    <div class=\"accordion-body\">The queue is per environment. The second deploy waits, and the person who started it sees who is ahead of them.</div>\n  </details>\n  <details class=\"accordion\">\n    <summary>What happens to in-flight requests?</summary>\n    <div class=\"accordion-body\">The old revision keeps serving until it drains, up to 30 seconds. You can raise the limit per service.</div>\n  </details>\n</div>"
+    },
+    {
       "name": "feature-card",
       "title": "Feature card",
       "category": "marketing",
@@ -373,6 +527,17 @@
       ],
       "requires": [],
       "html": "<div class=\"feature-card\">\n  <svg class=\"icon feature-icon\" aria-hidden=\"true\" viewBox=\"0 0 24 24\"><path d=\"M12 19V5M5 12l7-7 7 7\"/></svg>\n  <h3 class=\"feature-title\">Promote by revision</h3>\n  <p class=\"feature-body\">Pick any revision that passed checks and move traffic to it.</p>\n</div>"
+    },
+    {
+      "name": "figure",
+      "title": "Figure",
+      "category": "content",
+      "description": "Media with a caption underneath.",
+      "use": "A diagram or screenshot that needs a sentence to explain what a person is looking at.",
+      "avoid": "A caption that repeats the alt text. The alt text describes it; the caption says why it matters.",
+      "variants": [],
+      "requires": [],
+      "html": "<figure class=\"figure\">\n  <div class=\"frame\">\n    <img src=\"/media/pipeline.png\" alt=\"A pipeline with build, test, and deploy stages\">\n  </div>\n  <figcaption class=\"figure-caption\">Each stage runs on the merge commit, not the branch tip.</figcaption>\n</figure>"
     },
     {
       "name": "floating-label",
@@ -410,6 +575,17 @@
         "switch"
       ],
       "html": "<form class=\"form-stack\">\n  <div class=\"form-field\">\n    <label class=\"form-label\" for=\"project-name\">Project name</label>\n    <input class=\"input w-full\" id=\"project-name\" value=\"release-monitor\">\n    <p class=\"form-helper\">Used in URLs and deployment labels.</p>\n  </div>\n  <div class=\"form-field\">\n    <label class=\"form-label\" for=\"region\">Region</label>\n    <select class=\"select\" id=\"region\"><option>us-east-1</option><option>eu-west-1</option></select>\n  </div>\n  <div class=\"form-field\">\n    <label class=\"form-label\" for=\"invalid-key\">API key</label>\n    <input class=\"input w-full\" id=\"invalid-key\" aria-invalid=\"true\" aria-describedby=\"key-error\" value=\"expired-key\">\n    <p class=\"form-message error\" id=\"key-error\">This key expired. Create a new key and try again.</p>\n  </div>\n  <label class=\"switch\"><input type=\"checkbox\" checked><span class=\"switch-track\"></span>Pause on failed checks</label>\n</form>"
+    },
+    {
+      "name": "frame",
+      "title": "Frame",
+      "category": "content",
+      "description": "A bordered, rounded, clipping container for an image or a screenshot.",
+      "use": "Giving a screenshot an edge, so a light interface does not bleed into a light page.",
+      "avoid": "Framing an illustration that already has its own edge.",
+      "variants": [],
+      "requires": [],
+      "html": "<div class=\"frame\">\n  <img src=\"/media/console.png\" alt=\"The deploy console showing three queued builds\">\n</div>"
     },
     {
       "name": "grid-asymmetric",
@@ -523,6 +699,18 @@
       "variants": [],
       "requires": [],
       "html": "<div class=\"grid-thirds\">\n  <div class=\"panel\"><div class=\"panel-content\">One</div></div>\n  <div class=\"panel\"><div class=\"panel-content\">Two</div></div>\n  <div class=\"panel\"><div class=\"panel-content\">Three</div></div>\n</div>"
+    },
+    {
+      "name": "hover-card",
+      "title": "Hover card",
+      "category": "overlays",
+      "description": "A panel of detail that opens on hover or focus.",
+      "use": "Previewing the thing behind a link: a user, a commit, a service. It saves a trip.",
+      "avoid": "Putting anything essential or interactive in it. It is unreachable on a touch screen, so the content must be a bonus.",
+      "variants": [],
+      "requires": [],
+      "note": "Opens on hover and on focus-within, so keyboard users get it too.",
+      "html": "<span class=\"hover-card\">\n  <a class=\"text-accent\" href=\"/services/api-gateway\">api-gateway</a>\n  <span class=\"hover-card-panel\">\n    <span class=\"stack stack-sm\">\n      <span class=\"text-card\">api-gateway</span>\n      <span class=\"text-meta\">Owned by Platform. Last deployed 2 hours ago.</span>\n      <span class=\"badge badge-success\">Healthy</span>\n    </span>\n  </span>\n</span>"
     },
     {
       "name": "icon-button",
@@ -643,6 +831,30 @@
       "html": "<div class=\"list-group\">\n  <div class=\"list-item\"><div class=\"list-item-main\"><span class=\"list-title\">api-gateway</span><span class=\"list-meta\">v2.8.1 &middot; 3 replicas</span></div><span class=\"list-item-value\"><span class=\"badge badge-status\" data-state=\"success\">Healthy</span></span></div>\n  <div class=\"list-item\"><div class=\"list-item-main\"><span class=\"list-title\">worker-jobs</span><span class=\"list-meta\">v1.14.0 &middot; 6 replicas</span></div><span class=\"list-item-value\"><span class=\"badge badge-status\" data-state=\"info\">Deploying</span></span></div>\n</div>"
     },
     {
+      "name": "logo-cloud",
+      "title": "Logo cloud",
+      "category": "marketing",
+      "description": "A labelled row of integration or customer slots.",
+      "use": "Naming the systems you connect to, when those names are real and you may show them.",
+      "avoid": "Filling it with invented companies or grey blobs. The dashed slots are honest placeholders. Leave them until you have permission to use a real mark.",
+      "variants": [],
+      "requires": [],
+      "html": "<div class=\"logo-cloud\">\n  <p class=\"logo-cloud-label\">Connects to</p>\n  <div class=\"logo-cloud-row\">\n    <span class=\"logo-cloud-item\">Integration name</span>\n    <span class=\"logo-cloud-item\">Integration name</span>\n    <span class=\"logo-cloud-item\">Integration name</span>\n    <span class=\"logo-cloud-item\">Integration name</span>\n  </div>\n</div>"
+    },
+    {
+      "name": "media-embed",
+      "title": "Media embed",
+      "category": "content",
+      "description": "A fixed-shape frame with a play control over it.",
+      "use": "A video you load only after a person asks for it, which keeps the third-party script off the first paint.",
+      "avoid": "Autoplay with sound. Also avoid a play button that does nothing; wire it up or use a plain image.",
+      "variants": [],
+      "requires": [
+        "aspect-ratio"
+      ],
+      "html": "<div class=\"aspect media-embed\">\n  <img src=\"/media/walkthrough-poster.png\" alt=\"\">\n  <button class=\"media-play\" type=\"button\" aria-label=\"Play the walkthrough\">\n    <svg class=\"icon\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M8 5v14l11-7z\"/></svg>\n  </button>\n</div>"
+    },
+    {
       "name": "modal",
       "title": "Modal",
       "category": "overlays",
@@ -655,6 +867,18 @@
       ],
       "note": "Open it with <code>:target</code> or a checkbox. Focus trapping and Escape are yours to build.",
       "html": "<a href=\"#confirm-rollback\" class=\"btn btn-danger\">Roll back</a>\n<div class=\"modal\" id=\"confirm-rollback\">\n  <div class=\"modal-card\">\n    <div class=\"modal-head\"><h3 class=\"modal-title\">Confirm rollback</h3><button class=\"close-button\" type=\"button\" aria-label=\"Close\"><svg class=\"icon\" aria-hidden=\"true\" viewBox=\"0 0 24 24\"><path d=\"M18 6 6 18M6 6l12 12\"/></svg></button></div>\n    <div class=\"modal-body\">This reverts api-gateway to v2.8.0. Active sessions are not affected.</div>\n    <div class=\"modal-actions\"><button class=\"btn btn-ghost\" type=\"button\">Cancel</button><button class=\"btn btn-danger\" type=\"button\">Roll back</button></div>\n  </div>\n</div>"
+    },
+    {
+      "name": "nav-rail",
+      "title": "Navigation rail",
+      "category": "navigation",
+      "description": "A narrow vertical strip of icon-and-label destinations.",
+      "use": "An app with a handful of top-level areas, where a full sidebar would waste width.",
+      "avoid": "A rail with icon-only items. An unlabelled icon is a guess. Keep the label, however small.",
+      "variants": [],
+      "requires": [],
+      "note": "Mark the current destination with aria-current=\"page\", or with the is-active class.",
+      "html": "<nav class=\"nav-rail\" aria-label=\"Sections\">\n  <a class=\"nav-rail-item\" href=\"/overview\" aria-current=\"page\">\n    <svg class=\"icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><rect x=\"3\" y=\"3\" width=\"7\" height=\"9\" rx=\"1\"/><rect x=\"14\" y=\"3\" width=\"7\" height=\"5\" rx=\"1\"/><rect x=\"14\" y=\"12\" width=\"7\" height=\"9\" rx=\"1\"/><rect x=\"3\" y=\"16\" width=\"7\" height=\"5\" rx=\"1\"/></svg>\n    Overview\n  </a>\n  <a class=\"nav-rail-item\" href=\"/deploys\">\n    <svg class=\"icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"M12 19V5\"/><path d=\"m5 12 7-7 7 7\"/></svg>\n    Deploys\n  </a>\n  <a class=\"nav-rail-item\" href=\"/logs\">\n    <svg class=\"icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"M4 6h16\"/><path d=\"M4 12h16\"/><path d=\"M4 18h10\"/></svg>\n    Logs\n  </a>\n</nav>"
     },
     {
       "name": "navbar",
@@ -692,6 +916,29 @@
       "requires": [],
       "note": "Pick one surface and keep it. The four below are alternatives, not a set.",
       "html": "<nav class=\"navbar-bordered\" aria-label=\"Main\">\n  <div class=\"nav-inner\">\n    <a class=\"brand\" href=\"/\"><span class=\"brand-mark\">R/</span> relay</a>\n    <div class=\"nav-links\">\n      <a class=\"nav-link\" aria-current=\"page\" href=\"/\">Overview</a>\n      <a class=\"nav-link\" href=\"/deploys\">Deploys</a>\n      <a class=\"nav-link\" href=\"/api\">API</a>\n    </div>\n  </div>\n</nav>"
+    },
+    {
+      "name": "newsletter",
+      "title": "Newsletter form",
+      "category": "marketing",
+      "description": "One field and one button, with a line about what arrives.",
+      "use": "A changelog or release list a person can opt into.",
+      "avoid": "A whole section built around it. This is a footer-sized thing. And say what you send, and how often, before you ask.",
+      "variants": [],
+      "requires": [],
+      "html": "<div class=\"newsletter\">\n  <p class=\"text-body\">Release notes, once a fortnight. No other mail.</p>\n  <form class=\"newsletter-form\">\n    <label class=\"sr-only\" for=\"release-mail\">Email address</label>\n    <input class=\"input\" id=\"release-mail\" type=\"email\" placeholder=\"you@company.com\" autocomplete=\"email\">\n    <button class=\"btn btn-primary\" type=\"submit\">Subscribe</button>\n  </form>\n</div>"
+    },
+    {
+      "name": "otp-input",
+      "title": "One-time code",
+      "category": "forms",
+      "description": "Single-character boxes for a verification code.",
+      "use": "A code sent by mail or an authenticator app, where the length is fixed and known.",
+      "avoid": "Using it for a password or a long token. Split boxes stop working once a person cannot see the whole value.",
+      "variants": [],
+      "requires": [],
+      "note": "The boxes are presentation. Advancing focus on input, and handling a pasted code, needs JavaScript. Set aria-invalid=\"true\" on every box when a code is rejected.",
+      "html": "<div class=\"stack stack-sm\">\n  <div class=\"otp-row\" role=\"group\" aria-label=\"Verification code\">\n    <input class=\"otp-input\" inputmode=\"numeric\" maxlength=\"1\" value=\"4\" aria-label=\"Digit 1\">\n    <input class=\"otp-input\" inputmode=\"numeric\" maxlength=\"1\" value=\"2\" aria-label=\"Digit 2\">\n    <input class=\"otp-input\" inputmode=\"numeric\" maxlength=\"1\" value=\"8\" aria-label=\"Digit 3\">\n    <input class=\"otp-input\" inputmode=\"numeric\" maxlength=\"1\" aria-label=\"Digit 4\">\n    <input class=\"otp-input\" inputmode=\"numeric\" maxlength=\"1\" aria-label=\"Digit 5\">\n    <input class=\"otp-input\" inputmode=\"numeric\" maxlength=\"1\" aria-label=\"Digit 6\">\n  </div>\n  <p class=\"form-helper\">Six characters, sent to the address on the account.</p>\n</div>"
     },
     {
       "name": "page-header",
@@ -821,6 +1068,17 @@
       "html": "<div class=\"range-field\">\n  <div class=\"range-top\"><label class=\"form-label\" for=\"memory\">Memory limit</label><span>70%</span></div>\n  <input class=\"range-input\" id=\"memory\" type=\"range\" min=\"0\" max=\"100\" value=\"70\">\n</div>"
     },
     {
+      "name": "scroll-area",
+      "title": "Scroll area",
+      "category": "layout",
+      "description": "A bounded region that scrolls on its own, with a thin scrollbar.",
+      "use": "A long list inside a panel, where the page itself should not grow: log lines, results, a picker.",
+      "avoid": "Nesting one inside another scrolling region. Two scrollbars in one place is a trap.",
+      "variants": [],
+      "requires": [],
+      "html": "<div class=\"scroll-area\">\n  <ul class=\"list-group\">\n    <li class=\"list-item\"><span class=\"list-title\">api-gateway</span><span class=\"list-meta\">2h ago</span></li>\n    <li class=\"list-item\"><span class=\"list-title\">billing-worker</span><span class=\"list-meta\">5h ago</span></li>\n    <li class=\"list-item\"><span class=\"list-title\">webhook-relay</span><span class=\"list-meta\">yesterday</span></li>\n    <li class=\"list-item\"><span class=\"list-title\">search-indexer</span><span class=\"list-meta\">2d ago</span></li>\n    <li class=\"list-item\"><span class=\"list-title\">image-resizer</span><span class=\"list-meta\">4d ago</span></li>\n    <li class=\"list-item\"><span class=\"list-title\">audit-log</span><span class=\"list-meta\">last week</span></li>\n  </ul>\n</div>"
+    },
+    {
       "name": "section-header",
       "title": "Section header",
       "category": "surfaces",
@@ -870,6 +1128,32 @@
       ],
       "requires": [],
       "html": "<nav class=\"sidebar-nav\" aria-label=\"Sections\">\n  <a href=\"/\" aria-current=\"page\">\n    <svg class=\"icon\" aria-hidden=\"true\" viewBox=\"0 0 24 24\"><path d=\"M3 12h18M3 6h18M3 18h18\"/></svg>\n    Overview\n  </a>\n  <a href=\"/deploys\">\n    <svg class=\"icon\" aria-hidden=\"true\" viewBox=\"0 0 24 24\"><path d=\"M12 19V5M5 12l7-7 7 7\"/></svg>\n    Deploys\n  </a>\n</nav>"
+    },
+    {
+      "name": "skeleton",
+      "title": "Skeleton",
+      "category": "feedback",
+      "description": "Grey blocks in the shape of the content that is loading.",
+      "use": "A first load where you know the shape of what is coming. It reads faster than a spinner because the page does not jump.",
+      "avoid": "Skeletons for an action a person just took. Use a busy state on the control they pressed.",
+      "variants": [],
+      "requires": [],
+      "note": "skeleton-text shortens each following line so it reads as a paragraph. Mark the region aria-busy so it is announced.",
+      "html": "<div class=\"stack stack-sm\" aria-busy=\"true\" aria-label=\"Loading\">\n  <div class=\"skeleton-text\">\n    <div class=\"skeleton\"></div>\n    <div class=\"skeleton\"></div>\n    <div class=\"skeleton\"></div>\n    <div class=\"skeleton\"></div>\n  </div>\n</div>"
+    },
+    {
+      "name": "sortable-table",
+      "title": "Sortable table",
+      "category": "data",
+      "description": "A data table whose headers are buttons that re-sort the rows.",
+      "use": "A table a person will scan by different columns: newest, slowest, largest.",
+      "avoid": "Making every column sortable. Sort the columns people compare, not the ones they read.",
+      "variants": [],
+      "requires": [
+        "data-table"
+      ],
+      "note": "aria-sort goes on the sorted th, and takes \"ascending\" or \"descending\". Sorting itself needs JavaScript.",
+      "html": "<div class=\"table-wrap\">\n  <table class=\"data-table\">\n    <thead>\n      <tr>\n        <th scope=\"col\" class=\"sortable\"><button type=\"button\">Service<svg class=\"sort-indicator\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"m6 15 6 6 6-6\"/><path d=\"m6 9 6-6 6 6\"/></svg></button></th>\n        <th scope=\"col\" class=\"sortable\" aria-sort=\"descending\"><button type=\"button\">Duration<svg class=\"sort-indicator\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"m6 15 6 6 6-6\"/><path d=\"m6 9 6-6 6 6\"/></svg></button></th>\n        <th scope=\"col\">Status</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr><td>image-resizer</td><td class=\"is-numeric\">4m 12s</td><td><span class=\"badge badge-danger\">Failed</span></td></tr>\n      <tr><td>api-gateway</td><td class=\"is-numeric\">1m 48s</td><td><span class=\"badge badge-success\">Passed</span></td></tr>\n      <tr><td>webhook-relay</td><td class=\"is-numeric\">0m 39s</td><td><span class=\"badge badge-success\">Passed</span></td></tr>\n    </tbody>\n  </table>\n</div>"
     },
     {
       "name": "spinner",
@@ -1040,6 +1324,17 @@
       "html": "<div class=\"form-field\">\n  <label class=\"form-label\" for=\"release-notes\">Release notes</label>\n  <textarea class=\"textarea\" id=\"release-notes\" placeholder=\"What changed in this revision?\"></textarea>\n</div>"
     },
     {
+      "name": "time-picker",
+      "title": "Time picker",
+      "category": "forms",
+      "description": "A native time input in the same framed field as the date picker.",
+      "use": "Picking a time of day, usually beside a date picker in a scheduling row.",
+      "avoid": "Using it for a duration. A duration is a number with a unit, not a clock time.",
+      "variants": [],
+      "requires": [],
+      "html": "<label class=\"picker-field\" for=\"cutover-time\">\n  <svg class=\"icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><path d=\"M12 6v6l4 2\"/></svg>\n  <input class=\"picker-input\" id=\"cutover-time\" type=\"time\" value=\"14:30\">\n</label>"
+    },
+    {
       "name": "timeline",
       "title": "Timeline",
       "category": "data",
@@ -1049,6 +1344,20 @@
       "variants": [],
       "requires": [],
       "html": "<div class=\"timeline\">\n  <div class=\"timeline-item\">\n    <div class=\"timeline-dot\"></div>\n    <div class=\"timeline-title\">Deploy started</div>\n    <div class=\"timeline-meta\">14:02:11 UTC</div>\n    <div class=\"timeline-body\">Rolling restart began for api-gateway.</div>\n  </div>\n  <div class=\"timeline-item\">\n    <div class=\"timeline-dot\"></div>\n    <div class=\"timeline-title\">Health checks passed</div>\n    <div class=\"timeline-meta\">14:03:47 UTC</div>\n    <div class=\"timeline-body\">All three replicas reported healthy.</div>\n  </div>\n</div>"
+    },
+    {
+      "name": "toast-region",
+      "title": "Toast region",
+      "category": "feedback",
+      "description": "The fixed corner container that stacks toasts.",
+      "use": "One per page. Put every toast in it so they queue instead of overlapping.",
+      "avoid": "Toasting an error a person must act on. A toast leaves. Use an alert or keep the error beside the control.",
+      "variants": [],
+      "requires": [
+        "toast"
+      ],
+      "note": "aria-live=\"polite\" announces new toasts without cutting off the current sentence.",
+      "html": "<div class=\"toast-region\" role=\"status\" aria-live=\"polite\">\n  <div class=\"toast\">\n    <svg class=\"icon\" aria-hidden=\"true\" viewBox=\"0 0 24 24\"><path d=\"M12 6v6l4 2\"/><circle cx=\"12\" cy=\"12\" r=\"10\"/></svg>\n    <div><strong class=\"toast-title\">Build queued</strong><p class=\"toast-body\">Revision 4f2c1ab is waiting for a runner.</p></div>\n  </div>\n</div>"
     },
     {
       "name": "toast",
@@ -1153,6 +1462,12 @@
             "sticky"
           ],
           "description": "positioning"
+        },
+        {
+          "classes": [
+            "spacer"
+          ],
+          "description": "push the next flex child to the far end"
         }
       ],
       "requires": [],
@@ -1396,6 +1711,13 @@
             "truncate"
           ],
           "description": "clip to one line with an ellipsis"
+        },
+        {
+          "classes": [
+            "clamp-2",
+            "clamp-3"
+          ],
+          "description": "clip to that many lines"
         }
       ],
       "requires": [],

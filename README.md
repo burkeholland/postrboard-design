@@ -84,7 +84,7 @@ Use the built-in classes before you write any CSS of your own.
 </main>
 ```
 
-The framework ships 81 components. Every one of them has ready-made markup in [`components.md`](components.md) — one file, with the exact HTML to copy, when to use each component, and what to avoid. The same content is in [`registry/index.json`](registry/index.json) if you want to read it as data, and rendered live in the [documentation](https://burkeholland.github.io/postrboard-design/).
+The framework ships 103 components. Every one of them has ready-made markup in [`components.md`](components.md) — one file, with the exact HTML to copy, when to use each component, and what to avoid. The same content is in [`registry/index.json`](registry/index.json) if you want to read it as data, and rendered live in the [documentation](https://burkeholland.github.io/postrboard-design/).
 
 Copy the markup as written. The class names are the API. Change the content, not the structure.
 
