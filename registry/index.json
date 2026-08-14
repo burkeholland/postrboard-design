@@ -58,19 +58,27 @@
       "avoid": "Badges as decoration. If it does not encode state or category, drop it.",
       "variants": [
         {
-          "class": "badge-success",
+          "classes": [
+            "badge-success"
+          ],
           "description": "passed or healthy"
         },
         {
-          "class": "badge-warning",
+          "classes": [
+            "badge-warning"
+          ],
           "description": "needs attention"
         },
         {
-          "class": "badge-danger",
+          "classes": [
+            "badge-danger"
+          ],
           "description": "failed or blocked"
         },
         {
-          "class": "badge-info",
+          "classes": [
+            "badge-info"
+          ],
           "description": "in progress or neutral"
         }
       ],
@@ -121,12 +129,22 @@
       "avoid": "Two primary buttons side by side. If both matter equally, neither is primary.",
       "variants": [
         {
-          "class": "btn-lg",
+          "classes": [
+            "btn-lg"
+          ],
           "description": "taller target for a single hero action"
         },
         {
-          "class": "btn-gradient",
+          "classes": [
+            "btn-gradient"
+          ],
           "description": "accent-filled fill"
+        },
+        {
+          "classes": [
+            "is-disabled"
+          ],
+          "description": "disabled look without the disabled attribute, when a real button must stay focusable"
         }
       ],
       "requires": [],
@@ -141,7 +159,9 @@
       "avoid": "New work. Use panel, which is the canonical name.",
       "variants": [
         {
-          "class": "card-interactive",
+          "classes": [
+            "card-interactive"
+          ],
           "description": "hover response, when the whole card is a link"
         }
       ],
@@ -202,15 +222,21 @@
       "avoid": "Nesting containers. The inner one adds a second gutter.",
       "variants": [
         {
-          "class": "container-sm",
+          "classes": [
+            "container-sm"
+          ],
           "description": "720px, the prose measure"
         },
         {
-          "class": "container-lg",
+          "classes": [
+            "container-lg"
+          ],
           "description": "1440px, for dense tools"
         },
         {
-          "class": "section",
+          "classes": [
+            "section"
+          ],
           "description": "vertical rhythm between the major blocks of a page"
         }
       ],
@@ -226,7 +252,9 @@
       "avoid": "Restating the headline in a gradient box. Link to docs, a command, or a trial.",
       "variants": [
         {
-          "class": "btn-gradient",
+          "classes": [
+            "btn-gradient"
+          ],
           "description": "accent-filled button, for the one action that ends a page"
         }
       ],
@@ -337,7 +365,9 @@
       "avoid": "Three of these in a row with an icon on each. That is the single most recognisable AI landing-page tell. Prefer a workflow, a table, or a real artifact.",
       "variants": [
         {
-          "class": "feature-grid",
+          "classes": [
+            "feature-grid"
+          ],
           "description": "three-column wrapper, if you have three capabilities that genuinely differ"
         }
       ],
@@ -390,7 +420,9 @@
       "avoid": "Splitting equal-weight content. Use grid-split.",
       "variants": [
         {
-          "class": "grid-asymmetric-reverse",
+          "classes": [
+            "grid-asymmetric-reverse"
+          ],
           "description": "the narrow column leads"
         }
       ],
@@ -461,7 +493,9 @@
       "avoid": "Three or more children. They wrap into an uneven last row.",
       "variants": [
         {
-          "class": "grid-two",
+          "classes": [
+            "grid-two"
+          ],
           "description": "the old name for this grid, kept working"
         }
       ],
@@ -497,7 +531,14 @@
       "description": "A square control carrying only an icon. Always needs an accessible label.",
       "use": "Repeated row actions and toolbar controls where a text label would crowd the layout.",
       "avoid": "Primary actions. If it matters, give it a word.",
-      "variants": [],
+      "variants": [
+        {
+          "classes": [
+            "subtle"
+          ],
+          "description": "filled instead of outlined, for a dense toolbar"
+        }
+      ],
       "requires": [],
       "html": "<div class=\"cluster\">\n  <button class=\"icon-button\" type=\"button\" aria-label=\"Refresh\">\n    <svg class=\"icon\" aria-hidden=\"true\" viewBox=\"0 0 24 24\"><path d=\"M21 12a9 9 0 1 1-3-6.7M21 4v5h-5\"/></svg>\n  </button>\n  <button class=\"close-button\" type=\"button\" aria-label=\"Close\">\n    <svg class=\"icon\" aria-hidden=\"true\" viewBox=\"0 0 24 24\"><path d=\"M18 6 6 18M6 6l12 12\"/></svg>\n  </button>\n</div>"
     },
@@ -541,7 +582,14 @@
       "description": "Error and success styling for an input, paired with aria-invalid.",
       "use": "After a field has been checked. Always pair colour with a message.",
       "avoid": "Colour alone. Red border with no explanation tells the user nothing.",
-      "variants": [],
+      "variants": [
+        {
+          "classes": [
+            "success"
+          ],
+          "description": "the confirming form-message colour, the counterpart of error"
+        }
+      ],
       "requires": [],
       "html": "<div class=\"cluster\">\n  <input class=\"input input-error\" type=\"text\" value=\"expired-key\" aria-invalid=\"true\" aria-label=\"API key, invalid\">\n  <input class=\"input input-success\" type=\"text\" value=\"a1b2-c3d4-e5f6\" aria-label=\"API key, verified\">\n</div>"
     },
@@ -554,19 +602,27 @@
       "avoid": "Using placeholder text as the label. It disappears on typing and fails screen readers.",
       "variants": [
         {
-          "class": "input-sm",
+          "classes": [
+            "input-sm"
+          ],
           "description": "compact rows and toolbars"
         },
         {
-          "class": "input-lg",
+          "classes": [
+            "input-lg"
+          ],
           "description": "a single prominent field"
         },
         {
-          "class": "is-error",
+          "classes": [
+            "is-error"
+          ],
           "description": "failed validation"
         },
         {
-          "class": "is-success",
+          "classes": [
+            "is-success"
+          ],
           "description": "confirmed value"
         }
       ],
@@ -609,19 +665,27 @@
       "avoid": "Mixing two navbar surfaces on one page.",
       "variants": [
         {
-          "class": "navbar",
+          "classes": [
+            "navbar"
+          ],
           "description": "plain, no surface treatment"
         },
         {
-          "class": "navbar-glass",
+          "classes": [
+            "navbar-glass"
+          ],
           "description": "blurred over content that scrolls under it"
         },
         {
-          "class": "navbar-solid",
+          "classes": [
+            "navbar-solid"
+          ],
           "description": "opaque, for dense apps"
         },
         {
-          "class": "navbar-minimal",
+          "classes": [
+            "navbar-minimal"
+          ],
           "description": "no bar at all, links only, and it does not stick"
         }
       ],
@@ -662,7 +726,9 @@
       "avoid": "Wrapping every idea on the page. Frame the work area, not the prose.",
       "variants": [
         {
-          "class": "panel-interactive",
+          "classes": [
+            "panel-interactive"
+          ],
           "description": "hover response, when the whole panel is a link"
         }
       ],
@@ -692,11 +758,15 @@
       "avoid": "Inventing tiers or prices. If they are unknown, say so instead.",
       "variants": [
         {
-          "class": "pricing-grid",
+          "classes": [
+            "pricing-grid"
+          ],
           "description": "three-column wrapper"
         },
         {
-          "class": "popular",
+          "classes": [
+            "popular"
+          ],
           "description": "marks one plan with the accent border"
         }
       ],
@@ -792,7 +862,9 @@
       "avoid": "Icon-only rails without labels or titles. Nobody can guess the icons.",
       "variants": [
         {
-          "class": "is-rail",
+          "classes": [
+            "is-rail"
+          ],
           "description": "collapsed to icons only"
         }
       ],
@@ -819,11 +891,15 @@
       "avoid": "Hand-written margin utilities between siblings when a stack would do.",
       "variants": [
         {
-          "class": "stack-sm",
+          "classes": [
+            "stack-sm"
+          ],
           "description": "tight rhythm inside a component"
         },
         {
-          "class": "stack-lg",
+          "classes": [
+            "stack-lg"
+          ],
           "description": "section spacing"
         }
       ],
@@ -850,7 +926,9 @@
       "avoid": "Padding counts to two digits, or inventing figures to fill the row.",
       "variants": [
         {
-          "class": "stats-row",
+          "classes": [
+            "stats-row"
+          ],
           "description": "the old name for this strip, kept working"
         }
       ],
@@ -922,8 +1000,18 @@
       "avoid": "Terminal chrome with no real command in it. That is decorative code.",
       "variants": [
         {
-          "class": "terminal-dot",
+          "classes": [
+            "terminal-dot"
+          ],
           "description": "window dots in the title bar, off by default because they are decoration"
+        },
+        {
+          "classes": [
+            "red",
+            "yellow",
+            "green"
+          ],
+          "description": "colours for the window dots, though the framework renders all three grey on purpose"
         }
       ],
       "requires": [],
@@ -993,20 +1081,325 @@
       "avoid": "Two display-sized lines on one screen. The scale only reads as a hierarchy if the top of it is rare.",
       "variants": [
         {
-          "class": "text-mono",
+          "classes": [
+            "text-mono"
+          ],
           "description": "monospace body, for identifiers and log lines"
         },
         {
-          "class": "t-mono-display",
+          "classes": [
+            "t-mono-display"
+          ],
           "description": "a display line set in monospace"
         },
         {
-          "class": "gradient-text",
+          "classes": [
+            "gradient-text"
+          ],
           "description": "tints a run of text with the active accent"
         }
       ],
       "requires": [],
       "html": "<div class=\"stack\">\n  <p class=\"text-display\">Deploy history</p>\n  <h2 class=\"text-h1\">Roll back in one action</h2>\n  <h3 class=\"text-h2\">Section heading</h3>\n  <p class=\"text-card\">Card heading, for titles inside a panel.</p>\n  <p class=\"text-body\">Body copy. Capped at 72 characters so long paragraphs stay readable without a wrapper.</p>\n  <p class=\"text-body text-muted\">Muted body, for a second line that supports the first.</p>\n  <p class=\"text-meta\">METADATA &middot; TIMESTAMPS &middot; LABELS</p>\n</div>"
+    },
+    {
+      "name": "utility-layout",
+      "title": "Layout utilities",
+      "category": "utilities",
+      "description": "Display mode, flex direction, alignment, and positioning.",
+      "use": "Arranging the inside of a component the grids do not cover.",
+      "avoid": "Recreating grid-split or cluster out of flex utilities. Use the named layout instead.",
+      "variants": [
+        {
+          "classes": [
+            "block",
+            "inline-block",
+            "inline-flex",
+            "flex",
+            "grid",
+            "hidden"
+          ],
+          "description": "display mode"
+        },
+        {
+          "classes": [
+            "flex-col",
+            "flex-wrap"
+          ],
+          "description": "flex direction and wrapping"
+        },
+        {
+          "classes": [
+            "items-start",
+            "items-center",
+            "items-end"
+          ],
+          "description": "cross-axis alignment"
+        },
+        {
+          "classes": [
+            "justify-start",
+            "justify-center",
+            "justify-end",
+            "justify-between"
+          ],
+          "description": "main-axis alignment"
+        },
+        {
+          "classes": [
+            "relative",
+            "absolute",
+            "fixed",
+            "sticky"
+          ],
+          "description": "positioning"
+        }
+      ],
+      "requires": [],
+      "html": "<div class=\"flex items-center justify-between\">\n  <span class=\"text-meta\">api-gateway</span>\n  <span class=\"badge badge-success\">Healthy</span>\n</div>"
+    },
+    {
+      "name": "utility-responsive",
+      "title": "Responsive utilities",
+      "category": "utilities",
+      "description": "Show or hide an element at a breakpoint.",
+      "use": "Swapping a dense desktop control for a compact one on a phone.",
+      "avoid": "Hiding a primary action on small screens. Move it or shorten it, but keep it reachable.",
+      "variants": [
+        {
+          "classes": [
+            "hidden"
+          ],
+          "description": "hide at every width"
+        },
+        {
+          "classes": [
+            "hide-sm",
+            "hide-md"
+          ],
+          "description": "hide at that breakpoint and below"
+        },
+        {
+          "classes": [
+            "show-sm",
+            "show-md"
+          ],
+          "description": "show only at that breakpoint and below"
+        }
+      ],
+      "requires": [],
+      "note": "hide-sm and show-sm act at the phone breakpoint; hide-md and show-md act at the tablet breakpoint.",
+      "html": "<div class=\"cluster\">\n  <button class=\"btn btn-primary\" type=\"button\"><span class=\"hide-sm\">Promote revision</span><span class=\"show-sm\">Promote</span></button>\n</div>"
+    },
+    {
+      "name": "utility-sizing",
+      "title": "Sizing utilities",
+      "category": "utilities",
+      "description": "Width caps, full height, flexible growth, and overflow.",
+      "use": "Capping a measure, letting one flex child take the remaining space, or scrolling a bounded region.",
+      "avoid": "max-w on prose that already sits in a container or text-body. Both cap the measure for you.",
+      "variants": [
+        {
+          "classes": [
+            "max-w-sm",
+            "max-w-md",
+            "max-w-lg",
+            "max-w-xl"
+          ],
+          "description": "width caps"
+        },
+        {
+          "classes": [
+            "w-full",
+            "h-full"
+          ],
+          "description": "fill the parent"
+        },
+        {
+          "classes": [
+            "flex-1"
+          ],
+          "description": "take the remaining space in a flex row"
+        },
+        {
+          "classes": [
+            "overflow-auto",
+            "overflow-hidden"
+          ],
+          "description": "scroll or clip a bounded region"
+        }
+      ],
+      "requires": [],
+      "html": "<div class=\"flex gap-3 items-center\">\n  <input class=\"input flex-1\" value=\"api-gateway\" aria-label=\"Service\">\n  <button class=\"btn btn-secondary\" type=\"button\">Find</button>\n</div>"
+    },
+    {
+      "name": "utility-spacing",
+      "title": "Spacing utilities",
+      "category": "utilities",
+      "description": "Margin, padding, and gap on the shared space scale, from 1 to 8.",
+      "use": "A one-off nudge that does not deserve a wrapper. Reach for stack, cluster, or a grid first.",
+      "avoid": "Building a layout out of margin utilities. If you are setting three in a row, you wanted a stack.",
+      "variants": [
+        {
+          "classes": [
+            "mt-1",
+            "mt-2",
+            "mt-3",
+            "mt-4",
+            "mt-5",
+            "mt-6",
+            "mt-7",
+            "mt-8"
+          ],
+          "description": "top margin, step 1 to 8 of the space scale"
+        },
+        {
+          "classes": [
+            "mb-1",
+            "mb-2",
+            "mb-3",
+            "mb-4",
+            "mb-5",
+            "mb-6",
+            "mb-7",
+            "mb-8"
+          ],
+          "description": "bottom margin, same scale"
+        },
+        {
+          "classes": [
+            "p-1",
+            "p-2",
+            "p-3",
+            "p-4",
+            "p-5",
+            "p-6",
+            "p-7",
+            "p-8"
+          ],
+          "description": "padding on all sides"
+        },
+        {
+          "classes": [
+            "px-1",
+            "px-2",
+            "px-3",
+            "px-4",
+            "px-5",
+            "px-6"
+          ],
+          "description": "horizontal padding"
+        },
+        {
+          "classes": [
+            "py-1",
+            "py-2",
+            "py-3",
+            "py-4",
+            "py-5",
+            "py-6"
+          ],
+          "description": "vertical padding"
+        },
+        {
+          "classes": [
+            "gap-1",
+            "gap-2",
+            "gap-3",
+            "gap-4",
+            "gap-5",
+            "gap-6",
+            "gap-7",
+            "gap-8"
+          ],
+          "description": "gap between flex or grid children"
+        },
+        {
+          "classes": [
+            "m-auto",
+            "mx-auto"
+          ],
+          "description": "centre a fixed-width block"
+        }
+      ],
+      "requires": [],
+      "html": "<div class=\"panel\">\n  <div class=\"panel-content\">\n    <p class=\"text-body\">Promoting a revision moves production traffic.</p>\n    <button class=\"btn btn-primary mt-4\" type=\"button\">Promote</button>\n  </div>\n</div>"
+    },
+    {
+      "name": "utility-surface",
+      "title": "Surface utilities",
+      "category": "utilities",
+      "description": "Background, border, and corner rounding that match the framework tokens.",
+      "use": "A small framed region inside a component, using the same tokens as the rest of the page.",
+      "avoid": "Framing everything. Nested borders inside a panel are how a page starts to look like a stack of boxes.",
+      "variants": [
+        {
+          "classes": [
+            "bg-surface",
+            "bg-code"
+          ],
+          "description": "token backgrounds"
+        },
+        {
+          "classes": [
+            "border",
+            "border-top",
+            "border-bottom"
+          ],
+          "description": "token borders"
+        },
+        {
+          "classes": [
+            "rounded",
+            "rounded-lg",
+            "rounded-full"
+          ],
+          "description": "corner radius, from the geometry setting"
+        }
+      ],
+      "requires": [],
+      "html": "<div class=\"bg-code border rounded p-4\">\n  <p class=\"text-mono\">GET /v1/deploys?status=ready</p>\n</div>"
+    },
+    {
+      "name": "utility-text",
+      "title": "Text utilities",
+      "category": "utilities",
+      "description": "Alignment, semantic colour, and truncation for text.",
+      "use": "Right-aligning a numeric column, tinting a status word, or clipping a long identifier to one line.",
+      "avoid": "text-center on body copy. Left-aligned prose is easier to read, and centred blocks are a landing-page habit.",
+      "variants": [
+        {
+          "classes": [
+            "text-left",
+            "text-center",
+            "text-right"
+          ],
+          "description": "alignment"
+        },
+        {
+          "classes": [
+            "text-accent"
+          ],
+          "description": "the active accent"
+        },
+        {
+          "classes": [
+            "text-success",
+            "text-warning",
+            "text-danger",
+            "text-info"
+          ],
+          "description": "semantic state colours"
+        },
+        {
+          "classes": [
+            "truncate"
+          ],
+          "description": "clip to one line with an ellipsis"
+        }
+      ],
+      "requires": [],
+      "html": "<div class=\"stack stack-sm\">\n  <p class=\"text-body\">Build <span class=\"text-success\">passed</span> on <span class=\"text-accent\">main</span>.</p>\n  <p class=\"text-meta truncate\">sha256:9f2c1ab4de7810b3c5e6f4a2d8b90c1e3f5a7b9d2c4e6f8a0b1c3d5e7f9a1b3c</p>\n</div>"
     }
   ]
 }

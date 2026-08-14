@@ -27,6 +27,7 @@ const CATEGORIES = [
   ['overlays', 'Overlays'],
   ['content', 'Content'],
   ['marketing', 'Marketing'],
+  ['utilities', 'Utilities'],
 ];
 
 /** Docs-only wrappers. Registry markup stays clean; the docs page frames it. */
@@ -85,19 +86,22 @@ function parseItem(file) {
 /**
  * `variants: btn-lg = larger target; btn-gradient = accent fill`
  *
- * Variants keep swappable modifier classes discoverable without inflating every
- * demo into a specimen sheet. They are part of the API, so the audit counts a
- * class as covered when it appears here.
+ * Several classes may share one description:
+ * `mt-1 mt-2 mt-3 = top margin, on the space scale`
+ *
+ * Variants keep swappable classes discoverable without inflating every demo
+ * into a specimen sheet. They are part of the API, so the audit counts a class
+ * as covered when it appears here.
  */
 function parseVariants(file, value) {
   if (!value) return [];
   return value.split(';').map((part) => {
     const at = part.indexOf('=');
     if (at === -1) fail(`${file} has a variant without an "=": ${part.trim()}`);
-    const cls = part.slice(0, at).trim();
+    const classes = part.slice(0, at).trim().split(/\s+/).filter(Boolean);
     const description = part.slice(at + 1).trim();
-    if (!cls || !description) fail(`${file} has an incomplete variant: ${part.trim()}`);
-    return { class: cls, description };
+    if (!classes.length || !description) fail(`${file} has an incomplete variant: ${part.trim()}`);
+    return { classes, description };
   });
 }
 
@@ -117,7 +121,9 @@ function assertClassesExist(items) {
     for (const attr of item.html.matchAll(/class="([^"]*)"/g)) {
       for (const cls of attr[1].split(/\s+/).filter(Boolean)) note(cls, item.name);
     }
-    for (const variant of item.variants) note(variant.class, item.name);
+    for (const variant of item.variants) {
+      for (const cls of variant.classes) note(cls, item.name);
+    }
   }
   if (missing.size) {
     const detail = [...missing]
@@ -192,7 +198,7 @@ function renderDocs(items) {
       if (item.variants.length) {
         out.push('              <p class="component-guide"><span class="component-guide-label">Swap</span>');
         out.push(item.variants
-          .map((v) => `                <code class="inline-code">.${v.class}</code> ${v.description}`)
+          .map((v) => `                ${v.classes.map((c) => `<code class="inline-code">.${c}</code>`).join(' ')} ${v.description}`)
           .join('<br>\n'));
         out.push('              </p>');
       }
@@ -229,7 +235,9 @@ function renderMarkdown(items) {
       out.push(item.description, '');
       out.push(`- **Use:** ${item.use}`);
       out.push(`- **Avoid:** ${item.avoid}`);
-      for (const v of item.variants) out.push(`- **Swap \`.${v.class}\`:** ${v.description}`);
+      for (const v of item.variants) {
+        out.push(`- **${v.classes.map((c) => `\`.${c}\``).join(' ')}:** ${v.description}`);
+      }
       if (item.requires.length) out.push(`- **Requires:** ${item.requires.join(', ')}`);
       if (item.note) out.push(`- **Note:** ${item.note}`);
       out.push('', '```html', item.html, '```', '');

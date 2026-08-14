@@ -1,0 +1,13 @@
+<!--
+name: utility-layout
+title: Layout utilities
+category: utilities
+description: Display mode, flex direction, alignment, and positioning.
+use: Arranging the inside of a component the grids do not cover.
+avoid: Recreating grid-split or cluster out of flex utilities. Use the named layout instead.
+variants: block inline-block inline-flex flex grid hidden = display mode; flex-col flex-wrap = flex direction and wrapping; items-start items-center items-end = cross-axis alignment; justify-start justify-center justify-end justify-between = main-axis alignment; relative absolute fixed sticky = positioning
+-->
+<div class="flex items-center justify-between">
+  <span class="text-meta">api-gateway</span>
+  <span class="badge badge-success">Healthy</span>
+</div>

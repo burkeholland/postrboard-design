@@ -107,6 +107,7 @@ Paste components from `components.md`, then replace the content. These are the n
 | Overlays | `modal`, `drawer`, `dropdown`, `tooltip`, `popover`, `command-palette` |
 | Code and content | `terminal`, `inline-code`, `cmd-pill`, `icon`, `quote-block`, `footer` |
 | Marketing | `feature-card`, `pricing-card`, `testimonial-card`, `cta-band` — read their **Avoid** notes first |
+| Utilities | `utility-spacing`, `utility-layout`, `utility-text`, `utility-sizing`, `utility-surface`, `utility-responsive` — one-purpose classes for gaps a component leaves |
 
 Prefer semantic state attributes when supported: `aria-current`, `aria-selected`, `aria-invalid`, `aria-busy`, `aria-disabled`, and `data-state`.
 

@@ -1019,7 +1019,8 @@
               <p class="component-guide"><span class="component-guide-label">Avoid</span> Two primary buttons side by side. If both matter equally, neither is primary.</p>
               <p class="component-guide"><span class="component-guide-label">Swap</span>
                 <code class="inline-code">.btn-lg</code> taller target for a single hero action<br>
-                <code class="inline-code">.btn-gradient</code> accent-filled fill
+                <code class="inline-code">.btn-gradient</code> accent-filled fill<br>
+                <code class="inline-code">.is-disabled</code> disabled look without the disabled attribute, when a real button must stay focusable
               </p>
             </div>
             <div class="component-demo">
@@ -1065,6 +1066,9 @@
               <p class="text-body text-muted">A square control carrying only an icon. Always needs an accessible label.</p>
               <p class="component-guide"><span class="component-guide-label">Use</span> Repeated row actions and toolbar controls where a text label would crowd the layout.</p>
               <p class="component-guide"><span class="component-guide-label">Avoid</span> Primary actions. If it matters, give it a word.</p>
+              <p class="component-guide"><span class="component-guide-label">Swap</span>
+                <code class="inline-code">.subtle</code> filled instead of outlined, for a dense toolbar
+              </p>
             </div>
             <div class="component-demo">
               <div class="cluster">
@@ -1214,6 +1218,9 @@
               <p class="text-body text-muted">Error and success styling for an input, paired with aria-invalid.</p>
               <p class="component-guide"><span class="component-guide-label">Use</span> After a field has been checked. Always pair colour with a message.</p>
               <p class="component-guide"><span class="component-guide-label">Avoid</span> Colour alone. Red border with no explanation tells the user nothing.</p>
+              <p class="component-guide"><span class="component-guide-label">Swap</span>
+                <code class="inline-code">.success</code> the confirming form-message colour, the counterpart of error
+              </p>
             </div>
             <div class="component-demo">
               <div class="cluster">
@@ -2320,7 +2327,8 @@
               <p class="component-guide"><span class="component-guide-label">Use</span> Products driven by a CLI or config. Show a command you could really run.</p>
               <p class="component-guide"><span class="component-guide-label">Avoid</span> Terminal chrome with no real command in it. That is decorative code.</p>
               <p class="component-guide"><span class="component-guide-label">Swap</span>
-                <code class="inline-code">.terminal-dot</code> window dots in the title bar, off by default because they are decoration
+                <code class="inline-code">.terminal-dot</code> window dots in the title bar, off by default because they are decoration<br>
+                <code class="inline-code">.red</code> <code class="inline-code">.yellow</code> <code class="inline-code">.green</code> colours for the window dots, though the framework renders all three grey on purpose
               </p>
             </div>
             <div class="component-demo">
@@ -2467,6 +2475,156 @@
               <pre class="code-sample"><code>&lt;div class="testimonial-card"&gt;
   &lt;p class="testimonial-quote"&gt;Customer quote pending&lt;/p&gt;
   &lt;p class="text-meta"&gt;Name and company pending&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </article>
+        </div>
+        <h3 class="text-h2 component-category">Utilities</h3>
+        <div class="component-list">
+          <article class="component-row" id="c-utility-layout">
+            <div class="component-meta">
+              <h4 class="component-name">utility-layout</h4>
+              <p class="text-body text-muted">Display mode, flex direction, alignment, and positioning.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> Arranging the inside of a component the grids do not cover.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Recreating grid-split or cluster out of flex utilities. Use the named layout instead.</p>
+              <p class="component-guide"><span class="component-guide-label">Swap</span>
+                <code class="inline-code">.block</code> <code class="inline-code">.inline-block</code> <code class="inline-code">.inline-flex</code> <code class="inline-code">.flex</code> <code class="inline-code">.grid</code> <code class="inline-code">.hidden</code> display mode<br>
+                <code class="inline-code">.flex-col</code> <code class="inline-code">.flex-wrap</code> flex direction and wrapping<br>
+                <code class="inline-code">.items-start</code> <code class="inline-code">.items-center</code> <code class="inline-code">.items-end</code> cross-axis alignment<br>
+                <code class="inline-code">.justify-start</code> <code class="inline-code">.justify-center</code> <code class="inline-code">.justify-end</code> <code class="inline-code">.justify-between</code> main-axis alignment<br>
+                <code class="inline-code">.relative</code> <code class="inline-code">.absolute</code> <code class="inline-code">.fixed</code> <code class="inline-code">.sticky</code> positioning
+              </p>
+            </div>
+            <div class="component-demo">
+              <div class="flex items-center justify-between">
+                <span class="text-meta">api-gateway</span>
+                <span class="badge badge-success">Healthy</span>
+              </div>
+              <pre class="code-sample"><code>&lt;div class="flex items-center justify-between"&gt;
+  &lt;span class="text-meta"&gt;api-gateway&lt;/span&gt;
+  &lt;span class="badge badge-success"&gt;Healthy&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </article>
+          <article class="component-row" id="c-utility-responsive">
+            <div class="component-meta">
+              <h4 class="component-name">utility-responsive</h4>
+              <p class="text-body text-muted">Show or hide an element at a breakpoint.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> Swapping a dense desktop control for a compact one on a phone.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Hiding a primary action on small screens. Move it or shorten it, but keep it reachable.</p>
+              <p class="component-guide"><span class="component-guide-label">Swap</span>
+                <code class="inline-code">.hidden</code> hide at every width<br>
+                <code class="inline-code">.hide-sm</code> <code class="inline-code">.hide-md</code> hide at that breakpoint and below<br>
+                <code class="inline-code">.show-sm</code> <code class="inline-code">.show-md</code> show only at that breakpoint and below
+              </p>
+            </div>
+            <div class="component-demo">
+              <div class="cluster">
+                <button class="btn btn-primary" type="button"><span class="hide-sm">Promote revision</span><span class="show-sm">Promote</span></button>
+              </div>
+              <p class="text-meta">hide-sm and show-sm act at the phone breakpoint; hide-md and show-md act at the tablet breakpoint.</p>
+              <pre class="code-sample"><code>&lt;div class="cluster"&gt;
+  &lt;button class="btn btn-primary" type="button"&gt;&lt;span class="hide-sm"&gt;Promote revision&lt;/span&gt;&lt;span class="show-sm"&gt;Promote&lt;/span&gt;&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </article>
+          <article class="component-row" id="c-utility-sizing">
+            <div class="component-meta">
+              <h4 class="component-name">utility-sizing</h4>
+              <p class="text-body text-muted">Width caps, full height, flexible growth, and overflow.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> Capping a measure, letting one flex child take the remaining space, or scrolling a bounded region.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> max-w on prose that already sits in a container or text-body. Both cap the measure for you.</p>
+              <p class="component-guide"><span class="component-guide-label">Swap</span>
+                <code class="inline-code">.max-w-sm</code> <code class="inline-code">.max-w-md</code> <code class="inline-code">.max-w-lg</code> <code class="inline-code">.max-w-xl</code> width caps<br>
+                <code class="inline-code">.w-full</code> <code class="inline-code">.h-full</code> fill the parent<br>
+                <code class="inline-code">.flex-1</code> take the remaining space in a flex row<br>
+                <code class="inline-code">.overflow-auto</code> <code class="inline-code">.overflow-hidden</code> scroll or clip a bounded region
+              </p>
+            </div>
+            <div class="component-demo">
+              <div class="flex gap-3 items-center">
+                <input class="input flex-1" value="api-gateway" aria-label="Service">
+                <button class="btn btn-secondary" type="button">Find</button>
+              </div>
+              <pre class="code-sample"><code>&lt;div class="flex gap-3 items-center"&gt;
+  &lt;input class="input flex-1" value="api-gateway" aria-label="Service"&gt;
+  &lt;button class="btn btn-secondary" type="button"&gt;Find&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </article>
+          <article class="component-row" id="c-utility-spacing">
+            <div class="component-meta">
+              <h4 class="component-name">utility-spacing</h4>
+              <p class="text-body text-muted">Margin, padding, and gap on the shared space scale, from 1 to 8.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> A one-off nudge that does not deserve a wrapper. Reach for stack, cluster, or a grid first.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Building a layout out of margin utilities. If you are setting three in a row, you wanted a stack.</p>
+              <p class="component-guide"><span class="component-guide-label">Swap</span>
+                <code class="inline-code">.mt-1</code> <code class="inline-code">.mt-2</code> <code class="inline-code">.mt-3</code> <code class="inline-code">.mt-4</code> <code class="inline-code">.mt-5</code> <code class="inline-code">.mt-6</code> <code class="inline-code">.mt-7</code> <code class="inline-code">.mt-8</code> top margin, step 1 to 8 of the space scale<br>
+                <code class="inline-code">.mb-1</code> <code class="inline-code">.mb-2</code> <code class="inline-code">.mb-3</code> <code class="inline-code">.mb-4</code> <code class="inline-code">.mb-5</code> <code class="inline-code">.mb-6</code> <code class="inline-code">.mb-7</code> <code class="inline-code">.mb-8</code> bottom margin, same scale<br>
+                <code class="inline-code">.p-1</code> <code class="inline-code">.p-2</code> <code class="inline-code">.p-3</code> <code class="inline-code">.p-4</code> <code class="inline-code">.p-5</code> <code class="inline-code">.p-6</code> <code class="inline-code">.p-7</code> <code class="inline-code">.p-8</code> padding on all sides<br>
+                <code class="inline-code">.px-1</code> <code class="inline-code">.px-2</code> <code class="inline-code">.px-3</code> <code class="inline-code">.px-4</code> <code class="inline-code">.px-5</code> <code class="inline-code">.px-6</code> horizontal padding<br>
+                <code class="inline-code">.py-1</code> <code class="inline-code">.py-2</code> <code class="inline-code">.py-3</code> <code class="inline-code">.py-4</code> <code class="inline-code">.py-5</code> <code class="inline-code">.py-6</code> vertical padding<br>
+                <code class="inline-code">.gap-1</code> <code class="inline-code">.gap-2</code> <code class="inline-code">.gap-3</code> <code class="inline-code">.gap-4</code> <code class="inline-code">.gap-5</code> <code class="inline-code">.gap-6</code> <code class="inline-code">.gap-7</code> <code class="inline-code">.gap-8</code> gap between flex or grid children<br>
+                <code class="inline-code">.m-auto</code> <code class="inline-code">.mx-auto</code> centre a fixed-width block
+              </p>
+            </div>
+            <div class="component-demo">
+              <div class="panel">
+                <div class="panel-content">
+                  <p class="text-body">Promoting a revision moves production traffic.</p>
+                  <button class="btn btn-primary mt-4" type="button">Promote</button>
+                </div>
+              </div>
+              <pre class="code-sample"><code>&lt;div class="panel"&gt;
+  &lt;div class="panel-content"&gt;
+    &lt;p class="text-body"&gt;Promoting a revision moves production traffic.&lt;/p&gt;
+    &lt;button class="btn btn-primary mt-4" type="button"&gt;Promote&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </article>
+          <article class="component-row" id="c-utility-surface">
+            <div class="component-meta">
+              <h4 class="component-name">utility-surface</h4>
+              <p class="text-body text-muted">Background, border, and corner rounding that match the framework tokens.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> A small framed region inside a component, using the same tokens as the rest of the page.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Framing everything. Nested borders inside a panel are how a page starts to look like a stack of boxes.</p>
+              <p class="component-guide"><span class="component-guide-label">Swap</span>
+                <code class="inline-code">.bg-surface</code> <code class="inline-code">.bg-code</code> token backgrounds<br>
+                <code class="inline-code">.border</code> <code class="inline-code">.border-top</code> <code class="inline-code">.border-bottom</code> token borders<br>
+                <code class="inline-code">.rounded</code> <code class="inline-code">.rounded-lg</code> <code class="inline-code">.rounded-full</code> corner radius, from the geometry setting
+              </p>
+            </div>
+            <div class="component-demo">
+              <div class="bg-code border rounded p-4">
+                <p class="text-mono">GET /v1/deploys?status=ready</p>
+              </div>
+              <pre class="code-sample"><code>&lt;div class="bg-code border rounded p-4"&gt;
+  &lt;p class="text-mono"&gt;GET /v1/deploys?status=ready&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </article>
+          <article class="component-row" id="c-utility-text">
+            <div class="component-meta">
+              <h4 class="component-name">utility-text</h4>
+              <p class="text-body text-muted">Alignment, semantic colour, and truncation for text.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> Right-aligning a numeric column, tinting a status word, or clipping a long identifier to one line.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> text-center on body copy. Left-aligned prose is easier to read, and centred blocks are a landing-page habit.</p>
+              <p class="component-guide"><span class="component-guide-label">Swap</span>
+                <code class="inline-code">.text-left</code> <code class="inline-code">.text-center</code> <code class="inline-code">.text-right</code> alignment<br>
+                <code class="inline-code">.text-accent</code> the active accent<br>
+                <code class="inline-code">.text-success</code> <code class="inline-code">.text-warning</code> <code class="inline-code">.text-danger</code> <code class="inline-code">.text-info</code> semantic state colours<br>
+                <code class="inline-code">.truncate</code> clip to one line with an ellipsis
+              </p>
+            </div>
+            <div class="component-demo">
+              <div class="stack stack-sm">
+                <p class="text-body">Build <span class="text-success">passed</span> on <span class="text-accent">main</span>.</p>
+                <p class="text-meta truncate">sha256:9f2c1ab4de7810b3c5e6f4a2d8b90c1e3f5a7b9d2c4e6f8a0b1c3d5e7f9a1b3c</p>
+              </div>
+              <pre class="code-sample"><code>&lt;div class="stack stack-sm"&gt;
+  &lt;p class="text-body"&gt;Build &lt;span class="text-success"&gt;passed&lt;/span&gt; on &lt;span class="text-accent"&gt;main&lt;/span&gt;.&lt;/p&gt;
+  &lt;p class="text-meta truncate"&gt;sha256:9f2c1ab4de7810b3c5e6f4a2d8b90c1e3f5a7b9d2c4e6f8a0b1c3d5e7f9a1b3c&lt;/p&gt;
 &lt;/div&gt;</code></pre>
             </div>
           </article>

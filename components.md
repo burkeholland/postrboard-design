@@ -37,9 +37,9 @@ Page width and gutters, in three measures.
 
 - **Use:** Wrapping page content so it does not run to the viewport edge.
 - **Avoid:** Nesting containers. The inner one adds a second gutter.
-- **Swap `.container-sm`:** 720px, the prose measure
-- **Swap `.container-lg`:** 1440px, for dense tools
-- **Swap `.section`:** vertical rhythm between the major blocks of a page
+- **`.container-sm`:** 720px, the prose measure
+- **`.container-lg`:** 1440px, for dense tools
+- **`.section`:** vertical rhythm between the major blocks of a page
 
 ```html
 <div class="container">
@@ -69,7 +69,7 @@ Two columns weighted 2:1. Use grid-asymmetric-reverse to lead with the narrow co
 
 - **Use:** Content beside supporting metadata.
 - **Avoid:** Splitting equal-weight content. Use grid-split.
-- **Swap `.grid-asymmetric-reverse`:** the narrow column leads
+- **`.grid-asymmetric-reverse`:** the narrow column leads
 
 ```html
 <div class="grid-asymmetric">
@@ -159,7 +159,7 @@ Two equal columns.
 
 - **Use:** A claim beside the artifact it describes, where neither outweighs the other.
 - **Avoid:** Three or more children. They wrap into an uneven last row.
-- **Swap `.grid-two`:** the old name for this grid, kept working
+- **`.grid-two`:** the old name for this grid, kept working
 
 ```html
 <div class="grid-split">
@@ -203,8 +203,8 @@ Vertical rhythm (stack) and horizontal grouping that wraps (cluster).
 
 - **Use:** Almost every layout. These replace ad-hoc margins.
 - **Avoid:** Hand-written margin utilities between siblings when a stack would do.
-- **Swap `.stack-sm`:** tight rhythm inside a component
-- **Swap `.stack-lg`:** section spacing
+- **`.stack-sm`:** tight rhythm inside a component
+- **`.stack-lg`:** section spacing
 
 ```html
 <div class="stack">
@@ -239,8 +239,9 @@ The standard action control, in four emphasis levels plus busy and disabled stat
 
 - **Use:** One primary button per surface. Everything else is secondary or ghost.
 - **Avoid:** Two primary buttons side by side. If both matter equally, neither is primary.
-- **Swap `.btn-lg`:** taller target for a single hero action
-- **Swap `.btn-gradient`:** accent-filled fill
+- **`.btn-lg`:** taller target for a single hero action
+- **`.btn-gradient`:** accent-filled fill
+- **`.is-disabled`:** disabled look without the disabled attribute, when a real button must stay focusable
 
 ```html
 <div class="cluster">
@@ -272,6 +273,7 @@ A square control carrying only an icon. Always needs an accessible label.
 
 - **Use:** Repeated row actions and toolbar controls where a text label would crowd the layout.
 - **Avoid:** Primary actions. If it matters, give it a word.
+- **`.subtle`:** filled instead of outlined, for a dense toolbar
 
 ```html
 <div class="cluster">
@@ -377,6 +379,7 @@ Error and success styling for an input, paired with aria-invalid.
 
 - **Use:** After a field has been checked. Always pair colour with a message.
 - **Avoid:** Colour alone. Red border with no explanation tells the user nothing.
+- **`.success`:** the confirming form-message colour, the counterpart of error
 
 ```html
 <div class="cluster">
@@ -391,10 +394,10 @@ A labelled text field with optional helper text. The atom every form is built fr
 
 - **Use:** Any single-line value. Pair every input with a real label element.
 - **Avoid:** Using placeholder text as the label. It disappears on typing and fails screen readers.
-- **Swap `.input-sm`:** compact rows and toolbars
-- **Swap `.input-lg`:** a single prominent field
-- **Swap `.is-error`:** failed validation
-- **Swap `.is-success`:** confirmed value
+- **`.input-sm`:** compact rows and toolbars
+- **`.input-lg`:** a single prominent field
+- **`.is-error`:** failed validation
+- **`.is-success`:** confirmed value
 
 ```html
 <div class="form-field">
@@ -512,7 +515,7 @@ A compatibility alias for panel, kept for 1.x markup.
 
 - **Use:** Existing pages already written against the 1.x card API.
 - **Avoid:** New work. Use panel, which is the canonical name.
-- **Swap `.card-interactive`:** hover response, when the whole card is a link
+- **`.card-interactive`:** hover response, when the whole card is a link
 
 ```html
 <article class="card">
@@ -561,7 +564,7 @@ The canonical framed surface, with an optional header, body, and footer.
 
 - **Use:** Grouping controls or data that belong to one object.
 - **Avoid:** Wrapping every idea on the page. Frame the work area, not the prose.
-- **Swap `.panel-interactive`:** hover response, when the whole panel is a link
+- **`.panel-interactive`:** hover response, when the whole panel is a link
 - **Requires:** badge, button
 
 ```html
@@ -617,10 +620,10 @@ A small label for a status or a category.
 
 - **Use:** badge-status with data-state for a condition; an accent badge for a team or category.
 - **Avoid:** Badges as decoration. If it does not encode state or category, drop it.
-- **Swap `.badge-success`:** passed or healthy
-- **Swap `.badge-warning`:** needs attention
-- **Swap `.badge-danger`:** failed or blocked
-- **Swap `.badge-info`:** in progress or neutral
+- **`.badge-success`:** passed or healthy
+- **`.badge-warning`:** needs attention
+- **`.badge-danger`:** failed or blocked
+- **`.badge-info`:** in progress or neutral
 
 ```html
 <div class="cluster">
@@ -710,7 +713,7 @@ A row of related counts sharing one frame.
 
 - **Use:** Three to five numbers that are read together.
 - **Avoid:** Padding counts to two digits, or inventing figures to fill the row.
-- **Swap `.stats-row`:** the old name for this strip, kept working
+- **`.stats-row`:** the old name for this strip, kept working
 
 ```html
 <dl class="stat-strip">
@@ -796,10 +799,10 @@ The top bar, in four surfaces: bordered, glass, solid, and minimal.
 
 - **Use:** One per site. Mark the current page with aria-current.
 - **Avoid:** Mixing two navbar surfaces on one page.
-- **Swap `.navbar`:** plain, no surface treatment
-- **Swap `.navbar-glass`:** blurred over content that scrolls under it
-- **Swap `.navbar-solid`:** opaque, for dense apps
-- **Swap `.navbar-minimal`:** no bar at all, links only, and it does not stick
+- **`.navbar`:** plain, no surface treatment
+- **`.navbar-glass`:** blurred over content that scrolls under it
+- **`.navbar-solid`:** opaque, for dense apps
+- **`.navbar-minimal`:** no bar at all, links only, and it does not stick
 - **Note:** Pick one surface and keep it. The four below are alternatives, not a set.
 
 ```html
@@ -838,7 +841,7 @@ A vertical navigation list, optionally collapsed to an icon rail.
 
 - **Use:** App shells with more than about five destinations.
 - **Avoid:** Icon-only rails without labels or titles. Nobody can guess the icons.
-- **Swap `.is-rail`:** collapsed to icons only
+- **`.is-rail`:** collapsed to icons only
 
 ```html
 <nav class="sidebar-nav" aria-label="Sections">
@@ -1173,7 +1176,8 @@ A command and its output, with a labelled title bar.
 
 - **Use:** Products driven by a CLI or config. Show a command you could really run.
 - **Avoid:** Terminal chrome with no real command in it. That is decorative code.
-- **Swap `.terminal-dot`:** window dots in the title bar, off by default because they are decoration
+- **`.terminal-dot`:** window dots in the title bar, off by default because they are decoration
+- **`.red` `.yellow` `.green`:** colours for the window dots, though the framework renders all three grey on purpose
 
 ```html
 <div class="terminal">
@@ -1193,9 +1197,9 @@ The full type scale, from the display size down to metadata.
 
 - **Use:** Every piece of text. One text-display per page at most, then text-h1 and text-h2 for structure.
 - **Avoid:** Two display-sized lines on one screen. The scale only reads as a hierarchy if the top of it is rare.
-- **Swap `.text-mono`:** monospace body, for identifiers and log lines
-- **Swap `.t-mono-display`:** a display line set in monospace
-- **Swap `.gradient-text`:** tints a run of text with the active accent
+- **`.text-mono`:** monospace body, for identifiers and log lines
+- **`.t-mono-display`:** a display line set in monospace
+- **`.gradient-text`:** tints a run of text with the active accent
 
 ```html
 <div class="stack">
@@ -1217,7 +1221,7 @@ A closing block with one action.
 
 - **Use:** The end of a marketing page, naming the next practical step.
 - **Avoid:** Restating the headline in a gradient box. Link to docs, a command, or a trial.
-- **Swap `.btn-gradient`:** accent-filled button, for the one action that ends a page
+- **`.btn-gradient`:** accent-filled button, for the one action that ends a page
 - **Requires:** button
 
 ```html
@@ -1234,7 +1238,7 @@ A rule-separated block for one capability.
 
 - **Use:** Capabilities that genuinely differ in kind, described in concrete terms.
 - **Avoid:** Three of these in a row with an icon on each. That is the single most recognisable AI landing-page tell. Prefer a workflow, a table, or a real artifact.
-- **Swap `.feature-grid`:** three-column wrapper, if you have three capabilities that genuinely differ
+- **`.feature-grid`:** three-column wrapper, if you have three capabilities that genuinely differ
 
 ```html
 <div class="feature-card">
@@ -1250,8 +1254,8 @@ A plan with a price and a feature list. Add popular to mark one.
 
 - **Use:** Real published plans, when the user asks for pricing.
 - **Avoid:** Inventing tiers or prices. If they are unknown, say so instead.
-- **Swap `.pricing-grid`:** three-column wrapper
-- **Swap `.popular`:** marks one plan with the accent border
+- **`.pricing-grid`:** three-column wrapper
+- **`.popular`:** marks one plan with the accent border
 - **Requires:** button, styled-list
 
 ```html
@@ -1274,5 +1278,118 @@ A quote with attribution, framed by rules.
 <div class="testimonial-card">
   <p class="testimonial-quote">Customer quote pending</p>
   <p class="text-meta">Name and company pending</p>
+</div>
+```
+
+## Utilities
+
+### utility-layout
+
+Display mode, flex direction, alignment, and positioning.
+
+- **Use:** Arranging the inside of a component the grids do not cover.
+- **Avoid:** Recreating grid-split or cluster out of flex utilities. Use the named layout instead.
+- **`.block` `.inline-block` `.inline-flex` `.flex` `.grid` `.hidden`:** display mode
+- **`.flex-col` `.flex-wrap`:** flex direction and wrapping
+- **`.items-start` `.items-center` `.items-end`:** cross-axis alignment
+- **`.justify-start` `.justify-center` `.justify-end` `.justify-between`:** main-axis alignment
+- **`.relative` `.absolute` `.fixed` `.sticky`:** positioning
+
+```html
+<div class="flex items-center justify-between">
+  <span class="text-meta">api-gateway</span>
+  <span class="badge badge-success">Healthy</span>
+</div>
+```
+
+### utility-responsive
+
+Show or hide an element at a breakpoint.
+
+- **Use:** Swapping a dense desktop control for a compact one on a phone.
+- **Avoid:** Hiding a primary action on small screens. Move it or shorten it, but keep it reachable.
+- **`.hidden`:** hide at every width
+- **`.hide-sm` `.hide-md`:** hide at that breakpoint and below
+- **`.show-sm` `.show-md`:** show only at that breakpoint and below
+- **Note:** hide-sm and show-sm act at the phone breakpoint; hide-md and show-md act at the tablet breakpoint.
+
+```html
+<div class="cluster">
+  <button class="btn btn-primary" type="button"><span class="hide-sm">Promote revision</span><span class="show-sm">Promote</span></button>
+</div>
+```
+
+### utility-sizing
+
+Width caps, full height, flexible growth, and overflow.
+
+- **Use:** Capping a measure, letting one flex child take the remaining space, or scrolling a bounded region.
+- **Avoid:** max-w on prose that already sits in a container or text-body. Both cap the measure for you.
+- **`.max-w-sm` `.max-w-md` `.max-w-lg` `.max-w-xl`:** width caps
+- **`.w-full` `.h-full`:** fill the parent
+- **`.flex-1`:** take the remaining space in a flex row
+- **`.overflow-auto` `.overflow-hidden`:** scroll or clip a bounded region
+
+```html
+<div class="flex gap-3 items-center">
+  <input class="input flex-1" value="api-gateway" aria-label="Service">
+  <button class="btn btn-secondary" type="button">Find</button>
+</div>
+```
+
+### utility-spacing
+
+Margin, padding, and gap on the shared space scale, from 1 to 8.
+
+- **Use:** A one-off nudge that does not deserve a wrapper. Reach for stack, cluster, or a grid first.
+- **Avoid:** Building a layout out of margin utilities. If you are setting three in a row, you wanted a stack.
+- **`.mt-1` `.mt-2` `.mt-3` `.mt-4` `.mt-5` `.mt-6` `.mt-7` `.mt-8`:** top margin, step 1 to 8 of the space scale
+- **`.mb-1` `.mb-2` `.mb-3` `.mb-4` `.mb-5` `.mb-6` `.mb-7` `.mb-8`:** bottom margin, same scale
+- **`.p-1` `.p-2` `.p-3` `.p-4` `.p-5` `.p-6` `.p-7` `.p-8`:** padding on all sides
+- **`.px-1` `.px-2` `.px-3` `.px-4` `.px-5` `.px-6`:** horizontal padding
+- **`.py-1` `.py-2` `.py-3` `.py-4` `.py-5` `.py-6`:** vertical padding
+- **`.gap-1` `.gap-2` `.gap-3` `.gap-4` `.gap-5` `.gap-6` `.gap-7` `.gap-8`:** gap between flex or grid children
+- **`.m-auto` `.mx-auto`:** centre a fixed-width block
+
+```html
+<div class="panel">
+  <div class="panel-content">
+    <p class="text-body">Promoting a revision moves production traffic.</p>
+    <button class="btn btn-primary mt-4" type="button">Promote</button>
+  </div>
+</div>
+```
+
+### utility-surface
+
+Background, border, and corner rounding that match the framework tokens.
+
+- **Use:** A small framed region inside a component, using the same tokens as the rest of the page.
+- **Avoid:** Framing everything. Nested borders inside a panel are how a page starts to look like a stack of boxes.
+- **`.bg-surface` `.bg-code`:** token backgrounds
+- **`.border` `.border-top` `.border-bottom`:** token borders
+- **`.rounded` `.rounded-lg` `.rounded-full`:** corner radius, from the geometry setting
+
+```html
+<div class="bg-code border rounded p-4">
+  <p class="text-mono">GET /v1/deploys?status=ready</p>
+</div>
+```
+
+### utility-text
+
+Alignment, semantic colour, and truncation for text.
+
+- **Use:** Right-aligning a numeric column, tinting a status word, or clipping a long identifier to one line.
+- **Avoid:** text-center on body copy. Left-aligned prose is easier to read, and centred blocks are a landing-page habit.
+- **`.text-left` `.text-center` `.text-right`:** alignment
+- **`.text-accent`:** the active accent
+- **`.text-success` `.text-warning` `.text-danger` `.text-info`:** semantic state colours
+- **`.truncate`:** clip to one line with an ellipsis
+
+```html
+<div class="stack stack-sm">
+  <p class="text-body">Build <span class="text-success">passed</span> on <span class="text-accent">main</span>.</p>
+  <p class="text-meta truncate">sha256:9f2c1ab4de7810b3c5e6f4a2d8b90c1e3f5a7b9d2c4e6f8a0b1c3d5e7f9a1b3c</p>
 </div>
 ```

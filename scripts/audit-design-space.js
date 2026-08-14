@@ -306,18 +306,10 @@ if (fs.existsSync(path.join(rootDir, 'examples'))) {
   fail('The examples directory was removed; delete it or restore its audit coverage.');
 }
 
-const utilityStart = css.indexOf('18. UTILITIES');
-const utilityEnd = css.indexOf('19. RESPONSIVE');
-const utilityClasses = selectorClasses(css.slice(utilityStart, utilityEnd));
 const documentedClasses = selectorClasses(css);
-const modifierClasses = new Set([
-  'active', 'is-active', 'is-disabled', 'is-error', 'is-success', 'is-focus',
-  'is-hover', 'is-numeric', 'is-tight', 'popular', 'subtle', 'up', 'down',
-  'done', 'error', 'success', 'red', 'yellow', 'green', 'prompt', 'cmd', 'dim'
-]);
 
-// Page furniture and back-compat aliases. Both are covered by their own checks
-// below, so a component demo would only be noise.
+// Compatibility aliases and page furniture. Both have their own checks below,
+// so a component demo would only be noise.
 const docsOnlyClasses = new Set([
   'skip-link', 'version-badge',
   't-display', 't-h1', 't-h2', 't-card', 't-body', 't-meta', 't-mono',
@@ -329,11 +321,12 @@ for (const component of registryIndex.components) {
   for (const attribute of component.html.matchAll(/class="([^"]*)"/g)) {
     for (const name of attribute[1].split(/\s+/).filter(Boolean)) registryClasses.add(name);
   }
-  for (const variant of component.variants) registryClasses.add(variant.class);
+  for (const variant of component.variants) {
+    for (const name of variant.classes) registryClasses.add(name);
+  }
 }
 
 const missingFromDocs = [...documentedClasses].filter(name => {
-  if (utilityClasses.has(name) || modifierClasses.has(name)) return false;
   if (docsOnlyClasses.has(name)) return false;
   return !registryClasses.has(name);
 });
@@ -443,5 +436,6 @@ if (/\|\s*Ambience\s*\|[^\n]*`flat`/.test(skill) || /\|\s*Ambience\s*\|[^\n]*`fl
 
 console.log(
   `Design-system audit passed: ${accents.length} accents, ${requiredApis.length} APIs, ` +
-  `${documentedClasses.size - utilityClasses.size} documented component classes.`
+  `${[...documentedClasses].filter(name => registryClasses.has(name)).length} classes ` +
+  `in ${registryIndex.components.length} registry components.`
 );

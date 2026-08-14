@@ -1,0 +1,13 @@
+<!--
+name: utility-responsive
+title: Responsive utilities
+category: utilities
+description: Show or hide an element at a breakpoint.
+use: Swapping a dense desktop control for a compact one on a phone.
+avoid: Hiding a primary action on small screens. Move it or shorten it, but keep it reachable.
+note: hide-sm and show-sm act at the phone breakpoint; hide-md and show-md act at the tablet breakpoint.
+variants: hidden = hide at every width; hide-sm hide-md = hide at that breakpoint and below; show-sm show-md = show only at that breakpoint and below
+-->
+<div class="cluster">
+  <button class="btn btn-primary" type="button"><span class="hide-sm">Promote revision</span><span class="show-sm">Promote</span></button>
+</div>
