@@ -104,6 +104,19 @@ Version 2.0 changes the default look from glass, soft corners, and a textured ba
 
 The old class names still work as aliases, but new work should use `.panel`, `.stat-strip`, `.badge-status`, `.page-header`, and the documented navigation classes. The gradient, feature, testimonial, and CTA classes are now much plainer. Check any page that relied on the old glass default, then set `data-surface="glass"`, `data-geometry="soft"`, or `data-ambient="gradient"` only where you actually want that look.
 
+### Legacy compatibility
+
+These names still resolve. Prefer the current names in new work.
+
+```
+.grid-two .stats-row .t-display .t-h1 .t-h2 .t-card .t-body .t-meta .t-mono
+.nav .nav-glass .nav-solid .nav-bordered .nav-minimal .nav-logo .logo
+.card .card-header .card-content .card-footer .card-title .card-body .card-interactive
+.gradient-text .btn-gradient .feature-grid .feature-card .feature-icon .feature-title .feature-body
+.pricing-grid .pricing-card .dollar .testimonial-card .testimonial-quote
+.cta-band .cta-title .cta-body .fab data-ambient="flat"
+```
+
 ## License
 
 [MIT](./LICENSE) (c) Burke Holland

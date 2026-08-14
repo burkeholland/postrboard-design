@@ -272,8 +272,14 @@ for (const file of fontDocuments) {
 
 assertIncludes(docs, '<link rel="stylesheet" href="postrboard.css">', 'external framework stylesheet in docs');
 if (docs.includes('--coral: #ff7f50')) fail('index.html still duplicates framework token CSS.');
-for (const section of ['direction', 'foundations', 'components', 'patterns', 'guardrails', 'api']) {
+// Human docs page: theme lab, tokens, live components, layout guidance.
+// Agent material (AI design tells, full class inventory) lives in the skill
+// and components.md / registry, not on this page.
+for (const section of ['direction', 'foundations', 'components', 'patterns']) {
   assertIncludes(docs, `id="${section}"`, `docs section #${section}`);
+}
+if (docs.includes('id="guardrails"') || docs.includes('id="api"')) {
+  fail('Agent-only sections (AI design tells, class index) still appear on the human docs page.');
 }
 
 // These guardrails used to run over the dashboard examples. The examples are gone,
@@ -338,10 +344,11 @@ if (missingFromDocs.length) {
   );
 }
 
-const legacyStart = docs.indexOf('<h3>Legacy compatibility</h3>');
-const legacyEnd = docs.indexOf('</code>', legacyStart);
-if (legacyStart < 0 || legacyEnd < 0) fail('Missing legacy compatibility API group.');
-const legacyDocs = docs.slice(legacyStart, legacyEnd);
+// Legacy aliases are for people upgrading, not for the showcase page.
+const readme = read('README.md');
+const legacyHeading = readme.indexOf('### Legacy compatibility');
+if (legacyHeading < 0) fail('README is missing the Legacy compatibility section.');
+const legacyDocs = readme.slice(legacyHeading);
 const legacyAliases = [
   '.grid-two', '.stats-row', '.t-display', '.t-h1', '.t-h2', '.t-card',
   '.t-body', '.t-meta', '.t-mono', '.nav', '.nav-glass', '.nav-solid',
@@ -351,17 +358,11 @@ for (const alias of legacyAliases) {
   assertIncludes(legacyDocs, alias, `legacy alias ${alias}`);
 }
 assertIncludes(legacyDocs, 'data-ambient="flat"', 'legacy flat ambience alias');
-
-const apiStart = docs.indexOf('<div class="api-groups">');
-const canonicalDocs = docs.slice(apiStart, legacyStart);
-const canonicalApiTokens = new Set(
-  [...canonicalDocs.matchAll(/<code>([^<]*)<\/code>/g)]
-    .flatMap(match => match[1].trim().split(/\s+/))
-);
-for (const alias of legacyAliases) {
-  if (canonicalApiTokens.has(alias)) {
-    fail(`Legacy alias ${alias} is still presented as canonical.`);
-  }
+// Canonical theme table must not list the flat ambience alias as a current value.
+const themeTableMatch = readme.match(/\| `data-ambient` \|[^|\n]+\|/);
+if (!themeTableMatch) fail('README is missing the data-ambient theme row.');
+if (themeTableMatch[0].includes('`flat`')) {
+  fail('Legacy alias data-ambient="flat" is still presented as canonical in README.');
 }
 
 const packageJson = JSON.parse(read('package.json'));
@@ -430,7 +431,8 @@ for (const step of ['### 1. Ground', '### 2. Map', '### 3. Decide', '### 4. Buil
   assertIncludes(skill, step, `skill protocol step ${step}`);
 }
 assertIncludes(skill, 'Use native Postrboard components before custom equivalents', 'native-component gate in skill');
-if (/\|\s*Ambience\s*\|[^\n]*`flat`/.test(skill) || /\|\s*Ambience\s*\|[^\n]*`flat`/.test(read('README.md'))) {
+assertIncludes(skill, '## AI design tells', 'AI design tells live in the agent skill');
+if (/\|\s*Ambience\s*\|[^\n]*`flat`/.test(skill) || /\|\s*Ambience\s*\|[^\n]*`flat`/.test(readme)) {
   fail('The legacy flat ambience alias is still presented as canonical.');
 }
 

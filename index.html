@@ -6,7 +6,7 @@
   <title>Postrboard CSS - Product interface system</title>
   <meta name="description" content="A quiet CSS framework for specific, accessible product interfaces.">
   <meta property="og:title" content="Postrboard CSS">
-  <meta property="og:description" content="Native product components, flexible design axes, and fewer AI design tells.">
+  <meta property="og:description" content="Native product components, design tokens, and theme options for product interfaces.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://burkeholland.github.io/postrboard-design/">
   <meta name="twitter:card" content="summary">
@@ -430,34 +430,6 @@
       white-space: nowrap;
     }
 
-    .guardrail-table td:first-child {
-      width: 22%;
-      font-weight: 700;
-    }
-
-    .api-groups {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: var(--space-4);
-    }
-
-    .api-group {
-      padding-top: var(--space-3);
-      border-top: 1px solid var(--border);
-    }
-
-    .api-group h3 {
-      margin-bottom: var(--space-3);
-      font-size: 0.9375rem;
-    }
-
-    .api-group code {
-      display: block;
-      color: var(--text-muted);
-      font-size: 0.75rem;
-      line-height: 1.75;
-    }
-
     .mode-button {
       flex: 0 0 auto;
       padding-inline: var(--space-2);
@@ -554,8 +526,6 @@
         <a href="#foundations">Tokens</a>
         <a href="#components">Components</a>
         <a href="#patterns">Layouts</a>
-        <a href="#guardrails">AI design tells</a>
-        <a href="#api">Class index</a>
       </nav>
     </aside>
 
@@ -3880,62 +3850,6 @@
         </div>
       </section>
 
-      <section class="docs-section" id="guardrails">
-        <div class="section-header">
-          <div class="section-header-main">
-            <h2 class="docs-section-title">AI design tells</h2>
-            <p class="docs-section-summary mt-3">Patterns that make a page look machine-generated. Each row says what it looks like and what to do instead.</p>
-          </div>
-        </div>
-
-        <div class="table-wrap">
-          <table class="data-table guardrail-table">
-            <thead><tr><th>Tell</th><th>What it looks like</th><th>What to do instead</th></tr></thead>
-            <tbody>
-              <tr><td>Template structure</td><td>Centered hero, three equal features, oversized closing CTA</td><td>Lead with the actual task, data, or object</td></tr>
-              <tr><td>Decorative containers</td><td>Every idea is a rounded card; cards sit inside cards</td><td>Use headings, spacing, and rules; frame only the main work area</td></tr>
-              <tr><td>Premium styling by default</td><td>Glass, glow, large radii, and soft shadows everywhere</td><td>Use flat or outlined surfaces; reserve depth for actual layering</td></tr>
-              <tr><td>Stacked technical signals</td><td>Dark mode, sharp corners, grid-paper texture, and heavy mono type all at once</td><td>Keep corners moderate and texture off unless the surface is genuinely technical; use one strong technical signal at most</td></tr>
-              <tr><td>Synthetic color</td><td>Purple-blue gradients, cyan on dark, radial halos</td><td>Use one grounded accent and semantic state colors</td></tr>
-              <tr><td>Filler structure</td><td>Eyebrow labels above headings and arbitrary section numbers</td><td>Let the headings and the order of the content do that job</td></tr>
-              <tr><td>Icon tiles</td><td>A rounded square icon above every heading</td><td>Use icons only when they clarify an action or object</td></tr>
-              <tr><td>Decorative code</td><td>Terminal dots, blinking cursors, or code texture without code</td><td>Show a real command, log, diff, or payload</td></tr>
-              <tr><td>Decorative filler</td><td>Abstract blobs, fake charts, ornamental dashboards</td><td>Show something real from the product, or an empty state</td></tr>
-              <tr><td>Vague copy</td><td>"Transform your workflow" and other interchangeable claims</td><td>Say what it does and what happens as a result</td></tr>
-              <tr><td>Invented evidence</td><td>Made-up metrics, quotes, logos, people, and customers</td><td>Use real data, label sample data as sample, or leave it out</td></tr>
-              <tr><td>Repetitive motion</td><td>Every element lifts, glows, pulses, or reveals the same way</td><td>Keep state changes quiet, and pick one place for real motion</td></tr>
-              <tr><td>Missing states</td><td>A polished default with no focus, error, loading, or empty state</td><td>Build every state first, then style them</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-      <section class="docs-section" id="api">
-        <div class="section-header">
-          <div class="section-header-main">
-            <h2 class="docs-section-title">Class index</h2>
-            <p class="docs-section-summary mt-3">Every class name, grouped by what it does. Search <code>postrboard.css</code> for the exact rules. Current names come first; old names kept for compatibility are last.</p>
-          </div>
-        </div>
-
-        <div class="api-groups">
-          <div class="api-group"><h3>Layout</h3><code>.container .container-sm .container-lg .stack .stack-sm .stack-lg .cluster .section .grid-auto .grid-split .grid-sidebar .grid-thirds .grid-asymmetric .grid-asymmetric-reverse .grid-holy-grail .grid-masonry .grid-stack-rail .grid-centered .is-app-shell .app-sidebar .app-main .footer-grid</code></div>
-          <div class="api-group"><h3>Headers and type</h3><code>.page-header .page-header-main .page-title .page-summary .page-actions .section-header .section-header-main .section-title .section-meta .section-actions .text-display .text-h1 .text-h2 .text-card .text-body .text-meta .text-mono .t-mono-display .quote-block</code></div>
-          <div class="api-group"><h3>Panels and actions</h3><code>.panel .panel-header .panel-content .panel-footer .panel-title .panel-body .panel-interactive .btn .btn-sm .btn-lg .btn-primary .btn-secondary .btn-ghost .btn-danger .button-group .icon-button .close-button</code></div>
-          <div class="api-group"><h3>Forms</h3><code>.form-stack .form-field .form-label .form-helper .form-message .input .input-sm .input-lg .input-error .input-success .textarea .select .checkbox .radio .radio-group .switch .switch-track .segmented-control .input-group .input-affix .floating-field .floating-input .floating-label .combobox .combobox-list .range-field .range-top .range-input .dropzone</code></div>
-          <div class="api-group"><h3>Status</h3><code>.badge .badge-neutral .badge-coral .badge-azure .badge-sage .badge-info .badge-success .badge-warning .badge-danger .badge-status .tag .alert .alert-info .alert-success .alert-warning .alert-danger .progress .progress-fill .spinner .skeleton</code></div>
-          <div class="api-group"><h3>Navigation</h3><code>.navbar .navbar-glass .navbar-solid .navbar-bordered .navbar-minimal .nav-inner .brand .brand-mark .nav-links .nav-link .breadcrumb .breadcrumb-sep .tabs .tab .pagination .page-link .dropdown .dropdown-menu .sidebar-nav .is-rail .stepper .step .step-circle .step-line .command-palette .command-group .command-group-label .command-item</code></div>
-          <div class="api-group"><h3>Data</h3><code>.stat-grid .stat-strip .stat-item .stat-card .stat-label .stat-value .stat-detail .stat-trend .table-wrap .data-table .list-group .list-item .list-item-main .list-item-value .list-title .list-meta .description-list .avatar .avatar-sm .avatar-md .avatar-lg .timeline .timeline-item .timeline-dot .timeline-title .timeline-meta .timeline-body .empty-state .empty-title .empty-body</code></div>
-          <div class="api-group"><h3>Feedback and overlays</h3><code>.toast .toast-title .toast-body .tooltip .popover .popover-panel .popover-title .popover-body .banner .banner-title .banner-body .modal .modal-card .modal-head .modal-body .modal-actions .modal-title .drawer-toggle .drawer-backdrop .drawer-panel .drawer-head</code></div>
-          <div class="api-group"><h3>Code, icons, disclosure</h3><code>.inline-code .kbd .styled-link .styled-list .terminal .terminal-bar .terminal-dot .terminal-body .icon .icon-sm .icon-md .icon-lg .icon-xl .accordion .accordion-body .divider .divider-label .cmd-pill .version-badge</code></div>
-          <div class="api-group"><h3>Accessibility and utilities</h3><code>.skip-link .sr-only .block .inline-block .inline-flex .flex .grid .hidden .flex-row .flex-col .flex-wrap .flex-1 .items-start .items-center .items-end .justify-start .justify-center .justify-between .justify-end .m-auto .mx-auto .mt-1 .mt-2 .mt-3 .mt-4 .mt-5 .mt-6 .mt-7 .mt-8 .mb-1 .mb-2 .mb-3 .mb-4 .mb-5 .mb-6 .mb-7 .mb-8 .p-1 .p-2 .p-3 .p-4 .p-5 .p-6 .p-7 .p-8 .px-1 .px-2 .px-3 .px-4 .px-5 .px-6 .py-1 .py-2 .py-3 .py-4 .py-5 .py-6 .gap-1 .gap-2 .gap-3 .gap-4 .gap-5 .gap-6 .gap-7 .gap-8 .w-full .h-full .max-w-sm .max-w-md .max-w-lg .max-w-xl .text-center .text-left .text-right .text-muted .text-danger .text-success .text-info .text-warning .text-accent .bg-surface .bg-code .border .border-top .border-bottom .rounded .rounded-lg .rounded-full .relative .absolute .fixed .sticky .overflow-hidden .overflow-auto .truncate .hide-sm .show-sm .hide-md .show-md</code></div>
-          <div class="api-group"><h3>Legacy compatibility</h3><code>.grid-two .stats-row .t-display .t-h1 .t-h2 .t-card .t-body .t-meta .t-mono .nav .nav-glass .nav-solid .nav-bordered .nav-minimal .nav-logo .logo .card .card-header .card-content .card-footer .card-title .card-body .card-interactive .gradient-text .btn-gradient .feature-grid .feature-card .feature-icon .feature-title .feature-body .pricing-grid .pricing-card .dollar .testimonial-card .testimonial-quote .cta-band .cta-title .cta-body .fab data-ambient="flat"</code></div>
-        </div>
-
-        <div class="alert alert-info mt-7">
-          <div><strong class="alert-title">CSS does not handle behavior</strong><p class="alert-body">The modal, drawer, dropdown, combobox, tabs, and popover classes only style these components. You still have to write the JavaScript for keyboard support, focus management, open and close state, and screen-reader announcements.</p></div>
-        </div>
-      </section>
     </main>
   </div>
 
