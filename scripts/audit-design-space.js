@@ -259,13 +259,7 @@ const canonicalFontUrl = 'family=IBM+Plex+Mono';
 const fontDocuments = [
   'README.md',
   'skill/postrboard/SKILL.md',
-  'index.html',
-  'examples/dashboards/index.html',
-  'examples/dashboards/deployments.html',
-  'examples/dashboards/studio.html',
-  'examples/dashboards/care.html',
-  'examples/dashboards/support.html',
-  'examples/dashboards/ledger.html'
+  'index.html'
 ];
 for (const file of fontDocuments) {
   const content = read(file);
@@ -281,51 +275,34 @@ for (const section of ['direction', 'foundations', 'components', 'patterns', 'gu
   assertIncludes(docs, `id="${section}"`, `docs section #${section}`);
 }
 
-const examplesDir = path.join(rootDir, 'examples', 'dashboards');
-const dashboardCss = read('examples/dashboards/dashboard-mocks.css');
-const dashboardClasses = selectorClasses(`${css}\n${dashboardCss}`);
-for (const match of dashboardCss.matchAll(/font-size:\s*([\d.]+)px/g)) {
-  if (Number(match[1]) < 11) fail(`Dashboard example text uses an unreadable ${match[1]}px font size.`);
+// These guardrails used to run over the dashboard examples. The examples are gone,
+// so they now run over the docs page, which is the only rendered surface left.
+for (const match of docs.matchAll(/font-size:\s*([\d.]+)px/g)) {
+  if (Number(match[1]) < 11) fail(`Docs text uses an unreadable ${match[1]}px font size.`);
 }
-const examples = fs.readdirSync(examplesDir).filter(file => file.endsWith('.html'));
-let headingKickerCount = 0;
-for (const file of examples) {
-  const html = fs.readFileSync(path.join(examplesDir, file), 'utf8');
-  headingKickerCount += [...html.matchAll(/<p class="text-meta"[^>]*>[\s\S]*?<\/p>\s*<h1\b/g)].length;
-  const classNames = [...html.matchAll(/class="([^"]+)"/g)]
-    .flatMap(match => match[1].split(/\s+/))
-    .filter(Boolean);
-  if (classNames.includes('eyebrow')) fail(`${file} still uses an eyebrow heading label.`);
-  if (classNames.some(name => name === 'metric' || name.startsWith('metric-'))) {
-    fail(`${file} still uses the retired metric vocabulary.`);
-  }
-  if (classNames.some(name => name === 'status' || name.startsWith('status-'))) {
-    fail(`${file} still uses the retired status vocabulary.`);
-  }
-  if (html.includes('class="nav-link active"')) fail(`${file} uses a visual class instead of aria-current.`);
-  for (const icon of html.matchAll(/<svg\b[^>]*class="[^"]*\bicon\b[^"]*"[^>]*>/g)) {
-    if (!icon[0].includes('aria-hidden=') && !icon[0].includes('role="img"')) {
-      fail(`${file} has an icon without an explicit accessibility role.`);
-    }
-  }
-  assertIncludes(html, 'class="skip-link"', `skip link in ${file}`);
-  assertIncludes(html, 'id="main"', `main target in ${file}`);
-  for (const name of classNames) {
-    if (!dashboardClasses.has(name)) fail(`${file} uses undefined class .${name}.`);
+const docsClassNames = [...docs.matchAll(/class="([^"]+)"/g)]
+  .flatMap(match => match[1].split(/\s+/))
+  .filter(Boolean);
+if (docsClassNames.includes('eyebrow')) fail('index.html still uses an eyebrow heading label.');
+if (docsClassNames.some(name => name === 'metric' || name.startsWith('metric-'))) {
+  fail('index.html still uses the retired metric vocabulary.');
+}
+if (docsClassNames.some(name => name === 'status' || name.startsWith('status-'))) {
+  fail('index.html still uses the retired status vocabulary.');
+}
+if (docs.includes('class="nav-link active"')) fail('index.html uses a visual class instead of aria-current.');
+for (const icon of docs.matchAll(/<svg\b[^>]*class="[^"]*\bicon\b[^"]*"[^>]*>/g)) {
+  if (!icon[0].includes('aria-hidden=') && !icon[0].includes('role="img"')) {
+    fail('index.html has an icon without an explicit accessibility role.');
   }
 }
-if (headingKickerCount > 1) fail('Dashboard examples repeat the meta-label-above-heading pattern.');
-
-const gallery = read('examples/dashboards/index.html');
-for (const iframe of gallery.matchAll(/<iframe\b[^>]*>/g)) {
-  if (!iframe[0].includes('loading="lazy"')) fail('Dashboard gallery iframe is not lazy-loaded.');
+assertIncludes(docs, 'class="skip-link"', 'skip link in index.html');
+assertIncludes(docs, 'id="main"', 'main target in index.html');
+for (const iframe of docs.matchAll(/<iframe\b[^>]*>/g)) {
+  if (!iframe[0].includes('loading="lazy"')) fail('index.html embeds an iframe that is not lazy-loaded.');
 }
-
-for (const file of ['deployments.html', 'care.html']) {
-  const html = fs.readFileSync(path.join(examplesDir, file), 'utf8');
-  assertIncludes(html, 'stat-strip', `native stat strip in ${file}`);
-  assertIncludes(html, 'page-header', `native page header in ${file}`);
-  assertIncludes(html, 'class="panel', `native panel in ${file}`);
+if (fs.existsSync(path.join(rootDir, 'examples'))) {
+  fail('The examples directory was removed; delete it or restore its audit coverage.');
 }
 
 const utilityStart = css.indexOf('18. UTILITIES');
@@ -422,5 +399,5 @@ if (/\|\s*Ambience\s*\|[^\n]*`flat`/.test(skill) || /\|\s*Ambience\s*\|[^\n]*`fl
 
 console.log(
   `Design-system audit passed: ${accents.length} accents, ${requiredApis.length} APIs, ` +
-  `${documentedClasses.size - utilityClasses.size} documented component classes, ${examples.length} examples.`
+  `${documentedClasses.size - utilityClasses.size} documented component classes.`
 );

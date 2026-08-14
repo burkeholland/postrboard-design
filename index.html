@@ -68,20 +68,6 @@
       color: var(--text);
     }
 
-    .docs-nav-aside {
-      position: relative;
-      margin-top: var(--space-4);
-    }
-
-    .docs-nav-aside::before {
-      content: "";
-      position: absolute;
-      top: calc(var(--space-2) * -1);
-      right: 0;
-      left: 0;
-      border-top: 1px solid var(--border);
-    }
-
     .docs-main {
       width: min(100%, var(--docs-measure));
       min-width: 0;
@@ -434,20 +420,6 @@
         flex: 0 0 auto;
       }
 
-      .docs-nav-aside {
-        margin-top: 0;
-        margin-left: var(--space-3);
-      }
-
-      .docs-nav-aside::before {
-        top: var(--space-1);
-        right: auto;
-        bottom: var(--space-1);
-        left: calc(var(--space-2) * -1);
-        border-top: 0;
-        border-left: 1px solid var(--border);
-      }
-
       .docs-main {
         width: 100%;
         padding-top: var(--space-6);
@@ -504,7 +476,6 @@
         <a href="#patterns">Layouts</a>
         <a href="#guardrails">AI design tells</a>
         <a href="#api">Class index</a>
-        <a class="docs-nav-aside" href="examples/dashboards/index.html">Dashboard gallery</a>
       </nav>
     </aside>
 
@@ -1130,7 +1101,6 @@
             <h2 class="docs-section-title">Choosing a layout</h2>
             <p class="docs-section-summary mt-3">What a page should lead with depends on what the product does. That is a separate decision from the theme options above.</p>
           </div>
-          <a class="styled-link" href="examples/dashboards/index.html">See the dashboard examples</a>
         </div>
 
         <div class="table-wrap">
@@ -1144,20 +1114,6 @@
               <tr><td>Long-form writing</td><td>The point, then what supports it</td><td><code>data-type="editorial" .grid-asymmetric</code></td></tr>
             </tbody>
           </table>
-        </div>
-
-        <div class="grid-asymmetric mt-7">
-          <div>
-            <h3 class="text-h2">The same components in five products</h3>
-            <p class="text-body text-muted mt-4">The gallery has five mock dashboards: deployments, publishing, care coordination, support triage, and finance. They use the same components. Each one just sets different theme attributes on its root element, like this:</p>
-          </div>
-          <pre class="code-sample"><code>&lt;html
-  data-accent="sage"
-  data-surface="outline"
-  data-geometry="compact"
-  data-density="comfortable"
-  data-type="neutral"
-  data-ambient="none"&gt;</code></pre>
         </div>
       </section>
 

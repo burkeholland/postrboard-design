@@ -14,7 +14,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - **Semantic states** - `data-state` and ARIA-driven styles for status, navigation, busy, invalid, and disabled states
 - **Accessibility safeguards** - Solid focus outlines, forced-colors support, and audited focus contrast
 - **Agent skill** - A five-step `Ground -> Map -> Decide -> Build -> Verify` process with anti-pattern and honest-placeholder checks
-- **Documentation coverage audit** - Checks for public API examples, one font contract, native example use, contrast, and quiet defaults
+- **Documentation coverage audit** - Checks for public API examples, one font contract, contrast, and quiet defaults
 - **Release artifact gate** - Fails when minified CSS or its published source map is stale
 
 ### Changed
@@ -24,7 +24,6 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - Display typography now routes through the selected type axis
 - Ambient treatments work on scoped containers as well as the page
 - Gradient text, gradient buttons, feature icons, testimonials, and CTA sections use restrained treatments
-- Dashboard examples use native page headers, panels, stat strips, semantic badges, and sidebar navigation
 - The design reference now imports `postrboard.css` instead of duplicating framework CSS
 - Canonical API names are separated from 1.x compatibility aliases
 - The npm package now includes the Postrboard agent skill and source map
@@ -40,7 +39,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - The root and compact-geometry field radius was silently wired to the sharp token, so inputs, badges, tags, and tooltips rendered razor-cornered even outside `data-geometry="sharp"`; the default field radius now matches the compact surface as documented
 - The radius scale was widened (sharp 4px → 8px, compact 8px → 14px, soft 16px → 22px) so every geometry option reads as an intentional curve rather than a blocky edge
 - `[data-ambient="grid"]` used full-opacity lines at 32px spacing, a literal graph-paper texture; lines are now faint (`color-mix` at 40%) at 48px spacing
-- The theme-options live demo and the flagship deploy operations dashboard example both defaulted to sharp corners, a visible grid, dark mode, and heavy mono type stacked together — the single most recognizable generic-AI-dashboard combination — despite the documented default being quiet, compact, and ambience-free; both now demonstrate on-contract directions
+- The theme-options live demo defaulted to sharp corners, a visible grid, dark mode, and heavy mono type stacked together — the single most recognizable generic-AI-dashboard combination — despite the documented default being quiet, compact, and ambience-free; it now demonstrates an on-contract direction
 - The README's own theme-options example showcased the same sharp+grid combination one line above a claim that the default is quiet by design; replaced with a distinct, non-cliché direction
 - Added a "Stacked technical signals" row to the AI design tells guardrail table (docs and skill) warning against combining dark mode, sharp corners, grid texture, and heavy mono type by default
 - Solid accent fills that carry white content (`.spinner`, `.range-input`, `.timeline-dot`, `.tab.active`) used the vivid `--accent` rather than the contrast-verified `--accent-surface`, so their content sat near 2.4:1. The first pass at this also darkened `.checkbox`/`.radio` checked, the `.switch` track, and `.progress-fill`, which carry no text and are the controls that made the palette recognisable — coral read as burnt brick rather than `#ff7f50`. Those four now paint the vivid hue again, bounded by an `--accent-surface` edge for the 3:1 control boundary, and the checkbox tick uses the new `--accent-ink` instead of white, which fixes the 2.5:1 tick that existed in 1.x as well
@@ -52,16 +51,15 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - `.skeleton` used `--code-bg` against a near-identical surface and was effectively invisible
 - `.step.done` drew its ring in vivid `--sage` rather than the contrast-safe `--sage-text`
 - `.combobox-list` could only be revealed by `:focus-within`, which collapses the moment a user clicks an option; it now also accepts an `.is-open` state class
-- Dashboard examples and docs demos padded single-digit counts to `08`, `00`, `07`, and `09`, and the publishing example numbered its cards `01 /` … `05 /` out of order — both are the "Filler structure" tell the guardrail table warns about; counts are now real and the kickers are plain editorial categories
-- The publishing example's feature headline overflowed its card and collided with the neighbouring column at desktop widths
-- Deploy, care, and ledger example grids stretched short panels to match a taller sibling column, leaving large voids inside framed surfaces
-- The deploy operations example combined dark mode, a colourless slate accent, and heavy mono display type; it now keeps mono as its single strong technical signal
+- Docs demos padded single-digit counts to `08`, `00`, `07`, and `09` — the "Filler structure" tell the guardrail table warns about; counts are now real and the kickers are plain editorial categories
 - `.description-list` stacked its label and value only at a viewport breakpoint, so it overflowed its own frame whenever it sat in a narrow column at desktop widths; it now uses a container query and responds to the space it is actually given
-- The docs sidebar pinned a bordered footer to the bottom of a full-height rail, leaving roughly 330px of empty space bracketed by a rule and two stranded controls, and hid that footer entirely below 980px — so mobile visitors had no way to switch modes at all. The mode toggle now sits beside the brand at the top of the rail and stays available at every width, and the gallery link reads as a nav destination instead of the loudest element in the sidebar
-- Docs and example copy used oblique, writerly phrasing ("Same system. Different answers.", "Set the direction", "Compose around the work", "Behavior is not CSS") and abstract labels ("Wayfinding", "Floating disclosure", "Empty spectacle", "Fake proof") that described a mood rather than a thing. All headings, navigation labels, component names, table columns, guardrail names, and prose across the docs page, the dashboard gallery, the five dashboard examples, the README, and the agent skill now use plain language that says what each thing is and what to do with it
-- `.navbar-bordered` was `position: sticky` with `background: transparent`, so every page using it let its own content scroll straight through the bar. On the care and ledger examples the brand mark and nav links visibly stacked on top of the stat strip. The variant now paints `var(--bg)`, which is what it was already showing at rest, so it is opaque while still reading as "no bar, just a rule"
-- The dashboard gallery previews are live iframes at full scale, so scrolling the page with the cursor over a preview scrolled that preview instead, leaving each card parked at a different offset. Previews are now `pointer-events: none` thumbnails and the existing "Open full screen" link is stretched across the card, so the whole card is clickable without adding a second link to the accessibility tree
-- The gallery donated every control inside all five preview iframes to the tab order, costing keyboard users roughly fifty dead stops to cross the page. `inert` on an `<iframe>` does not reach the document inside it, so the previews now mark their own body inert on load
+- The docs sidebar pinned a bordered footer to the bottom of a full-height rail, leaving roughly 330px of empty space bracketed by a rule and two stranded controls, and hid that footer entirely below 980px — so mobile visitors had no way to switch modes at all. The mode toggle now sits beside the brand at the top of the rail and stays available at every width
+- Docs copy used oblique, writerly phrasing ("Same system. Different answers.", "Set the direction", "Compose around the work", "Behavior is not CSS") and abstract labels ("Wayfinding", "Floating disclosure", "Empty spectacle", "Fake proof") that described a mood rather than a thing. All headings, navigation labels, component names, table columns, guardrail names, and prose across the docs page, the README, and the agent skill now use plain language that says what each thing is and what to do with it
+- `.navbar-bordered` was `position: sticky` with `background: transparent`, so every page using it let its own content scroll straight through the bar. The variant now paints `var(--bg)`, which is what it was already showing at rest, so it is opaque while still reading as "no bar, just a rule"
+
+### Removed
+
+- The `examples/dashboards/` gallery and its five mock dashboards. The docs page is now the single rendered surface, and the accessibility, vocabulary, and readability checks that used to run over the examples now run over `index.html`
 
 ## [1.1.0] — 2026-07-22
 

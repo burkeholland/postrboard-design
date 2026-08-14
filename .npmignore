@@ -1,7 +1,6 @@
 # Files excluded from npm package
 .github/
 scripts/
-examples/
 design-system.html
 index.html
 og-image.svg
