@@ -24,6 +24,9 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Changed
 
+- Component demos now show the thing they name: open overlays, scrolling lists, four navbar surfaces, action button groups, richer grids, and a capped app shell in the docs frame
+- List rows stack the title above the meta line, so labels stop running together
+- Overlay menus accept an `is-open` class so documentation and tests can show the open state without focus
 - The default direction is now coral, flat, compact, comfortable, neutral, and without ambience
 - The canonical framed surface is `.panel`; `.card` remains a compatibility alias
 - Display typography now routes through the selected type axis

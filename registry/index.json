@@ -12,7 +12,7 @@
       "avoid": "Hiding content the user needs to complete the task in front of them.",
       "variants": [],
       "requires": [],
-      "html": "<details class=\"accordion\">\n  <summary>What do I still have to build in JavaScript?</summary>\n  <div class=\"accordion-body\">Focus trapping, closing on Escape, arrow-key navigation, tracking which item is selected, and screen-reader announcements. The CSS only styles these components.</div>\n</details>"
+      "html": "<details class=\"accordion\" open>\n  <summary>What do I still have to build in JavaScript?</summary>\n  <div class=\"accordion-body\">Focus trapping, closing on Escape, arrow-key navigation, tracking which item is selected, and screen-reader announcements. The CSS only styles these components.</div>\n</details>"
     },
     {
       "name": "alert-dialog",
@@ -48,9 +48,11 @@
       "avoid": "Marketing pages. A landing page does not need an app frame.",
       "variants": [],
       "requires": [
-        "sidebar-nav"
+        "sidebar-nav",
+        "page-header",
+        "stat-strip"
       ],
-      "html": "<div class=\"grid-sidebar is-app-shell\">\n  <aside class=\"app-sidebar\">\n    <a class=\"brand\" href=\"/\"><span class=\"brand-mark\">R/</span> relay</a>\n    <nav class=\"sidebar-nav\" aria-label=\"Sections\">\n      <a href=\"/\" aria-current=\"page\">Overview</a>\n      <a href=\"/deploys\">Deploys</a>\n    </nav>\n  </aside>\n  <main class=\"app-main\" id=\"main\">\n    <h1 class=\"page-title\">Overview</h1>\n  </main>\n</div>"
+      "html": "<div class=\"grid-sidebar is-app-shell\">\n  <aside class=\"app-sidebar\">\n    <a class=\"brand\" href=\"/\"><span class=\"brand-mark\">R/</span> relay</a>\n    <nav class=\"sidebar-nav\" aria-label=\"Sections\">\n      <a href=\"/\" aria-current=\"page\">Overview</a>\n      <a href=\"/deploys\">Deploys</a>\n      <a href=\"/logs\">Logs</a>\n    </nav>\n  </aside>\n  <main class=\"app-main\" id=\"main\">\n    <header class=\"page-header\">\n      <div class=\"page-header-main\">\n        <h1 class=\"page-title\">Overview</h1>\n        <p class=\"page-summary\">Live services in us-east-1.</p>\n      </div>\n    </header>\n    <dl class=\"stat-strip\">\n      <div class=\"stat-item\"><dt class=\"stat-label\">Ready</dt><dd class=\"stat-value\">12</dd></div>\n      <div class=\"stat-item\"><dt class=\"stat-label\">Building</dt><dd class=\"stat-value\">4</dd></div>\n      <div class=\"stat-item\"><dt class=\"stat-label\">Failed</dt><dd class=\"stat-value\">1</dd></div>\n    </dl>\n  </main>\n</div>"
     },
     {
       "name": "aspect-ratio",
@@ -175,11 +177,11 @@
       "title": "Button group",
       "category": "actions",
       "description": "Buttons joined into a single control for mutually related actions.",
-      "use": "Switching a view between a few named options.",
-      "avoid": "Unrelated actions. Use a cluster of separate buttons instead.",
+      "use": "A small set of actions on one object, such as edit, duplicate, and archive.",
+      "avoid": "Unrelated actions. Use a cluster of separate buttons instead. For exclusive choices, use segmented-control.",
       "variants": [],
       "requires": [],
-      "html": "<div class=\"button-group\">\n  <button class=\"btn btn-secondary btn-sm\" type=\"button\">Day</button>\n  <button class=\"btn btn-secondary btn-sm\" type=\"button\">Week</button>\n  <button class=\"btn btn-secondary btn-sm\" type=\"button\">Month</button>\n</div>"
+      "html": "<div class=\"button-group\">\n  <button class=\"btn btn-secondary btn-sm\" type=\"button\">Edit</button>\n  <button class=\"btn btn-secondary btn-sm\" type=\"button\">Duplicate</button>\n  <button class=\"btn btn-secondary btn-sm\" type=\"button\">Archive</button>\n</div>"
     },
     {
       "name": "button",
@@ -257,8 +259,10 @@
           "description": "hover response, when the whole card is a link"
         }
       ],
-      "requires": [],
-      "html": "<article class=\"card\">\n  <div class=\"card-header\"><h3 class=\"card-title\">api-gateway</h3></div>\n  <div class=\"card-content\"><p class=\"card-body\">Three replicas healthy in us-east-1.</p></div>\n  <div class=\"card-footer\"><button class=\"btn btn-secondary btn-sm\" type=\"button\">Open</button></div>\n</article>"
+      "requires": [
+        "badge"
+      ],
+      "html": "<article class=\"card\">\n  <div class=\"card-header\"><h3 class=\"card-title\">api-gateway</h3><span class=\"badge badge-status\" data-state=\"success\">Healthy</span></div>\n  <div class=\"card-content\"><p class=\"card-body\">Three replicas healthy in us-east-1. Last check 40 seconds ago.</p></div>\n  <div class=\"card-footer\"><button class=\"btn btn-secondary btn-sm\" type=\"button\">Open</button></div>\n</article>"
     },
     {
       "name": "chart",
@@ -352,7 +356,7 @@
         }
       ],
       "requires": [],
-      "html": "<div class=\"container\">\n  <p class=\"text-body\">Default width, 1200px. Use container-sm for prose and container-lg for dense tools.</p>\n</div>"
+      "html": "<div class=\"stack\">\n  <div class=\"container-sm\">\n    <div class=\"panel\">\n      <div class=\"panel-content stack stack-sm\">\n        <span class=\"text-meta\">container-sm</span>\n        <p class=\"text-body\">720px prose measure</p>\n      </div>\n    </div>\n  </div>\n  <div class=\"container\">\n    <div class=\"panel\">\n      <div class=\"panel-content stack stack-sm\">\n        <span class=\"text-meta\">container</span>\n        <p class=\"text-body\">1200px default page width</p>\n      </div>\n    </div>\n  </div>\n  <div class=\"container-lg\">\n    <div class=\"panel\">\n      <div class=\"panel-content stack stack-sm\">\n        <span class=\"text-meta\">container-lg</span>\n        <p class=\"text-body\">1440px dense tools</p>\n      </div>\n    </div>\n  </div>\n</div>"
     },
     {
       "name": "context-menu",
@@ -447,8 +451,10 @@
       "use": "Filters and detail views that sit beside the main content.",
       "avoid": "Destructive confirmations. Use a modal so the choice is unmissable.",
       "variants": [],
-      "requires": [],
-      "html": "<label class=\"btn btn-secondary\" for=\"filter-drawer\">Filters</label>\n<input class=\"drawer-toggle\" type=\"checkbox\" id=\"filter-drawer\">\n<div class=\"drawer-backdrop\"></div>\n<div class=\"drawer-panel\">\n  <div class=\"drawer-head\"><h3 class=\"modal-title\">Filter revisions</h3><label class=\"close-button\" for=\"filter-drawer\" aria-label=\"Close\"><svg class=\"icon\" aria-hidden=\"true\" viewBox=\"0 0 24 24\"><path d=\"M18 6 6 18M6 6l12 12\"/></svg></label></div>\n  <p class=\"text-body text-muted\">Drawer content flows like any panel once it is open.</p>\n</div>"
+      "requires": [
+        "checkbox"
+      ],
+      "html": "<label class=\"btn btn-secondary\" for=\"filter-drawer\">Filters</label>\n<input class=\"drawer-toggle\" type=\"checkbox\" id=\"filter-drawer\" checked>\n<div class=\"drawer-backdrop\"></div>\n<div class=\"drawer-panel\">\n  <div class=\"drawer-head\"><h3 class=\"modal-title\">Filter revisions</h3><label class=\"close-button\" for=\"filter-drawer\" aria-label=\"Close\"><svg class=\"icon\" aria-hidden=\"true\" viewBox=\"0 0 24 24\"><path d=\"M18 6 6 18M6 6l12 12\"/></svg></label></div>\n  <div class=\"stack stack-sm\">\n    <p class=\"text-body text-muted\">Show only failed checks from the last 24 hours.</p>\n    <label class=\"checkbox\"><input type=\"checkbox\" checked> Failed only</label>\n    <label class=\"checkbox\"><input type=\"checkbox\"> Needs review</label>\n  </div>\n</div>"
     },
     {
       "name": "dropdown",
@@ -508,7 +514,7 @@
       "requires": [
         "accordion"
       ],
-      "html": "<div class=\"faq\">\n  <details class=\"accordion\">\n    <summary>Does a rollback re-run the build?</summary>\n    <div class=\"accordion-body\">No. A rollback repoints traffic at an artefact that already passed. It takes about four seconds.</div>\n  </details>\n  <details class=\"accordion\">\n    <summary>Can two people deploy at once?</summary>\n    <div class=\"accordion-body\">The queue is per environment. The second deploy waits, and the person who started it sees who is ahead of them.</div>\n  </details>\n  <details class=\"accordion\">\n    <summary>What happens to in-flight requests?</summary>\n    <div class=\"accordion-body\">The old revision keeps serving until it drains, up to 30 seconds. You can raise the limit per service.</div>\n  </details>\n</div>"
+      "html": "<div class=\"faq\">\n  <details class=\"accordion\" open>\n    <summary>Does a rollback re-run the build?</summary>\n    <div class=\"accordion-body\">No. A rollback repoints traffic at an artefact that already passed. It takes about four seconds.</div>\n  </details>\n  <details class=\"accordion\">\n    <summary>Can two people deploy at once?</summary>\n    <div class=\"accordion-body\">The queue is per environment. The second deploy waits, and the person who started it sees who is ahead of them.</div>\n  </details>\n  <details class=\"accordion\">\n    <summary>What happens to in-flight requests?</summary>\n    <div class=\"accordion-body\">The old revision keeps serving until it drains, up to 30 seconds. You can raise the limit per service.</div>\n  </details>\n</div>"
     },
     {
       "name": "feature-card",
@@ -603,7 +609,7 @@
         }
       ],
       "requires": [],
-      "html": "<div class=\"grid-asymmetric\">\n  <div class=\"panel\"><div class=\"panel-content\">Main content</div></div>\n  <div class=\"panel\"><div class=\"panel-content\">Metadata</div></div>\n</div>"
+      "html": "<div class=\"grid-asymmetric\">\n  <div class=\"panel\">\n    <div class=\"panel-content stack stack-sm\">\n      <p class=\"text-card\">Deploy notes</p>\n      <p class=\"text-body text-muted\">This revision only changes the health probe path. No schema migration runs.</p>\n    </div>\n  </div>\n  <div class=\"panel\">\n    <div class=\"panel-content stack stack-sm\">\n      <div>\n        <p class=\"text-meta\">region</p>\n        <p class=\"text-body\">us-east-1</p>\n      </div>\n      <div>\n        <p class=\"text-meta\">owner</p>\n        <p class=\"text-body\">Platform</p>\n      </div>\n    </div>\n  </div>\n</div>"
     },
     {
       "name": "grid-auto",
@@ -614,7 +620,7 @@
       "avoid": "A fixed count you already know. Use grid-thirds or grid-split.",
       "variants": [],
       "requires": [],
-      "html": "<div class=\"grid-auto\">\n  <div class=\"panel\"><div class=\"panel-content\">One</div></div>\n  <div class=\"panel\"><div class=\"panel-content\">Two</div></div>\n  <div class=\"panel\"><div class=\"panel-content\">Three</div></div>\n  <div class=\"panel\"><div class=\"panel-content\">Four</div></div>\n</div>"
+      "html": "<div class=\"grid-auto\">\n  <div class=\"panel\">\n    <div class=\"panel-content stack stack-sm\">\n      <p class=\"text-card\">us-east-1</p>\n      <p class=\"text-meta\">3 replicas</p>\n    </div>\n  </div>\n  <div class=\"panel\">\n    <div class=\"panel-content stack stack-sm\">\n      <p class=\"text-card\">us-west-2</p>\n      <p class=\"text-meta\">2 replicas</p>\n    </div>\n  </div>\n  <div class=\"panel\">\n    <div class=\"panel-content stack stack-sm\">\n      <p class=\"text-card\">eu-west-1</p>\n      <p class=\"text-meta\">2 replicas</p>\n    </div>\n  </div>\n  <div class=\"panel\">\n    <div class=\"panel-content stack stack-sm\">\n      <p class=\"text-card\">ap-south-1</p>\n      <p class=\"text-meta\">1 replica</p>\n    </div>\n  </div>\n</div>"
     },
     {
       "name": "grid-centered",
@@ -625,7 +631,7 @@
       "avoid": "Data tables. They need the width.",
       "variants": [],
       "requires": [],
-      "html": "<div class=\"grid-centered\">\n  <div class=\"panel\"><div class=\"panel-content\">Prose</div></div>\n</div>"
+      "html": "<div class=\"grid-centered\">\n  <div class=\"panel\">\n    <div class=\"panel-content stack stack-sm\">\n      <p class=\"text-card\">Confirm the rollback target</p>\n      <p class=\"text-body text-muted\">Production traffic moves to v2.8.0. Active sessions stay open until they expire.</p>\n    </div>\n  </div>\n</div>"
     },
     {
       "name": "grid-holy-grail",
@@ -636,7 +642,7 @@
       "avoid": "Simple pages. Two rails is a lot of chrome.",
       "variants": [],
       "requires": [],
-      "html": "<div class=\"grid-holy-grail\">\n  <div class=\"panel\"><div class=\"panel-content\">Header</div></div>\n  <div class=\"panel\"><div class=\"panel-content\">Left</div></div>\n  <div class=\"panel\"><div class=\"panel-content\">Main</div></div>\n  <div class=\"panel\"><div class=\"panel-content\">Right</div></div>\n  <div class=\"panel\"><div class=\"panel-content\">Footer</div></div>\n</div>"
+      "html": "<div class=\"grid-holy-grail\">\n  <div class=\"panel\"><div class=\"panel-content\"><span class=\"text-meta\">header</span> · api-gateway</div></div>\n  <div class=\"panel\"><div class=\"panel-content stack stack-sm\"><span class=\"text-meta\">nav</span><span class=\"text-body\">Overview</span><span class=\"text-body\">Revisions</span></div></div>\n  <div class=\"panel\"><div class=\"panel-content stack stack-sm\"><span class=\"text-meta\">main</span><span class=\"text-body\">Work surface for the selected revision.</span></div></div>\n  <div class=\"panel\"><div class=\"panel-content stack stack-sm\"><span class=\"text-meta\">aside</span><span class=\"text-body\">Checks</span><span class=\"text-body\">Owners</span></div></div>\n  <div class=\"panel\"><div class=\"panel-content\"><span class=\"text-meta\">footer</span> · last synced 12s ago</div></div>\n</div>"
     },
     {
       "name": "grid-masonry",
@@ -647,7 +653,7 @@
       "avoid": "Uniform cards. It just looks unaligned.",
       "variants": [],
       "requires": [],
-      "html": "<div class=\"grid-masonry\">\n  <div class=\"panel\"><div class=\"panel-content\">Short</div></div>\n  <div class=\"panel\"><div class=\"panel-content\">Taller item with more content in it</div></div>\n  <div class=\"panel\"><div class=\"panel-content\">Short</div></div>\n</div>"
+      "html": "<div class=\"grid-masonry\">\n  <div class=\"panel\">\n    <div class=\"panel-content stack stack-sm\">\n      <p class=\"text-card\">Probe path</p>\n      <p class=\"text-body text-muted\">/healthz</p>\n    </div>\n  </div>\n  <div class=\"panel\">\n    <div class=\"panel-content stack stack-sm\">\n      <p class=\"text-card\">Rollback notes</p>\n      <p class=\"text-body text-muted\">Keeps the previous revision warm for one hour so a second rollback is instant. Sessions are not drained.</p>\n      <p class=\"text-body text-muted\">Use only after checks are green on the target revision.</p>\n    </div>\n  </div>\n  <div class=\"panel\">\n    <div class=\"panel-content stack stack-sm\">\n      <p class=\"text-card\">Owner</p>\n      <p class=\"text-body text-muted\">Platform</p>\n    </div>\n  </div>\n  <div class=\"panel\">\n    <div class=\"panel-content stack stack-sm\">\n      <p class=\"text-card\">Canary</p>\n      <p class=\"text-body text-muted\">5% of production traffic for fifteen minutes, then promote or abort.</p>\n    </div>\n  </div>\n  <div class=\"panel\">\n    <div class=\"panel-content stack stack-sm\">\n      <p class=\"text-card\">Region</p>\n      <p class=\"text-body text-muted\">us-east-1</p>\n    </div>\n  </div>\n</div>"
     },
     {
       "name": "grid-sidebar",
@@ -658,7 +664,7 @@
       "avoid": "A rail with two links in it.",
       "variants": [],
       "requires": [],
-      "html": "<div class=\"grid-sidebar\">\n  <div class=\"panel\"><div class=\"panel-content\">Rail</div></div>\n  <div class=\"panel\"><div class=\"panel-content\">Main</div></div>\n</div>"
+      "html": "<div class=\"grid-sidebar\">\n  <div class=\"panel\">\n    <div class=\"panel-content stack stack-sm\">\n      <p class=\"text-meta\">sections</p>\n      <p class=\"text-body\">Overview</p>\n      <p class=\"text-body\">Retention</p>\n      <p class=\"text-body\">Access</p>\n    </div>\n  </div>\n  <div class=\"panel\">\n    <div class=\"panel-content stack stack-sm\">\n      <p class=\"text-card\">Retention policy</p>\n      <p class=\"text-body text-muted\">Keep failed job logs for 30 days, then drop them.</p>\n    </div>\n  </div>\n</div>"
     },
     {
       "name": "grid-split",
@@ -676,7 +682,7 @@
         }
       ],
       "requires": [],
-      "html": "<div class=\"grid-split\">\n  <div class=\"panel\"><div class=\"panel-content\">Claim</div></div>\n  <div class=\"panel\"><div class=\"panel-content\">Artifact</div></div>\n</div>"
+      "html": "<div class=\"grid-split\">\n  <div class=\"panel\">\n    <div class=\"panel-content stack stack-sm\">\n      <p class=\"text-card\">Rollback is one action</p>\n      <p class=\"text-body text-muted\">Revert production traffic to any green revision without a runbook.</p>\n    </div>\n  </div>\n  <div class=\"panel\">\n    <div class=\"panel-content stack stack-sm\">\n      <p class=\"text-meta\">artifact</p>\n      <p class=\"text-mono\">kubectl rollout undo deploy/api-gateway</p>\n    </div>\n  </div>\n</div>"
     },
     {
       "name": "grid-stack-rail",
@@ -687,7 +693,7 @@
       "avoid": "Putting the primary action in the rail.",
       "variants": [],
       "requires": [],
-      "html": "<div class=\"grid-stack-rail\">\n  <div class=\"panel\"><div class=\"panel-content\">Main</div></div>\n  <div class=\"panel\"><div class=\"panel-content\">Context</div></div>\n</div>"
+      "html": "<div class=\"grid-stack-rail\">\n  <div class=\"panel\">\n    <div class=\"panel-content stack stack-sm\">\n      <p class=\"text-card\">Revision 6f82ae1</p>\n      <p class=\"text-body text-muted\">All required checks passed. Ready to promote to production.</p>\n    </div>\n  </div>\n  <div class=\"panel\">\n    <div class=\"panel-content stack stack-sm\">\n      <p class=\"text-meta\">activity</p>\n      <p class=\"text-body\">Build finished</p>\n      <p class=\"text-body\">Checks green</p>\n    </div>\n  </div>\n</div>"
     },
     {
       "name": "grid-thirds",
@@ -698,7 +704,7 @@
       "avoid": "Three invented benefits. That is the feature-grid tell.",
       "variants": [],
       "requires": [],
-      "html": "<div class=\"grid-thirds\">\n  <div class=\"panel\"><div class=\"panel-content\">One</div></div>\n  <div class=\"panel\"><div class=\"panel-content\">Two</div></div>\n  <div class=\"panel\"><div class=\"panel-content\">Three</div></div>\n</div>"
+      "html": "<div class=\"grid-thirds\">\n  <div class=\"panel\">\n    <div class=\"panel-content stack stack-sm\">\n      <p class=\"text-meta\">environment</p>\n      <p class=\"text-card\">Staging</p>\n      <p class=\"text-body text-muted\">v2.8.1-rc.3</p>\n    </div>\n  </div>\n  <div class=\"panel\">\n    <div class=\"panel-content stack stack-sm\">\n      <p class=\"text-meta\">environment</p>\n      <p class=\"text-card\">Canary</p>\n      <p class=\"text-body text-muted\">v2.8.1 · 5%</p>\n    </div>\n  </div>\n  <div class=\"panel\">\n    <div class=\"panel-content stack stack-sm\">\n      <p class=\"text-meta\">environment</p>\n      <p class=\"text-card\">Production</p>\n      <p class=\"text-body text-muted\">v2.8.0</p>\n    </div>\n  </div>\n</div>"
     },
     {
       "name": "hover-card",
@@ -708,9 +714,11 @@
       "use": "Previewing the thing behind a link: a user, a commit, a service. It saves a trip.",
       "avoid": "Putting anything essential or interactive in it. It is unreachable on a touch screen, so the content must be a bonus.",
       "variants": [],
-      "requires": [],
+      "requires": [
+        "badge"
+      ],
       "note": "Opens on hover and on focus-within, so keyboard users get it too.",
-      "html": "<span class=\"hover-card\">\n  <a class=\"text-accent\" href=\"/services/api-gateway\">api-gateway</a>\n  <span class=\"hover-card-panel\">\n    <span class=\"stack stack-sm\">\n      <span class=\"text-card\">api-gateway</span>\n      <span class=\"text-meta\">Owned by Platform. Last deployed 2 hours ago.</span>\n      <span class=\"badge badge-success\">Healthy</span>\n    </span>\n  </span>\n</span>"
+      "html": "<span class=\"hover-card\">\n  <a class=\"text-accent\" href=\"/services/api-gateway\">api-gateway</a>\n  <span class=\"hover-card-panel\">\n    <span class=\"stack stack-sm\">\n      <span class=\"text-card\">api-gateway</span>\n      <span class=\"text-meta\">Owned by Platform. Last deployed 2 hours ago.</span>\n      <span class=\"badge badge-status\" data-state=\"success\">Healthy</span>\n    </span>\n  </span>\n</span>"
     },
     {
       "name": "icon-button",
@@ -915,7 +923,7 @@
       ],
       "requires": [],
       "note": "Pick one surface and keep it. The four below are alternatives, not a set.",
-      "html": "<nav class=\"navbar-bordered\" aria-label=\"Main\">\n  <div class=\"nav-inner\">\n    <a class=\"brand\" href=\"/\"><span class=\"brand-mark\">R/</span> relay</a>\n    <div class=\"nav-links\">\n      <a class=\"nav-link\" aria-current=\"page\" href=\"/\">Overview</a>\n      <a class=\"nav-link\" href=\"/deploys\">Deploys</a>\n      <a class=\"nav-link\" href=\"/api\">API</a>\n    </div>\n  </div>\n</nav>"
+      "html": "<div class=\"stack\">\n  <nav class=\"navbar-bordered\" aria-label=\"Bordered\">\n    <div class=\"nav-inner\">\n      <a class=\"brand\" href=\"/\"><span class=\"brand-mark\">R/</span> relay</a>\n      <div class=\"nav-links\">\n        <a class=\"nav-link\" aria-current=\"page\" href=\"/\">Overview</a>\n        <a class=\"nav-link\" href=\"/deploys\">Deploys</a>\n        <a class=\"nav-link\" href=\"/api\">API</a>\n      </div>\n    </div>\n  </nav>\n  <nav class=\"navbar-solid\" aria-label=\"Solid\">\n    <div class=\"nav-inner\">\n      <a class=\"brand\" href=\"/\"><span class=\"brand-mark\">R/</span> relay</a>\n      <div class=\"nav-links\">\n        <a class=\"nav-link\" aria-current=\"page\" href=\"/\">Overview</a>\n        <a class=\"nav-link\" href=\"/deploys\">Deploys</a>\n        <a class=\"nav-link\" href=\"/api\">API</a>\n      </div>\n    </div>\n  </nav>\n  <nav class=\"navbar-glass\" aria-label=\"Glass\">\n    <div class=\"nav-inner\">\n      <a class=\"brand\" href=\"/\"><span class=\"brand-mark\">R/</span> relay</a>\n      <div class=\"nav-links\">\n        <a class=\"nav-link\" aria-current=\"page\" href=\"/\">Overview</a>\n        <a class=\"nav-link\" href=\"/deploys\">Deploys</a>\n        <a class=\"nav-link\" href=\"/api\">API</a>\n      </div>\n    </div>\n  </nav>\n  <nav class=\"navbar-minimal\" aria-label=\"Minimal\">\n    <div class=\"nav-inner\">\n      <a class=\"brand\" href=\"/\"><span class=\"brand-mark\">R/</span> relay</a>\n      <div class=\"nav-links\">\n        <a class=\"nav-link\" aria-current=\"page\" href=\"/\">Overview</a>\n        <a class=\"nav-link\" href=\"/deploys\">Deploys</a>\n        <a class=\"nav-link\" href=\"/api\">API</a>\n      </div>\n    </div>\n  </nav>\n</div>"
     },
     {
       "name": "newsletter",
@@ -1076,7 +1084,7 @@
       "avoid": "Nesting one inside another scrolling region. Two scrollbars in one place is a trap.",
       "variants": [],
       "requires": [],
-      "html": "<div class=\"scroll-area\">\n  <ul class=\"list-group\">\n    <li class=\"list-item\"><span class=\"list-title\">api-gateway</span><span class=\"list-meta\">2h ago</span></li>\n    <li class=\"list-item\"><span class=\"list-title\">billing-worker</span><span class=\"list-meta\">5h ago</span></li>\n    <li class=\"list-item\"><span class=\"list-title\">webhook-relay</span><span class=\"list-meta\">yesterday</span></li>\n    <li class=\"list-item\"><span class=\"list-title\">search-indexer</span><span class=\"list-meta\">2d ago</span></li>\n    <li class=\"list-item\"><span class=\"list-title\">image-resizer</span><span class=\"list-meta\">4d ago</span></li>\n    <li class=\"list-item\"><span class=\"list-title\">audit-log</span><span class=\"list-meta\">last week</span></li>\n  </ul>\n</div>"
+      "html": "<div class=\"scroll-area\">\n  <ul class=\"list-group\">\n    <li class=\"list-item\"><span class=\"list-title\">api-gateway</span><span class=\"list-meta\">2h ago</span></li>\n    <li class=\"list-item\"><span class=\"list-title\">billing-worker</span><span class=\"list-meta\">5h ago</span></li>\n    <li class=\"list-item\"><span class=\"list-title\">webhook-relay</span><span class=\"list-meta\">yesterday</span></li>\n    <li class=\"list-item\"><span class=\"list-title\">search-indexer</span><span class=\"list-meta\">2d ago</span></li>\n    <li class=\"list-item\"><span class=\"list-title\">image-resizer</span><span class=\"list-meta\">4d ago</span></li>\n    <li class=\"list-item\"><span class=\"list-title\">audit-log</span><span class=\"list-meta\">5d ago</span></li>\n    <li class=\"list-item\"><span class=\"list-title\">event-router</span><span class=\"list-meta\">6d ago</span></li>\n    <li class=\"list-item\"><span class=\"list-title\">metrics-sink</span><span class=\"list-meta\">last week</span></li>\n    <li class=\"list-item\"><span class=\"list-title\">cache-warmer</span><span class=\"list-meta\">last week</span></li>\n    <li class=\"list-item\"><span class=\"list-title\">schema-migrator</span><span class=\"list-meta\">2 weeks ago</span></li>\n  </ul>\n</div>"
     },
     {
       "name": "section-header",

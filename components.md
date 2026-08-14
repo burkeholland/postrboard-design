@@ -14,7 +14,7 @@ A full-height sidebar and main region, the standard frame for an application.
 
 - **Use:** Any signed-in product surface with persistent navigation.
 - **Avoid:** Marketing pages. A landing page does not need an app frame.
-- **Requires:** sidebar-nav
+- **Requires:** sidebar-nav, page-header, stat-strip
 
 ```html
 <div class="grid-sidebar is-app-shell">
@@ -23,10 +23,21 @@ A full-height sidebar and main region, the standard frame for an application.
     <nav class="sidebar-nav" aria-label="Sections">
       <a href="/" aria-current="page">Overview</a>
       <a href="/deploys">Deploys</a>
+      <a href="/logs">Logs</a>
     </nav>
   </aside>
   <main class="app-main" id="main">
-    <h1 class="page-title">Overview</h1>
+    <header class="page-header">
+      <div class="page-header-main">
+        <h1 class="page-title">Overview</h1>
+        <p class="page-summary">Live services in us-east-1.</p>
+      </div>
+    </header>
+    <dl class="stat-strip">
+      <div class="stat-item"><dt class="stat-label">Ready</dt><dd class="stat-value">12</dd></div>
+      <div class="stat-item"><dt class="stat-label">Building</dt><dd class="stat-value">4</dd></div>
+      <div class="stat-item"><dt class="stat-label">Failed</dt><dd class="stat-value">1</dd></div>
+    </dl>
   </main>
 </div>
 ```
@@ -42,8 +53,31 @@ Page width and gutters, in three measures.
 - **`.section`:** vertical rhythm between the major blocks of a page
 
 ```html
-<div class="container">
-  <p class="text-body">Default width, 1200px. Use container-sm for prose and container-lg for dense tools.</p>
+<div class="stack">
+  <div class="container-sm">
+    <div class="panel">
+      <div class="panel-content stack stack-sm">
+        <span class="text-meta">container-sm</span>
+        <p class="text-body">720px prose measure</p>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="panel">
+      <div class="panel-content stack stack-sm">
+        <span class="text-meta">container</span>
+        <p class="text-body">1200px default page width</p>
+      </div>
+    </div>
+  </div>
+  <div class="container-lg">
+    <div class="panel">
+      <div class="panel-content stack stack-sm">
+        <span class="text-meta">container-lg</span>
+        <p class="text-body">1440px dense tools</p>
+      </div>
+    </div>
+  </div>
 </div>
 ```
 
@@ -73,8 +107,24 @@ Two columns weighted 2:1. Use grid-asymmetric-reverse to lead with the narrow co
 
 ```html
 <div class="grid-asymmetric">
-  <div class="panel"><div class="panel-content">Main content</div></div>
-  <div class="panel"><div class="panel-content">Metadata</div></div>
+  <div class="panel">
+    <div class="panel-content stack stack-sm">
+      <p class="text-card">Deploy notes</p>
+      <p class="text-body text-muted">This revision only changes the health probe path. No schema migration runs.</p>
+    </div>
+  </div>
+  <div class="panel">
+    <div class="panel-content stack stack-sm">
+      <div>
+        <p class="text-meta">region</p>
+        <p class="text-body">us-east-1</p>
+      </div>
+      <div>
+        <p class="text-meta">owner</p>
+        <p class="text-body">Platform</p>
+      </div>
+    </div>
+  </div>
 </div>
 ```
 
@@ -87,10 +137,30 @@ As many equal columns as fit, wrapping automatically.
 
 ```html
 <div class="grid-auto">
-  <div class="panel"><div class="panel-content">One</div></div>
-  <div class="panel"><div class="panel-content">Two</div></div>
-  <div class="panel"><div class="panel-content">Three</div></div>
-  <div class="panel"><div class="panel-content">Four</div></div>
+  <div class="panel">
+    <div class="panel-content stack stack-sm">
+      <p class="text-card">us-east-1</p>
+      <p class="text-meta">3 replicas</p>
+    </div>
+  </div>
+  <div class="panel">
+    <div class="panel-content stack stack-sm">
+      <p class="text-card">us-west-2</p>
+      <p class="text-meta">2 replicas</p>
+    </div>
+  </div>
+  <div class="panel">
+    <div class="panel-content stack stack-sm">
+      <p class="text-card">eu-west-1</p>
+      <p class="text-meta">2 replicas</p>
+    </div>
+  </div>
+  <div class="panel">
+    <div class="panel-content stack stack-sm">
+      <p class="text-card">ap-south-1</p>
+      <p class="text-meta">1 replica</p>
+    </div>
+  </div>
 </div>
 ```
 
@@ -103,7 +173,12 @@ A single measured column, centred in the page.
 
 ```html
 <div class="grid-centered">
-  <div class="panel"><div class="panel-content">Prose</div></div>
+  <div class="panel">
+    <div class="panel-content stack stack-sm">
+      <p class="text-card">Confirm the rollback target</p>
+      <p class="text-body text-muted">Production traffic moves to v2.8.0. Active sessions stay open until they expire.</p>
+    </div>
+  </div>
 </div>
 ```
 
@@ -116,11 +191,11 @@ A full-width header and footer around three columns.
 
 ```html
 <div class="grid-holy-grail">
-  <div class="panel"><div class="panel-content">Header</div></div>
-  <div class="panel"><div class="panel-content">Left</div></div>
-  <div class="panel"><div class="panel-content">Main</div></div>
-  <div class="panel"><div class="panel-content">Right</div></div>
-  <div class="panel"><div class="panel-content">Footer</div></div>
+  <div class="panel"><div class="panel-content"><span class="text-meta">header</span> · api-gateway</div></div>
+  <div class="panel"><div class="panel-content stack stack-sm"><span class="text-meta">nav</span><span class="text-body">Overview</span><span class="text-body">Revisions</span></div></div>
+  <div class="panel"><div class="panel-content stack stack-sm"><span class="text-meta">main</span><span class="text-body">Work surface for the selected revision.</span></div></div>
+  <div class="panel"><div class="panel-content stack stack-sm"><span class="text-meta">aside</span><span class="text-body">Checks</span><span class="text-body">Owners</span></div></div>
+  <div class="panel"><div class="panel-content"><span class="text-meta">footer</span> · last synced 12s ago</div></div>
 </div>
 ```
 
@@ -133,9 +208,37 @@ Three columns that flow by height rather than by row.
 
 ```html
 <div class="grid-masonry">
-  <div class="panel"><div class="panel-content">Short</div></div>
-  <div class="panel"><div class="panel-content">Taller item with more content in it</div></div>
-  <div class="panel"><div class="panel-content">Short</div></div>
+  <div class="panel">
+    <div class="panel-content stack stack-sm">
+      <p class="text-card">Probe path</p>
+      <p class="text-body text-muted">/healthz</p>
+    </div>
+  </div>
+  <div class="panel">
+    <div class="panel-content stack stack-sm">
+      <p class="text-card">Rollback notes</p>
+      <p class="text-body text-muted">Keeps the previous revision warm for one hour so a second rollback is instant. Sessions are not drained.</p>
+      <p class="text-body text-muted">Use only after checks are green on the target revision.</p>
+    </div>
+  </div>
+  <div class="panel">
+    <div class="panel-content stack stack-sm">
+      <p class="text-card">Owner</p>
+      <p class="text-body text-muted">Platform</p>
+    </div>
+  </div>
+  <div class="panel">
+    <div class="panel-content stack stack-sm">
+      <p class="text-card">Canary</p>
+      <p class="text-body text-muted">5% of production traffic for fifteen minutes, then promote or abort.</p>
+    </div>
+  </div>
+  <div class="panel">
+    <div class="panel-content stack stack-sm">
+      <p class="text-card">Region</p>
+      <p class="text-body text-muted">us-east-1</p>
+    </div>
+  </div>
 </div>
 ```
 
@@ -148,8 +251,20 @@ A fixed-width rail beside a fluid main column.
 
 ```html
 <div class="grid-sidebar">
-  <div class="panel"><div class="panel-content">Rail</div></div>
-  <div class="panel"><div class="panel-content">Main</div></div>
+  <div class="panel">
+    <div class="panel-content stack stack-sm">
+      <p class="text-meta">sections</p>
+      <p class="text-body">Overview</p>
+      <p class="text-body">Retention</p>
+      <p class="text-body">Access</p>
+    </div>
+  </div>
+  <div class="panel">
+    <div class="panel-content stack stack-sm">
+      <p class="text-card">Retention policy</p>
+      <p class="text-body text-muted">Keep failed job logs for 30 days, then drop them.</p>
+    </div>
+  </div>
 </div>
 ```
 
@@ -163,8 +278,18 @@ Two equal columns.
 
 ```html
 <div class="grid-split">
-  <div class="panel"><div class="panel-content">Claim</div></div>
-  <div class="panel"><div class="panel-content">Artifact</div></div>
+  <div class="panel">
+    <div class="panel-content stack stack-sm">
+      <p class="text-card">Rollback is one action</p>
+      <p class="text-body text-muted">Revert production traffic to any green revision without a runbook.</p>
+    </div>
+  </div>
+  <div class="panel">
+    <div class="panel-content stack stack-sm">
+      <p class="text-meta">artifact</p>
+      <p class="text-mono">kubectl rollout undo deploy/api-gateway</p>
+    </div>
+  </div>
 </div>
 ```
 
@@ -177,8 +302,19 @@ A fluid main column with a narrower trailing rail.
 
 ```html
 <div class="grid-stack-rail">
-  <div class="panel"><div class="panel-content">Main</div></div>
-  <div class="panel"><div class="panel-content">Context</div></div>
+  <div class="panel">
+    <div class="panel-content stack stack-sm">
+      <p class="text-card">Revision 6f82ae1</p>
+      <p class="text-body text-muted">All required checks passed. Ready to promote to production.</p>
+    </div>
+  </div>
+  <div class="panel">
+    <div class="panel-content stack stack-sm">
+      <p class="text-meta">activity</p>
+      <p class="text-body">Build finished</p>
+      <p class="text-body">Checks green</p>
+    </div>
+  </div>
 </div>
 ```
 
@@ -191,9 +327,27 @@ Three equal columns.
 
 ```html
 <div class="grid-thirds">
-  <div class="panel"><div class="panel-content">One</div></div>
-  <div class="panel"><div class="panel-content">Two</div></div>
-  <div class="panel"><div class="panel-content">Three</div></div>
+  <div class="panel">
+    <div class="panel-content stack stack-sm">
+      <p class="text-meta">environment</p>
+      <p class="text-card">Staging</p>
+      <p class="text-body text-muted">v2.8.1-rc.3</p>
+    </div>
+  </div>
+  <div class="panel">
+    <div class="panel-content stack stack-sm">
+      <p class="text-meta">environment</p>
+      <p class="text-card">Canary</p>
+      <p class="text-body text-muted">v2.8.1 · 5%</p>
+    </div>
+  </div>
+  <div class="panel">
+    <div class="panel-content stack stack-sm">
+      <p class="text-meta">environment</p>
+      <p class="text-card">Production</p>
+      <p class="text-body text-muted">v2.8.0</p>
+    </div>
+  </div>
 </div>
 ```
 
@@ -212,7 +366,11 @@ A bounded region that scrolls on its own, with a thin scrollbar.
     <li class="list-item"><span class="list-title">webhook-relay</span><span class="list-meta">yesterday</span></li>
     <li class="list-item"><span class="list-title">search-indexer</span><span class="list-meta">2d ago</span></li>
     <li class="list-item"><span class="list-title">image-resizer</span><span class="list-meta">4d ago</span></li>
-    <li class="list-item"><span class="list-title">audit-log</span><span class="list-meta">last week</span></li>
+    <li class="list-item"><span class="list-title">audit-log</span><span class="list-meta">5d ago</span></li>
+    <li class="list-item"><span class="list-title">event-router</span><span class="list-meta">6d ago</span></li>
+    <li class="list-item"><span class="list-title">metrics-sink</span><span class="list-meta">last week</span></li>
+    <li class="list-item"><span class="list-title">cache-warmer</span><span class="list-meta">last week</span></li>
+    <li class="list-item"><span class="list-title">schema-migrator</span><span class="list-meta">2 weeks ago</span></li>
   </ul>
 </div>
 ```
@@ -242,14 +400,14 @@ Vertical rhythm (stack) and horizontal grouping that wraps (cluster).
 
 Buttons joined into a single control for mutually related actions.
 
-- **Use:** Switching a view between a few named options.
-- **Avoid:** Unrelated actions. Use a cluster of separate buttons instead.
+- **Use:** A small set of actions on one object, such as edit, duplicate, and archive.
+- **Avoid:** Unrelated actions. Use a cluster of separate buttons instead. For exclusive choices, use segmented-control.
 
 ```html
 <div class="button-group">
-  <button class="btn btn-secondary btn-sm" type="button">Day</button>
-  <button class="btn btn-secondary btn-sm" type="button">Week</button>
-  <button class="btn btn-secondary btn-sm" type="button">Month</button>
+  <button class="btn btn-secondary btn-sm" type="button">Edit</button>
+  <button class="btn btn-secondary btn-sm" type="button">Duplicate</button>
+  <button class="btn btn-secondary btn-sm" type="button">Archive</button>
 </div>
 ```
 
@@ -607,7 +765,7 @@ Native details and summary styled as a disclosure row.
 - **Avoid:** Hiding content the user needs to complete the task in front of them.
 
 ```html
-<details class="accordion">
+<details class="accordion" open>
   <summary>What do I still have to build in JavaScript?</summary>
   <div class="accordion-body">Focus trapping, closing on Escape, arrow-key navigation, tracking which item is selected, and screen-reader announcements. The CSS only styles these components.</div>
 </details>
@@ -620,11 +778,12 @@ A compatibility alias for panel, kept for 1.x markup.
 - **Use:** Existing pages already written against the 1.x card API.
 - **Avoid:** New work. Use panel, which is the canonical name.
 - **`.card-interactive`:** hover response, when the whole card is a link
+- **Requires:** badge
 
 ```html
 <article class="card">
-  <div class="card-header"><h3 class="card-title">api-gateway</h3></div>
-  <div class="card-content"><p class="card-body">Three replicas healthy in us-east-1.</p></div>
+  <div class="card-header"><h3 class="card-title">api-gateway</h3><span class="badge badge-status" data-state="success">Healthy</span></div>
+  <div class="card-content"><p class="card-body">Three replicas healthy in us-east-1. Last check 40 seconds ago.</p></div>
   <div class="card-footer"><button class="btn btn-secondary btn-sm" type="button">Open</button></div>
 </article>
 ```
@@ -1044,16 +1203,48 @@ The top bar, in four surfaces: bordered, glass, solid, and minimal.
 - **Note:** Pick one surface and keep it. The four below are alternatives, not a set.
 
 ```html
-<nav class="navbar-bordered" aria-label="Main">
-  <div class="nav-inner">
-    <a class="brand" href="/"><span class="brand-mark">R/</span> relay</a>
-    <div class="nav-links">
-      <a class="nav-link" aria-current="page" href="/">Overview</a>
-      <a class="nav-link" href="/deploys">Deploys</a>
-      <a class="nav-link" href="/api">API</a>
+<div class="stack">
+  <nav class="navbar-bordered" aria-label="Bordered">
+    <div class="nav-inner">
+      <a class="brand" href="/"><span class="brand-mark">R/</span> relay</a>
+      <div class="nav-links">
+        <a class="nav-link" aria-current="page" href="/">Overview</a>
+        <a class="nav-link" href="/deploys">Deploys</a>
+        <a class="nav-link" href="/api">API</a>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
+  <nav class="navbar-solid" aria-label="Solid">
+    <div class="nav-inner">
+      <a class="brand" href="/"><span class="brand-mark">R/</span> relay</a>
+      <div class="nav-links">
+        <a class="nav-link" aria-current="page" href="/">Overview</a>
+        <a class="nav-link" href="/deploys">Deploys</a>
+        <a class="nav-link" href="/api">API</a>
+      </div>
+    </div>
+  </nav>
+  <nav class="navbar-glass" aria-label="Glass">
+    <div class="nav-inner">
+      <a class="brand" href="/"><span class="brand-mark">R/</span> relay</a>
+      <div class="nav-links">
+        <a class="nav-link" aria-current="page" href="/">Overview</a>
+        <a class="nav-link" href="/deploys">Deploys</a>
+        <a class="nav-link" href="/api">API</a>
+      </div>
+    </div>
+  </nav>
+  <nav class="navbar-minimal" aria-label="Minimal">
+    <div class="nav-inner">
+      <a class="brand" href="/"><span class="brand-mark">R/</span> relay</a>
+      <div class="nav-links">
+        <a class="nav-link" aria-current="page" href="/">Overview</a>
+        <a class="nav-link" href="/deploys">Deploys</a>
+        <a class="nav-link" href="/api">API</a>
+      </div>
+    </div>
+  </nav>
+</div>
 ```
 
 ### pagination
@@ -1360,14 +1551,19 @@ A panel that slides in from the edge, driven by a checkbox toggle.
 
 - **Use:** Filters and detail views that sit beside the main content.
 - **Avoid:** Destructive confirmations. Use a modal so the choice is unmissable.
+- **Requires:** checkbox
 
 ```html
 <label class="btn btn-secondary" for="filter-drawer">Filters</label>
-<input class="drawer-toggle" type="checkbox" id="filter-drawer">
+<input class="drawer-toggle" type="checkbox" id="filter-drawer" checked>
 <div class="drawer-backdrop"></div>
 <div class="drawer-panel">
   <div class="drawer-head"><h3 class="modal-title">Filter revisions</h3><label class="close-button" for="filter-drawer" aria-label="Close"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></label></div>
-  <p class="text-body text-muted">Drawer content flows like any panel once it is open.</p>
+  <div class="stack stack-sm">
+    <p class="text-body text-muted">Show only failed checks from the last 24 hours.</p>
+    <label class="checkbox"><input type="checkbox" checked> Failed only</label>
+    <label class="checkbox"><input type="checkbox"> Needs review</label>
+  </div>
 </div>
 ```
 
@@ -1396,6 +1592,7 @@ A panel of detail that opens on hover or focus.
 
 - **Use:** Previewing the thing behind a link: a user, a commit, a service. It saves a trip.
 - **Avoid:** Putting anything essential or interactive in it. It is unreachable on a touch screen, so the content must be a bonus.
+- **Requires:** badge
 - **Note:** Opens on hover and on focus-within, so keyboard users get it too.
 
 ```html
@@ -1405,7 +1602,7 @@ A panel of detail that opens on hover or focus.
     <span class="stack stack-sm">
       <span class="text-card">api-gateway</span>
       <span class="text-meta">Owned by Platform. Last deployed 2 hours ago.</span>
-      <span class="badge badge-success">Healthy</span>
+      <span class="badge badge-status" data-state="success">Healthy</span>
     </span>
   </span>
 </span>
@@ -1650,7 +1847,7 @@ A stack of accordions for real, repeated questions.
 
 ```html
 <div class="faq">
-  <details class="accordion">
+  <details class="accordion" open>
     <summary>Does a rollback re-run the build?</summary>
     <div class="accordion-body">No. A rollback repoints traffic at an artefact that already passed. It takes about four seconds.</div>
   </details>

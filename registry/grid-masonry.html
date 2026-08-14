@@ -7,7 +7,35 @@ use: Items with genuinely different heights, such as notes or clips.
 avoid: Uniform cards. It just looks unaligned.
 -->
 <div class="grid-masonry">
-  <div class="panel"><div class="panel-content">Short</div></div>
-  <div class="panel"><div class="panel-content">Taller item with more content in it</div></div>
-  <div class="panel"><div class="panel-content">Short</div></div>
+  <div class="panel">
+    <div class="panel-content stack stack-sm">
+      <p class="text-card">Probe path</p>
+      <p class="text-body text-muted">/healthz</p>
+    </div>
+  </div>
+  <div class="panel">
+    <div class="panel-content stack stack-sm">
+      <p class="text-card">Rollback notes</p>
+      <p class="text-body text-muted">Keeps the previous revision warm for one hour so a second rollback is instant. Sessions are not drained.</p>
+      <p class="text-body text-muted">Use only after checks are green on the target revision.</p>
+    </div>
+  </div>
+  <div class="panel">
+    <div class="panel-content stack stack-sm">
+      <p class="text-card">Owner</p>
+      <p class="text-body text-muted">Platform</p>
+    </div>
+  </div>
+  <div class="panel">
+    <div class="panel-content stack stack-sm">
+      <p class="text-card">Canary</p>
+      <p class="text-body text-muted">5% of production traffic for fifteen minutes, then promote or abort.</p>
+    </div>
+  </div>
+  <div class="panel">
+    <div class="panel-content stack stack-sm">
+      <p class="text-card">Region</p>
+      <p class="text-body text-muted">us-east-1</p>
+    </div>
+  </div>
 </div>

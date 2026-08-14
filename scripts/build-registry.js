@@ -37,6 +37,7 @@ const PREVIEWS = {
   fab: 'demo-fab-stage',
   frame: 'demo-frame',
   stage: 'demo-stage',
+  overlay: 'demo-overlay',
 };
 
 /** Stand-in for a media path, so a docs demo never renders a broken image. */
@@ -182,6 +183,24 @@ function toPreview(item) {
   html = html.replace(/\bhref="\/[^"]*"/g, 'href="#components"');
   // Likewise for media: the sample keeps the honest path, the demo shows a stand-in.
   html = html.replace(/\bsrc="\/[^"]*"/g, `src="${PLACEHOLDER_MEDIA}"`);
+
+  // Force open states so docs show the component, not only the trigger.
+  // The Markup tab keeps the honest closed/default source from item.html.
+  html = html.replace(/\bclass="((?:[\w-]+\s+)*)modal((?:\s[\w-]+)*)"/g, (all, pre, post) => {
+    if (/\bis-active\b/.test(pre + post)) return all;
+    return `class="${pre}modal${post} is-active"`.replace(/\s+/g, ' ');
+  });
+  html = html.replace(/\bclass="dropdown-menu"/g, 'class="dropdown-menu is-open"');
+  html = html.replace(/\bclass="popover-panel"/g, 'class="popover-panel is-open"');
+  html = html.replace(/\bclass="hover-card-panel"/g, 'class="hover-card-panel is-open"');
+  html = html.replace(/\bclass="tooltip"/g, 'class="tooltip is-open"');
+  html = html.replace(
+    /(<input\b[^>]*\bclass="drawer-toggle"[^>]*)(\/?>)/g,
+    (all, head, tail) => (/\bchecked\b/.test(all) ? all : `${head} checked${tail}`)
+  );
+  html = html.replace(/<details class="accordion">/, '<details class="accordion" open>');
+  html = html.replace(/<details class="faq-item">/, '<details class="faq-item" open>');
+
   return html;
 }
 

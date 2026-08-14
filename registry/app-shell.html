@@ -6,7 +6,7 @@ description: A full-height sidebar and main region, the standard frame for an ap
 use: Any signed-in product surface with persistent navigation.
 avoid: Marketing pages. A landing page does not need an app frame.
 preview: frame
-requires: sidebar-nav
+requires: sidebar-nav, page-header, stat-strip
 -->
 <div class="grid-sidebar is-app-shell">
   <aside class="app-sidebar">
@@ -14,9 +14,20 @@ requires: sidebar-nav
     <nav class="sidebar-nav" aria-label="Sections">
       <a href="/" aria-current="page">Overview</a>
       <a href="/deploys">Deploys</a>
+      <a href="/logs">Logs</a>
     </nav>
   </aside>
   <main class="app-main" id="main">
-    <h1 class="page-title">Overview</h1>
+    <header class="page-header">
+      <div class="page-header-main">
+        <h1 class="page-title">Overview</h1>
+        <p class="page-summary">Live services in us-east-1.</p>
+      </div>
+    </header>
+    <dl class="stat-strip">
+      <div class="stat-item"><dt class="stat-label">Ready</dt><dd class="stat-value">12</dd></div>
+      <div class="stat-item"><dt class="stat-label">Building</dt><dd class="stat-value">4</dd></div>
+      <div class="stat-item"><dt class="stat-label">Failed</dt><dd class="stat-value">1</dd></div>
+    </dl>
   </main>
 </div>

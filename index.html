@@ -310,31 +310,106 @@
     /* Full-height layouts would otherwise stretch a docs row to the viewport.
        The frame shows their structure at a readable size. */
     .demo-frame {
-      height: 320px;
+      height: 280px;
       overflow: hidden;
       border: 1px solid var(--border);
       border-radius: var(--radius-surface);
+      background: var(--surface-subtle);
     }
 
     .demo-frame > * {
       height: 100%;
     }
 
+    /* App shell is 100vh in products. Cap it inside the docs frame only. */
+    .demo-frame .is-app-shell {
+      min-height: 0;
+      height: 100%;
+    }
+
+    .demo-frame .is-app-shell > .app-sidebar {
+      position: relative;
+      top: auto;
+      height: 100%;
+    }
+
     /* Media fills its container by design. The docs column is wide, so cap the
        demo instead of letting one screenshot dominate the row. */
     .component-demo .aspect,
-    .component-demo .frame {
+    .component-demo .frame,
+    .component-demo > .demo-panel-preview > .card,
+    .component-demo > .demo-panel-preview > .command-palette,
+    .component-demo > .demo-panel-preview > .pricing-card,
+    .component-demo > .demo-panel-preview > .panel {
       max-width: 420px;
     }
 
-    /* A containing block for position:fixed, so an overlay demo stays in its row. */    .demo-stage {
+    /* A containing block for position:fixed, so an overlay demo stays in its row. */
+    .demo-stage {
       position: relative;
-      height: 220px;
+      height: 280px;
       overflow: hidden;
       transform: translateZ(0);
       border: 1px solid var(--border);
       border-radius: var(--radius-surface);
       background: var(--surface-subtle);
+    }
+
+    .demo-stage .modal,
+    .demo-stage .drawer-backdrop,
+    .demo-stage .drawer-panel,
+    .demo-stage .toast-region {
+      position: absolute;
+    }
+
+    .demo-stage .modal {
+      inset: 0;
+      padding: var(--space-4);
+    }
+
+    .demo-stage .modal-card {
+      max-height: min(240px, 100%);
+    }
+
+    .demo-stage .drawer-panel {
+      width: min(280px, 78%);
+    }
+
+    .demo-stage .toast-region {
+      right: var(--space-4);
+      bottom: var(--space-4);
+      width: min(300px, calc(100% - var(--space-6)));
+    }
+
+    /* Room for open menus attached to a trigger. */
+    .demo-overlay {
+      position: relative;
+      min-height: 200px;
+      padding: var(--space-5);
+      overflow: visible;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-surface);
+      background: var(--surface-subtle);
+    }
+
+    /* Docs force menus open. Anchor them under the trigger so they stay in frame. */
+    .demo-overlay .dropdown-menu.is-open {
+      left: 0;
+      right: auto;
+    }
+
+    .demo-overlay .popover-panel.is-open {
+      left: 0;
+      transform: none;
+    }
+
+    .demo-overlay .hover-card-panel.is-open {
+      left: 0;
+    }
+
+    .demo-overlay .tooltip.is-open::after {
+      left: 0;
+      transform: translateY(0);
     }
 
     .demo-fab-caption {
@@ -648,10 +723,21 @@
                       <nav class="sidebar-nav" aria-label="Sections">
                         <a href="#components" aria-current="page">Overview</a>
                         <a href="#components">Deploys</a>
+                        <a href="#components">Logs</a>
                       </nav>
                     </aside>
                     <main class="app-main" id="app-shell-main">
-                      <h1 class="page-title">Overview</h1>
+                      <header class="page-header">
+                        <div class="page-header-main">
+                          <h1 class="page-title">Overview</h1>
+                          <p class="page-summary">Live services in us-east-1.</p>
+                        </div>
+                      </header>
+                      <dl class="stat-strip">
+                        <div class="stat-item"><dt class="stat-label">Ready</dt><dd class="stat-value">12</dd></div>
+                        <div class="stat-item"><dt class="stat-label">Building</dt><dd class="stat-value">4</dd></div>
+                        <div class="stat-item"><dt class="stat-label">Failed</dt><dd class="stat-value">1</dd></div>
+                      </dl>
                     </main>
                   </div>
                 </div>
@@ -663,10 +749,21 @@
     &lt;nav class="sidebar-nav" aria-label="Sections"&gt;
       &lt;a href="/" aria-current="page"&gt;Overview&lt;/a&gt;
       &lt;a href="/deploys"&gt;Deploys&lt;/a&gt;
+      &lt;a href="/logs"&gt;Logs&lt;/a&gt;
     &lt;/nav&gt;
   &lt;/aside&gt;
   &lt;main class="app-main" id="main"&gt;
-    &lt;h1 class="page-title"&gt;Overview&lt;/h1&gt;
+    &lt;header class="page-header"&gt;
+      &lt;div class="page-header-main"&gt;
+        &lt;h1 class="page-title"&gt;Overview&lt;/h1&gt;
+        &lt;p class="page-summary"&gt;Live services in us-east-1.&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/header&gt;
+    &lt;dl class="stat-strip"&gt;
+      &lt;div class="stat-item"&gt;&lt;dt class="stat-label"&gt;Ready&lt;/dt&gt;&lt;dd class="stat-value"&gt;12&lt;/dd&gt;&lt;/div&gt;
+      &lt;div class="stat-item"&gt;&lt;dt class="stat-label"&gt;Building&lt;/dt&gt;&lt;dd class="stat-value"&gt;4&lt;/dd&gt;&lt;/div&gt;
+      &lt;div class="stat-item"&gt;&lt;dt class="stat-label"&gt;Failed&lt;/dt&gt;&lt;dd class="stat-value"&gt;1&lt;/dd&gt;&lt;/div&gt;
+    &lt;/dl&gt;
   &lt;/main&gt;
 &lt;/div&gt;</code></pre>
               </div>
@@ -683,13 +780,59 @@
                 <input class="demo-switch-markup" type="radio" name="sw-container" id="sw-container-markup"><label class="tab" for="sw-container-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
-                <div class="container">
-                  <p class="text-body">Default width, 1200px. Use container-sm for prose and container-lg for dense tools.</p>
+                <div class="stack">
+                  <div class="container-sm">
+                    <div class="panel">
+                      <div class="panel-content stack stack-sm">
+                        <span class="text-meta">container-sm</span>
+                        <p class="text-body">720px prose measure</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="container">
+                    <div class="panel">
+                      <div class="panel-content stack stack-sm">
+                        <span class="text-meta">container</span>
+                        <p class="text-body">1200px default page width</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="container-lg">
+                    <div class="panel">
+                      <div class="panel-content stack stack-sm">
+                        <span class="text-meta">container-lg</span>
+                        <p class="text-body">1440px dense tools</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div class="demo-panel demo-panel-markup">
-                <pre class="code-sample"><code>&lt;div class="container"&gt;
-  &lt;p class="text-body"&gt;Default width, 1200px. Use container-sm for prose and container-lg for dense tools.&lt;/p&gt;
+                <pre class="code-sample"><code>&lt;div class="stack"&gt;
+  &lt;div class="container-sm"&gt;
+    &lt;div class="panel"&gt;
+      &lt;div class="panel-content stack stack-sm"&gt;
+        &lt;span class="text-meta"&gt;container-sm&lt;/span&gt;
+        &lt;p class="text-body"&gt;720px prose measure&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="container"&gt;
+    &lt;div class="panel"&gt;
+      &lt;div class="panel-content stack stack-sm"&gt;
+        &lt;span class="text-meta"&gt;container&lt;/span&gt;
+        &lt;p class="text-body"&gt;1200px default page width&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="container-lg"&gt;
+    &lt;div class="panel"&gt;
+      &lt;div class="panel-content stack stack-sm"&gt;
+        &lt;span class="text-meta"&gt;container-lg&lt;/span&gt;
+        &lt;p class="text-body"&gt;1440px dense tools&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
 &lt;/div&gt;</code></pre>
               </div>
             </div>
@@ -734,14 +877,46 @@
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="grid-asymmetric">
-                  <div class="panel"><div class="panel-content">Main content</div></div>
-                  <div class="panel"><div class="panel-content">Metadata</div></div>
+                  <div class="panel">
+                    <div class="panel-content stack stack-sm">
+                      <p class="text-card">Deploy notes</p>
+                      <p class="text-body text-muted">This revision only changes the health probe path. No schema migration runs.</p>
+                    </div>
+                  </div>
+                  <div class="panel">
+                    <div class="panel-content stack stack-sm">
+                      <div>
+                        <p class="text-meta">region</p>
+                        <p class="text-body">us-east-1</p>
+                      </div>
+                      <div>
+                        <p class="text-meta">owner</p>
+                        <p class="text-body">Platform</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div class="demo-panel demo-panel-markup">
                 <pre class="code-sample"><code>&lt;div class="grid-asymmetric"&gt;
-  &lt;div class="panel"&gt;&lt;div class="panel-content"&gt;Main content&lt;/div&gt;&lt;/div&gt;
-  &lt;div class="panel"&gt;&lt;div class="panel-content"&gt;Metadata&lt;/div&gt;&lt;/div&gt;
+  &lt;div class="panel"&gt;
+    &lt;div class="panel-content stack stack-sm"&gt;
+      &lt;p class="text-card"&gt;Deploy notes&lt;/p&gt;
+      &lt;p class="text-body text-muted"&gt;This revision only changes the health probe path. No schema migration runs.&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="panel"&gt;
+    &lt;div class="panel-content stack stack-sm"&gt;
+      &lt;div&gt;
+        &lt;p class="text-meta"&gt;region&lt;/p&gt;
+        &lt;p class="text-body"&gt;us-east-1&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+        &lt;p class="text-meta"&gt;owner&lt;/p&gt;
+        &lt;p class="text-body"&gt;Platform&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
 &lt;/div&gt;</code></pre>
               </div>
             </div>
@@ -758,18 +933,58 @@
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="grid-auto">
-                  <div class="panel"><div class="panel-content">One</div></div>
-                  <div class="panel"><div class="panel-content">Two</div></div>
-                  <div class="panel"><div class="panel-content">Three</div></div>
-                  <div class="panel"><div class="panel-content">Four</div></div>
+                  <div class="panel">
+                    <div class="panel-content stack stack-sm">
+                      <p class="text-card">us-east-1</p>
+                      <p class="text-meta">3 replicas</p>
+                    </div>
+                  </div>
+                  <div class="panel">
+                    <div class="panel-content stack stack-sm">
+                      <p class="text-card">us-west-2</p>
+                      <p class="text-meta">2 replicas</p>
+                    </div>
+                  </div>
+                  <div class="panel">
+                    <div class="panel-content stack stack-sm">
+                      <p class="text-card">eu-west-1</p>
+                      <p class="text-meta">2 replicas</p>
+                    </div>
+                  </div>
+                  <div class="panel">
+                    <div class="panel-content stack stack-sm">
+                      <p class="text-card">ap-south-1</p>
+                      <p class="text-meta">1 replica</p>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div class="demo-panel demo-panel-markup">
                 <pre class="code-sample"><code>&lt;div class="grid-auto"&gt;
-  &lt;div class="panel"&gt;&lt;div class="panel-content"&gt;One&lt;/div&gt;&lt;/div&gt;
-  &lt;div class="panel"&gt;&lt;div class="panel-content"&gt;Two&lt;/div&gt;&lt;/div&gt;
-  &lt;div class="panel"&gt;&lt;div class="panel-content"&gt;Three&lt;/div&gt;&lt;/div&gt;
-  &lt;div class="panel"&gt;&lt;div class="panel-content"&gt;Four&lt;/div&gt;&lt;/div&gt;
+  &lt;div class="panel"&gt;
+    &lt;div class="panel-content stack stack-sm"&gt;
+      &lt;p class="text-card"&gt;us-east-1&lt;/p&gt;
+      &lt;p class="text-meta"&gt;3 replicas&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="panel"&gt;
+    &lt;div class="panel-content stack stack-sm"&gt;
+      &lt;p class="text-card"&gt;us-west-2&lt;/p&gt;
+      &lt;p class="text-meta"&gt;2 replicas&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="panel"&gt;
+    &lt;div class="panel-content stack stack-sm"&gt;
+      &lt;p class="text-card"&gt;eu-west-1&lt;/p&gt;
+      &lt;p class="text-meta"&gt;2 replicas&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="panel"&gt;
+    &lt;div class="panel-content stack stack-sm"&gt;
+      &lt;p class="text-card"&gt;ap-south-1&lt;/p&gt;
+      &lt;p class="text-meta"&gt;1 replica&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
 &lt;/div&gt;</code></pre>
               </div>
             </div>
@@ -786,12 +1001,22 @@
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="grid-centered">
-                  <div class="panel"><div class="panel-content">Prose</div></div>
+                  <div class="panel">
+                    <div class="panel-content stack stack-sm">
+                      <p class="text-card">Confirm the rollback target</p>
+                      <p class="text-body text-muted">Production traffic moves to v2.8.0. Active sessions stay open until they expire.</p>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div class="demo-panel demo-panel-markup">
                 <pre class="code-sample"><code>&lt;div class="grid-centered"&gt;
-  &lt;div class="panel"&gt;&lt;div class="panel-content"&gt;Prose&lt;/div&gt;&lt;/div&gt;
+  &lt;div class="panel"&gt;
+    &lt;div class="panel-content stack stack-sm"&gt;
+      &lt;p class="text-card"&gt;Confirm the rollback target&lt;/p&gt;
+      &lt;p class="text-body text-muted"&gt;Production traffic moves to v2.8.0. Active sessions stay open until they expire.&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
 &lt;/div&gt;</code></pre>
               </div>
             </div>
@@ -808,20 +1033,20 @@
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="grid-holy-grail">
-                  <div class="panel"><div class="panel-content">Header</div></div>
-                  <div class="panel"><div class="panel-content">Left</div></div>
-                  <div class="panel"><div class="panel-content">Main</div></div>
-                  <div class="panel"><div class="panel-content">Right</div></div>
-                  <div class="panel"><div class="panel-content">Footer</div></div>
+                  <div class="panel"><div class="panel-content"><span class="text-meta">header</span> · api-gateway</div></div>
+                  <div class="panel"><div class="panel-content stack stack-sm"><span class="text-meta">nav</span><span class="text-body">Overview</span><span class="text-body">Revisions</span></div></div>
+                  <div class="panel"><div class="panel-content stack stack-sm"><span class="text-meta">main</span><span class="text-body">Work surface for the selected revision.</span></div></div>
+                  <div class="panel"><div class="panel-content stack stack-sm"><span class="text-meta">aside</span><span class="text-body">Checks</span><span class="text-body">Owners</span></div></div>
+                  <div class="panel"><div class="panel-content"><span class="text-meta">footer</span> · last synced 12s ago</div></div>
                 </div>
               </div>
               <div class="demo-panel demo-panel-markup">
                 <pre class="code-sample"><code>&lt;div class="grid-holy-grail"&gt;
-  &lt;div class="panel"&gt;&lt;div class="panel-content"&gt;Header&lt;/div&gt;&lt;/div&gt;
-  &lt;div class="panel"&gt;&lt;div class="panel-content"&gt;Left&lt;/div&gt;&lt;/div&gt;
-  &lt;div class="panel"&gt;&lt;div class="panel-content"&gt;Main&lt;/div&gt;&lt;/div&gt;
-  &lt;div class="panel"&gt;&lt;div class="panel-content"&gt;Right&lt;/div&gt;&lt;/div&gt;
-  &lt;div class="panel"&gt;&lt;div class="panel-content"&gt;Footer&lt;/div&gt;&lt;/div&gt;
+  &lt;div class="panel"&gt;&lt;div class="panel-content"&gt;&lt;span class="text-meta"&gt;header&lt;/span&gt; · api-gateway&lt;/div&gt;&lt;/div&gt;
+  &lt;div class="panel"&gt;&lt;div class="panel-content stack stack-sm"&gt;&lt;span class="text-meta"&gt;nav&lt;/span&gt;&lt;span class="text-body"&gt;Overview&lt;/span&gt;&lt;span class="text-body"&gt;Revisions&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+  &lt;div class="panel"&gt;&lt;div class="panel-content stack stack-sm"&gt;&lt;span class="text-meta"&gt;main&lt;/span&gt;&lt;span class="text-body"&gt;Work surface for the selected revision.&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+  &lt;div class="panel"&gt;&lt;div class="panel-content stack stack-sm"&gt;&lt;span class="text-meta"&gt;aside&lt;/span&gt;&lt;span class="text-body"&gt;Checks&lt;/span&gt;&lt;span class="text-body"&gt;Owners&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+  &lt;div class="panel"&gt;&lt;div class="panel-content"&gt;&lt;span class="text-meta"&gt;footer&lt;/span&gt; · last synced 12s ago&lt;/div&gt;&lt;/div&gt;
 &lt;/div&gt;</code></pre>
               </div>
             </div>
@@ -838,16 +1063,72 @@
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="grid-masonry">
-                  <div class="panel"><div class="panel-content">Short</div></div>
-                  <div class="panel"><div class="panel-content">Taller item with more content in it</div></div>
-                  <div class="panel"><div class="panel-content">Short</div></div>
+                  <div class="panel">
+                    <div class="panel-content stack stack-sm">
+                      <p class="text-card">Probe path</p>
+                      <p class="text-body text-muted">/healthz</p>
+                    </div>
+                  </div>
+                  <div class="panel">
+                    <div class="panel-content stack stack-sm">
+                      <p class="text-card">Rollback notes</p>
+                      <p class="text-body text-muted">Keeps the previous revision warm for one hour so a second rollback is instant. Sessions are not drained.</p>
+                      <p class="text-body text-muted">Use only after checks are green on the target revision.</p>
+                    </div>
+                  </div>
+                  <div class="panel">
+                    <div class="panel-content stack stack-sm">
+                      <p class="text-card">Owner</p>
+                      <p class="text-body text-muted">Platform</p>
+                    </div>
+                  </div>
+                  <div class="panel">
+                    <div class="panel-content stack stack-sm">
+                      <p class="text-card">Canary</p>
+                      <p class="text-body text-muted">5% of production traffic for fifteen minutes, then promote or abort.</p>
+                    </div>
+                  </div>
+                  <div class="panel">
+                    <div class="panel-content stack stack-sm">
+                      <p class="text-card">Region</p>
+                      <p class="text-body text-muted">us-east-1</p>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div class="demo-panel demo-panel-markup">
                 <pre class="code-sample"><code>&lt;div class="grid-masonry"&gt;
-  &lt;div class="panel"&gt;&lt;div class="panel-content"&gt;Short&lt;/div&gt;&lt;/div&gt;
-  &lt;div class="panel"&gt;&lt;div class="panel-content"&gt;Taller item with more content in it&lt;/div&gt;&lt;/div&gt;
-  &lt;div class="panel"&gt;&lt;div class="panel-content"&gt;Short&lt;/div&gt;&lt;/div&gt;
+  &lt;div class="panel"&gt;
+    &lt;div class="panel-content stack stack-sm"&gt;
+      &lt;p class="text-card"&gt;Probe path&lt;/p&gt;
+      &lt;p class="text-body text-muted"&gt;/healthz&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="panel"&gt;
+    &lt;div class="panel-content stack stack-sm"&gt;
+      &lt;p class="text-card"&gt;Rollback notes&lt;/p&gt;
+      &lt;p class="text-body text-muted"&gt;Keeps the previous revision warm for one hour so a second rollback is instant. Sessions are not drained.&lt;/p&gt;
+      &lt;p class="text-body text-muted"&gt;Use only after checks are green on the target revision.&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="panel"&gt;
+    &lt;div class="panel-content stack stack-sm"&gt;
+      &lt;p class="text-card"&gt;Owner&lt;/p&gt;
+      &lt;p class="text-body text-muted"&gt;Platform&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="panel"&gt;
+    &lt;div class="panel-content stack stack-sm"&gt;
+      &lt;p class="text-card"&gt;Canary&lt;/p&gt;
+      &lt;p class="text-body text-muted"&gt;5% of production traffic for fifteen minutes, then promote or abort.&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="panel"&gt;
+    &lt;div class="panel-content stack stack-sm"&gt;
+      &lt;p class="text-card"&gt;Region&lt;/p&gt;
+      &lt;p class="text-body text-muted"&gt;us-east-1&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
 &lt;/div&gt;</code></pre>
               </div>
             </div>
@@ -864,14 +1145,38 @@
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="grid-sidebar">
-                  <div class="panel"><div class="panel-content">Rail</div></div>
-                  <div class="panel"><div class="panel-content">Main</div></div>
+                  <div class="panel">
+                    <div class="panel-content stack stack-sm">
+                      <p class="text-meta">sections</p>
+                      <p class="text-body">Overview</p>
+                      <p class="text-body">Retention</p>
+                      <p class="text-body">Access</p>
+                    </div>
+                  </div>
+                  <div class="panel">
+                    <div class="panel-content stack stack-sm">
+                      <p class="text-card">Retention policy</p>
+                      <p class="text-body text-muted">Keep failed job logs for 30 days, then drop them.</p>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div class="demo-panel demo-panel-markup">
                 <pre class="code-sample"><code>&lt;div class="grid-sidebar"&gt;
-  &lt;div class="panel"&gt;&lt;div class="panel-content"&gt;Rail&lt;/div&gt;&lt;/div&gt;
-  &lt;div class="panel"&gt;&lt;div class="panel-content"&gt;Main&lt;/div&gt;&lt;/div&gt;
+  &lt;div class="panel"&gt;
+    &lt;div class="panel-content stack stack-sm"&gt;
+      &lt;p class="text-meta"&gt;sections&lt;/p&gt;
+      &lt;p class="text-body"&gt;Overview&lt;/p&gt;
+      &lt;p class="text-body"&gt;Retention&lt;/p&gt;
+      &lt;p class="text-body"&gt;Access&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="panel"&gt;
+    &lt;div class="panel-content stack stack-sm"&gt;
+      &lt;p class="text-card"&gt;Retention policy&lt;/p&gt;
+      &lt;p class="text-body text-muted"&gt;Keep failed job logs for 30 days, then drop them.&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
 &lt;/div&gt;</code></pre>
               </div>
             </div>
@@ -888,14 +1193,34 @@
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="grid-split">
-                  <div class="panel"><div class="panel-content">Claim</div></div>
-                  <div class="panel"><div class="panel-content">Artifact</div></div>
+                  <div class="panel">
+                    <div class="panel-content stack stack-sm">
+                      <p class="text-card">Rollback is one action</p>
+                      <p class="text-body text-muted">Revert production traffic to any green revision without a runbook.</p>
+                    </div>
+                  </div>
+                  <div class="panel">
+                    <div class="panel-content stack stack-sm">
+                      <p class="text-meta">artifact</p>
+                      <p class="text-mono">kubectl rollout undo deploy/api-gateway</p>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div class="demo-panel demo-panel-markup">
                 <pre class="code-sample"><code>&lt;div class="grid-split"&gt;
-  &lt;div class="panel"&gt;&lt;div class="panel-content"&gt;Claim&lt;/div&gt;&lt;/div&gt;
-  &lt;div class="panel"&gt;&lt;div class="panel-content"&gt;Artifact&lt;/div&gt;&lt;/div&gt;
+  &lt;div class="panel"&gt;
+    &lt;div class="panel-content stack stack-sm"&gt;
+      &lt;p class="text-card"&gt;Rollback is one action&lt;/p&gt;
+      &lt;p class="text-body text-muted"&gt;Revert production traffic to any green revision without a runbook.&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="panel"&gt;
+    &lt;div class="panel-content stack stack-sm"&gt;
+      &lt;p class="text-meta"&gt;artifact&lt;/p&gt;
+      &lt;p class="text-mono"&gt;kubectl rollout undo deploy/api-gateway&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
 &lt;/div&gt;</code></pre>
               </div>
             </div>
@@ -912,14 +1237,36 @@
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="grid-stack-rail">
-                  <div class="panel"><div class="panel-content">Main</div></div>
-                  <div class="panel"><div class="panel-content">Context</div></div>
+                  <div class="panel">
+                    <div class="panel-content stack stack-sm">
+                      <p class="text-card">Revision 6f82ae1</p>
+                      <p class="text-body text-muted">All required checks passed. Ready to promote to production.</p>
+                    </div>
+                  </div>
+                  <div class="panel">
+                    <div class="panel-content stack stack-sm">
+                      <p class="text-meta">activity</p>
+                      <p class="text-body">Build finished</p>
+                      <p class="text-body">Checks green</p>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div class="demo-panel demo-panel-markup">
                 <pre class="code-sample"><code>&lt;div class="grid-stack-rail"&gt;
-  &lt;div class="panel"&gt;&lt;div class="panel-content"&gt;Main&lt;/div&gt;&lt;/div&gt;
-  &lt;div class="panel"&gt;&lt;div class="panel-content"&gt;Context&lt;/div&gt;&lt;/div&gt;
+  &lt;div class="panel"&gt;
+    &lt;div class="panel-content stack stack-sm"&gt;
+      &lt;p class="text-card"&gt;Revision 6f82ae1&lt;/p&gt;
+      &lt;p class="text-body text-muted"&gt;All required checks passed. Ready to promote to production.&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="panel"&gt;
+    &lt;div class="panel-content stack stack-sm"&gt;
+      &lt;p class="text-meta"&gt;activity&lt;/p&gt;
+      &lt;p class="text-body"&gt;Build finished&lt;/p&gt;
+      &lt;p class="text-body"&gt;Checks green&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
 &lt;/div&gt;</code></pre>
               </div>
             </div>
@@ -936,16 +1283,52 @@
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="grid-thirds">
-                  <div class="panel"><div class="panel-content">One</div></div>
-                  <div class="panel"><div class="panel-content">Two</div></div>
-                  <div class="panel"><div class="panel-content">Three</div></div>
+                  <div class="panel">
+                    <div class="panel-content stack stack-sm">
+                      <p class="text-meta">environment</p>
+                      <p class="text-card">Staging</p>
+                      <p class="text-body text-muted">v2.8.1-rc.3</p>
+                    </div>
+                  </div>
+                  <div class="panel">
+                    <div class="panel-content stack stack-sm">
+                      <p class="text-meta">environment</p>
+                      <p class="text-card">Canary</p>
+                      <p class="text-body text-muted">v2.8.1 · 5%</p>
+                    </div>
+                  </div>
+                  <div class="panel">
+                    <div class="panel-content stack stack-sm">
+                      <p class="text-meta">environment</p>
+                      <p class="text-card">Production</p>
+                      <p class="text-body text-muted">v2.8.0</p>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div class="demo-panel demo-panel-markup">
                 <pre class="code-sample"><code>&lt;div class="grid-thirds"&gt;
-  &lt;div class="panel"&gt;&lt;div class="panel-content"&gt;One&lt;/div&gt;&lt;/div&gt;
-  &lt;div class="panel"&gt;&lt;div class="panel-content"&gt;Two&lt;/div&gt;&lt;/div&gt;
-  &lt;div class="panel"&gt;&lt;div class="panel-content"&gt;Three&lt;/div&gt;&lt;/div&gt;
+  &lt;div class="panel"&gt;
+    &lt;div class="panel-content stack stack-sm"&gt;
+      &lt;p class="text-meta"&gt;environment&lt;/p&gt;
+      &lt;p class="text-card"&gt;Staging&lt;/p&gt;
+      &lt;p class="text-body text-muted"&gt;v2.8.1-rc.3&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="panel"&gt;
+    &lt;div class="panel-content stack stack-sm"&gt;
+      &lt;p class="text-meta"&gt;environment&lt;/p&gt;
+      &lt;p class="text-card"&gt;Canary&lt;/p&gt;
+      &lt;p class="text-body text-muted"&gt;v2.8.1 · 5%&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="panel"&gt;
+    &lt;div class="panel-content stack stack-sm"&gt;
+      &lt;p class="text-meta"&gt;environment&lt;/p&gt;
+      &lt;p class="text-card"&gt;Production&lt;/p&gt;
+      &lt;p class="text-body text-muted"&gt;v2.8.0&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
 &lt;/div&gt;</code></pre>
               </div>
             </div>
@@ -968,7 +1351,11 @@
                     <li class="list-item"><span class="list-title">webhook-relay</span><span class="list-meta">yesterday</span></li>
                     <li class="list-item"><span class="list-title">search-indexer</span><span class="list-meta">2d ago</span></li>
                     <li class="list-item"><span class="list-title">image-resizer</span><span class="list-meta">4d ago</span></li>
-                    <li class="list-item"><span class="list-title">audit-log</span><span class="list-meta">last week</span></li>
+                    <li class="list-item"><span class="list-title">audit-log</span><span class="list-meta">5d ago</span></li>
+                    <li class="list-item"><span class="list-title">event-router</span><span class="list-meta">6d ago</span></li>
+                    <li class="list-item"><span class="list-title">metrics-sink</span><span class="list-meta">last week</span></li>
+                    <li class="list-item"><span class="list-title">cache-warmer</span><span class="list-meta">last week</span></li>
+                    <li class="list-item"><span class="list-title">schema-migrator</span><span class="list-meta">2 weeks ago</span></li>
                   </ul>
                 </div>
               </div>
@@ -980,7 +1367,11 @@
     &lt;li class="list-item"&gt;&lt;span class="list-title"&gt;webhook-relay&lt;/span&gt;&lt;span class="list-meta"&gt;yesterday&lt;/span&gt;&lt;/li&gt;
     &lt;li class="list-item"&gt;&lt;span class="list-title"&gt;search-indexer&lt;/span&gt;&lt;span class="list-meta"&gt;2d ago&lt;/span&gt;&lt;/li&gt;
     &lt;li class="list-item"&gt;&lt;span class="list-title"&gt;image-resizer&lt;/span&gt;&lt;span class="list-meta"&gt;4d ago&lt;/span&gt;&lt;/li&gt;
-    &lt;li class="list-item"&gt;&lt;span class="list-title"&gt;audit-log&lt;/span&gt;&lt;span class="list-meta"&gt;last week&lt;/span&gt;&lt;/li&gt;
+    &lt;li class="list-item"&gt;&lt;span class="list-title"&gt;audit-log&lt;/span&gt;&lt;span class="list-meta"&gt;5d ago&lt;/span&gt;&lt;/li&gt;
+    &lt;li class="list-item"&gt;&lt;span class="list-title"&gt;event-router&lt;/span&gt;&lt;span class="list-meta"&gt;6d ago&lt;/span&gt;&lt;/li&gt;
+    &lt;li class="list-item"&gt;&lt;span class="list-title"&gt;metrics-sink&lt;/span&gt;&lt;span class="list-meta"&gt;last week&lt;/span&gt;&lt;/li&gt;
+    &lt;li class="list-item"&gt;&lt;span class="list-title"&gt;cache-warmer&lt;/span&gt;&lt;span class="list-meta"&gt;last week&lt;/span&gt;&lt;/li&gt;
+    &lt;li class="list-item"&gt;&lt;span class="list-title"&gt;schema-migrator&lt;/span&gt;&lt;span class="list-meta"&gt;2 weeks ago&lt;/span&gt;&lt;/li&gt;
   &lt;/ul&gt;
 &lt;/div&gt;</code></pre>
               </div>
@@ -1031,16 +1422,16 @@
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="button-group">
-                  <button class="btn btn-secondary btn-sm" type="button">Day</button>
-                  <button class="btn btn-secondary btn-sm" type="button">Week</button>
-                  <button class="btn btn-secondary btn-sm" type="button">Month</button>
+                  <button class="btn btn-secondary btn-sm" type="button">Edit</button>
+                  <button class="btn btn-secondary btn-sm" type="button">Duplicate</button>
+                  <button class="btn btn-secondary btn-sm" type="button">Archive</button>
                 </div>
               </div>
               <div class="demo-panel demo-panel-markup">
                 <pre class="code-sample"><code>&lt;div class="button-group"&gt;
-  &lt;button class="btn btn-secondary btn-sm" type="button"&gt;Day&lt;/button&gt;
-  &lt;button class="btn btn-secondary btn-sm" type="button"&gt;Week&lt;/button&gt;
-  &lt;button class="btn btn-secondary btn-sm" type="button"&gt;Month&lt;/button&gt;
+  &lt;button class="btn btn-secondary btn-sm" type="button"&gt;Edit&lt;/button&gt;
+  &lt;button class="btn btn-secondary btn-sm" type="button"&gt;Duplicate&lt;/button&gt;
+  &lt;button class="btn btn-secondary btn-sm" type="button"&gt;Archive&lt;/button&gt;
 &lt;/div&gt;</code></pre>
               </div>
             </div>
@@ -1651,13 +2042,13 @@
                 <input class="demo-switch-markup" type="radio" name="sw-accordion" id="sw-accordion-markup"><label class="tab" for="sw-accordion-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
-                <details class="accordion">
+                <details class="accordion" open>
                   <summary>What do I still have to build in JavaScript?</summary>
                   <div class="accordion-body">Focus trapping, closing on Escape, arrow-key navigation, tracking which item is selected, and screen-reader announcements. The CSS only styles these components.</div>
                 </details>
               </div>
               <div class="demo-panel demo-panel-markup">
-                <pre class="code-sample"><code>&lt;details class="accordion"&gt;
+                <pre class="code-sample"><code>&lt;details class="accordion" open&gt;
   &lt;summary&gt;What do I still have to build in JavaScript?&lt;/summary&gt;
   &lt;div class="accordion-body"&gt;Focus trapping, closing on Escape, arrow-key navigation, tracking which item is selected, and screen-reader announcements. The CSS only styles these components.&lt;/div&gt;
 &lt;/details&gt;</code></pre>
@@ -1675,16 +2066,18 @@
                 <input class="demo-switch-markup" type="radio" name="sw-card" id="sw-card-markup"><label class="tab" for="sw-card-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
-                <article class="card">
-                  <div class="card-header"><h3 class="card-title">api-gateway</h3></div>
-                  <div class="card-content"><p class="card-body">Three replicas healthy in us-east-1.</p></div>
-                  <div class="card-footer"><button class="btn btn-secondary btn-sm" type="button">Open</button></div>
-                </article>
+                <div class="demo-measure">
+                  <article class="card">
+                    <div class="card-header"><h3 class="card-title">api-gateway</h3><span class="badge badge-status" data-state="success">Healthy</span></div>
+                    <div class="card-content"><p class="card-body">Three replicas healthy in us-east-1. Last check 40 seconds ago.</p></div>
+                    <div class="card-footer"><button class="btn btn-secondary btn-sm" type="button">Open</button></div>
+                  </article>
+                </div>
               </div>
               <div class="demo-panel demo-panel-markup">
                 <pre class="code-sample"><code>&lt;article class="card"&gt;
-  &lt;div class="card-header"&gt;&lt;h3 class="card-title"&gt;api-gateway&lt;/h3&gt;&lt;/div&gt;
-  &lt;div class="card-content"&gt;&lt;p class="card-body"&gt;Three replicas healthy in us-east-1.&lt;/p&gt;&lt;/div&gt;
+  &lt;div class="card-header"&gt;&lt;h3 class="card-title"&gt;api-gateway&lt;/h3&gt;&lt;span class="badge badge-status" data-state="success"&gt;Healthy&lt;/span&gt;&lt;/div&gt;
+  &lt;div class="card-content"&gt;&lt;p class="card-body"&gt;Three replicas healthy in us-east-1. Last check 40 seconds ago.&lt;/p&gt;&lt;/div&gt;
   &lt;div class="card-footer"&gt;&lt;button class="btn btn-secondary btn-sm" type="button"&gt;Open&lt;/button&gt;&lt;/div&gt;
 &lt;/article&gt;</code></pre>
               </div>
@@ -2386,29 +2779,93 @@
                 <input class="demo-switch-markup" type="radio" name="sw-navbar" id="sw-navbar-markup"><label class="tab" for="sw-navbar-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
-                <nav class="navbar-bordered" aria-label="Main">
-                  <div class="nav-inner">
-                    <a class="brand" href="#components"><span class="brand-mark">R/</span> relay</a>
-                    <div class="nav-links">
-                      <a class="nav-link" aria-current="page" href="#components">Overview</a>
-                      <a class="nav-link" href="#components">Deploys</a>
-                      <a class="nav-link" href="#components">API</a>
+                <div class="stack">
+                  <nav class="navbar-bordered" aria-label="Bordered">
+                    <div class="nav-inner">
+                      <a class="brand" href="#components"><span class="brand-mark">R/</span> relay</a>
+                      <div class="nav-links">
+                        <a class="nav-link" aria-current="page" href="#components">Overview</a>
+                        <a class="nav-link" href="#components">Deploys</a>
+                        <a class="nav-link" href="#components">API</a>
+                      </div>
                     </div>
-                  </div>
-                </nav>
+                  </nav>
+                  <nav class="navbar-solid" aria-label="Solid">
+                    <div class="nav-inner">
+                      <a class="brand" href="#components"><span class="brand-mark">R/</span> relay</a>
+                      <div class="nav-links">
+                        <a class="nav-link" aria-current="page" href="#components">Overview</a>
+                        <a class="nav-link" href="#components">Deploys</a>
+                        <a class="nav-link" href="#components">API</a>
+                      </div>
+                    </div>
+                  </nav>
+                  <nav class="navbar-glass" aria-label="Glass">
+                    <div class="nav-inner">
+                      <a class="brand" href="#components"><span class="brand-mark">R/</span> relay</a>
+                      <div class="nav-links">
+                        <a class="nav-link" aria-current="page" href="#components">Overview</a>
+                        <a class="nav-link" href="#components">Deploys</a>
+                        <a class="nav-link" href="#components">API</a>
+                      </div>
+                    </div>
+                  </nav>
+                  <nav class="navbar-minimal" aria-label="Minimal">
+                    <div class="nav-inner">
+                      <a class="brand" href="#components"><span class="brand-mark">R/</span> relay</a>
+                      <div class="nav-links">
+                        <a class="nav-link" aria-current="page" href="#components">Overview</a>
+                        <a class="nav-link" href="#components">Deploys</a>
+                        <a class="nav-link" href="#components">API</a>
+                      </div>
+                    </div>
+                  </nav>
+                </div>
                 <p class="text-meta">Pick one surface and keep it. The four below are alternatives, not a set.</p>
               </div>
               <div class="demo-panel demo-panel-markup">
-                <pre class="code-sample"><code>&lt;nav class="navbar-bordered" aria-label="Main"&gt;
-  &lt;div class="nav-inner"&gt;
-    &lt;a class="brand" href="/"&gt;&lt;span class="brand-mark"&gt;R/&lt;/span&gt; relay&lt;/a&gt;
-    &lt;div class="nav-links"&gt;
-      &lt;a class="nav-link" aria-current="page" href="/"&gt;Overview&lt;/a&gt;
-      &lt;a class="nav-link" href="/deploys"&gt;Deploys&lt;/a&gt;
-      &lt;a class="nav-link" href="/api"&gt;API&lt;/a&gt;
+                <pre class="code-sample"><code>&lt;div class="stack"&gt;
+  &lt;nav class="navbar-bordered" aria-label="Bordered"&gt;
+    &lt;div class="nav-inner"&gt;
+      &lt;a class="brand" href="/"&gt;&lt;span class="brand-mark"&gt;R/&lt;/span&gt; relay&lt;/a&gt;
+      &lt;div class="nav-links"&gt;
+        &lt;a class="nav-link" aria-current="page" href="/"&gt;Overview&lt;/a&gt;
+        &lt;a class="nav-link" href="/deploys"&gt;Deploys&lt;/a&gt;
+        &lt;a class="nav-link" href="/api"&gt;API&lt;/a&gt;
+      &lt;/div&gt;
     &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/nav&gt;</code></pre>
+  &lt;/nav&gt;
+  &lt;nav class="navbar-solid" aria-label="Solid"&gt;
+    &lt;div class="nav-inner"&gt;
+      &lt;a class="brand" href="/"&gt;&lt;span class="brand-mark"&gt;R/&lt;/span&gt; relay&lt;/a&gt;
+      &lt;div class="nav-links"&gt;
+        &lt;a class="nav-link" aria-current="page" href="/"&gt;Overview&lt;/a&gt;
+        &lt;a class="nav-link" href="/deploys"&gt;Deploys&lt;/a&gt;
+        &lt;a class="nav-link" href="/api"&gt;API&lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/nav&gt;
+  &lt;nav class="navbar-glass" aria-label="Glass"&gt;
+    &lt;div class="nav-inner"&gt;
+      &lt;a class="brand" href="/"&gt;&lt;span class="brand-mark"&gt;R/&lt;/span&gt; relay&lt;/a&gt;
+      &lt;div class="nav-links"&gt;
+        &lt;a class="nav-link" aria-current="page" href="/"&gt;Overview&lt;/a&gt;
+        &lt;a class="nav-link" href="/deploys"&gt;Deploys&lt;/a&gt;
+        &lt;a class="nav-link" href="/api"&gt;API&lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/nav&gt;
+  &lt;nav class="navbar-minimal" aria-label="Minimal"&gt;
+    &lt;div class="nav-inner"&gt;
+      &lt;a class="brand" href="/"&gt;&lt;span class="brand-mark"&gt;R/&lt;/span&gt; relay&lt;/a&gt;
+      &lt;div class="nav-links"&gt;
+        &lt;a class="nav-link" aria-current="page" href="/"&gt;Overview&lt;/a&gt;
+        &lt;a class="nav-link" href="/deploys"&gt;Deploys&lt;/a&gt;
+        &lt;a class="nav-link" href="/api"&gt;API&lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/nav&gt;
+&lt;/div&gt;</code></pre>
               </div>
             </div>
           </article>
@@ -2787,15 +3244,17 @@
                 <input class="demo-switch-markup" type="radio" name="sw-alert-dialog" id="sw-alert-dialog-markup"><label class="tab" for="sw-alert-dialog-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
-                <a href="#alert-dialog-revoke-key" class="btn btn-danger">Revoke key</a>
-                <div class="modal modal-alert" id="alert-dialog-revoke-key" role="alertdialog" aria-labelledby="alert-dialog-revoke-title">
-                  <div class="modal-card">
-                    <div class="modal-head">
-                      <span class="modal-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg></span>
-                      <h3 class="modal-title" id="alert-dialog-revoke-title">Revoke this key?</h3>
+                <div class="demo-stage">
+                  <a href="#alert-dialog-revoke-key" class="btn btn-danger">Revoke key</a>
+                  <div class="modal modal-alert is-active" id="alert-dialog-revoke-key" role="alertdialog" aria-labelledby="alert-dialog-revoke-title">
+                    <div class="modal-card">
+                      <div class="modal-head">
+                        <span class="modal-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg></span>
+                        <h3 class="modal-title" id="alert-dialog-revoke-title">Revoke this key?</h3>
+                      </div>
+                      <div class="modal-body">Any service using <code class="inline-code">deploy-bot-prod</code> stops authenticating straight away. This cannot be undone.</div>
+                      <div class="modal-actions"><a class="btn btn-ghost" href="#components">Keep the key</a><button class="btn btn-danger" type="button">Revoke the key</button></div>
                     </div>
-                    <div class="modal-body">Any service using <code class="inline-code">deploy-bot-prod</code> stops authenticating straight away. This cannot be undone.</div>
-                    <div class="modal-actions"><a class="btn btn-ghost" href="#components">Keep the key</a><button class="btn btn-danger" type="button">Revoke the key</button></div>
                   </div>
                 </div>
                 <p class="text-meta">An alert dialog takes role="alertdialog". Escape should cancel, never confirm. Focus trapping is yours to build.</p>
@@ -2944,21 +3403,31 @@
                 <input class="demo-switch-markup" type="radio" name="sw-drawer" id="sw-drawer-markup"><label class="tab" for="sw-drawer-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
-                <label class="btn btn-secondary" for="drawer-filter-drawer">Filters</label>
-                <input class="drawer-toggle" type="checkbox" id="drawer-filter-drawer">
-                <div class="drawer-backdrop"></div>
-                <div class="drawer-panel">
-                  <div class="drawer-head"><h3 class="modal-title">Filter revisions</h3><label class="close-button" for="drawer-filter-drawer" aria-label="Close"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></label></div>
-                  <p class="text-body text-muted">Drawer content flows like any panel once it is open.</p>
+                <div class="demo-stage">
+                  <label class="btn btn-secondary" for="drawer-filter-drawer">Filters</label>
+                  <input class="drawer-toggle" type="checkbox" id="drawer-filter-drawer" checked>
+                  <div class="drawer-backdrop"></div>
+                  <div class="drawer-panel">
+                    <div class="drawer-head"><h3 class="modal-title">Filter revisions</h3><label class="close-button" for="drawer-filter-drawer" aria-label="Close"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></label></div>
+                    <div class="stack stack-sm">
+                      <p class="text-body text-muted">Show only failed checks from the last 24 hours.</p>
+                      <label class="checkbox"><input type="checkbox" checked> Failed only</label>
+                      <label class="checkbox"><input type="checkbox"> Needs review</label>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div class="demo-panel demo-panel-markup">
                 <pre class="code-sample"><code>&lt;label class="btn btn-secondary" for="filter-drawer"&gt;Filters&lt;/label&gt;
-&lt;input class="drawer-toggle" type="checkbox" id="filter-drawer"&gt;
+&lt;input class="drawer-toggle" type="checkbox" id="filter-drawer" checked&gt;
 &lt;div class="drawer-backdrop"&gt;&lt;/div&gt;
 &lt;div class="drawer-panel"&gt;
   &lt;div class="drawer-head"&gt;&lt;h3 class="modal-title"&gt;Filter revisions&lt;/h3&gt;&lt;label class="close-button" for="filter-drawer" aria-label="Close"&gt;&lt;svg class="icon" aria-hidden="true" viewBox="0 0 24 24"&gt;&lt;path d="M18 6 6 18M6 6l12 12"/&gt;&lt;/svg&gt;&lt;/label&gt;&lt;/div&gt;
-  &lt;p class="text-body text-muted"&gt;Drawer content flows like any panel once it is open.&lt;/p&gt;
+  &lt;div class="stack stack-sm"&gt;
+    &lt;p class="text-body text-muted"&gt;Show only failed checks from the last 24 hours.&lt;/p&gt;
+    &lt;label class="checkbox"&gt;&lt;input type="checkbox" checked&gt; Failed only&lt;/label&gt;
+    &lt;label class="checkbox"&gt;&lt;input type="checkbox"&gt; Needs review&lt;/label&gt;
+  &lt;/div&gt;
 &lt;/div&gt;</code></pre>
               </div>
             </div>
@@ -2974,12 +3443,14 @@
                 <input class="demo-switch-markup" type="radio" name="sw-dropdown" id="sw-dropdown-markup"><label class="tab" for="sw-dropdown-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
-                <div class="dropdown">
-                  <button class="btn btn-secondary btn-sm" type="button">Actions</button>
-                  <div class="dropdown-menu">
-                    <button type="button">Restart service</button>
-                    <button type="button">View logs</button>
-                    <button type="button">Roll back</button>
+                <div class="demo-overlay">
+                  <div class="dropdown">
+                    <button class="btn btn-secondary btn-sm" type="button">Actions</button>
+                    <div class="dropdown-menu is-open">
+                      <button type="button">Restart service</button>
+                      <button type="button">View logs</button>
+                      <button type="button">Roll back</button>
+                    </div>
                   </div>
                 </div>
                 <p class="text-meta">CSS handles the open state on focus. Keyboard navigation and Escape are yours to build.</p>
@@ -3007,16 +3478,18 @@
                 <input class="demo-switch-markup" type="radio" name="sw-hover-card" id="sw-hover-card-markup"><label class="tab" for="sw-hover-card-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
-                <span class="hover-card">
-                  <a class="text-accent" href="#components">api-gateway</a>
-                  <span class="hover-card-panel">
-                    <span class="stack stack-sm">
-                      <span class="text-card">api-gateway</span>
-                      <span class="text-meta">Owned by Platform. Last deployed 2 hours ago.</span>
-                      <span class="badge badge-success">Healthy</span>
+                <div class="demo-overlay">
+                  <span class="hover-card">
+                    <a class="text-accent" href="#components">api-gateway</a>
+                    <span class="hover-card-panel is-open">
+                      <span class="stack stack-sm">
+                        <span class="text-card">api-gateway</span>
+                        <span class="text-meta">Owned by Platform. Last deployed 2 hours ago.</span>
+                        <span class="badge badge-status" data-state="success">Healthy</span>
+                      </span>
                     </span>
                   </span>
-                </span>
+                </div>
                 <p class="text-meta">Opens on hover and on focus-within, so keyboard users get it too.</p>
               </div>
               <div class="demo-panel demo-panel-markup">
@@ -3026,7 +3499,7 @@
     &lt;span class="stack stack-sm"&gt;
       &lt;span class="text-card"&gt;api-gateway&lt;/span&gt;
       &lt;span class="text-meta"&gt;Owned by Platform. Last deployed 2 hours ago.&lt;/span&gt;
-      &lt;span class="badge badge-success"&gt;Healthy&lt;/span&gt;
+      &lt;span class="badge badge-status" data-state="success"&gt;Healthy&lt;/span&gt;
     &lt;/span&gt;
   &lt;/span&gt;
 &lt;/span&gt;</code></pre>
@@ -3044,12 +3517,14 @@
                 <input class="demo-switch-markup" type="radio" name="sw-modal" id="sw-modal-markup"><label class="tab" for="sw-modal-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
-                <a href="#modal-confirm-rollback" class="btn btn-danger">Roll back</a>
-                <div class="modal" id="modal-confirm-rollback">
-                  <div class="modal-card">
-                    <div class="modal-head"><h3 class="modal-title">Confirm rollback</h3><button class="close-button" type="button" aria-label="Close"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
-                    <div class="modal-body">This reverts api-gateway to v2.8.0. Active sessions are not affected.</div>
-                    <div class="modal-actions"><button class="btn btn-ghost" type="button">Cancel</button><button class="btn btn-danger" type="button">Roll back</button></div>
+                <div class="demo-stage">
+                  <a href="#modal-confirm-rollback" class="btn btn-danger">Roll back</a>
+                  <div class="modal is-active" id="modal-confirm-rollback">
+                    <div class="modal-card">
+                      <div class="modal-head"><h3 class="modal-title">Confirm rollback</h3><button class="close-button" type="button" aria-label="Close"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+                      <div class="modal-body">This reverts api-gateway to v2.8.0. Active sessions are not affected.</div>
+                      <div class="modal-actions"><button class="btn btn-ghost" type="button">Cancel</button><button class="btn btn-danger" type="button">Roll back</button></div>
+                    </div>
                   </div>
                 </div>
                 <p class="text-meta">Open it with <code>:target</code> or a checkbox. Focus trapping and Escape are yours to build.</p>
@@ -3077,11 +3552,13 @@
                 <input class="demo-switch-markup" type="radio" name="sw-popover" id="sw-popover-markup"><label class="tab" for="sw-popover-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
-                <div class="popover">
-                  <button class="btn btn-secondary btn-sm" type="button">Region details</button>
-                  <div class="popover-panel">
-                    <div class="popover-title">us-east-1</div>
-                    <p class="popover-body">Primary region. Three availability zones.</p>
+                <div class="demo-overlay">
+                  <div class="popover">
+                    <button class="btn btn-secondary btn-sm" type="button">Region details</button>
+                    <div class="popover-panel is-open">
+                      <div class="popover-title">us-east-1</div>
+                      <p class="popover-body">Primary region. Three availability zones.</p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -3107,11 +3584,13 @@
                 <input class="demo-switch-markup" type="radio" name="sw-tooltip" id="sw-tooltip-markup"><label class="tab" for="sw-tooltip-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
-                <span class="tooltip" data-tip="Last deployed 12 minutes ago">
-                  <button class="icon-button" type="button" aria-label="Deployment info">
-                    <svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg>
-                  </button>
-                </span>
+                <div class="demo-overlay">
+                  <span class="tooltip is-open" data-tip="Last deployed 12 minutes ago">
+                    <button class="icon-button" type="button" aria-label="Deployment info">
+                      <svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg>
+                    </button>
+                  </span>
+                </div>
               </div>
               <div class="demo-panel demo-panel-markup">
                 <pre class="code-sample"><code>&lt;span class="tooltip" data-tip="Last deployed 12 minutes ago"&gt;
@@ -3423,11 +3902,11 @@
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="faq">
-                  <details class="accordion">
+                  <details class="accordion" open>
                     <summary>Does a rollback re-run the build?</summary>
                     <div class="accordion-body">No. A rollback repoints traffic at an artefact that already passed. It takes about four seconds.</div>
                   </details>
-                  <details class="accordion">
+                  <details class="accordion" open>
                     <summary>Can two people deploy at once?</summary>
                     <div class="accordion-body">The queue is per environment. The second deploy waits, and the person who started it sees who is ahead of them.</div>
                   </details>
@@ -3439,7 +3918,7 @@
               </div>
               <div class="demo-panel demo-panel-markup">
                 <pre class="code-sample"><code>&lt;div class="faq"&gt;
-  &lt;details class="accordion"&gt;
+  &lt;details class="accordion" open&gt;
     &lt;summary&gt;Does a rollback re-run the build?&lt;/summary&gt;
     &lt;div class="accordion-body"&gt;No. A rollback repoints traffic at an artefact that already passed. It takes about four seconds.&lt;/div&gt;
   &lt;/details&gt;

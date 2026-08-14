@@ -7,6 +7,29 @@ description: Page width and gutters, in three measures.
 use: Wrapping page content so it does not run to the viewport edge.
 avoid: Nesting containers. The inner one adds a second gutter.
 -->
-<div class="container">
-  <p class="text-body">Default width, 1200px. Use container-sm for prose and container-lg for dense tools.</p>
+<div class="stack">
+  <div class="container-sm">
+    <div class="panel">
+      <div class="panel-content stack stack-sm">
+        <span class="text-meta">container-sm</span>
+        <p class="text-body">720px prose measure</p>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="panel">
+      <div class="panel-content stack stack-sm">
+        <span class="text-meta">container</span>
+        <p class="text-body">1200px default page width</p>
+      </div>
+    </div>
+  </div>
+  <div class="container-lg">
+    <div class="panel">
+      <div class="panel-content stack stack-sm">
+        <span class="text-meta">container-lg</span>
+        <p class="text-body">1440px dense tools</p>
+      </div>
+    </div>
+  </div>
 </div>
