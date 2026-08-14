@@ -8,6 +8,8 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Added
 
+- **Component registry** - 75 components in `registry/`, each with complete copy-and-paste markup plus `Use` and `Avoid` guidance. Published as `components.md` for reading and `registry/index.json` for tooling, and rendered into the documentation. An agent now retrieves markup by name instead of inferring it from class names
+- **Registry gates** - The build fails when a component uses a class the framework does not define, when a public class has no registry coverage, and when the generated documentation, `components.md`, or the JSON index drift from the source files
 - **`--accent-ink`** - Ink that reads on the vivid `--accent` hue. The bright accents are light, so they take dark ink; violet and slate take white. The audit enforces the pairing
 - **Native work-surface anatomy** - Page headers, section headers, panels, stat strips, semantic status badges, description lists, and app-shell navigation
 - **Typography roles** - IBM Plex Sans, Serif, and Mono with a real editorial display axis
@@ -27,6 +29,8 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - The design reference now imports `postrboard.css` instead of duplicating framework CSS
 - Canonical API names are separated from 1.x compatibility aliases
 - The npm package now includes the Postrboard agent skill and source map
+- The components section of the documentation is generated from the registry, so it cannot fall behind the CSS
+- The agent skill now points at `components.md` for markup, and lists components by name rather than restating class names
 
 ### Breaking
 

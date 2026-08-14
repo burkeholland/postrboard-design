@@ -15,11 +15,11 @@ Use this order when sources disagree:
 
 1. The user's content, users, and task.
 2. This skill's behavioral rules.
-3. `postrboard.css` for tokens and class names.
-4. `index.html` for valid markup examples.
+3. `components.md` for component markup. Copy it; do not rewrite it.
+4. `postrboard.css` for tokens and any class the registry does not cover.
 5. General design knowledge.
 
-Do not invent a class from memory. Search the CSS.
+Do not invent a class or a markup shape from memory. Copy from the registry.
 
 ## Setup
 
@@ -51,17 +51,18 @@ An app starts with the work surface, not a landing page that explains the app.
 
 ### 2. Map
 
-Inspect `postrboard.css` and the matching examples in `index.html`. Map each major surface to a native class before you write markup.
+Read `components.md` once. It lists every component the framework ships, with the exact markup, when to use it, and what to avoid. Read it from the installed package, the repo root, or `https://burkeholland.github.io/postrboard-design/components.md`. `registry/index.json` holds the same content if you prefer JSON.
 
-Use this format internally:
+Map each surface of your page to a component **by name**, then paste that component's markup and replace the content. The markup is the API. Retyping it from memory is how pages drift.
 
-| Surface | Native API | Custom reason |
+| Surface | Component | Custom reason |
 |---|---|---|
-| Main action | `.btn .btn-primary` | None |
-| Work queue | `.list-group .list-item` | None |
-| Product-specific timeline | `.timeline` plus token-based layout | Domain labels need one extra grid track |
+| Main action | `button` | None |
+| Work queue | `list-group` | None |
+| Release history | `timeline` | None |
+| Domain-specific comparison | composed from `panel` and `data-table` | No single component covers it |
 
-A custom class is allowed only for product-specific composition or behavior that the native API cannot express. Loading Postrboard CSS without using its components does not count as using Postrboard.
+If nothing in the registry fits, compose two components before writing a new one. A custom class is allowed only for product-specific composition the registry cannot express. Loading Postrboard CSS without using its components does not count as using Postrboard.
 
 ### 3. Decide
 
@@ -90,22 +91,22 @@ Spend visual boldness in one place. Choose one signature detail that comes from 
 
 Start with the primary artifact. Add prose only where it helps a person use or understand that artifact.
 
-Use native APIs first:
+Paste components from `components.md`, then replace the content. These are the names to look up:
 
-| Need | Native API |
+| Need | Components |
 |---|---|
-| Page rhythm | `.container`, `.section`, `.stack`, `.stack-sm`, `.cluster` |
-| Composition | `.grid-auto`, `.grid-split`, `.grid-asymmetric`, `.grid-sidebar`, `.grid-stack-rail`, `.grid-centered`, `.grid-masonry` |
-| Headers | `.page-header`, `.page-title`, `.page-summary`, `.page-actions`, `.section-header`, `.section-title`, `.section-meta` |
-| Framed work surface | `.panel`, `.panel-header`, `.panel-content`, `.panel-footer` |
-| Actions | `.btn`, `.btn-primary`, `.btn-secondary`, `.btn-ghost`, `.btn-danger`, `.icon-button` |
-| Forms | `.form-stack`, `.form-field`, `.form-label`, `.input`, `.textarea`, `.select`, `.checkbox`, `.radio`, `.switch`, `.segmented-control` |
-| Status | `.badge`, `.badge-status`, `data-state`, `.alert`, `.progress` |
-| Summary data | `.stat-strip`, `.stat-item`, `.stat-label`, `.stat-value`, `.stat-detail` |
-| Detailed data | `.table-wrap`, `.data-table`, `.list-group`, `.list-item`, `.description-list`, `.timeline`, `.empty-state` |
-| Navigation | `.navbar`, `.navbar-solid`, `.navbar-bordered`, `.navbar-minimal`, `.navbar-glass`, `.sidebar-nav`, `.tabs`, `.breadcrumb`, `.pagination` |
-| Code and disclosure | `.terminal`, `.inline-code`, `.accordion` |
-| Feedback | `.alert`, `.toast`, `.banner`, `.modal`, `.drawer-panel`, `.popover-panel` |
+| Page rhythm | `container`, `stack`, `type` |
+| Composition | `grid-split`, `grid-asymmetric`, `grid-thirds`, `grid-sidebar`, `grid-stack-rail`, `grid-holy-grail`, `grid-centered`, `grid-auto`, `grid-masonry`, `app-shell` |
+| Headers | `page-header`, `section-header` |
+| Framed work surface | `panel`, `card`, `divider`, `accordion` |
+| Actions | `button`, `button-group`, `icon-button`, `fab` |
+| Forms | `form`, `input`, `select`, `textarea`, `checkbox`, `radio`, `switch`, `segmented-control`, `range`, `combobox`, `floating-label`, `input-group`, `input-validation`, `dropzone` |
+| Status | `badge`, `tag`, `alert`, `banner`, `toast`, `progress`, `spinner` |
+| Data | `stat-strip`, `stat-card`, `data-table`, `list-group`, `description-list`, `timeline`, `stepper`, `styled-list`, `avatar`, `empty-state` |
+| Navigation | `navbar`, `sidebar-nav`, `tabs`, `breadcrumb`, `pagination` |
+| Overlays | `modal`, `drawer`, `dropdown`, `tooltip`, `popover`, `command-palette` |
+| Code and content | `terminal`, `inline-code`, `cmd-pill`, `icon`, `quote-block`, `footer` |
+| Marketing | `feature-card`, `pricing-card`, `testimonial-card`, `cta-band` — read their **Avoid** notes first |
 
 Prefer semantic state attributes when supported: `aria-current`, `aria-selected`, `aria-invalid`, `aria-busy`, `aria-disabled`, and `data-state`.
 
@@ -116,7 +117,7 @@ Postrboard is CSS-only. CSS can style a modal, drawer, dropdown, combobox, tabs,
 Run one bounded review, fix all failures together, and confirm once.
 
 1. **Specificity:** Could the page belong to 500 unrelated products? If yes, make the artifact, copy, or composition more specific.
-2. **Framework use:** Does every major surface use a documented Postrboard API or have a real custom reason?
+2. **Framework use:** Did every surface come from a registry component, pasted rather than retyped? Does each custom block have a real reason?
 3. **Structure:** Is the primary artifact above decoration and marketing?
 4. **Content:** Are all claims, metrics, people, logos, and quotes supplied or clearly marked as examples?
 5. **States:** Do interactive controls cover relevant default, hover, focus, active, disabled, loading, error, success, and empty states?

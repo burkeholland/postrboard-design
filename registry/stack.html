@@ -1,0 +1,16 @@
+<!--
+name: stack
+title: Stack and cluster
+category: layout
+variants: stack-sm = tight rhythm inside a component; stack-lg = section spacing
+description: Vertical rhythm (stack) and horizontal grouping that wraps (cluster).
+use: Almost every layout. These replace ad-hoc margins.
+avoid: Hand-written margin utilities between siblings when a stack would do.
+-->
+<div class="stack">
+  <div class="cluster">
+    <button class="btn btn-primary" type="button">Promote</button>
+    <button class="btn btn-secondary" type="button">Compare</button>
+  </div>
+  <p class="text-body text-muted">Stack spaces its children vertically; cluster groups them horizontally and wraps.</p>
+</div>

@@ -1,0 +1,15 @@
+<!--
+name: pagination
+title: Pagination
+category: navigation
+description: Page links with the current page marked by aria-current.
+use: Long result sets where the user needs a stable position.
+avoid: Pagination over fewer than two pages.
+-->
+<nav class="pagination" aria-label="Pagination">
+  <a class="page-link" href="/revisions?page=0" aria-label="Previous page">&lsaquo;</a>
+  <a class="page-link" href="/revisions?page=1" aria-current="page">1</a>
+  <a class="page-link" href="/revisions?page=2">2</a>
+  <a class="page-link" href="/revisions?page=3">3</a>
+  <a class="page-link" href="/revisions?page=2" aria-label="Next page">&rsaquo;</a>
+</nav>

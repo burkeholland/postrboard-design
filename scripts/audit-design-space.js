@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const { compileCss } = require('./build');
+const { build: buildRegistry } = require('./build-registry');
 
 const rootDir = path.join(__dirname, '..');
 const css = fs.readFileSync(path.join(rootDir, 'postrboard.css'), 'utf8');
@@ -314,13 +315,34 @@ const modifierClasses = new Set([
   'is-hover', 'is-numeric', 'is-tight', 'popular', 'subtle', 'up', 'down',
   'done', 'error', 'success', 'red', 'yellow', 'green', 'prompt', 'cmd', 'dim'
 ]);
+
+// Page furniture and back-compat aliases. Both are covered by their own checks
+// below, so a component demo would only be noise.
+const docsOnlyClasses = new Set([
+  'skip-link', 'version-badge',
+  't-display', 't-h1', 't-h2', 't-card', 't-body', 't-meta', 't-mono',
+  'nav', 'nav-glass', 'nav-solid', 'nav-bordered', 'nav-minimal', 'nav-logo', 'logo'
+]);
+const registryIndex = JSON.parse(read('registry/index.json'));
+const registryClasses = new Set();
+for (const component of registryIndex.components) {
+  for (const attribute of component.html.matchAll(/class="([^"]*)"/g)) {
+    for (const name of attribute[1].split(/\s+/).filter(Boolean)) registryClasses.add(name);
+  }
+  for (const variant of component.variants) registryClasses.add(variant.class);
+}
+
 const missingFromDocs = [...documentedClasses].filter(name => {
   if (utilityClasses.has(name) || modifierClasses.has(name)) return false;
-  return !docs.includes(`.${name}`) && !new RegExp(`class="[^"]*\\b${name}\\b`).test(docs);
+  if (docsOnlyClasses.has(name)) return false;
+  return !registryClasses.has(name);
 });
 
 if (missingFromDocs.length) {
-  fail(`Public classes missing from index.html: ${missingFromDocs.sort().join(', ')}`);
+  fail(
+    'Public classes with no registry coverage. Add them to a registry component\'s ' +
+    `markup or its variants: ${missingFromDocs.sort().join(', ')}`
+  );
 }
 
 const legacyStart = docs.indexOf('<h3>Legacy compatibility</h3>');
@@ -358,6 +380,8 @@ if (packageLock.version !== '2.0.0' || packageLock.packages[''].version !== '2.0
 assertIncludes(css, 'Postrboard CSS v2.0.0', 'CSS version header');
 if (!packageJson.files.includes('postrboard.min.css.map')) fail('The package excludes its generated source map.');
 if (!packageJson.files.includes('skill')) fail('The package excludes the Postrboard agent skill.');
+if (!packageJson.files.includes('registry')) fail('The package excludes the component registry.');
+if (!packageJson.files.includes('components.md')) fail('The package excludes the flat component reference.');
 assertIncludes(read('CHANGELOG.md'), '## [2.0.0]', '2.0.0 changelog entry');
 
 for (const file of ['.gitignore', '.npmignore']) {
@@ -385,6 +409,26 @@ for (const [file, expected] of [
   if (fs.readFileSync(outputPath, 'utf8') !== expected) {
     fail(`${file} is stale. Run npm run build and commit the generated artifact.`);
   }
+}
+
+// The registry is the source of truth. index.html, components.md and the JSON
+// index are generated from it; drift is how documentation rots.
+const regenerated = buildRegistry({ write: false });
+if (regenerated.json !== read('registry/index.json')) {
+  fail('registry/index.json is stale. Run npm run build and commit the result.');
+}
+if (regenerated.markdown !== read('components.md')) {
+  fail('components.md is stale. Run npm run build and commit the result.');
+}
+const generatedStart = docs.indexOf('<!-- registry:components:start -->');
+const generatedEnd = docs.indexOf('<!-- registry:components:end -->');
+if (generatedStart < 0 || generatedEnd < 0) fail('index.html lost its registry:components markers.');
+const generatedBlock = docs.slice(generatedStart, generatedEnd).replace(/\r\n/g, '\n');
+if (generatedBlock.trimEnd() !== `<!-- registry:components:start -->\n${regenerated.docs}`) {
+  fail('The components section of index.html is stale. Run npm run build and commit the result.');
+}
+if (docs.slice(generatedEnd).includes('class="component-row"')) {
+  fail('A component row was hand-written outside the generated block. Add it to registry/ instead.');
 }
 
 const skill = read('skill/postrboard/SKILL.md');

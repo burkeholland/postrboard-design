@@ -1,0 +1,18 @@
+<!--
+name: combobox
+title: Combobox
+category: overlays
+description: A text input with a filtered list of options beneath it.
+use: Choosing one item from a set too long for a select.
+avoid: Fewer than about five options. Use a radio group or a select.
+note: Add <code>is-open</code> to keep the list visible while the user clicks an option.
+preview: combobox
+-->
+<div class="combobox">
+  <input class="input w-full" type="text" placeholder="Search services" role="combobox" aria-expanded="true" aria-controls="service-list">
+  <ul class="combobox-list is-open" id="service-list" role="listbox">
+    <li role="option">api-gateway</li>
+    <li role="option" class="is-active">worker-jobs</li>
+    <li role="option">event-router</li>
+  </ul>
+</div>

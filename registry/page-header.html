@@ -1,0 +1,19 @@
+<!--
+name: page-header
+title: Page header
+category: surfaces
+description: The title block at the top of a work surface, with room for actions.
+use: The first element inside the main region of an app page.
+avoid: Repeating the navigation label verbatim. Say what this page is for.
+requires: button
+-->
+<header class="page-header">
+  <div class="page-header-main">
+    <h1 class="page-title">Deployments</h1>
+    <p class="page-summary">Every revision pushed to production in the last 30 days.</p>
+  </div>
+  <div class="page-actions">
+    <button class="btn btn-secondary" type="button">Export</button>
+    <button class="btn btn-primary" type="button">New deployment</button>
+  </div>
+</header>

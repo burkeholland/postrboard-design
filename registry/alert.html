@@ -1,0 +1,24 @@
+<!--
+name: alert
+title: Alert
+category: feedback
+description: An inline message in four severities, each with a title and body.
+use: A condition the user must understand before acting.
+avoid: Stacking three alerts at the top of a page. Show the one that matters.
+-->
+<div class="alert alert-info">
+  <svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg>
+  <div><strong class="alert-title">Revision queued</strong><p class="alert-body">It starts when the current deploy finishes.</p></div>
+</div>
+<div class="alert alert-success">
+  <svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>
+  <div><strong class="alert-title">All checks passed</strong><p class="alert-body">This revision is ready to promote.</p></div>
+</div>
+<div class="alert alert-warning">
+  <svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3 2 20h20L12 3Z"/><path d="M12 9v4M12 17h.01"/></svg>
+  <div><strong class="alert-title">Two checks need review</strong><p class="alert-body">Open the failed checks before you promote this revision.</p></div>
+</div>
+<div class="alert alert-danger">
+  <svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15 9l-6 6M9 9l6 6"/></svg>
+  <div><strong class="alert-title">Deploy failed</strong><p class="alert-body">api-gateway rolled back to v2.8.0 automatically.</p></div>
+</div>

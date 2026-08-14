@@ -1,0 +1,12 @@
+<!--
+name: input-validation
+title: Validation states
+category: forms
+description: Error and success styling for an input, paired with aria-invalid.
+use: After a field has been checked. Always pair colour with a message.
+avoid: Colour alone. Red border with no explanation tells the user nothing.
+-->
+<div class="cluster">
+  <input class="input input-error" type="text" value="expired-key" aria-invalid="true" aria-label="API key, invalid">
+  <input class="input input-success" type="text" value="a1b2-c3d4-e5f6" aria-label="API key, verified">
+</div>

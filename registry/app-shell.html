@@ -1,0 +1,22 @@
+<!--
+name: app-shell
+title: App shell
+category: layout
+description: A full-height sidebar and main region, the standard frame for an application.
+use: Any signed-in product surface with persistent navigation.
+avoid: Marketing pages. A landing page does not need an app frame.
+preview: frame
+requires: sidebar-nav
+-->
+<div class="grid-sidebar is-app-shell">
+  <aside class="app-sidebar">
+    <a class="brand" href="/"><span class="brand-mark">R/</span> relay</a>
+    <nav class="sidebar-nav" aria-label="Sections">
+      <a href="/" aria-current="page">Overview</a>
+      <a href="/deploys">Deploys</a>
+    </nav>
+  </aside>
+  <main class="app-main" id="main">
+    <h1 class="page-title">Overview</h1>
+  </main>
+</div>

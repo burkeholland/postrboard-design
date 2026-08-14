@@ -1,0 +1,14 @@
+<!--
+name: input
+title: Text input
+category: forms
+variants: input-sm = compact rows and toolbars; input-lg = a single prominent field; is-error = failed validation; is-success = confirmed value
+description: A labelled text field with optional helper text. The atom every form is built from.
+use: Any single-line value. Pair every input with a real label element.
+avoid: Using placeholder text as the label. It disappears on typing and fails screen readers.
+-->
+<div class="form-field">
+  <label class="form-label" for="service-name">Service name</label>
+  <input class="input w-full" id="service-name" value="api-gateway">
+  <p class="form-helper">Lowercase, hyphen separated.</p>
+</div>

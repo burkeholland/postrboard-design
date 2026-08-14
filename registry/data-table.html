@@ -1,0 +1,19 @@
+<!--
+name: data-table
+title: Data table
+category: data
+description: A scrollable table with numeric alignment and an optional tight density.
+use: Records the user compares across columns.
+avoid: Roomy density. Comparison needs rows close enough to scan.
+requires: badge
+-->
+<div class="table-wrap">
+  <table class="data-table is-tight">
+    <caption class="sr-only">Deployment revisions</caption>
+    <thead><tr><th>Service</th><th>Revision</th><th>Status</th><th class="is-numeric">Duration</th></tr></thead>
+    <tbody>
+      <tr><td>api-gateway</td><td><code>6f82ae1</code></td><td><span class="badge badge-status" data-state="success">Ready</span></td><td class="is-numeric">1m 18s</td></tr>
+      <tr><td>worker-jobs</td><td><code>d1c904b</code></td><td><span class="badge badge-status" data-state="info">Building</span></td><td class="is-numeric">0m 47s</td></tr>
+    </tbody>
+  </table>
+</div>

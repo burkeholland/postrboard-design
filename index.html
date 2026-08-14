@@ -223,6 +223,11 @@
       white-space: pre-wrap;
     }
 
+    .component-category {
+      margin-top: var(--space-7);
+      margin-bottom: var(--space-4);
+    }
+
     .component-list {
       display: grid;
       border-top: 1px solid var(--border);
@@ -230,16 +235,42 @@
 
     .component-row {
       display: grid;
-      grid-template-columns: minmax(150px, 0.32fr) minmax(0, 1fr);
+      grid-template-columns: minmax(190px, 0.34fr) minmax(0, 1fr);
       gap: var(--space-5);
       padding-block: var(--space-6);
       border-bottom: 1px solid var(--border);
+    }
+
+    .component-meta > * + * {
+      margin-top: var(--space-3);
     }
 
     .component-name {
       color: var(--text-meta);
       font-family: var(--mono);
       font-size: 0.75rem;
+    }
+
+    .component-guide {
+      color: var(--text-muted);
+      font-size: 0.8125rem;
+      line-height: 1.6;
+    }
+
+    .component-guide-label {
+      display: inline-block;
+      min-width: 3.25rem;
+      color: var(--text-meta);
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 720px) {
+      .component-row {
+        grid-template-columns: minmax(0, 1fr);
+      }
     }
 
     .component-demo {
@@ -284,6 +315,19 @@
     .demo-fab-stage .fab {
       right: var(--space-4);
       bottom: var(--space-4);
+    }
+
+    /* Full-height layouts would otherwise stretch a docs row to the viewport.
+       The frame shows their structure at a readable size. */
+    .demo-frame {
+      height: 320px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-surface);
+    }
+
+    .demo-frame > * {
+      height: 100%;
     }
 
     .demo-fab-caption {
@@ -650,13 +694,334 @@
         <div class="section-header">
           <div class="section-header-main">
             <h2 class="docs-section-title">Components</h2>
-            <p class="docs-section-summary mt-3">Everything the framework ships. Each example shows the markup and the states that component supports. Use these instead of building your own.</p>
+            <p class="docs-section-summary mt-3">Every component the framework ships, with the markup to copy. Paste it as written; the class names are the API. The same list is in <code class="inline-code">components.md</code> and <code class="inline-code">registry/index.json</code> for agents.</p>
           </div>
         </div>
 
+        <!-- registry:components:start -->
+        <h3 class="text-h2 component-category">Layout</h3>
         <div class="component-list">
-          <article class="component-row">
-            <div class="component-name">Actions</div>
+          <article class="component-row" id="c-app-shell">
+            <div class="component-meta">
+              <h4 class="component-name">app-shell</h4>
+              <p class="text-body text-muted">A full-height sidebar and main region, the standard frame for an application.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> Any signed-in product surface with persistent navigation.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Marketing pages. A landing page does not need an app frame.</p>
+            </div>
+            <div class="component-demo">
+              <div class="demo-frame">
+                <div class="grid-sidebar is-app-shell">
+                  <aside class="app-sidebar">
+                    <a class="brand" href="#components"><span class="brand-mark">R/</span> relay</a>
+                    <nav class="sidebar-nav" aria-label="Sections">
+                      <a href="#components" aria-current="page">Overview</a>
+                      <a href="#components">Deploys</a>
+                    </nav>
+                  </aside>
+                  <main class="app-main" id="app-shell-main">
+                    <h1 class="page-title">Overview</h1>
+                  </main>
+                </div>
+              </div>
+              <pre class="code-sample"><code>&lt;div class="grid-sidebar is-app-shell"&gt;
+  &lt;aside class="app-sidebar"&gt;
+    &lt;a class="brand" href="/"&gt;&lt;span class="brand-mark"&gt;R/&lt;/span&gt; relay&lt;/a&gt;
+    &lt;nav class="sidebar-nav" aria-label="Sections"&gt;
+      &lt;a href="/" aria-current="page"&gt;Overview&lt;/a&gt;
+      &lt;a href="/deploys"&gt;Deploys&lt;/a&gt;
+    &lt;/nav&gt;
+  &lt;/aside&gt;
+  &lt;main class="app-main" id="main"&gt;
+    &lt;h1 class="page-title"&gt;Overview&lt;/h1&gt;
+  &lt;/main&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </article>
+          <article class="component-row" id="c-container">
+            <div class="component-meta">
+              <h4 class="component-name">container</h4>
+              <p class="text-body text-muted">Page width and gutters, in three measures.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> Wrapping page content so it does not run to the viewport edge.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Nesting containers. The inner one adds a second gutter.</p>
+              <p class="component-guide"><span class="component-guide-label">Swap</span>
+                <code class="inline-code">.container-sm</code> 720px, the prose measure<br>
+                <code class="inline-code">.container-lg</code> 1440px, for dense tools<br>
+                <code class="inline-code">.section</code> vertical rhythm between the major blocks of a page
+              </p>
+            </div>
+            <div class="component-demo">
+              <div class="container">
+                <p class="text-body">Default width, 1200px. Use container-sm for prose and container-lg for dense tools.</p>
+              </div>
+              <pre class="code-sample"><code>&lt;div class="container"&gt;
+  &lt;p class="text-body"&gt;Default width, 1200px. Use container-sm for prose and container-lg for dense tools.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </article>
+          <article class="component-row" id="c-footer">
+            <div class="component-meta">
+              <h4 class="component-name">footer</h4>
+              <p class="text-body text-muted">A wide first column for the brand, then three link columns.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> Site-level navigation and legal links.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Padding it with empty columns to fill the row.</p>
+            </div>
+            <div class="component-demo">
+              <footer class="footer-grid">
+                <div><a class="brand" href="#components"><span class="brand-mark">R/</span> relay</a><p class="text-meta">Deploy tooling for small teams.</p></div>
+                <div class="stack stack-sm"><strong class="text-meta">Product</strong><a class="styled-link" href="#components">Deploys</a><a class="styled-link" href="#components">API</a></div>
+                <div class="stack stack-sm"><strong class="text-meta">Docs</strong><a class="styled-link" href="#components">Guides</a><a class="styled-link" href="#components">Changelog</a></div>
+                <div class="stack stack-sm"><strong class="text-meta">Legal</strong><a class="styled-link" href="#components">Privacy</a><a class="styled-link" href="#components">Terms</a></div>
+              </footer>
+              <pre class="code-sample"><code>&lt;footer class="footer-grid"&gt;
+  &lt;div&gt;&lt;a class="brand" href="/"&gt;&lt;span class="brand-mark"&gt;R/&lt;/span&gt; relay&lt;/a&gt;&lt;p class="text-meta"&gt;Deploy tooling for small teams.&lt;/p&gt;&lt;/div&gt;
+  &lt;div class="stack stack-sm"&gt;&lt;strong class="text-meta"&gt;Product&lt;/strong&gt;&lt;a class="styled-link" href="/deploys"&gt;Deploys&lt;/a&gt;&lt;a class="styled-link" href="/api"&gt;API&lt;/a&gt;&lt;/div&gt;
+  &lt;div class="stack stack-sm"&gt;&lt;strong class="text-meta"&gt;Docs&lt;/strong&gt;&lt;a class="styled-link" href="/docs"&gt;Guides&lt;/a&gt;&lt;a class="styled-link" href="/changelog"&gt;Changelog&lt;/a&gt;&lt;/div&gt;
+  &lt;div class="stack stack-sm"&gt;&lt;strong class="text-meta"&gt;Legal&lt;/strong&gt;&lt;a class="styled-link" href="/privacy"&gt;Privacy&lt;/a&gt;&lt;a class="styled-link" href="/terms"&gt;Terms&lt;/a&gt;&lt;/div&gt;
+&lt;/footer&gt;</code></pre>
+            </div>
+          </article>
+          <article class="component-row" id="c-grid-asymmetric">
+            <div class="component-meta">
+              <h4 class="component-name">grid-asymmetric</h4>
+              <p class="text-body text-muted">Two columns weighted 2:1. Use grid-asymmetric-reverse to lead with the narrow column.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> Content beside supporting metadata.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Splitting equal-weight content. Use grid-split.</p>
+              <p class="component-guide"><span class="component-guide-label">Swap</span>
+                <code class="inline-code">.grid-asymmetric-reverse</code> the narrow column leads
+              </p>
+            </div>
+            <div class="component-demo">
+              <div class="grid-asymmetric">
+                <div class="panel"><div class="panel-content">Main content</div></div>
+                <div class="panel"><div class="panel-content">Metadata</div></div>
+              </div>
+              <pre class="code-sample"><code>&lt;div class="grid-asymmetric"&gt;
+  &lt;div class="panel"&gt;&lt;div class="panel-content"&gt;Main content&lt;/div&gt;&lt;/div&gt;
+  &lt;div class="panel"&gt;&lt;div class="panel-content"&gt;Metadata&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </article>
+          <article class="component-row" id="c-grid-auto">
+            <div class="component-meta">
+              <h4 class="component-name">grid-auto</h4>
+              <p class="text-body text-muted">As many equal columns as fit, wrapping automatically.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> Collections whose length you do not control.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> A fixed count you already know. Use grid-thirds or grid-split.</p>
+            </div>
+            <div class="component-demo">
+              <div class="grid-auto">
+                <div class="panel"><div class="panel-content">One</div></div>
+                <div class="panel"><div class="panel-content">Two</div></div>
+                <div class="panel"><div class="panel-content">Three</div></div>
+                <div class="panel"><div class="panel-content">Four</div></div>
+              </div>
+              <pre class="code-sample"><code>&lt;div class="grid-auto"&gt;
+  &lt;div class="panel"&gt;&lt;div class="panel-content"&gt;One&lt;/div&gt;&lt;/div&gt;
+  &lt;div class="panel"&gt;&lt;div class="panel-content"&gt;Two&lt;/div&gt;&lt;/div&gt;
+  &lt;div class="panel"&gt;&lt;div class="panel-content"&gt;Three&lt;/div&gt;&lt;/div&gt;
+  &lt;div class="panel"&gt;&lt;div class="panel-content"&gt;Four&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </article>
+          <article class="component-row" id="c-grid-centered">
+            <div class="component-meta">
+              <h4 class="component-name">grid-centered</h4>
+              <p class="text-body text-muted">A single measured column, centred in the page.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> Prose, focused flows, and anything read top to bottom.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Data tables. They need the width.</p>
+            </div>
+            <div class="component-demo">
+              <div class="grid-centered">
+                <div class="panel"><div class="panel-content">Prose</div></div>
+              </div>
+              <pre class="code-sample"><code>&lt;div class="grid-centered"&gt;
+  &lt;div class="panel"&gt;&lt;div class="panel-content"&gt;Prose&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </article>
+          <article class="component-row" id="c-grid-holy-grail">
+            <div class="component-meta">
+              <h4 class="component-name">grid-holy-grail</h4>
+              <p class="text-body text-muted">A full-width header and footer around three columns.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> Dense tools that need context on both sides of the work area.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Simple pages. Two rails is a lot of chrome.</p>
+            </div>
+            <div class="component-demo">
+              <div class="grid-holy-grail">
+                <div class="panel"><div class="panel-content">Header</div></div>
+                <div class="panel"><div class="panel-content">Left</div></div>
+                <div class="panel"><div class="panel-content">Main</div></div>
+                <div class="panel"><div class="panel-content">Right</div></div>
+                <div class="panel"><div class="panel-content">Footer</div></div>
+              </div>
+              <pre class="code-sample"><code>&lt;div class="grid-holy-grail"&gt;
+  &lt;div class="panel"&gt;&lt;div class="panel-content"&gt;Header&lt;/div&gt;&lt;/div&gt;
+  &lt;div class="panel"&gt;&lt;div class="panel-content"&gt;Left&lt;/div&gt;&lt;/div&gt;
+  &lt;div class="panel"&gt;&lt;div class="panel-content"&gt;Main&lt;/div&gt;&lt;/div&gt;
+  &lt;div class="panel"&gt;&lt;div class="panel-content"&gt;Right&lt;/div&gt;&lt;/div&gt;
+  &lt;div class="panel"&gt;&lt;div class="panel-content"&gt;Footer&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </article>
+          <article class="component-row" id="c-grid-masonry">
+            <div class="component-meta">
+              <h4 class="component-name">grid-masonry</h4>
+              <p class="text-body text-muted">Three columns that flow by height rather than by row.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> Items with genuinely different heights, such as notes or clips.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Uniform cards. It just looks unaligned.</p>
+            </div>
+            <div class="component-demo">
+              <div class="grid-masonry">
+                <div class="panel"><div class="panel-content">Short</div></div>
+                <div class="panel"><div class="panel-content">Taller item with more content in it</div></div>
+                <div class="panel"><div class="panel-content">Short</div></div>
+              </div>
+              <pre class="code-sample"><code>&lt;div class="grid-masonry"&gt;
+  &lt;div class="panel"&gt;&lt;div class="panel-content"&gt;Short&lt;/div&gt;&lt;/div&gt;
+  &lt;div class="panel"&gt;&lt;div class="panel-content"&gt;Taller item with more content in it&lt;/div&gt;&lt;/div&gt;
+  &lt;div class="panel"&gt;&lt;div class="panel-content"&gt;Short&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </article>
+          <article class="component-row" id="c-grid-sidebar">
+            <div class="component-meta">
+              <h4 class="component-name">grid-sidebar</h4>
+              <p class="text-body text-muted">A fixed-width rail beside a fluid main column.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> Docs and settings pages with persistent section navigation.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> A rail with two links in it.</p>
+            </div>
+            <div class="component-demo">
+              <div class="grid-sidebar">
+                <div class="panel"><div class="panel-content">Rail</div></div>
+                <div class="panel"><div class="panel-content">Main</div></div>
+              </div>
+              <pre class="code-sample"><code>&lt;div class="grid-sidebar"&gt;
+  &lt;div class="panel"&gt;&lt;div class="panel-content"&gt;Rail&lt;/div&gt;&lt;/div&gt;
+  &lt;div class="panel"&gt;&lt;div class="panel-content"&gt;Main&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </article>
+          <article class="component-row" id="c-grid-split">
+            <div class="component-meta">
+              <h4 class="component-name">grid-split</h4>
+              <p class="text-body text-muted">Two equal columns.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> A claim beside the artifact it describes, where neither outweighs the other.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Three or more children. They wrap into an uneven last row.</p>
+              <p class="component-guide"><span class="component-guide-label">Swap</span>
+                <code class="inline-code">.grid-two</code> the old name for this grid, kept working
+              </p>
+            </div>
+            <div class="component-demo">
+              <div class="grid-split">
+                <div class="panel"><div class="panel-content">Claim</div></div>
+                <div class="panel"><div class="panel-content">Artifact</div></div>
+              </div>
+              <pre class="code-sample"><code>&lt;div class="grid-split"&gt;
+  &lt;div class="panel"&gt;&lt;div class="panel-content"&gt;Claim&lt;/div&gt;&lt;/div&gt;
+  &lt;div class="panel"&gt;&lt;div class="panel-content"&gt;Artifact&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </article>
+          <article class="component-row" id="c-grid-stack-rail">
+            <div class="component-meta">
+              <h4 class="component-name">grid-stack-rail</h4>
+              <p class="text-body text-muted">A fluid main column with a narrower trailing rail.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> Primary content with secondary context beside it, such as activity or help.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Putting the primary action in the rail.</p>
+            </div>
+            <div class="component-demo">
+              <div class="grid-stack-rail">
+                <div class="panel"><div class="panel-content">Main</div></div>
+                <div class="panel"><div class="panel-content">Context</div></div>
+              </div>
+              <pre class="code-sample"><code>&lt;div class="grid-stack-rail"&gt;
+  &lt;div class="panel"&gt;&lt;div class="panel-content"&gt;Main&lt;/div&gt;&lt;/div&gt;
+  &lt;div class="panel"&gt;&lt;div class="panel-content"&gt;Context&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </article>
+          <article class="component-row" id="c-grid-thirds">
+            <div class="component-meta">
+              <h4 class="component-name">grid-thirds</h4>
+              <p class="text-body text-muted">Three equal columns.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> Three genuinely parallel items, such as environments or regions.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Three invented benefits. That is the feature-grid tell.</p>
+            </div>
+            <div class="component-demo">
+              <div class="grid-thirds">
+                <div class="panel"><div class="panel-content">One</div></div>
+                <div class="panel"><div class="panel-content">Two</div></div>
+                <div class="panel"><div class="panel-content">Three</div></div>
+              </div>
+              <pre class="code-sample"><code>&lt;div class="grid-thirds"&gt;
+  &lt;div class="panel"&gt;&lt;div class="panel-content"&gt;One&lt;/div&gt;&lt;/div&gt;
+  &lt;div class="panel"&gt;&lt;div class="panel-content"&gt;Two&lt;/div&gt;&lt;/div&gt;
+  &lt;div class="panel"&gt;&lt;div class="panel-content"&gt;Three&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </article>
+          <article class="component-row" id="c-stack">
+            <div class="component-meta">
+              <h4 class="component-name">stack</h4>
+              <p class="text-body text-muted">Vertical rhythm (stack) and horizontal grouping that wraps (cluster).</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> Almost every layout. These replace ad-hoc margins.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Hand-written margin utilities between siblings when a stack would do.</p>
+              <p class="component-guide"><span class="component-guide-label">Swap</span>
+                <code class="inline-code">.stack-sm</code> tight rhythm inside a component<br>
+                <code class="inline-code">.stack-lg</code> section spacing
+              </p>
+            </div>
+            <div class="component-demo">
+              <div class="stack">
+                <div class="cluster">
+                  <button class="btn btn-primary" type="button">Promote</button>
+                  <button class="btn btn-secondary" type="button">Compare</button>
+                </div>
+                <p class="text-body text-muted">Stack spaces its children vertically; cluster groups them horizontally and wraps.</p>
+              </div>
+              <pre class="code-sample"><code>&lt;div class="stack"&gt;
+  &lt;div class="cluster"&gt;
+    &lt;button class="btn btn-primary" type="button"&gt;Promote&lt;/button&gt;
+    &lt;button class="btn btn-secondary" type="button"&gt;Compare&lt;/button&gt;
+  &lt;/div&gt;
+  &lt;p class="text-body text-muted"&gt;Stack spaces its children vertically; cluster groups them horizontally and wraps.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </article>
+        </div>
+        <h3 class="text-h2 component-category">Actions</h3>
+        <div class="component-list">
+          <article class="component-row" id="c-button-group">
+            <div class="component-meta">
+              <h4 class="component-name">button-group</h4>
+              <p class="text-body text-muted">Buttons joined into a single control for mutually related actions.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> Switching a view between a few named options.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Unrelated actions. Use a cluster of separate buttons instead.</p>
+            </div>
+            <div class="component-demo">
+              <div class="button-group">
+                <button class="btn btn-secondary btn-sm" type="button">Day</button>
+                <button class="btn btn-secondary btn-sm" type="button">Week</button>
+                <button class="btn btn-secondary btn-sm" type="button">Month</button>
+              </div>
+              <pre class="code-sample"><code>&lt;div class="button-group"&gt;
+  &lt;button class="btn btn-secondary btn-sm" type="button"&gt;Day&lt;/button&gt;
+  &lt;button class="btn btn-secondary btn-sm" type="button"&gt;Week&lt;/button&gt;
+  &lt;button class="btn btn-secondary btn-sm" type="button"&gt;Month&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </article>
+          <article class="component-row" id="c-button">
+            <div class="component-meta">
+              <h4 class="component-name">button</h4>
+              <p class="text-body text-muted">The standard action control, in four emphasis levels plus busy and disabled states.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> One primary button per surface. Everything else is secondary or ghost.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Two primary buttons side by side. If both matter equally, neither is primary.</p>
+              <p class="component-guide"><span class="component-guide-label">Swap</span>
+                <code class="inline-code">.btn-lg</code> taller target for a single hero action<br>
+                <code class="inline-code">.btn-gradient</code> accent-filled fill
+              </p>
+            </div>
             <div class="component-demo">
               <div class="cluster">
                 <button class="btn btn-primary" type="button">Save changes</button>
@@ -666,13 +1031,441 @@
                 <button class="btn btn-primary" type="button" aria-busy="true">Saving</button>
                 <button class="btn btn-secondary" type="button" disabled>Unavailable</button>
               </div>
-              <pre class="code-sample"><code>&lt;button class="btn btn-primary" type="button"&gt;Save changes&lt;/button&gt;
-&lt;button class="btn btn-primary" type="button" aria-busy="true"&gt;Saving&lt;/button&gt;</code></pre>
+              <pre class="code-sample"><code>&lt;div class="cluster"&gt;
+  &lt;button class="btn btn-primary" type="button"&gt;Save changes&lt;/button&gt;
+  &lt;button class="btn btn-secondary" type="button"&gt;Preview&lt;/button&gt;
+  &lt;button class="btn btn-ghost" type="button"&gt;Cancel&lt;/button&gt;
+  &lt;button class="btn btn-danger" type="button"&gt;Delete&lt;/button&gt;
+  &lt;button class="btn btn-primary" type="button" aria-busy="true"&gt;Saving&lt;/button&gt;
+  &lt;button class="btn btn-secondary" type="button" disabled&gt;Unavailable&lt;/button&gt;
+&lt;/div&gt;</code></pre>
             </div>
           </article>
-
-          <article class="component-row">
-            <div class="component-name">Panels</div>
+          <article class="component-row" id="c-fab">
+            <div class="component-meta">
+              <h4 class="component-name">fab</h4>
+              <p class="text-body text-muted">A single action pinned to the corner of the viewport.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> One creation action on a dense list or board where the toolbar scrolls away.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Desktop layouts that already have a visible toolbar. It covers content.</p>
+            </div>
+            <div class="component-demo">
+              <div class="demo-fab-stage">
+                <button class="fab" type="button" aria-label="Create deployment">
+                  <svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+                </button>
+              </div>
+              <pre class="code-sample"><code>&lt;button class="fab" type="button" aria-label="Create deployment"&gt;
+  &lt;svg class="icon" aria-hidden="true" viewBox="0 0 24 24"&gt;&lt;path d="M12 5v14M5 12h14"/&gt;&lt;/svg&gt;
+&lt;/button&gt;</code></pre>
+            </div>
+          </article>
+          <article class="component-row" id="c-icon-button">
+            <div class="component-meta">
+              <h4 class="component-name">icon-button</h4>
+              <p class="text-body text-muted">A square control carrying only an icon. Always needs an accessible label.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> Repeated row actions and toolbar controls where a text label would crowd the layout.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Primary actions. If it matters, give it a word.</p>
+            </div>
+            <div class="component-demo">
+              <div class="cluster">
+                <button class="icon-button" type="button" aria-label="Refresh">
+                  <svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-3-6.7M21 4v5h-5"/></svg>
+                </button>
+                <button class="close-button" type="button" aria-label="Close">
+                  <svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>
+                </button>
+              </div>
+              <pre class="code-sample"><code>&lt;div class="cluster"&gt;
+  &lt;button class="icon-button" type="button" aria-label="Refresh"&gt;
+    &lt;svg class="icon" aria-hidden="true" viewBox="0 0 24 24"&gt;&lt;path d="M21 12a9 9 0 1 1-3-6.7M21 4v5h-5"/&gt;&lt;/svg&gt;
+  &lt;/button&gt;
+  &lt;button class="close-button" type="button" aria-label="Close"&gt;
+    &lt;svg class="icon" aria-hidden="true" viewBox="0 0 24 24"&gt;&lt;path d="M18 6 6 18M6 6l12 12"/&gt;&lt;/svg&gt;
+  &lt;/button&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </article>
+        </div>
+        <h3 class="text-h2 component-category">Forms</h3>
+        <div class="component-list">
+          <article class="component-row" id="c-checkbox">
+            <div class="component-meta">
+              <h4 class="component-name">checkbox</h4>
+              <p class="text-body text-muted">A boolean control for options that apply independently.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> Several options where any number can be on at once.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Mutually exclusive choices. Use a radio group.</p>
+            </div>
+            <div class="component-demo">
+              <div class="stack stack-sm">
+                <label class="checkbox"><input type="checkbox" checked> Include failed jobs</label>
+                <label class="checkbox"><input type="checkbox"> Notify the on-call channel</label>
+              </div>
+              <pre class="code-sample"><code>&lt;div class="stack stack-sm"&gt;
+  &lt;label class="checkbox"&gt;&lt;input type="checkbox" checked&gt; Include failed jobs&lt;/label&gt;
+  &lt;label class="checkbox"&gt;&lt;input type="checkbox"&gt; Notify the on-call channel&lt;/label&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </article>
+          <article class="component-row" id="c-dropzone">
+            <div class="component-meta">
+              <h4 class="component-name">dropzone</h4>
+              <p class="text-body text-muted">A drop target for uploading a file.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> Imports and attachments where dragging is natural.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Drag as the only route. Keep the browse control that this markup already includes.</p>
+            </div>
+            <div class="component-demo">
+              <label class="dropzone">
+                <input type="file">
+                <svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 16V4M6 10l6-6 6 6M4 20h16"/></svg>
+                <span><strong>Drop a file</strong> or browse</span>
+              </label>
+              <pre class="code-sample"><code>&lt;label class="dropzone"&gt;
+  &lt;input type="file"&gt;
+  &lt;svg class="icon" aria-hidden="true" viewBox="0 0 24 24"&gt;&lt;path d="M12 16V4M6 10l6-6 6 6M4 20h16"/&gt;&lt;/svg&gt;
+  &lt;span&gt;&lt;strong&gt;Drop a file&lt;/strong&gt; or browse&lt;/span&gt;
+&lt;/label&gt;</code></pre>
+            </div>
+          </article>
+          <article class="component-row" id="c-floating-label">
+            <div class="component-meta">
+              <h4 class="component-name">floating-label</h4>
+              <p class="text-body text-muted">A label that sits inside the field and rises when the field has content.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> Dense forms where a stacked label would cost too much vertical space.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Mixing with stacked labels in the same form. Pick one and keep it.</p>
+            </div>
+            <div class="component-demo">
+              <div class="floating-field">
+                <input class="floating-input" id="floating-label-cluster-name" placeholder=" ">
+                <label class="floating-label" for="floating-label-cluster-name">Cluster name</label>
+              </div>
+              <pre class="code-sample"><code>&lt;div class="floating-field"&gt;
+  &lt;input class="floating-input" id="cluster-name" placeholder=" "&gt;
+  &lt;label class="floating-label" for="cluster-name"&gt;Cluster name&lt;/label&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </article>
+          <article class="component-row" id="c-form">
+            <div class="component-meta">
+              <h4 class="component-name">form</h4>
+              <p class="text-body text-muted">A vertical stack of labelled fields with helper text and error messages.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> Any set of inputs the user submits together.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Placeholder text instead of a label. Every field needs a real label.</p>
+            </div>
+            <div class="component-demo">
+              <form class="form-stack">
+                <div class="form-field">
+                  <label class="form-label" for="form-project-name">Project name</label>
+                  <input class="input w-full" id="form-project-name" value="release-monitor">
+                  <p class="form-helper">Used in URLs and deployment labels.</p>
+                </div>
+                <div class="form-field">
+                  <label class="form-label" for="form-region">Region</label>
+                  <select class="select" id="form-region"><option>us-east-1</option><option>eu-west-1</option></select>
+                </div>
+                <div class="form-field">
+                  <label class="form-label" for="form-invalid-key">API key</label>
+                  <input class="input w-full" id="form-invalid-key" aria-invalid="true" aria-describedby="form-key-error" value="expired-key">
+                  <p class="form-message error" id="form-key-error">This key expired. Create a new key and try again.</p>
+                </div>
+                <label class="switch"><input type="checkbox" checked><span class="switch-track"></span>Pause on failed checks</label>
+              </form>
+              <pre class="code-sample"><code>&lt;form class="form-stack"&gt;
+  &lt;div class="form-field"&gt;
+    &lt;label class="form-label" for="project-name"&gt;Project name&lt;/label&gt;
+    &lt;input class="input w-full" id="project-name" value="release-monitor"&gt;
+    &lt;p class="form-helper"&gt;Used in URLs and deployment labels.&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="form-field"&gt;
+    &lt;label class="form-label" for="region"&gt;Region&lt;/label&gt;
+    &lt;select class="select" id="region"&gt;&lt;option&gt;us-east-1&lt;/option&gt;&lt;option&gt;eu-west-1&lt;/option&gt;&lt;/select&gt;
+  &lt;/div&gt;
+  &lt;div class="form-field"&gt;
+    &lt;label class="form-label" for="invalid-key"&gt;API key&lt;/label&gt;
+    &lt;input class="input w-full" id="invalid-key" aria-invalid="true" aria-describedby="key-error" value="expired-key"&gt;
+    &lt;p class="form-message error" id="key-error"&gt;This key expired. Create a new key and try again.&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;label class="switch"&gt;&lt;input type="checkbox" checked&gt;&lt;span class="switch-track"&gt;&lt;/span&gt;Pause on failed checks&lt;/label&gt;
+&lt;/form&gt;</code></pre>
+            </div>
+          </article>
+          <article class="component-row" id="c-input-group">
+            <div class="component-meta">
+              <h4 class="component-name">input-group</h4>
+              <p class="text-body text-muted">An input joined to a fixed prefix or suffix.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> Showing a protocol, unit, or domain the user should not have to type.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Putting a button in the affix slot. Use a separate control.</p>
+            </div>
+            <div class="component-demo">
+              <div class="demo-measure">
+                <div class="input-group">
+                  <span class="input-affix">https://</span>
+                  <input class="input" type="text" value="status.example.com" aria-label="Status page domain">
+                </div>
+              </div>
+              <pre class="code-sample"><code>&lt;div class="input-group"&gt;
+  &lt;span class="input-affix"&gt;https://&lt;/span&gt;
+  &lt;input class="input" type="text" value="status.example.com" aria-label="Status page domain"&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </article>
+          <article class="component-row" id="c-input-validation">
+            <div class="component-meta">
+              <h4 class="component-name">input-validation</h4>
+              <p class="text-body text-muted">Error and success styling for an input, paired with aria-invalid.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> After a field has been checked. Always pair colour with a message.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Colour alone. Red border with no explanation tells the user nothing.</p>
+            </div>
+            <div class="component-demo">
+              <div class="cluster">
+                <input class="input input-error" type="text" value="expired-key" aria-invalid="true" aria-label="API key, invalid">
+                <input class="input input-success" type="text" value="a1b2-c3d4-e5f6" aria-label="API key, verified">
+              </div>
+              <pre class="code-sample"><code>&lt;div class="cluster"&gt;
+  &lt;input class="input input-error" type="text" value="expired-key" aria-invalid="true" aria-label="API key, invalid"&gt;
+  &lt;input class="input input-success" type="text" value="a1b2-c3d4-e5f6" aria-label="API key, verified"&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </article>
+          <article class="component-row" id="c-input">
+            <div class="component-meta">
+              <h4 class="component-name">input</h4>
+              <p class="text-body text-muted">A labelled text field with optional helper text. The atom every form is built from.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> Any single-line value. Pair every input with a real label element.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Using placeholder text as the label. It disappears on typing and fails screen readers.</p>
+              <p class="component-guide"><span class="component-guide-label">Swap</span>
+                <code class="inline-code">.input-sm</code> compact rows and toolbars<br>
+                <code class="inline-code">.input-lg</code> a single prominent field<br>
+                <code class="inline-code">.is-error</code> failed validation<br>
+                <code class="inline-code">.is-success</code> confirmed value
+              </p>
+            </div>
+            <div class="component-demo">
+              <div class="form-field">
+                <label class="form-label" for="input-service-name">Service name</label>
+                <input class="input w-full" id="input-service-name" value="api-gateway">
+                <p class="form-helper">Lowercase, hyphen separated.</p>
+              </div>
+              <pre class="code-sample"><code>&lt;div class="form-field"&gt;
+  &lt;label class="form-label" for="service-name"&gt;Service name&lt;/label&gt;
+  &lt;input class="input w-full" id="service-name" value="api-gateway"&gt;
+  &lt;p class="form-helper"&gt;Lowercase, hyphen separated.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </article>
+          <article class="component-row" id="c-radio">
+            <div class="component-meta">
+              <h4 class="component-name">radio</h4>
+              <p class="text-body text-muted">A set of mutually exclusive options, all visible at once.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> Two to five choices where seeing every option matters.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Long option lists. Use a select past about five.</p>
+            </div>
+            <div class="component-demo">
+              <div class="radio-group">
+                <label class="radio"><input type="radio" name="radio-region" checked> us-east-1</label>
+                <label class="radio"><input type="radio" name="radio-region"> eu-west-1</label>
+              </div>
+              <pre class="code-sample"><code>&lt;div class="radio-group"&gt;
+  &lt;label class="radio"&gt;&lt;input type="radio" name="region" checked&gt; us-east-1&lt;/label&gt;
+  &lt;label class="radio"&gt;&lt;input type="radio" name="region"&gt; eu-west-1&lt;/label&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </article>
+          <article class="component-row" id="c-range">
+            <div class="component-meta">
+              <h4 class="component-name">range</h4>
+              <p class="text-body text-muted">A slider for a value where the approximate position matters more than the exact number.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> Limits, thresholds, and weightings the user tunes by feel.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Values that need precision. Use a number input.</p>
+            </div>
+            <div class="component-demo">
+              <div class="demo-measure">
+                <div class="range-field">
+                  <div class="range-top"><label class="form-label" for="range-memory">Memory limit</label><span>70%</span></div>
+                  <input class="range-input" id="range-memory" type="range" min="0" max="100" value="70">
+                </div>
+              </div>
+              <pre class="code-sample"><code>&lt;div class="range-field"&gt;
+  &lt;div class="range-top"&gt;&lt;label class="form-label" for="memory"&gt;Memory limit&lt;/label&gt;&lt;span&gt;70%&lt;/span&gt;&lt;/div&gt;
+  &lt;input class="range-input" id="memory" type="range" min="0" max="100" value="70"&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </article>
+          <article class="component-row" id="c-segmented-control">
+            <div class="component-meta">
+              <h4 class="component-name">segmented-control</h4>
+              <p class="text-body text-muted">A compact joined control for switching between a few views.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> Changing the range or mode of the data already on screen.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Submitting a value in a form. It reads as navigation, not input.</p>
+            </div>
+            <div class="component-demo">
+              <div class="segmented-control">
+                <input type="radio" name="segmented-control-window" id="segmented-control-seg-day" checked><label for="segmented-control-seg-day">Day</label>
+                <input type="radio" name="segmented-control-window" id="segmented-control-seg-week"><label for="segmented-control-seg-week">Week</label>
+                <input type="radio" name="segmented-control-window" id="segmented-control-seg-month"><label for="segmented-control-seg-month">Month</label>
+              </div>
+              <pre class="code-sample"><code>&lt;div class="segmented-control"&gt;
+  &lt;input type="radio" name="window" id="seg-day" checked&gt;&lt;label for="seg-day"&gt;Day&lt;/label&gt;
+  &lt;input type="radio" name="window" id="seg-week"&gt;&lt;label for="seg-week"&gt;Week&lt;/label&gt;
+  &lt;input type="radio" name="window" id="seg-month"&gt;&lt;label for="seg-month"&gt;Month&lt;/label&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </article>
+          <article class="component-row" id="c-select">
+            <div class="component-meta">
+              <h4 class="component-name">select</h4>
+              <p class="text-body text-muted">A labelled dropdown for one value from a known, short list.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> Fewer than about a dozen fixed options, such as regions or environments.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Long or searchable lists. Use the combobox instead.</p>
+            </div>
+            <div class="component-demo">
+              <div class="form-field">
+                <label class="form-label" for="select-deploy-region">Region</label>
+                <select class="select" id="select-deploy-region">
+                  <option>us-east-1</option>
+                  <option>eu-west-1</option>
+                  <option>ap-southeast-2</option>
+                </select>
+              </div>
+              <pre class="code-sample"><code>&lt;div class="form-field"&gt;
+  &lt;label class="form-label" for="deploy-region"&gt;Region&lt;/label&gt;
+  &lt;select class="select" id="deploy-region"&gt;
+    &lt;option&gt;us-east-1&lt;/option&gt;
+    &lt;option&gt;eu-west-1&lt;/option&gt;
+    &lt;option&gt;ap-southeast-2&lt;/option&gt;
+  &lt;/select&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </article>
+          <article class="component-row" id="c-switch">
+            <div class="component-meta">
+              <h4 class="component-name">switch</h4>
+              <p class="text-body text-muted">A toggle for a setting that takes effect immediately.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> Turning a behaviour on or off with no separate save step.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Fields inside a form that only apply after submit. Use a checkbox.</p>
+            </div>
+            <div class="component-demo">
+              <label class="switch"><input type="checkbox" checked><span class="switch-track"></span>Pause on failed checks</label>
+              <pre class="code-sample"><code>&lt;label class="switch"&gt;&lt;input type="checkbox" checked&gt;&lt;span class="switch-track"&gt;&lt;/span&gt;Pause on failed checks&lt;/label&gt;</code></pre>
+            </div>
+          </article>
+          <article class="component-row" id="c-textarea">
+            <div class="component-meta">
+              <h4 class="component-name">textarea</h4>
+              <p class="text-body text-muted">A multi-line text input that grows vertically.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> Descriptions, notes, commit messages, and pasted payloads.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Single-line values. Use an input so the Enter key submits.</p>
+            </div>
+            <div class="component-demo">
+              <div class="demo-measure">
+                <div class="form-field">
+                  <label class="form-label" for="textarea-release-notes">Release notes</label>
+                  <textarea class="textarea" id="textarea-release-notes" placeholder="What changed in this revision?"></textarea>
+                </div>
+              </div>
+              <pre class="code-sample"><code>&lt;div class="form-field"&gt;
+  &lt;label class="form-label" for="release-notes"&gt;Release notes&lt;/label&gt;
+  &lt;textarea class="textarea" id="release-notes" placeholder="What changed in this revision?"&gt;&lt;/textarea&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </article>
+        </div>
+        <h3 class="text-h2 component-category">Surfaces</h3>
+        <div class="component-list">
+          <article class="component-row" id="c-accordion">
+            <div class="component-meta">
+              <h4 class="component-name">accordion</h4>
+              <p class="text-body text-muted">Native details and summary styled as a disclosure row.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> Reference content most readers skip, such as troubleshooting.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Hiding content the user needs to complete the task in front of them.</p>
+            </div>
+            <div class="component-demo">
+              <details class="accordion">
+                <summary>What do I still have to build in JavaScript?</summary>
+                <div class="accordion-body">Focus trapping, closing on Escape, arrow-key navigation, tracking which item is selected, and screen-reader announcements. The CSS only styles these components.</div>
+              </details>
+              <pre class="code-sample"><code>&lt;details class="accordion"&gt;
+  &lt;summary&gt;What do I still have to build in JavaScript?&lt;/summary&gt;
+  &lt;div class="accordion-body"&gt;Focus trapping, closing on Escape, arrow-key navigation, tracking which item is selected, and screen-reader announcements. The CSS only styles these components.&lt;/div&gt;
+&lt;/details&gt;</code></pre>
+            </div>
+          </article>
+          <article class="component-row" id="c-card">
+            <div class="component-meta">
+              <h4 class="component-name">card</h4>
+              <p class="text-body text-muted">A compatibility alias for panel, kept for 1.x markup.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> Existing pages already written against the 1.x card API.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> New work. Use panel, which is the canonical name.</p>
+              <p class="component-guide"><span class="component-guide-label">Swap</span>
+                <code class="inline-code">.card-interactive</code> hover response, when the whole card is a link
+              </p>
+            </div>
+            <div class="component-demo">
+              <article class="card">
+                <div class="card-header"><h3 class="card-title">api-gateway</h3></div>
+                <div class="card-content"><p class="card-body">Three replicas healthy in us-east-1.</p></div>
+                <div class="card-footer"><button class="btn btn-secondary btn-sm" type="button">Open</button></div>
+              </article>
+              <pre class="code-sample"><code>&lt;article class="card"&gt;
+  &lt;div class="card-header"&gt;&lt;h3 class="card-title"&gt;api-gateway&lt;/h3&gt;&lt;/div&gt;
+  &lt;div class="card-content"&gt;&lt;p class="card-body"&gt;Three replicas healthy in us-east-1.&lt;/p&gt;&lt;/div&gt;
+  &lt;div class="card-footer"&gt;&lt;button class="btn btn-secondary btn-sm" type="button"&gt;Open&lt;/button&gt;&lt;/div&gt;
+&lt;/article&gt;</code></pre>
+            </div>
+          </article>
+          <article class="component-row" id="c-divider">
+            <div class="component-meta">
+              <h4 class="component-name">divider</h4>
+              <p class="text-body text-muted">A rule, optionally with a centred label.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> Separating two alternatives, such as a form and a third-party option.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> A rule between every block. Spacing usually does the job.</p>
+            </div>
+            <div class="component-demo">
+              <hr class="divider">
+              <div class="divider-label">or</div>
+              <pre class="code-sample"><code>&lt;hr class="divider"&gt;
+&lt;div class="divider-label"&gt;or&lt;/div&gt;</code></pre>
+            </div>
+          </article>
+          <article class="component-row" id="c-page-header">
+            <div class="component-meta">
+              <h4 class="component-name">page-header</h4>
+              <p class="text-body text-muted">The title block at the top of a work surface, with room for actions.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> The first element inside the main region of an app page.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Repeating the navigation label verbatim. Say what this page is for.</p>
+            </div>
+            <div class="component-demo">
+              <header class="page-header">
+                <div class="page-header-main">
+                  <h1 class="page-title">Deployments</h1>
+                  <p class="page-summary">Every revision pushed to production in the last 30 days.</p>
+                </div>
+                <div class="page-actions">
+                  <button class="btn btn-secondary" type="button">Export</button>
+                  <button class="btn btn-primary" type="button">New deployment</button>
+                </div>
+              </header>
+              <pre class="code-sample"><code>&lt;header class="page-header"&gt;
+  &lt;div class="page-header-main"&gt;
+    &lt;h1 class="page-title"&gt;Deployments&lt;/h1&gt;
+    &lt;p class="page-summary"&gt;Every revision pushed to production in the last 30 days.&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="page-actions"&gt;
+    &lt;button class="btn btn-secondary" type="button"&gt;Export&lt;/button&gt;
+    &lt;button class="btn btn-primary" type="button"&gt;New deployment&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/header&gt;</code></pre>
+            </div>
+          </article>
+          <article class="component-row" id="c-panel">
+            <div class="component-meta">
+              <h4 class="component-name">panel</h4>
+              <p class="text-body text-muted">The canonical framed surface, with an optional header, body, and footer.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> Grouping controls or data that belong to one object.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Wrapping every idea on the page. Frame the work area, not the prose.</p>
+              <p class="component-guide"><span class="component-guide-label">Swap</span>
+                <code class="inline-code">.panel-interactive</code> hover response, when the whole panel is a link
+              </p>
+            </div>
             <div class="component-demo">
               <section class="panel">
                 <header class="panel-header">
@@ -684,34 +1477,78 @@
                 </div>
                 <footer class="panel-footer"><button class="btn btn-primary btn-sm" type="button">Apply policy</button></footer>
               </section>
+              <pre class="code-sample"><code>&lt;section class="panel"&gt;
+  &lt;header class="panel-header"&gt;
+    &lt;div&gt;&lt;h3 class="panel-title"&gt;Retention policy&lt;/h3&gt;&lt;p class="panel-body"&gt;Keep deployment logs for the selected period.&lt;/p&gt;&lt;/div&gt;
+    &lt;span class="badge badge-status" data-state="info"&gt;Draft&lt;/span&gt;
+  &lt;/header&gt;
+  &lt;div class="panel-content"&gt;
+    &lt;label class="checkbox"&gt;&lt;input type="checkbox" checked&gt; Include failed jobs&lt;/label&gt;
+  &lt;/div&gt;
+  &lt;footer class="panel-footer"&gt;&lt;button class="btn btn-primary btn-sm" type="button"&gt;Apply policy&lt;/button&gt;&lt;/footer&gt;
+&lt;/section&gt;</code></pre>
             </div>
           </article>
-
-          <article class="component-row">
-            <div class="component-name">Form states</div>
+          <article class="component-row" id="c-section-header">
+            <div class="component-meta">
+              <h4 class="component-name">section-header</h4>
+              <p class="text-body text-muted">A smaller heading block for a section inside a page.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> Separating groups of content that each have their own action.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Using it for every paragraph. A plain heading is often enough.</p>
+            </div>
             <div class="component-demo">
-              <form class="form-stack">
-                <div class="form-field">
-                  <label class="form-label" for="project-name">Project name</label>
-                  <input class="input w-full" id="project-name" value="release-monitor">
-                  <p class="form-helper">Used in URLs and deployment labels.</p>
+              <div class="section-header">
+                <div class="section-header-main">
+                  <h2 class="section-title">Recent revisions</h2>
+                  <p class="section-meta">Updated 4 minutes ago</p>
                 </div>
-                <div class="form-field">
-                  <label class="form-label" for="region">Region</label>
-                  <select class="select" id="region"><option>us-east-1</option><option>eu-west-1</option></select>
-                </div>
-                <div class="form-field">
-                  <label class="form-label" for="invalid-key">API key</label>
-                  <input class="input w-full" id="invalid-key" aria-invalid="true" aria-describedby="key-error" value="expired-key">
-                  <p class="form-message error" id="key-error">This key expired. Create a new key and try again.</p>
-                </div>
-                <label class="switch"><input type="checkbox" checked><span class="switch-track"></span>Pause on failed checks</label>
-              </form>
+                <div class="section-actions"><button class="btn btn-ghost btn-sm" type="button">View all</button></div>
+              </div>
+              <pre class="code-sample"><code>&lt;div class="section-header"&gt;
+  &lt;div class="section-header-main"&gt;
+    &lt;h2 class="section-title"&gt;Recent revisions&lt;/h2&gt;
+    &lt;p class="section-meta"&gt;Updated 4 minutes ago&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="section-actions"&gt;&lt;button class="btn btn-ghost btn-sm" type="button"&gt;View all&lt;/button&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
             </div>
           </article>
-
-          <article class="component-row">
-            <div class="component-name">Badges and alerts</div>
+        </div>
+        <h3 class="text-h2 component-category">Data</h3>
+        <div class="component-list">
+          <article class="component-row" id="c-avatar">
+            <div class="component-meta">
+              <h4 class="component-name">avatar</h4>
+              <p class="text-body text-muted">A person or service marker in three sizes.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> Attribution in lists, comments, and audit trails.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Inventing faces. Initials are honest; stock portraits are not.</p>
+            </div>
+            <div class="component-demo">
+              <div class="cluster">
+                <span class="avatar avatar-sm">JK</span>
+                <span class="avatar avatar-md">JK</span>
+                <span class="avatar avatar-lg">JK</span>
+              </div>
+              <pre class="code-sample"><code>&lt;div class="cluster"&gt;
+  &lt;span class="avatar avatar-sm"&gt;JK&lt;/span&gt;
+  &lt;span class="avatar avatar-md"&gt;JK&lt;/span&gt;
+  &lt;span class="avatar avatar-lg"&gt;JK&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </article>
+          <article class="component-row" id="c-badge">
+            <div class="component-meta">
+              <h4 class="component-name">badge</h4>
+              <p class="text-body text-muted">A small label for a status or a category.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> badge-status with data-state for a condition; an accent badge for a team or category.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Badges as decoration. If it does not encode state or category, drop it.</p>
+              <p class="component-guide"><span class="component-guide-label">Swap</span>
+                <code class="inline-code">.badge-success</code> passed or healthy<br>
+                <code class="inline-code">.badge-warning</code> needs attention<br>
+                <code class="inline-code">.badge-danger</code> failed or blocked<br>
+                <code class="inline-code">.badge-info</code> in progress or neutral
+              </p>
+            </div>
             <div class="component-demo">
               <div class="cluster">
                 <span class="badge badge-status" data-state="success">Ready</span>
@@ -720,30 +1557,26 @@
                 <span class="badge badge-status" data-state="danger">Failed</span>
                 <span class="badge badge-status badge-neutral">Queued</span>
               </div>
-              <div class="alert alert-warning">
-                <svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3 2 20h20L12 3Z"/><path d="M12 9v4M12 17h.01"/></svg>
-                <div><strong class="alert-title">Two checks need review</strong><p class="alert-body">Open the failed checks before you promote this revision.</p></div>
-              </div>
+              <pre class="code-sample"><code>&lt;div class="cluster"&gt;
+  &lt;span class="badge badge-status" data-state="success"&gt;Ready&lt;/span&gt;
+  &lt;span class="badge badge-status" data-state="info"&gt;Running&lt;/span&gt;
+  &lt;span class="badge badge-status" data-state="warning"&gt;Review&lt;/span&gt;
+  &lt;span class="badge badge-status" data-state="danger"&gt;Failed&lt;/span&gt;
+  &lt;span class="badge badge-status badge-neutral"&gt;Queued&lt;/span&gt;
+&lt;/div&gt;</code></pre>
             </div>
           </article>
-
-          <article class="component-row">
-            <div class="component-name">Stats</div>
-            <div class="component-demo">
-              <dl class="stat-strip">
-                <div class="stat-item"><dt class="stat-label">Ready</dt><dd class="stat-value">12</dd><dd class="stat-detail">Waiting to promote</dd></div>
-                <div class="stat-item"><dt class="stat-label">Building</dt><dd class="stat-value">4</dd><dd class="stat-detail">In progress now</dd></div>
-                <div class="stat-item"><dt class="stat-label">Needs review</dt><dd class="stat-value">1</dd><dd class="stat-detail">Checks failed</dd></div>
-              </dl>
+          <article class="component-row" id="c-data-table">
+            <div class="component-meta">
+              <h4 class="component-name">data-table</h4>
+              <p class="text-body text-muted">A scrollable table with numeric alignment and an optional tight density.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> Records the user compares across columns.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Roomy density. Comparison needs rows close enough to scan.</p>
             </div>
-          </article>
-
-          <article class="component-row">
-            <div class="component-name">Tables</div>
             <div class="component-demo">
               <div class="table-wrap">
                 <table class="data-table is-tight">
-                  <caption class="sr-only">Example deployment revisions</caption>
+                  <caption class="sr-only">Deployment revisions</caption>
                   <thead><tr><th>Service</th><th>Revision</th><th>Status</th><th class="is-numeric">Duration</th></tr></thead>
                   <tbody>
                     <tr><td>api-gateway</td><td><code>6f82ae1</code></td><td><span class="badge badge-status" data-state="success">Ready</span></td><td class="is-numeric">1m 18s</td></tr>
@@ -751,86 +1584,159 @@
                   </tbody>
                 </table>
               </div>
+              <pre class="code-sample"><code>&lt;div class="table-wrap"&gt;
+  &lt;table class="data-table is-tight"&gt;
+    &lt;caption class="sr-only"&gt;Deployment revisions&lt;/caption&gt;
+    &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Service&lt;/th&gt;&lt;th&gt;Revision&lt;/th&gt;&lt;th&gt;Status&lt;/th&gt;&lt;th class="is-numeric"&gt;Duration&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+    &lt;tbody&gt;
+      &lt;tr&gt;&lt;td&gt;api-gateway&lt;/td&gt;&lt;td&gt;&lt;code&gt;6f82ae1&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;span class="badge badge-status" data-state="success"&gt;Ready&lt;/span&gt;&lt;/td&gt;&lt;td class="is-numeric"&gt;1m 18s&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;worker-jobs&lt;/td&gt;&lt;td&gt;&lt;code&gt;d1c904b&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;span class="badge badge-status" data-state="info"&gt;Building&lt;/span&gt;&lt;/td&gt;&lt;td class="is-numeric"&gt;0m 47s&lt;/td&gt;&lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+&lt;/div&gt;</code></pre>
             </div>
           </article>
-
-          <article class="component-row">
-            <div class="component-name">Navigation</div>
-            <div class="component-demo">
-              <nav class="navbar-bordered" aria-label="Example">
-                <div class="nav-inner">
-                  <a class="brand" href="#components"><span class="brand-mark">R/</span> relay</a>
-                  <div class="nav-links">
-                    <a class="nav-link" aria-current="page" href="#components">Overview</a>
-                    <a class="nav-link" href="#patterns">Deploys</a>
-                    <a class="nav-link" href="#api">API</a>
-                  </div>
-                </div>
-              </nav>
-              <nav class="tabs" aria-label="Example views" role="tablist">
-                <a class="tab" aria-selected="true" href="#components" role="tab">Activity</a>
-                <a class="tab" aria-selected="false" href="#components" role="tab">Checks</a>
-                <a class="tab" aria-selected="false" href="#components" role="tab">Settings</a>
-              </nav>
-              <p class="text-meta">Other navbar styles. Use one per site; do not mix them on a page.</p>
-              <div class="stack stack-sm">
-                <nav class="navbar-glass" style="position: static;" aria-label="Glass surface"><div class="nav-inner"><a class="brand" href="#components"><span class="brand-mark">R/</span> relay</a><div class="nav-links"><a class="nav-link" href="#components">Glass</a></div></div></nav>
-                <nav class="navbar-solid" style="position: static;" aria-label="Solid surface"><div class="nav-inner"><a class="brand" href="#components"><span class="brand-mark">R/</span> relay</a><div class="nav-links"><a class="nav-link" href="#components">Solid</a></div></div></nav>
-                <nav class="navbar-minimal" aria-label="Minimal surface"><div class="nav-inner"><a class="brand" href="#components"><span class="brand-mark">R/</span> relay</a><div class="nav-links"><a class="nav-link" href="#components">Minimal</a></div></div></nav>
-              </div>
+          <article class="component-row" id="c-description-list">
+            <div class="component-meta">
+              <h4 class="component-name">description-list</h4>
+              <p class="text-body text-muted">Label and value pairs that reflow when the column is narrow.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> Metadata about one object: region, image, owner, version.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Long prose in the value slot. Keep values short enough to scan.</p>
             </div>
-          </article>
-
-          <article class="component-row">
-            <div class="component-name">Accordions</div>
-            <div class="component-demo">
-              <div class="accordion">
-                <details open><summary>What do I still have to build in JavaScript?</summary><div class="accordion-body">Focus trapping, closing on Escape, arrow-key navigation, tracking which item is selected, and screen-reader announcements. The CSS only styles these components.</div></details>
-                <details><summary>Can I use different theme options in different parts of a page?</summary><div class="accordion-body">Yes. Set the attributes on any wrapper element to change just that region. Keep <code>data-mode</code> on the page root; if you want one section in the opposite mode, set its mode, accent, and surface together.</div></details>
-              </div>
-            </div>
-          </article>
-
-          <article class="component-row">
-            <div class="component-name">Avatars, badges, tags</div>
-            <div class="component-demo">
-              <div class="cluster">
-                <span class="avatar avatar-sm">JK</span>
-                <span class="avatar avatar-md">JK</span>
-                <span class="avatar avatar-lg">JK</span>
-                <span class="badge badge-coral">Platform</span>
-                <span class="badge badge-azure">Data</span>
-                <span class="badge badge-sage">Growth</span>
-                <span class="tag">us-east-1</span>
-              </div>
-              <p class="text-meta mt-3">Accent badges name a team or category. Use <code>badge-status</code> with <code>data-state</code> for a condition instead.</p>
-            </div>
-          </article>
-
-          <article class="component-row">
-            <div class="component-name">Grouped list</div>
-            <div class="component-demo">
-              <ul class="list-group">
-                <li class="list-item"><div class="list-item-main"><strong class="list-title">api-gateway</strong><div class="list-meta">v2.8.1 · 3 replicas</div></div><span class="badge badge-status" data-state="success">Healthy</span></li>
-                <li class="list-item"><div class="list-item-main"><strong class="list-title">worker-jobs</strong><div class="list-meta">v1.14.0 · 6 replicas</div></div><span class="badge badge-status" data-state="info">Deploying</span></li>
-              </ul>
-            </div>
-          </article>
-
-          <article class="component-row">
-            <div class="component-name">Definition lists and dividers</div>
             <div class="component-demo">
               <dl class="description-list">
                 <dt>Region</dt><dd>us-east-1</dd>
                 <dt>Image</dt><dd><code>api-gateway:2.8.1</code></dd>
               </dl>
-              <hr class="divider">
-              <div class="divider-label">or</div>
+              <pre class="code-sample"><code>&lt;dl class="description-list"&gt;
+  &lt;dt&gt;Region&lt;/dt&gt;&lt;dd&gt;us-east-1&lt;/dd&gt;
+  &lt;dt&gt;Image&lt;/dt&gt;&lt;dd&gt;&lt;code&gt;api-gateway:2.8.1&lt;/code&gt;&lt;/dd&gt;
+&lt;/dl&gt;</code></pre>
             </div>
           </article>
-
-          <article class="component-row">
-            <div class="component-name">Timeline</div>
+          <article class="component-row" id="c-list-group">
+            <div class="component-meta">
+              <h4 class="component-name">list-group</h4>
+              <p class="text-body text-muted">Rows sharing one frame, each with a main label and a trailing value.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> A list of objects where each row has one status.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> More than two pieces of metadata per row. Use a table.</p>
+            </div>
+            <div class="component-demo">
+              <div class="list-group">
+                <div class="list-item"><div class="list-item-main"><span class="list-title">api-gateway</span><span class="list-meta">v2.8.1 &middot; 3 replicas</span></div><span class="list-item-value"><span class="badge badge-status" data-state="success">Healthy</span></span></div>
+                <div class="list-item"><div class="list-item-main"><span class="list-title">worker-jobs</span><span class="list-meta">v1.14.0 &middot; 6 replicas</span></div><span class="list-item-value"><span class="badge badge-status" data-state="info">Deploying</span></span></div>
+              </div>
+              <pre class="code-sample"><code>&lt;div class="list-group"&gt;
+  &lt;div class="list-item"&gt;&lt;div class="list-item-main"&gt;&lt;span class="list-title"&gt;api-gateway&lt;/span&gt;&lt;span class="list-meta"&gt;v2.8.1 &amp;middot; 3 replicas&lt;/span&gt;&lt;/div&gt;&lt;span class="list-item-value"&gt;&lt;span class="badge badge-status" data-state="success"&gt;Healthy&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+  &lt;div class="list-item"&gt;&lt;div class="list-item-main"&gt;&lt;span class="list-title"&gt;worker-jobs&lt;/span&gt;&lt;span class="list-meta"&gt;v1.14.0 &amp;middot; 6 replicas&lt;/span&gt;&lt;/div&gt;&lt;span class="list-item-value"&gt;&lt;span class="badge badge-status" data-state="info"&gt;Deploying&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </article>
+          <article class="component-row" id="c-stat-card">
+            <div class="component-meta">
+              <h4 class="component-name">stat-card</h4>
+              <p class="text-body text-muted">A single figure in its own frame, with an optional trend.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> A number that needs more room than a stat strip gives it.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> A grid of four identical stat cards at the top of every page. That is the decorative dashboard tell.</p>
+            </div>
+            <div class="component-demo">
+              <div class="stat-grid">
+                <div class="stat-card">
+                  <div class="stat-label">Median deploy time</div>
+                  <div class="stat-value">1m 18s</div>
+                  <div class="stat-trend down">12s faster than last week</div>
+                </div>
+                <div class="stat-card">
+                  <div class="stat-label">Failed checks</div>
+                  <div class="stat-value">3</div>
+                  <div class="stat-trend up">2 more than last week</div>
+                </div>
+              </div>
+              <pre class="code-sample"><code>&lt;div class="stat-grid"&gt;
+  &lt;div class="stat-card"&gt;
+    &lt;div class="stat-label"&gt;Median deploy time&lt;/div&gt;
+    &lt;div class="stat-value"&gt;1m 18s&lt;/div&gt;
+    &lt;div class="stat-trend down"&gt;12s faster than last week&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="stat-card"&gt;
+    &lt;div class="stat-label"&gt;Failed checks&lt;/div&gt;
+    &lt;div class="stat-value"&gt;3&lt;/div&gt;
+    &lt;div class="stat-trend up"&gt;2 more than last week&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </article>
+          <article class="component-row" id="c-stat-strip">
+            <div class="component-meta">
+              <h4 class="component-name">stat-strip</h4>
+              <p class="text-body text-muted">A row of related counts sharing one frame.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> Three to five numbers that are read together.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Padding counts to two digits, or inventing figures to fill the row.</p>
+              <p class="component-guide"><span class="component-guide-label">Swap</span>
+                <code class="inline-code">.stats-row</code> the old name for this strip, kept working
+              </p>
+            </div>
+            <div class="component-demo">
+              <dl class="stat-strip">
+                <div class="stat-item"><dt class="stat-label">Ready</dt><dd class="stat-value">12</dd><dd class="stat-detail">Waiting to promote</dd></div>
+                <div class="stat-item"><dt class="stat-label">Building</dt><dd class="stat-value">4</dd><dd class="stat-detail">In progress now</dd></div>
+                <div class="stat-item"><dt class="stat-label">Needs review</dt><dd class="stat-value">1</dd><dd class="stat-detail">Checks failed</dd></div>
+              </dl>
+              <pre class="code-sample"><code>&lt;dl class="stat-strip"&gt;
+  &lt;div class="stat-item"&gt;&lt;dt class="stat-label"&gt;Ready&lt;/dt&gt;&lt;dd class="stat-value"&gt;12&lt;/dd&gt;&lt;dd class="stat-detail"&gt;Waiting to promote&lt;/dd&gt;&lt;/div&gt;
+  &lt;div class="stat-item"&gt;&lt;dt class="stat-label"&gt;Building&lt;/dt&gt;&lt;dd class="stat-value"&gt;4&lt;/dd&gt;&lt;dd class="stat-detail"&gt;In progress now&lt;/dd&gt;&lt;/div&gt;
+  &lt;div class="stat-item"&gt;&lt;dt class="stat-label"&gt;Needs review&lt;/dt&gt;&lt;dd class="stat-value"&gt;1&lt;/dd&gt;&lt;dd class="stat-detail"&gt;Checks failed&lt;/dd&gt;&lt;/div&gt;
+&lt;/dl&gt;</code></pre>
+            </div>
+          </article>
+          <article class="component-row" id="c-styled-list">
+            <div class="component-meta">
+              <h4 class="component-name">styled-list</h4>
+              <p class="text-body text-muted">A spaced list for short related points.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> Requirements, constraints, and checklists in prose.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Turning every list into three feature cards.</p>
+            </div>
+            <div class="component-demo">
+              <ul class="styled-list">
+                <li>Checks must pass before a revision can be promoted.</li>
+                <li>Rollback keeps the previous revision warm for one hour.</li>
+              </ul>
+              <pre class="code-sample"><code>&lt;ul class="styled-list"&gt;
+  &lt;li&gt;Checks must pass before a revision can be promoted.&lt;/li&gt;
+  &lt;li&gt;Rollback keeps the previous revision warm for one hour.&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+            </div>
+          </article>
+          <article class="component-row" id="c-tag">
+            <div class="component-meta">
+              <h4 class="component-name">tag</h4>
+              <p class="text-body text-muted">Neutral tags and accent-coloured badges for categories rather than conditions.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> Naming a team, region, or topic.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Encoding status with an accent colour. Use badge-status with data-state.</p>
+            </div>
+            <div class="component-demo">
+              <div class="cluster">
+                <span class="badge badge-coral">Platform</span>
+                <span class="badge badge-azure">Data</span>
+                <span class="badge badge-sage">Growth</span>
+                <span class="tag">us-east-1</span>
+              </div>
+              <p class="text-meta">Accent badges name a category. A condition belongs in <code>badge-status</code>.</p>
+              <pre class="code-sample"><code>&lt;div class="cluster"&gt;
+  &lt;span class="badge badge-coral"&gt;Platform&lt;/span&gt;
+  &lt;span class="badge badge-azure"&gt;Data&lt;/span&gt;
+  &lt;span class="badge badge-sage"&gt;Growth&lt;/span&gt;
+  &lt;span class="tag"&gt;us-east-1&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </article>
+          <article class="component-row" id="c-timeline">
+            <div class="component-meta">
+              <h4 class="component-name">timeline</h4>
+              <p class="text-body text-muted">Events in order, each with a title, timestamp, and body.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> Audit trails, incident history, and deploy logs.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Marketing roadmaps with invented dates.</p>
+            </div>
             <div class="component-demo">
               <div class="timeline">
                 <div class="timeline-item">
@@ -846,116 +1752,86 @@
                   <div class="timeline-body">All three replicas reported healthy.</div>
                 </div>
               </div>
+              <pre class="code-sample"><code>&lt;div class="timeline"&gt;
+  &lt;div class="timeline-item"&gt;
+    &lt;div class="timeline-dot"&gt;&lt;/div&gt;
+    &lt;div class="timeline-title"&gt;Deploy started&lt;/div&gt;
+    &lt;div class="timeline-meta"&gt;14:02:11 UTC&lt;/div&gt;
+    &lt;div class="timeline-body"&gt;Rolling restart began for api-gateway.&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="timeline-item"&gt;
+    &lt;div class="timeline-dot"&gt;&lt;/div&gt;
+    &lt;div class="timeline-title"&gt;Health checks passed&lt;/div&gt;
+    &lt;div class="timeline-meta"&gt;14:03:47 UTC&lt;/div&gt;
+    &lt;div class="timeline-body"&gt;All three replicas reported healthy.&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
             </div>
           </article>
-
-          <article class="component-row">
-            <div class="component-name">Stepper</div>
-            <div class="component-demo">
-              <div class="stepper">
-                <div class="step done"><span class="step-circle">&#10003;</span><span>Build</span></div>
-                <div class="step-line"></div>
-                <div class="step active"><span class="step-circle">2</span><span>Review</span></div>
-                <div class="step-line"></div>
-                <div class="step"><span class="step-circle">3</span><span>Release</span></div>
-              </div>
+        </div>
+        <h3 class="text-h2 component-category">Navigation</h3>
+        <div class="component-list">
+          <article class="component-row" id="c-breadcrumb">
+            <div class="component-meta">
+              <h4 class="component-name">breadcrumb</h4>
+              <p class="text-body text-muted">The path back up a hierarchy.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> Nested records where the parent is not otherwise visible.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Flat apps with two levels. It adds a row and says nothing.</p>
             </div>
-          </article>
-
-          <article class="component-row">
-            <div class="component-name">Radios and segmented controls</div>
-            <div class="component-demo">
-              <div class="radio-group">
-                <label class="radio"><input type="radio" name="docs-region" checked> us-east-1</label>
-                <label class="radio"><input type="radio" name="docs-region"> eu-west-1</label>
-              </div>
-              <div class="segmented-control">
-                <input type="radio" name="docs-window" id="docs-seg-day" checked><label for="docs-seg-day">Day</label>
-                <input type="radio" name="docs-window" id="docs-seg-week"><label for="docs-seg-week">Week</label>
-                <input type="radio" name="docs-window" id="docs-seg-month"><label for="docs-seg-month">Month</label>
-              </div>
-            </div>
-          </article>
-
-          <article class="component-row">
-            <div class="component-name">Floating labels</div>
-            <div class="component-demo">
-              <div class="cluster">
-                <div class="floating-field">
-                  <input class="floating-input" id="docs-ff-empty" placeholder=" ">
-                  <label class="floating-label" for="docs-ff-empty">Cluster name</label>
-                </div>
-                <div class="floating-field">
-                  <input class="floating-input" id="docs-ff-filled" placeholder=" " value="prod-east-1">
-                  <label class="floating-label" for="docs-ff-filled">Cluster name</label>
-                </div>
-              </div>
-            </div>
-          </article>
-
-          <article class="component-row">
-            <div class="component-name">Input prefixes, validation, sliders</div>
-            <div class="component-demo">
-              <div class="input-group">
-                <span class="input-affix">https://</span>
-                <input class="input" type="text" value="status.example.com" aria-label="Status page domain">
-              </div>
-              <div class="cluster">
-                <input class="input input-error" type="text" value="expired-key" aria-invalid="true" aria-label="API key, invalid">
-                <input class="input input-success" type="text" value="a1b2-c3d4-e5f6" aria-label="API key, verified">
-              </div>
-              <div class="range-field demo-measure">
-                <label class="form-label" for="docs-range">Memory limit</label>
-                <input class="range-input" id="docs-range" type="range" min="0" max="100" value="70">
-              </div>
-            </div>
-          </article>
-
-          <article class="component-row">
-            <div class="component-name">Loading and progress</div>
-            <div class="component-demo">
-              <div class="progress demo-measure" role="progressbar" aria-valuenow="64" aria-valuemin="0" aria-valuemax="100" aria-label="Build progress">
-                <div class="progress-fill" style="--value: 64%"></div>
-              </div>
-              <div class="cluster">
-                <span class="spinner" role="status" aria-label="Loading"></span>
-                <span class="skeleton" style="width: 160px"></span>
-                <span class="skeleton" style="width: 90px"></span>
-              </div>
-            </div>
-          </article>
-
-          <article class="component-row">
-            <div class="component-name">Empty state</div>
-            <div class="component-demo">
-              <div class="empty-state">
-                <strong class="empty-title">No failed checks</strong>
-                <p class="empty-body">Everything in this pipeline passes right now.</p>
-                <a class="styled-link" href="#components">Review the last run</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="component-row">
-            <div class="component-name">Announcements</div>
-            <div class="component-demo">
-              <div class="banner">
-                <div><strong class="banner-title">Scheduled maintenance</strong><p class="banner-body">api-gateway restarts at 02:00 UTC on Thursday.</p></div>
-                <button class="btn btn-ghost btn-sm" type="button">Dismiss</button>
-              </div>
-              <div class="toast">
-                <svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>
-                <div><strong class="toast-title">Deploy complete</strong><p class="toast-body">worker-jobs v1.14.0 is live.</p></div>
-              </div>
-            </div>
-          </article>
-
-          <article class="component-row">
-            <div class="component-name">Breadcrumbs and pagination</div>
             <div class="component-demo">
               <nav class="breadcrumb" aria-label="Breadcrumb">
                 <a href="#components">Services</a><span class="breadcrumb-sep">/</span><a href="#components">api-gateway</a><span class="breadcrumb-sep">/</span><span>Revisions</span>
               </nav>
+              <pre class="code-sample"><code>&lt;nav class="breadcrumb" aria-label="Breadcrumb"&gt;
+  &lt;a href="/services"&gt;Services&lt;/a&gt;&lt;span class="breadcrumb-sep"&gt;/&lt;/span&gt;&lt;a href="/services/api-gateway"&gt;api-gateway&lt;/a&gt;&lt;span class="breadcrumb-sep"&gt;/&lt;/span&gt;&lt;span&gt;Revisions&lt;/span&gt;
+&lt;/nav&gt;</code></pre>
+            </div>
+          </article>
+          <article class="component-row" id="c-navbar">
+            <div class="component-meta">
+              <h4 class="component-name">navbar</h4>
+              <p class="text-body text-muted">The top bar, in four surfaces: bordered, glass, solid, and minimal.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> One per site. Mark the current page with aria-current.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Mixing two navbar surfaces on one page.</p>
+              <p class="component-guide"><span class="component-guide-label">Swap</span>
+                <code class="inline-code">.navbar</code> plain, no surface treatment<br>
+                <code class="inline-code">.navbar-glass</code> blurred over content that scrolls under it<br>
+                <code class="inline-code">.navbar-solid</code> opaque, for dense apps<br>
+                <code class="inline-code">.navbar-minimal</code> no bar at all, links only, and it does not stick
+              </p>
+            </div>
+            <div class="component-demo">
+              <nav class="navbar-bordered" aria-label="Main">
+                <div class="nav-inner">
+                  <a class="brand" href="#components"><span class="brand-mark">R/</span> relay</a>
+                  <div class="nav-links">
+                    <a class="nav-link" aria-current="page" href="#components">Overview</a>
+                    <a class="nav-link" href="#components">Deploys</a>
+                    <a class="nav-link" href="#components">API</a>
+                  </div>
+                </div>
+              </nav>
+              <p class="text-meta">Pick one surface and keep it. The four below are alternatives, not a set.</p>
+              <pre class="code-sample"><code>&lt;nav class="navbar-bordered" aria-label="Main"&gt;
+  &lt;div class="nav-inner"&gt;
+    &lt;a class="brand" href="/"&gt;&lt;span class="brand-mark"&gt;R/&lt;/span&gt; relay&lt;/a&gt;
+    &lt;div class="nav-links"&gt;
+      &lt;a class="nav-link" aria-current="page" href="/"&gt;Overview&lt;/a&gt;
+      &lt;a class="nav-link" href="/deploys"&gt;Deploys&lt;/a&gt;
+      &lt;a class="nav-link" href="/api"&gt;API&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/nav&gt;</code></pre>
+            </div>
+          </article>
+          <article class="component-row" id="c-pagination">
+            <div class="component-meta">
+              <h4 class="component-name">pagination</h4>
+              <p class="text-body text-muted">Page links with the current page marked by aria-current.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> Long result sets where the user needs a stable position.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Pagination over fewer than two pages.</p>
+            </div>
+            <div class="component-demo">
               <nav class="pagination" aria-label="Pagination">
                 <a class="page-link" href="#components" aria-label="Previous page">&lsaquo;</a>
                 <a class="page-link" href="#components" aria-current="page">1</a>
@@ -963,112 +1839,490 @@
                 <a class="page-link" href="#components">3</a>
                 <a class="page-link" href="#components" aria-label="Next page">&rsaquo;</a>
               </nav>
+              <pre class="code-sample"><code>&lt;nav class="pagination" aria-label="Pagination"&gt;
+  &lt;a class="page-link" href="/revisions?page=0" aria-label="Previous page"&gt;&amp;lsaquo;&lt;/a&gt;
+  &lt;a class="page-link" href="/revisions?page=1" aria-current="page"&gt;1&lt;/a&gt;
+  &lt;a class="page-link" href="/revisions?page=2"&gt;2&lt;/a&gt;
+  &lt;a class="page-link" href="/revisions?page=3"&gt;3&lt;/a&gt;
+  &lt;a class="page-link" href="/revisions?page=2" aria-label="Next page"&gt;&amp;rsaquo;&lt;/a&gt;
+&lt;/nav&gt;</code></pre>
             </div>
           </article>
-
-          <article class="component-row">
-            <div class="component-name">Icon actions</div>
+          <article class="component-row" id="c-sidebar-nav">
+            <div class="component-meta">
+              <h4 class="component-name">sidebar-nav</h4>
+              <p class="text-body text-muted">A vertical navigation list, optionally collapsed to an icon rail.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> App shells with more than about five destinations.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Icon-only rails without labels or titles. Nobody can guess the icons.</p>
+              <p class="component-guide"><span class="component-guide-label">Swap</span>
+                <code class="inline-code">.is-rail</code> collapsed to icons only
+              </p>
+            </div>
+            <div class="component-demo">
+              <nav class="sidebar-nav" aria-label="Sections">
+                <a href="#components" aria-current="page">
+                  <svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+                  Overview
+                </a>
+                <a href="#components">
+                  <svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+                  Deploys
+                </a>
+              </nav>
+              <pre class="code-sample"><code>&lt;nav class="sidebar-nav" aria-label="Sections"&gt;
+  &lt;a href="/" aria-current="page"&gt;
+    &lt;svg class="icon" aria-hidden="true" viewBox="0 0 24 24"&gt;&lt;path d="M3 12h18M3 6h18M3 18h18"/&gt;&lt;/svg&gt;
+    Overview
+  &lt;/a&gt;
+  &lt;a href="/deploys"&gt;
+    &lt;svg class="icon" aria-hidden="true" viewBox="0 0 24 24"&gt;&lt;path d="M12 19V5M5 12l7-7 7 7"/&gt;&lt;/svg&gt;
+    Deploys
+  &lt;/a&gt;
+&lt;/nav&gt;</code></pre>
+            </div>
+          </article>
+          <article class="component-row" id="c-stepper">
+            <div class="component-meta">
+              <h4 class="component-name">stepper</h4>
+              <p class="text-body text-muted">Progress through a fixed sequence of stages.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> A flow with a known number of steps the user cannot skip.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Navigation between unrelated pages. Use tabs.</p>
+            </div>
+            <div class="component-demo">
+              <div class="stepper">
+                <div class="step done"><span class="step-circle">&check;</span>Build</div>
+                <div class="step-line"></div>
+                <div class="step active"><span class="step-circle">2</span>Review</div>
+                <div class="step-line"></div>
+                <div class="step"><span class="step-circle">3</span>Release</div>
+              </div>
+              <pre class="code-sample"><code>&lt;div class="stepper"&gt;
+  &lt;div class="step done"&gt;&lt;span class="step-circle"&gt;&amp;check;&lt;/span&gt;Build&lt;/div&gt;
+  &lt;div class="step-line"&gt;&lt;/div&gt;
+  &lt;div class="step active"&gt;&lt;span class="step-circle"&gt;2&lt;/span&gt;Review&lt;/div&gt;
+  &lt;div class="step-line"&gt;&lt;/div&gt;
+  &lt;div class="step"&gt;&lt;span class="step-circle"&gt;3&lt;/span&gt;Release&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </article>
+          <article class="component-row" id="c-tabs">
+            <div class="component-meta">
+              <h4 class="component-name">tabs</h4>
+              <p class="text-body text-muted">Switching between views of the same object.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> Two to six views that share one context.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Tabs for steps in a sequence. Use a stepper.</p>
+            </div>
+            <div class="component-demo">
+              <nav class="tabs" aria-label="Views" role="tablist">
+                <a class="tab" aria-selected="true" href="#components" role="tab">Activity</a>
+                <a class="tab" aria-selected="false" href="#components" role="tab">Checks</a>
+                <a class="tab" aria-selected="false" href="#components" role="tab">Settings</a>
+              </nav>
+              <pre class="code-sample"><code>&lt;nav class="tabs" aria-label="Views" role="tablist"&gt;
+  &lt;a class="tab" aria-selected="true" href="/activity" role="tab"&gt;Activity&lt;/a&gt;
+  &lt;a class="tab" aria-selected="false" href="/checks" role="tab"&gt;Checks&lt;/a&gt;
+  &lt;a class="tab" aria-selected="false" href="/settings" role="tab"&gt;Settings&lt;/a&gt;
+&lt;/nav&gt;</code></pre>
+            </div>
+          </article>
+        </div>
+        <h3 class="text-h2 component-category">Feedback</h3>
+        <div class="component-list">
+          <article class="component-row" id="c-alert">
+            <div class="component-meta">
+              <h4 class="component-name">alert</h4>
+              <p class="text-body text-muted">An inline message in four severities, each with a title and body.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> A condition the user must understand before acting.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Stacking three alerts at the top of a page. Show the one that matters.</p>
+            </div>
+            <div class="component-demo">
+              <div class="alert alert-info">
+                <svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg>
+                <div><strong class="alert-title">Revision queued</strong><p class="alert-body">It starts when the current deploy finishes.</p></div>
+              </div>
+              <div class="alert alert-success">
+                <svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>
+                <div><strong class="alert-title">All checks passed</strong><p class="alert-body">This revision is ready to promote.</p></div>
+              </div>
+              <div class="alert alert-warning">
+                <svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3 2 20h20L12 3Z"/><path d="M12 9v4M12 17h.01"/></svg>
+                <div><strong class="alert-title">Two checks need review</strong><p class="alert-body">Open the failed checks before you promote this revision.</p></div>
+              </div>
+              <div class="alert alert-danger">
+                <svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15 9l-6 6M9 9l6 6"/></svg>
+                <div><strong class="alert-title">Deploy failed</strong><p class="alert-body">api-gateway rolled back to v2.8.0 automatically.</p></div>
+              </div>
+              <pre class="code-sample"><code>&lt;div class="alert alert-info"&gt;
+  &lt;svg class="icon" aria-hidden="true" viewBox="0 0 24 24"&gt;&lt;circle cx="12" cy="12" r="9"/&gt;&lt;path d="M12 16v-4M12 8h.01"/&gt;&lt;/svg&gt;
+  &lt;div&gt;&lt;strong class="alert-title"&gt;Revision queued&lt;/strong&gt;&lt;p class="alert-body"&gt;It starts when the current deploy finishes.&lt;/p&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="alert alert-success"&gt;
+  &lt;svg class="icon" aria-hidden="true" viewBox="0 0 24 24"&gt;&lt;path d="M20 6 9 17l-5-5"/&gt;&lt;/svg&gt;
+  &lt;div&gt;&lt;strong class="alert-title"&gt;All checks passed&lt;/strong&gt;&lt;p class="alert-body"&gt;This revision is ready to promote.&lt;/p&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="alert alert-warning"&gt;
+  &lt;svg class="icon" aria-hidden="true" viewBox="0 0 24 24"&gt;&lt;path d="M12 3 2 20h20L12 3Z"/&gt;&lt;path d="M12 9v4M12 17h.01"/&gt;&lt;/svg&gt;
+  &lt;div&gt;&lt;strong class="alert-title"&gt;Two checks need review&lt;/strong&gt;&lt;p class="alert-body"&gt;Open the failed checks before you promote this revision.&lt;/p&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="alert alert-danger"&gt;
+  &lt;svg class="icon" aria-hidden="true" viewBox="0 0 24 24"&gt;&lt;circle cx="12" cy="12" r="9"/&gt;&lt;path d="M15 9l-6 6M9 9l6 6"/&gt;&lt;/svg&gt;
+  &lt;div&gt;&lt;strong class="alert-title"&gt;Deploy failed&lt;/strong&gt;&lt;p class="alert-body"&gt;api-gateway rolled back to v2.8.0 automatically.&lt;/p&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </article>
+          <article class="component-row" id="c-banner">
+            <div class="component-meta">
+              <h4 class="component-name">banner</h4>
+              <p class="text-body text-muted">A dismissible page-level notice.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> Scheduled maintenance and account-wide conditions.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Marketing announcements the user cannot act on.</p>
+            </div>
+            <div class="component-demo">
+              <div class="banner">
+                <div><strong class="banner-title">Scheduled maintenance</strong><p class="banner-body">api-gateway restarts at 02:00 UTC on Thursday.</p></div>
+                <button class="btn btn-ghost btn-sm" type="button">Dismiss</button>
+              </div>
+              <pre class="code-sample"><code>&lt;div class="banner"&gt;
+  &lt;div&gt;&lt;strong class="banner-title"&gt;Scheduled maintenance&lt;/strong&gt;&lt;p class="banner-body"&gt;api-gateway restarts at 02:00 UTC on Thursday.&lt;/p&gt;&lt;/div&gt;
+  &lt;button class="btn btn-ghost btn-sm" type="button"&gt;Dismiss&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </article>
+          <article class="component-row" id="c-empty-state">
+            <div class="component-meta">
+              <h4 class="component-name">empty-state</h4>
+              <p class="text-body text-muted">What a surface shows before it has data.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> First run, cleared filters, and genuinely empty results. Say which.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> A shrug illustration and no next step. Give the user an action.</p>
+            </div>
+            <div class="component-demo">
+              <div class="empty-state">
+                <h3 class="empty-title">No failed checks</h3>
+                <p class="empty-body">Everything in this pipeline passes right now.</p>
+                <a class="btn btn-secondary btn-sm" href="#components">Review the last run</a>
+              </div>
+              <pre class="code-sample"><code>&lt;div class="empty-state"&gt;
+  &lt;h3 class="empty-title"&gt;No failed checks&lt;/h3&gt;
+  &lt;p class="empty-body"&gt;Everything in this pipeline passes right now.&lt;/p&gt;
+  &lt;a class="btn btn-secondary btn-sm" href="/runs/latest"&gt;Review the last run&lt;/a&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </article>
+          <article class="component-row" id="c-progress">
+            <div class="component-meta">
+              <h4 class="component-name">progress</h4>
+              <p class="text-body text-muted">A determinate bar for work with a known percentage.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> Uploads, builds, and imports that report real progress.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Faking progress for an unknown duration. Use a spinner.</p>
+            </div>
+            <div class="component-demo">
+              <div class="demo-measure">
+                <div class="progress" role="progressbar" aria-valuenow="64" aria-valuemin="0" aria-valuemax="100" aria-label="Build progress">
+                  <div class="progress-fill" style="--value: 64%"></div>
+                </div>
+              </div>
+              <pre class="code-sample"><code>&lt;div class="progress" role="progressbar" aria-valuenow="64" aria-valuemin="0" aria-valuemax="100" aria-label="Build progress"&gt;
+  &lt;div class="progress-fill" style="--value: 64%"&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </article>
+          <article class="component-row" id="c-spinner">
+            <div class="component-meta">
+              <h4 class="component-name">spinner</h4>
+              <p class="text-body text-muted">Indeterminate loading marks: a spinner for actions, a skeleton for content.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> Spinner for a pending action; skeleton where content will land.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> A full-page spinner when only one region is loading.</p>
+            </div>
             <div class="component-demo">
               <div class="cluster">
-                <button class="icon-button" type="button" aria-label="Refresh">
-                  <svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-3-6.7M21 4v5h-5"/></svg>
-                </button>
-                <button class="close-button" type="button" aria-label="Close">
-                  <svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>
-                </button>
-                <div class="button-group">
-                  <button class="btn btn-secondary btn-sm" type="button">Day</button>
-                  <button class="btn btn-secondary btn-sm" type="button">Week</button>
-                  <button class="btn btn-secondary btn-sm" type="button">Month</button>
-                </div>
+                <span class="spinner" role="status" aria-label="Loading"></span>
+                <span class="skeleton" style="width: 160px"></span>
+                <span class="skeleton" style="width: 90px"></span>
               </div>
-              <div class="demo-fab-stage">
-                <span class="demo-fab-caption">Stays fixed to the corner of the viewport</span>
-                <button class="fab" type="button" aria-label="Create deployment">
-                  <svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
-                </button>
-              </div>
+              <pre class="code-sample"><code>&lt;div class="cluster"&gt;
+  &lt;span class="spinner" role="status" aria-label="Loading"&gt;&lt;/span&gt;
+  &lt;span class="skeleton" style="width: 160px"&gt;&lt;/span&gt;
+  &lt;span class="skeleton" style="width: 90px"&gt;&lt;/span&gt;
+&lt;/div&gt;</code></pre>
             </div>
           </article>
-
-          <article class="component-row">
-            <div class="component-name">Dropdowns, tooltips, popovers</div>
+          <article class="component-row" id="c-toast">
+            <div class="component-meta">
+              <h4 class="component-name">toast</h4>
+              <p class="text-body text-muted">A transient confirmation of something that just happened.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> Confirming a completed background action.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Errors the user must act on. Those belong inline, where the problem is.</p>
+            </div>
             <div class="component-demo">
-              <p class="text-meta">Click or tab to a trigger to open it. Tooltips also open on hover.</p>
-              <div class="cluster">
-                <div class="dropdown">
-                  <button class="btn btn-secondary btn-sm" type="button">Actions</button>
-                  <div class="dropdown-menu">
-                    <button type="button">Restart service</button>
-                    <button type="button">View logs</button>
-                    <button type="button">Roll back</button>
-                  </div>
-                </div>
-                <div class="popover">
-                  <button class="btn btn-secondary btn-sm" type="button">Region details</button>
-                  <div class="popover-panel">
-                    <div class="popover-title">us-east-1</div>
-                    <p class="popover-body">Primary region. Three availability zones.</p>
-                  </div>
-                </div>
-                <span class="tooltip" data-tip="Last deployed 12 minutes ago">
-                  <button class="icon-button" type="button" aria-label="Deployment info">
-                    <svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg>
-                  </button>
-                </span>
+              <div class="toast">
+                <svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>
+                <div><strong class="toast-title">Deploy complete</strong><p class="toast-body">worker-jobs v1.14.0 is live.</p></div>
               </div>
+              <pre class="code-sample"><code>&lt;div class="toast"&gt;
+  &lt;svg class="icon" aria-hidden="true" viewBox="0 0 24 24"&gt;&lt;path d="M20 6 9 17l-5-5"/&gt;&lt;/svg&gt;
+  &lt;div&gt;&lt;strong class="toast-title"&gt;Deploy complete&lt;/strong&gt;&lt;p class="toast-body"&gt;worker-jobs v1.14.0 is live.&lt;/p&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
             </div>
           </article>
-
-          <article class="component-row">
-            <div class="component-name">Comboboxes and command palettes</div>
+        </div>
+        <h3 class="text-h2 component-category">Overlays</h3>
+        <div class="component-list">
+          <article class="component-row" id="c-combobox">
+            <div class="component-meta">
+              <h4 class="component-name">combobox</h4>
+              <p class="text-body text-muted">A text input with a filtered list of options beneath it.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> Choosing one item from a set too long for a select.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Fewer than about five options. Use a radio group or a select.</p>
+            </div>
             <div class="component-demo">
               <div class="demo-combobox">
-                <div class="combobox demo-measure">
-                  <input class="input w-full" type="text" placeholder="Search services" role="combobox" aria-expanded="true" aria-controls="docs-combobox-list">
-                  <ul class="combobox-list is-open" id="docs-combobox-list" role="listbox">
+                <div class="combobox">
+                  <input class="input w-full" type="text" placeholder="Search services" role="combobox" aria-expanded="true" aria-controls="combobox-service-list">
+                  <ul class="combobox-list is-open" id="combobox-service-list" role="listbox">
                     <li role="option">api-gateway</li>
                     <li role="option" class="is-active">worker-jobs</li>
                     <li role="option">event-router</li>
                   </ul>
                 </div>
               </div>
-              <div class="command-palette demo-measure">
-                <input class="input" type="text" placeholder="Type a command or search">
-                <div class="command-group">
-                  <div class="command-group-label">Services</div>
-                  <div class="command-item">api-gateway <kbd>G A</kbd></div>
-                  <div class="command-item">worker-jobs <kbd>G W</kbd></div>
+              <p class="text-meta">Add <code>is-open</code> to keep the list visible while the user clicks an option.</p>
+              <pre class="code-sample"><code>&lt;div class="combobox"&gt;
+  &lt;input class="input w-full" type="text" placeholder="Search services" role="combobox" aria-expanded="true" aria-controls="service-list"&gt;
+  &lt;ul class="combobox-list is-open" id="service-list" role="listbox"&gt;
+    &lt;li role="option"&gt;api-gateway&lt;/li&gt;
+    &lt;li role="option" class="is-active"&gt;worker-jobs&lt;/li&gt;
+    &lt;li role="option"&gt;event-router&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </article>
+          <article class="component-row" id="c-command-palette">
+            <div class="component-meta">
+              <h4 class="component-name">command-palette</h4>
+              <p class="text-body text-muted">A keyboard-first search over commands and objects.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> Products where power users navigate faster than they click.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Adding one because it looks technical. It needs real commands behind it.</p>
+            </div>
+            <div class="component-demo">
+              <div class="demo-measure">
+                <div class="command-palette">
+                  <input class="input" type="text" placeholder="Type a command or search">
+                  <div class="command-group">
+                    <div class="command-group-label">Services</div>
+                    <div class="command-item">api-gateway <kbd>G A</kbd></div>
+                    <div class="command-item">worker-jobs <kbd>G W</kbd></div>
+                  </div>
                 </div>
               </div>
+              <pre class="code-sample"><code>&lt;div class="command-palette"&gt;
+  &lt;input class="input" type="text" placeholder="Type a command or search"&gt;
+  &lt;div class="command-group"&gt;
+    &lt;div class="command-group-label"&gt;Services&lt;/div&gt;
+    &lt;div class="command-item"&gt;api-gateway &lt;kbd&gt;G A&lt;/kbd&gt;&lt;/div&gt;
+    &lt;div class="command-item"&gt;worker-jobs &lt;kbd&gt;G W&lt;/kbd&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
             </div>
           </article>
-
-          <article class="component-row">
-            <div class="component-name">Modals and drawers</div>
+          <article class="component-row" id="c-drawer">
+            <div class="component-meta">
+              <h4 class="component-name">drawer</h4>
+              <p class="text-body text-muted">A panel that slides in from the edge, driven by a checkbox toggle.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> Filters and detail views that sit beside the main content.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Destructive confirmations. Use a modal so the choice is unmissable.</p>
+            </div>
             <div class="component-demo">
-              <p class="text-meta">These are shown open so you can see them. To open one for real, use <code>:target</code> or a checkbox — see the code below.</p>
-              <div class="modal-card">
-                <div class="modal-head"><h3 class="modal-title">Confirm rollback</h3><button class="close-button" type="button" aria-label="Close"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
-                <div class="modal-body">This reverts api-gateway to v2.8.0. Active sessions are not affected.</div>
-                <div class="modal-actions"><button class="btn btn-ghost" type="button">Cancel</button><button class="btn btn-danger" type="button">Roll back</button></div>
-              </div>
-              <div class="drawer-panel is-active" style="position: static; height: auto;">
-                <div class="drawer-head"><h3 class="modal-title">Filter revisions</h3><button class="close-button" type="button" aria-label="Close"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+              <label class="btn btn-secondary" for="drawer-filter-drawer">Filters</label>
+              <input class="drawer-toggle" type="checkbox" id="drawer-filter-drawer">
+              <div class="drawer-backdrop"></div>
+              <div class="drawer-panel">
+                <div class="drawer-head"><h3 class="modal-title">Filter revisions</h3><label class="close-button" for="drawer-filter-drawer" aria-label="Close"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></label></div>
                 <p class="text-body text-muted">Drawer content flows like any panel once it is open.</p>
               </div>
-              <pre class="code-sample"><code>&lt;a href="#confirm-rollback" class="btn btn-danger"&gt;Roll back&lt;/a&gt;
-&lt;div class="modal" id="confirm-rollback"&gt;&lt;div class="modal-card"&gt;...&lt;/div&gt;&lt;/div&gt;
-
-&lt;label class="btn btn-secondary" for="filter-drawer"&gt;Filters&lt;/label&gt;
+              <pre class="code-sample"><code>&lt;label class="btn btn-secondary" for="filter-drawer"&gt;Filters&lt;/label&gt;
 &lt;input class="drawer-toggle" type="checkbox" id="filter-drawer"&gt;
 &lt;div class="drawer-backdrop"&gt;&lt;/div&gt;
-&lt;div class="drawer-panel"&gt;...&lt;/div&gt;</code></pre>
+&lt;div class="drawer-panel"&gt;
+  &lt;div class="drawer-head"&gt;&lt;h3 class="modal-title"&gt;Filter revisions&lt;/h3&gt;&lt;label class="close-button" for="filter-drawer" aria-label="Close"&gt;&lt;svg class="icon" aria-hidden="true" viewBox="0 0 24 24"&gt;&lt;path d="M18 6 6 18M6 6l12 12"/&gt;&lt;/svg&gt;&lt;/label&gt;&lt;/div&gt;
+  &lt;p class="text-body text-muted"&gt;Drawer content flows like any panel once it is open.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
             </div>
           </article>
-
-          <article class="component-row">
-            <div class="component-name">Terminal</div>
+          <article class="component-row" id="c-dropdown">
+            <div class="component-meta">
+              <h4 class="component-name">dropdown</h4>
+              <p class="text-body text-muted">A menu of actions attached to a trigger.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> Secondary actions on a row or toolbar.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Hiding the primary action in a menu.</p>
+            </div>
+            <div class="component-demo">
+              <div class="dropdown">
+                <button class="btn btn-secondary btn-sm" type="button">Actions</button>
+                <div class="dropdown-menu">
+                  <button type="button">Restart service</button>
+                  <button type="button">View logs</button>
+                  <button type="button">Roll back</button>
+                </div>
+              </div>
+              <p class="text-meta">CSS handles the open state on focus. Keyboard navigation and Escape are yours to build.</p>
+              <pre class="code-sample"><code>&lt;div class="dropdown"&gt;
+  &lt;button class="btn btn-secondary btn-sm" type="button"&gt;Actions&lt;/button&gt;
+  &lt;div class="dropdown-menu"&gt;
+    &lt;button type="button"&gt;Restart service&lt;/button&gt;
+    &lt;button type="button"&gt;View logs&lt;/button&gt;
+    &lt;button type="button"&gt;Roll back&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </article>
+          <article class="component-row" id="c-modal">
+            <div class="component-meta">
+              <h4 class="component-name">modal</h4>
+              <p class="text-body text-muted">A centred dialog that blocks the page until it is resolved.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> Confirming a destructive or irreversible action.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Modals for information. Put it on the page.</p>
+            </div>
+            <div class="component-demo">
+              <a href="#modal-confirm-rollback" class="btn btn-danger">Roll back</a>
+              <div class="modal" id="modal-confirm-rollback">
+                <div class="modal-card">
+                  <div class="modal-head"><h3 class="modal-title">Confirm rollback</h3><button class="close-button" type="button" aria-label="Close"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+                  <div class="modal-body">This reverts api-gateway to v2.8.0. Active sessions are not affected.</div>
+                  <div class="modal-actions"><button class="btn btn-ghost" type="button">Cancel</button><button class="btn btn-danger" type="button">Roll back</button></div>
+                </div>
+              </div>
+              <p class="text-meta">Open it with <code>:target</code> or a checkbox. Focus trapping and Escape are yours to build.</p>
+              <pre class="code-sample"><code>&lt;a href="#confirm-rollback" class="btn btn-danger"&gt;Roll back&lt;/a&gt;
+&lt;div class="modal" id="confirm-rollback"&gt;
+  &lt;div class="modal-card"&gt;
+    &lt;div class="modal-head"&gt;&lt;h3 class="modal-title"&gt;Confirm rollback&lt;/h3&gt;&lt;button class="close-button" type="button" aria-label="Close"&gt;&lt;svg class="icon" aria-hidden="true" viewBox="0 0 24 24"&gt;&lt;path d="M18 6 6 18M6 6l12 12"/&gt;&lt;/svg&gt;&lt;/button&gt;&lt;/div&gt;
+    &lt;div class="modal-body"&gt;This reverts api-gateway to v2.8.0. Active sessions are not affected.&lt;/div&gt;
+    &lt;div class="modal-actions"&gt;&lt;button class="btn btn-ghost" type="button"&gt;Cancel&lt;/button&gt;&lt;button class="btn btn-danger" type="button"&gt;Roll back&lt;/button&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </article>
+          <article class="component-row" id="c-popover">
+            <div class="component-meta">
+              <h4 class="component-name">popover</h4>
+              <p class="text-body text-muted">A small panel of detail attached to a trigger.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> Detail that would crowd the row it belongs to.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Forms. If it needs a save button, use a modal or a drawer.</p>
+            </div>
+            <div class="component-demo">
+              <div class="popover">
+                <button class="btn btn-secondary btn-sm" type="button">Region details</button>
+                <div class="popover-panel">
+                  <div class="popover-title">us-east-1</div>
+                  <p class="popover-body">Primary region. Three availability zones.</p>
+                </div>
+              </div>
+              <pre class="code-sample"><code>&lt;div class="popover"&gt;
+  &lt;button class="btn btn-secondary btn-sm" type="button"&gt;Region details&lt;/button&gt;
+  &lt;div class="popover-panel"&gt;
+    &lt;div class="popover-title"&gt;us-east-1&lt;/div&gt;
+    &lt;p class="popover-body"&gt;Primary region. Three availability zones.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </article>
+          <article class="component-row" id="c-tooltip">
+            <div class="component-meta">
+              <h4 class="component-name">tooltip</h4>
+              <p class="text-body text-muted">A short hint attached to a control, shown on hover and focus.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> Explaining an icon-only control or an abbreviated value.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Essential information. Tooltips are invisible on touch devices.</p>
+            </div>
+            <div class="component-demo">
+              <span class="tooltip" data-tip="Last deployed 12 minutes ago">
+                <button class="icon-button" type="button" aria-label="Deployment info">
+                  <svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg>
+                </button>
+              </span>
+              <pre class="code-sample"><code>&lt;span class="tooltip" data-tip="Last deployed 12 minutes ago"&gt;
+  &lt;button class="icon-button" type="button" aria-label="Deployment info"&gt;
+    &lt;svg class="icon" aria-hidden="true" viewBox="0 0 24 24"&gt;&lt;circle cx="12" cy="12" r="9"/&gt;&lt;path d="M12 16v-4M12 8h.01"/&gt;&lt;/svg&gt;
+  &lt;/button&gt;
+&lt;/span&gt;</code></pre>
+            </div>
+          </article>
+        </div>
+        <h3 class="text-h2 component-category">Content</h3>
+        <div class="component-list">
+          <article class="component-row" id="c-cmd-pill">
+            <div class="component-meta">
+              <h4 class="component-name">cmd-pill</h4>
+              <p class="text-body text-muted">A single copyable command shown as a compact pill.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> The one install or run command in a hero or a quickstart.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Multi-line scripts. Use a terminal block.</p>
+            </div>
+            <div class="component-demo">
+              <span class="cmd-pill"><span class="dollar">$</span> npm install postrboard-css</span>
+              <pre class="code-sample"><code>&lt;span class="cmd-pill"&gt;&lt;span class="dollar"&gt;$&lt;/span&gt; npm install postrboard-css&lt;/span&gt;</code></pre>
+            </div>
+          </article>
+          <article class="component-row" id="c-icon">
+            <div class="component-meta">
+              <h4 class="component-name">icon</h4>
+              <p class="text-body text-muted">The four icon size tokens.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> Sizing SVGs to the type beside them. Always set aria-hidden or role.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> An icon above every heading. Icons clarify controls, not sections.</p>
+            </div>
+            <div class="component-demo">
+              <div class="cluster">
+                <svg class="icon icon-sm" aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/></svg>
+                <svg class="icon icon-md" aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/></svg>
+                <svg class="icon icon-lg" aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/></svg>
+                <svg class="icon icon-xl" aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/></svg>
+              </div>
+              <pre class="code-sample"><code>&lt;div class="cluster"&gt;
+  &lt;svg class="icon icon-sm" aria-hidden="true" viewBox="0 0 24 24"&gt;&lt;circle cx="12" cy="12" r="9"/&gt;&lt;/svg&gt;
+  &lt;svg class="icon icon-md" aria-hidden="true" viewBox="0 0 24 24"&gt;&lt;circle cx="12" cy="12" r="9"/&gt;&lt;/svg&gt;
+  &lt;svg class="icon icon-lg" aria-hidden="true" viewBox="0 0 24 24"&gt;&lt;circle cx="12" cy="12" r="9"/&gt;&lt;/svg&gt;
+  &lt;svg class="icon icon-xl" aria-hidden="true" viewBox="0 0 24 24"&gt;&lt;circle cx="12" cy="12" r="9"/&gt;&lt;/svg&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </article>
+          <article class="component-row" id="c-inline-code">
+            <div class="component-meta">
+              <h4 class="component-name">inline-code</h4>
+              <p class="text-body text-muted">Identifiers inside prose, and keyboard keys.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> Class names, flags, paths, and shortcuts mentioned in a sentence.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Styling ordinary words as code for texture.</p>
+            </div>
+            <div class="component-demo">
+              <p class="text-body">Run <code class="inline-code">npm run build</code>, then press <kbd class="kbd">Ctrl</kbd> <kbd class="kbd">C</kbd> to stop the watcher.</p>
+              <pre class="code-sample"><code>&lt;p class="text-body"&gt;Run &lt;code class="inline-code"&gt;npm run build&lt;/code&gt;, then press &lt;kbd class="kbd"&gt;Ctrl&lt;/kbd&gt; &lt;kbd class="kbd"&gt;C&lt;/kbd&gt; to stop the watcher.&lt;/p&gt;</code></pre>
+            </div>
+          </article>
+          <article class="component-row" id="c-quote-block">
+            <div class="component-meta">
+              <h4 class="component-name">quote-block</h4>
+              <p class="text-body text-muted">A pull quote with attribution.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> Words someone actually said or wrote, with a real source.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Inventing a quote or an attribution. If you have no source, cut it.</p>
+            </div>
+            <div class="component-demo">
+              <blockquote class="quote-block">
+                Rollback has to be one action, not a runbook.
+                <cite>Quote and attribution pending</cite>
+              </blockquote>
+              <pre class="code-sample"><code>&lt;blockquote class="quote-block"&gt;
+  Rollback has to be one action, not a runbook.
+  &lt;cite&gt;Quote and attribution pending&lt;/cite&gt;
+&lt;/blockquote&gt;</code></pre>
+            </div>
+          </article>
+          <article class="component-row" id="c-terminal">
+            <div class="component-meta">
+              <h4 class="component-name">terminal</h4>
+              <p class="text-body text-muted">A command and its output, with a labelled title bar.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> Products driven by a CLI or config. Show a command you could really run.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Terminal chrome with no real command in it. That is decorative code.</p>
+              <p class="component-guide"><span class="component-guide-label">Swap</span>
+                <code class="inline-code">.terminal-dot</code> window dots in the title bar, off by default because they are decoration
+              </p>
+            </div>
             <div class="component-demo">
               <div class="terminal">
                 <div class="terminal-bar">
@@ -1079,20 +2333,145 @@
                   <div class="dim">deployment "api-gateway" successfully rolled out</div>
                 </div>
               </div>
+              <pre class="code-sample"><code>&lt;div class="terminal"&gt;
+  &lt;div class="terminal-bar"&gt;
+    &lt;span class="terminal-title"&gt;ci-runner &amp;middot; us-east-1&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class="terminal-body"&gt;
+    &lt;div&gt;&lt;span class="prompt"&gt;$&lt;/span&gt; &lt;span class="cmd"&gt;kubectl rollout status deploy/api-gateway&lt;/span&gt;&lt;/div&gt;
+    &lt;div class="dim"&gt;deployment "api-gateway" successfully rolled out&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
             </div>
           </article>
-
-          <article class="component-row">
-            <div class="component-name">Dropzone</div>
+          <article class="component-row" id="c-type">
+            <div class="component-meta">
+              <h4 class="component-name">type</h4>
+              <p class="text-body text-muted">The full type scale, from the display size down to metadata.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> Every piece of text. One text-display per page at most, then text-h1 and text-h2 for structure.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Two display-sized lines on one screen. The scale only reads as a hierarchy if the top of it is rare.</p>
+              <p class="component-guide"><span class="component-guide-label">Swap</span>
+                <code class="inline-code">.text-mono</code> monospace body, for identifiers and log lines<br>
+                <code class="inline-code">.t-mono-display</code> a display line set in monospace<br>
+                <code class="inline-code">.gradient-text</code> tints a run of text with the active accent
+              </p>
+            </div>
             <div class="component-demo">
-              <label class="dropzone">
-                <input type="file">
-                <svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 16V4M6 10l6-6 6 6M4 20h16"/></svg>
-                <span><strong>Drop a file</strong> or browse</span>
-              </label>
+              <div class="stack">
+                <p class="text-display">Deploy history</p>
+                <h2 class="text-h1">Roll back in one action</h2>
+                <h3 class="text-h2">Section heading</h3>
+                <p class="text-card">Card heading, for titles inside a panel.</p>
+                <p class="text-body">Body copy. Capped at 72 characters so long paragraphs stay readable without a wrapper.</p>
+                <p class="text-body text-muted">Muted body, for a second line that supports the first.</p>
+                <p class="text-meta">METADATA &middot; TIMESTAMPS &middot; LABELS</p>
+              </div>
+              <pre class="code-sample"><code>&lt;div class="stack"&gt;
+  &lt;p class="text-display"&gt;Deploy history&lt;/p&gt;
+  &lt;h2 class="text-h1"&gt;Roll back in one action&lt;/h2&gt;
+  &lt;h3 class="text-h2"&gt;Section heading&lt;/h3&gt;
+  &lt;p class="text-card"&gt;Card heading, for titles inside a panel.&lt;/p&gt;
+  &lt;p class="text-body"&gt;Body copy. Capped at 72 characters so long paragraphs stay readable without a wrapper.&lt;/p&gt;
+  &lt;p class="text-body text-muted"&gt;Muted body, for a second line that supports the first.&lt;/p&gt;
+  &lt;p class="text-meta"&gt;METADATA &amp;middot; TIMESTAMPS &amp;middot; LABELS&lt;/p&gt;
+&lt;/div&gt;</code></pre>
             </div>
           </article>
         </div>
+        <h3 class="text-h2 component-category">Marketing</h3>
+        <div class="component-list">
+          <article class="component-row" id="c-cta-band">
+            <div class="component-meta">
+              <h4 class="component-name">cta-band</h4>
+              <p class="text-body text-muted">A closing block with one action.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> The end of a marketing page, naming the next practical step.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Restating the headline in a gradient box. Link to docs, a command, or a trial.</p>
+              <p class="component-guide"><span class="component-guide-label">Swap</span>
+                <code class="inline-code">.btn-gradient</code> accent-filled button, for the one action that ends a page
+              </p>
+            </div>
+            <div class="component-demo">
+              <div class="cta-band">
+                <h2 class="cta-title">Read the deploy guide</h2>
+                <p class="cta-body">Set up a pipeline in about ten minutes.</p>
+                <a class="btn" href="#components">Open the guide</a>
+              </div>
+              <pre class="code-sample"><code>&lt;div class="cta-band"&gt;
+  &lt;h2 class="cta-title"&gt;Read the deploy guide&lt;/h2&gt;
+  &lt;p class="cta-body"&gt;Set up a pipeline in about ten minutes.&lt;/p&gt;
+  &lt;a class="btn" href="/docs/deploy"&gt;Open the guide&lt;/a&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </article>
+          <article class="component-row" id="c-feature-card">
+            <div class="component-meta">
+              <h4 class="component-name">feature-card</h4>
+              <p class="text-body text-muted">A rule-separated block for one capability.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> Capabilities that genuinely differ in kind, described in concrete terms.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Three of these in a row with an icon on each. That is the single most recognisable AI landing-page tell. Prefer a workflow, a table, or a real artifact.</p>
+              <p class="component-guide"><span class="component-guide-label">Swap</span>
+                <code class="inline-code">.feature-grid</code> three-column wrapper, if you have three capabilities that genuinely differ
+              </p>
+            </div>
+            <div class="component-demo">
+              <div class="feature-card">
+                <svg class="icon feature-icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+                <h3 class="feature-title">Promote by revision</h3>
+                <p class="feature-body">Pick any revision that passed checks and move traffic to it.</p>
+              </div>
+              <pre class="code-sample"><code>&lt;div class="feature-card"&gt;
+  &lt;svg class="icon feature-icon" aria-hidden="true" viewBox="0 0 24 24"&gt;&lt;path d="M12 19V5M5 12l7-7 7 7"/&gt;&lt;/svg&gt;
+  &lt;h3 class="feature-title"&gt;Promote by revision&lt;/h3&gt;
+  &lt;p class="feature-body"&gt;Pick any revision that passed checks and move traffic to it.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </article>
+          <article class="component-row" id="c-pricing-card">
+            <div class="component-meta">
+              <h4 class="component-name">pricing-card</h4>
+              <p class="text-body text-muted">A plan with a price and a feature list. Add popular to mark one.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> Real published plans, when the user asks for pricing.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Inventing tiers or prices. If they are unknown, say so instead.</p>
+              <p class="component-guide"><span class="component-guide-label">Swap</span>
+                <code class="inline-code">.pricing-grid</code> three-column wrapper<br>
+                <code class="inline-code">.popular</code> marks one plan with the accent border
+              </p>
+            </div>
+            <div class="component-demo">
+              <div class="pricing-card popular">
+                <h3 class="text-card">Team</h3>
+                <p class="text-h2">Price pending</p>
+                <ul class="styled-list"><li>Unlimited revisions</li><li>Audit log export</li></ul>
+                <button class="btn btn-primary" type="button">Start a trial</button>
+              </div>
+              <pre class="code-sample"><code>&lt;div class="pricing-card popular"&gt;
+  &lt;h3 class="text-card"&gt;Team&lt;/h3&gt;
+  &lt;p class="text-h2"&gt;Price pending&lt;/p&gt;
+  &lt;ul class="styled-list"&gt;&lt;li&gt;Unlimited revisions&lt;/li&gt;&lt;li&gt;Audit log export&lt;/li&gt;&lt;/ul&gt;
+  &lt;button class="btn btn-primary" type="button"&gt;Start a trial&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </article>
+          <article class="component-row" id="c-testimonial-card">
+            <div class="component-meta">
+              <h4 class="component-name">testimonial-card</h4>
+              <p class="text-body text-muted">A quote with attribution, framed by rules.</p>
+              <p class="component-guide"><span class="component-guide-label">Use</span> Only when the user supplies the quote and the source.</p>
+              <p class="component-guide"><span class="component-guide-label">Avoid</span> Fabricated names, companies, avatars, or logos. Leave the placeholder visible instead.</p>
+            </div>
+            <div class="component-demo">
+              <div class="testimonial-card">
+                <p class="testimonial-quote">Customer quote pending</p>
+                <p class="text-meta">Name and company pending</p>
+              </div>
+              <pre class="code-sample"><code>&lt;div class="testimonial-card"&gt;
+  &lt;p class="testimonial-quote"&gt;Customer quote pending&lt;/p&gt;
+  &lt;p class="text-meta"&gt;Name and company pending&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </article>
+        </div>
+        <!-- registry:components:end -->
       </section>
 
       <section class="docs-section" id="patterns">
