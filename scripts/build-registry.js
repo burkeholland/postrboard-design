@@ -206,21 +206,21 @@ function renderDocs(items) {
       out.push(`          <article class="component-row" id="c-${item.name}">`);
       out.push('            <div class="component-meta">');
       out.push(`              <h4 class="component-name">${item.name}</h4>`);
-      out.push(`              <p class="text-body text-muted">${item.description}</p>`);
-      out.push(`              <p class="component-guide"><span class="component-guide-label">Use</span> ${item.use}</p>`);
-      out.push(`              <p class="component-guide"><span class="component-guide-label">Avoid</span> ${item.avoid}</p>`);
-      if (item.variants.length) {
-        out.push('              <p class="component-guide"><span class="component-guide-label">Swap</span>');
-        out.push(item.variants
-          .map((v) => `                ${v.classes.map((c) => `<code class="inline-code">.${c}</code>`).join(' ')} ${v.description}`)
-          .join('<br>\n'));
-        out.push('              </p>');
-      }
+      out.push(`              <p class="component-desc">${item.description}</p>`);
       out.push('            </div>');
+      const sw = `sw-${item.name}`;
       out.push('            <div class="component-demo">');
-      out.push(indent(preview, '              '));
-      if (item.note) out.push(`              <p class="text-meta">${item.note}</p>`);
-      out.push(`              <pre class="code-sample"><code>${escapeHtml(item.html)}</code></pre>`);
+      out.push('              <div class="segmented-control demo-switch">');
+      out.push(`                <input type="radio" name="${sw}" id="${sw}-preview" checked><label for="${sw}-preview">Preview</label>`);
+      out.push(`                <input class="demo-switch-markup" type="radio" name="${sw}" id="${sw}-markup"><label for="${sw}-markup">Markup</label>`);
+      out.push('              </div>');
+      out.push('              <div class="demo-panel demo-panel-preview">');
+      out.push(indent(preview, '                '));
+      if (item.note) out.push(`                <p class="text-meta">${item.note}</p>`);
+      out.push('              </div>');
+      out.push('              <div class="demo-panel demo-panel-markup">');
+      out.push(`                <pre class="code-sample"><code>${escapeHtml(item.html)}</code></pre>`);
+      out.push('              </div>');
       out.push('            </div>');
       out.push('          </article>');
     }
