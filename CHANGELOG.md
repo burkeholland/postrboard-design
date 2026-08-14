@@ -8,6 +8,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Added
 
+- **`--accent-ink`** - Ink that reads on the vivid `--accent` hue. The bright accents are light, so they take dark ink; violet and slate take white. The audit enforces the pairing
 - **Native work-surface anatomy** - Page headers, section headers, panels, stat strips, semantic status badges, description lists, and app-shell navigation
 - **Typography roles** - IBM Plex Sans, Serif, and Mono with a real editorial display axis
 - **Semantic states** - `data-state` and ARIA-driven styles for status, navigation, busy, invalid, and disabled states
@@ -42,7 +43,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - The theme-options live demo and the flagship deploy operations dashboard example both defaulted to sharp corners, a visible grid, dark mode, and heavy mono type stacked together — the single most recognizable generic-AI-dashboard combination — despite the documented default being quiet, compact, and ambience-free; both now demonstrate on-contract directions
 - The README's own theme-options example showcased the same sharp+grid combination one line above a claim that the default is quiet by design; replaced with a distinct, non-cliché direction
 - Added a "Stacked technical signals" row to the AI design tells guardrail table (docs and skill) warning against combining dark mode, sharp corners, grid texture, and heavy mono type by default
-- Solid accent fills that carry white content (`.checkbox`/`.radio` checked, `.switch` track, `.progress-fill`, `.spinner`, `.range-input`, `.timeline-dot`, `.tab.active`) used the vivid `--accent` rather than the contrast-verified `--accent-surface`, so their content sat near 2.4:1
+- Solid accent fills that carry white content (`.spinner`, `.range-input`, `.timeline-dot`, `.tab.active`) used the vivid `--accent` rather than the contrast-verified `--accent-surface`, so their content sat near 2.4:1. The first pass at this also darkened `.checkbox`/`.radio` checked, the `.switch` track, and `.progress-fill`, which carry no text and are the controls that made the palette recognisable — coral read as burnt brick rather than `#ff7f50`. Those four now paint the vivid hue again, bounded by an `--accent-surface` edge for the 3:1 control boundary, and the checkbox tick uses the new `--accent-ink` instead of white, which fixes the 2.5:1 tick that existed in 1.x as well
 - `.btn[aria-busy="true"]` hard-coded a white spinner, making the busy state invisible on `.btn-secondary` and `.btn-ghost`; the spinner colour is now a `--btn-busy-color` custom property each variant sets
 - The widened field radius turned 20px checkboxes into circles, erasing the checkbox/radio affordance distinction; small controls (`.checkbox`, `kbd`, inline `code`) now derive a proportional radius that stays square at every geometry
 - `.nav-inner` had no horizontal padding, so a standalone `.navbar` rendered edge-flush; it now carries a gutter that resets inside a `.container`

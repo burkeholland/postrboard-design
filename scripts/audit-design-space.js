@@ -94,6 +94,18 @@ for (const accent of accents) {
     hexToken(rootTokens, 'on-accent'),
     hexToken(rootTokens, `${accent}-surface`)
   );
+  // The vivid hue is what makes the palette recognisable, so it is painted on
+  // non-text fills (checkbox, radio, switch, progress). Any glyph on top of it
+  // must use the matching ink, not --on-accent, or it repeats the 2.5:1 tick
+  // this pairing was introduced to fix. A tick is a graphical object, so WCAG
+  // 1.4.11 asks 3:1; hold 4:1 for margin. Demanding the 4.5:1 text ratio would
+  // force pure black on violet, which only clears it at 4.96:1.
+  assertContrast(
+    `${accent} ink on vivid`,
+    hexToken(rootTokens, `${accent}-ink`),
+    hexToken(rootTokens, accent),
+    4
+  );
   assertContrast(
     `${accent} light text`,
     hexToken(lightTokens, `${accent}-text`),
@@ -103,6 +115,14 @@ for (const accent of accents) {
     `${accent} dark text`,
     hexToken(darkTokens, `${accent}-text`),
     hexToken(darkTokens, 'bg')
+  );
+  // A vivid fill is bounded by the darker surface tone, so the control edge
+  // still separates from the page even though the fill itself is light.
+  assertContrast(
+    `${accent} vivid fill boundary`,
+    hexToken(rootTokens, `${accent}-surface`),
+    hexToken(lightTokens, 'surface'),
+    3
   );
 }
 

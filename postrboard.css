@@ -39,6 +39,15 @@
   --amber-hover: #92400e;
   --slate-surface: #334155;
   --slate-hover: #1e293b;
+  /* Ink that reads on the vivid hue. The bright accents are light, so they take
+     dark ink; violet and slate are dark enough to take white. Use this whenever
+     a glyph sits on --accent rather than on --accent-surface. */
+  --coral-ink: #17202a;
+  --azure-ink: #17202a;
+  --sage-ink: #17202a;
+  --violet-ink: #ffffff;
+  --amber-ink: #17202a;
+  --slate-ink: #ffffff;
   /* Accessible text colors */ --coral-text: #c4460a;
   --azure-text: #0369a1;
   --sage-text: #4d7c0f;
@@ -58,6 +67,7 @@
   --accent-text: var(--coral-text);
   --accent-tint: var(--coral-tint);
   --accent-contrast: var(--on-accent);
+  --accent-ink: var(--coral-ink);
   --accent-secondary: var(--azure);
   /* Semantic states */ --danger: #dc2626;
   --danger-hover: #b91c1c;
@@ -182,12 +192,12 @@
 
 /* Accent, surface, geometry, density, and type are independent axes.
    Scope them on html for a page direction or on a subtree for a product surface. */
-[data-accent="coral"] { --accent: var(--coral); --accent-surface: var(--coral-surface); --accent-hover: var(--coral-hover); --accent-text: var(--coral-text); --accent-tint: var(--coral-tint); --accent-secondary: var(--azure); }
-[data-accent="azure"] { --accent: var(--azure); --accent-surface: var(--azure-surface); --accent-hover: var(--azure-hover); --accent-text: var(--azure-text); --accent-tint: var(--azure-tint); --accent-secondary: var(--sage); }
-[data-accent="sage"] { --accent: var(--sage); --accent-surface: var(--sage-surface); --accent-hover: var(--sage-hover); --accent-text: var(--sage-text); --accent-tint: var(--sage-tint); --accent-secondary: var(--azure); }
-[data-accent="violet"] { --accent: var(--violet); --accent-surface: var(--violet-surface); --accent-hover: var(--violet-hover); --accent-text: var(--violet-text); --accent-tint: var(--violet-tint); --accent-secondary: var(--amber); }
-[data-accent="amber"] { --accent: var(--amber); --accent-surface: var(--amber-surface); --accent-hover: var(--amber-hover); --accent-text: var(--amber-text); --accent-tint: var(--amber-tint); --accent-secondary: var(--violet); }
-[data-accent="slate"] { --accent: var(--slate); --accent-surface: var(--slate-surface); --accent-hover: var(--slate-hover); --accent-text: var(--slate-text); --accent-tint: var(--slate-tint); --accent-secondary: var(--azure); }
+[data-accent="coral"] { --accent: var(--coral); --accent-surface: var(--coral-surface); --accent-hover: var(--coral-hover); --accent-text: var(--coral-text); --accent-tint: var(--coral-tint); --accent-ink: var(--coral-ink); --accent-secondary: var(--azure); }
+[data-accent="azure"] { --accent: var(--azure); --accent-surface: var(--azure-surface); --accent-hover: var(--azure-hover); --accent-text: var(--azure-text); --accent-tint: var(--azure-tint); --accent-ink: var(--azure-ink); --accent-secondary: var(--sage); }
+[data-accent="sage"] { --accent: var(--sage); --accent-surface: var(--sage-surface); --accent-hover: var(--sage-hover); --accent-text: var(--sage-text); --accent-tint: var(--sage-tint); --accent-ink: var(--sage-ink); --accent-secondary: var(--azure); }
+[data-accent="violet"] { --accent: var(--violet); --accent-surface: var(--violet-surface); --accent-hover: var(--violet-hover); --accent-text: var(--violet-text); --accent-tint: var(--violet-tint); --accent-ink: var(--violet-ink); --accent-secondary: var(--amber); }
+[data-accent="amber"] { --accent: var(--amber); --accent-surface: var(--amber-surface); --accent-hover: var(--amber-hover); --accent-text: var(--amber-text); --accent-tint: var(--amber-tint); --accent-ink: var(--amber-ink); --accent-secondary: var(--violet); }
+[data-accent="slate"] { --accent: var(--slate); --accent-surface: var(--slate-surface); --accent-hover: var(--slate-hover); --accent-text: var(--slate-text); --accent-tint: var(--slate-tint); --accent-ink: var(--slate-ink); --accent-secondary: var(--azure); }
 
 [data-surface="glass"] { --surface-1-bg: var(--surface-glass); --surface-1-border: var(--border-glass); --surface-1-shadow: var(--shadow-subtle); --surface-1-blur: blur(8px); }
 [data-surface="flat"] { --surface-1-bg: var(--surface); --surface-1-border: var(--border); --surface-1-shadow: none; --surface-1-blur: none; }
@@ -606,9 +616,9 @@ fieldset.form-field { padding: 0; margin: 0; border: 0; }
 
 .checkbox input { position: relative; border-radius: clamp(2px, calc(var(--radius-field) / 3), 7px); }
 
-.checkbox input:checked { background: var(--accent-surface); border-color: var(--accent-surface); }
+.checkbox input:checked { background: var(--accent); border-color: var(--accent-surface); }
 
-.checkbox input:checked::after { content: ""; position: absolute; left: 6px; top: 2px; width: 6px; height: 11px; border: solid var(--on-accent); border-width: 0 2.5px 2.5px 0; transform: rotate(45deg); }
+.checkbox input:checked::after { content: ""; position: absolute; left: 6px; top: 2px; width: 6px; height: 11px; border: solid var(--accent-ink); border-width: 0 2.5px 2.5px 0; transform: rotate(45deg); }
 
 .checkbox input:focus-visible, .radio input:focus-visible { box-shadow: var(--focus-ring); }
 
@@ -616,7 +626,7 @@ fieldset.form-field { padding: 0; margin: 0; border: 0; }
 
 .radio input { border-radius: 50%; }
 
-.radio input:checked { border-color: var(--accent-surface); background: var(--accent-surface); box-shadow: inset 0 0 0 5px var(--surface); }
+.radio input:checked { border-color: var(--accent-surface); background: var(--accent); box-shadow: inset 0 0 0 5px var(--surface); }
 
 .switch input { position: absolute; opacity: 0; pointer-events: none; }
 
@@ -624,7 +634,7 @@ fieldset.form-field { padding: 0; margin: 0; border: 0; }
 
 .switch-track::after { content: ""; position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; border-radius: 50%; background: var(--surface); box-shadow: var(--shadow-subtle); transition: transform var(--duration-normal) var(--ease-out); }
 
-.switch input:checked + .switch-track { background: var(--accent-surface); border-color: var(--accent-surface); }
+.switch input:checked + .switch-track { background: var(--accent); border-color: var(--accent-surface); }
 
 .switch input:checked + .switch-track::after { transform: translateX(20px); }
 
@@ -1038,7 +1048,7 @@ fieldset.form-field { padding: 0; margin: 0; border: 0; }
 
 .progress { height: 10px; overflow: hidden; border: 1px solid var(--border); border-radius: var(--radius-control); background: var(--code-bg); }
 
-.progress-fill { width: var(--value, 50%); height: 100%; border-radius: inherit; background: var(--accent-surface); }
+.progress-fill { width: var(--value, 50%); height: 100%; border-radius: inherit; background: var(--accent); }
 
 .spinner { width: 34px; height: 34px; border: 3px solid var(--border); border-top-color: var(--accent-surface); border-radius: 50%; animation: spin 800ms linear infinite; }
 
