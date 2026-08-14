@@ -5,14 +5,16 @@ category: overlays
 description: A text input with a filtered list of options beneath it.
 use: Choosing one item from a set too long for a select.
 avoid: Fewer than about five options. Use a radio group or a select.
-note: Add <code>is-open</code> to keep the list visible while the user clicks an option.
+note: CSS can show the list on focus. Filtering, arrow keys, and committing a choice need JavaScript. Add <code>is-open</code> while the list must stay visible for a click.
 preview: combobox
+variants: is-open = keeps the panel visible without focus, for docs and for click-to-open state
 -->
 <div class="combobox">
-  <input class="input w-full" type="text" placeholder="Search services" role="combobox" aria-expanded="true" aria-controls="service-list">
-  <ul class="combobox-list is-open" id="service-list" role="listbox">
+  <label class="sr-only" for="service-search">Search services</label>
+  <input class="input w-full" id="service-search" type="text" role="combobox" aria-expanded="false" aria-controls="service-list" aria-autocomplete="list" placeholder="Search services">
+  <ul class="combobox-list" id="service-list" role="listbox">
     <li role="option">api-gateway</li>
-    <li role="option" class="is-active">worker-jobs</li>
+    <li role="option">worker-jobs</li>
     <li role="option">event-router</li>
   </ul>
 </div>

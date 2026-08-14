@@ -6,14 +6,21 @@ description: A centred dialog that blocks the page until it is resolved.
 use: Confirming a destructive or irreversible action.
 avoid: Modals for information. Put it on the page.
 requires: button
-note: Open it with <code>:target</code> or a checkbox. Focus trapping and Escape are yours to build.
+note: Open it with <code>:target</code>, a checkbox, or application code. Focus trapping, Escape, and restoring focus are yours to build.
 preview: stage
+variants: is-active = forces the dialog open without :target, for docs and application open state
 -->
 <a href="#confirm-rollback" class="btn btn-danger">Roll back</a>
-<div class="modal" id="confirm-rollback">
+<div class="modal" id="confirm-rollback" role="dialog" aria-modal="true" aria-labelledby="confirm-rollback-title">
   <div class="modal-card">
-    <div class="modal-head"><h3 class="modal-title">Confirm rollback</h3><button class="close-button" type="button" aria-label="Close"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+    <div class="modal-head">
+      <h3 class="modal-title" id="confirm-rollback-title">Confirm rollback</h3>
+      <a class="close-button" href="#components" aria-label="Close"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></a>
+    </div>
     <div class="modal-body">This reverts api-gateway to v2.8.0. Active sessions are not affected.</div>
-    <div class="modal-actions"><button class="btn btn-ghost" type="button">Cancel</button><button class="btn btn-danger" type="button">Roll back</button></div>
+    <div class="modal-actions">
+      <a class="btn btn-ghost" href="#components">Cancel</a>
+      <button class="btn btn-danger" type="button">Roll back</button>
+    </div>
   </div>
 </div>

@@ -21,14 +21,24 @@ Use this order when sources disagree:
 
 Do not invent a class or a markup shape from memory. Copy from the registry.
 
+## Install
+
+Copy `skill/postrboard/` from the package or repo into the agent's skills directory (for example `~/.agents/skills/postrboard/` or the project's skills folder). Keep `SKILL.md` at that path so the agent can load it by name.
+
 ## Setup
+
+Prefer the CSS from the installed package so the version matches the skill and registry:
 
 ```html
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://burkeholland.github.io/postrboard-design/postrboard.min.css">
+<link rel="stylesheet" href="node_modules/postrboard-css/postrboard.min.css">
 ```
+
+Use the hosted file only when the package is not installed:
+
+`https://burkeholland.github.io/postrboard-design/postrboard.min.css`
 
 Set `data-mode="light"` or `data-mode="dark"` on `<html>` only when the use scene calls for it. Omit it to follow the system setting. For an opposite-mode island, set its mode, accent, and surface together.
 
@@ -51,7 +61,7 @@ An app starts with the work surface, not a landing page that explains the app.
 
 ### 2. Map
 
-Read `components.md` once. It lists every component the framework ships, with the exact markup, when to use it, and what to avoid. Read it from the installed package, the repo root, or `https://burkeholland.github.io/postrboard-design/components.md`. `registry/index.json` holds the same content if you prefer JSON.
+Do not read all of `components.md`. Open the **Index**, find each surface by name, jump to `### name`, and paste that block. Sources: installed package, repo root, or `https://burkeholland.github.io/postrboard-design/components.md`. `registry/index.json` is the same content as data.
 
 Map each surface of your page to a component **by name**, then paste that component's markup and replace the content. The markup is the API. Retyping it from memory is how pages drift.
 
@@ -81,9 +91,9 @@ The default is:
 
 `coral / flat / compact / comfortable / neutral / none`
 
-For a new standalone surface, differ from the default on at least **two** of accent, surface, geometry, density, type, or composition. When you extend an existing product, preserve its established axes unless the user asks for a redesign or the product meaning changes. For a distinct variation, change one structural axis and change the accent only when brand context permits.
+When you start a new product surface, prefer a direction that fits the work rather than leaving every axis on the default. Changing one or two axes is usually enough. When you extend an existing product, keep its established axes unless the user asks for a redesign or the product meaning changes.
 
-This is a divergence check, not a request for random settings. Product continuity overrides novelty. Every changed axis must support the use scene. Keep `glass`, `grid`, and `gradient` for cases where the material or data makes them useful. Do not stack `sharp` geometry with `grid` ambience and a dark, mono-heavy display voice by default — that combination reads as a generic dev-tool template on sight. Smooth, moderate corners are the safe baseline; reach for `sharp` only when a real technical surface calls for it, and keep it to one strong technical signal at a time.
+This is a product fit check, not a novelty quota. Continuity overrides variety. Every changed axis must support the use scene. Keep `glass`, `grid`, and `gradient` for cases where the material or data makes them useful. Do not stack `sharp` geometry with `grid` ambience and a dark, mono-heavy display voice by default — that combination reads as a generic dev-tool template on sight. Smooth, moderate corners are the safe baseline; reach for `sharp` only when a real technical surface calls for it, and keep it to one strong technical signal at a time.
 
 Spend visual boldness in one place. Choose one signature detail that comes from the subject: a ledger rhythm, an editor gutter, a scheduling line, a comparison rail, or another meaningful device. Keep the rest calm.
 
@@ -110,7 +120,7 @@ Paste components from `components.md`, then replace the content. These are the n
 | Marketing | `feature-card`, `pricing-card`, `testimonial-card`, `cta-band`, `logo-cloud`, `newsletter`, `faq` — read their **Avoid** notes first |
 | Utilities | `utility-spacing`, `utility-layout`, `utility-text`, `utility-sizing`, `utility-surface`, `utility-responsive` — one-purpose classes for gaps a component leaves |
 
-Prefer semantic state attributes when supported: `aria-current`, `aria-selected`, `aria-invalid`, `aria-busy`, `aria-disabled`, and `data-state`.
+Prefer semantic state attributes when supported: `aria-current`, `aria-selected`, `aria-invalid`, `aria-busy`, `aria-disabled`, and `data-state`. For plain buttons that look selected, prefer `aria-pressed` or an `is-selected` class rather than misusing `aria-selected`.
 
 Postrboard is CSS-only. CSS can style a modal, drawer, dropdown, combobox, tabs, and popover, but it cannot supply focus trapping, Escape handling, roving focus, selection logic, or announcements. Add the required behavior in application code. Do not claim that a CSS-only shell is a complete interactive component.
 
@@ -125,7 +135,7 @@ Run one bounded review, fix all failures together, and confirm once.
 5. **States:** Do interactive controls cover relevant default, hover, focus, active, disabled, loading, error, success, and empty states?
 6. **Accessibility:** Check semantic HTML, labels, heading order, keyboard use, visible focus, contrast, reduced motion, and forced colors.
 7. **Responsive behavior:** Check 320, 375, 768, and desktop widths. No clipped text, horizontal page scroll, hidden primary actions, or broken reading order.
-8. **Restraint and variety:** Is there one signature move, with everything else supporting it? Does it differ meaningfully from the last Postrboard surface?
+8. **Restraint and variety:** Is there one signature move, with everything else supporting it? Does it fit this product rather than a stock template?
 
 If a design detector is available, run it after the interface is complete.
 

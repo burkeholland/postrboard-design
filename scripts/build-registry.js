@@ -155,6 +155,33 @@ function assertRequiresResolve(items) {
   }
 }
 
+/**
+ * Shipped markup must start closed. Docs force open states in toPreview only.
+ * Agents copy item.html; an open drawer or expanded accordion becomes production
+ * defaults and pollutes components.md.
+ */
+function assertClosedDefaults(items) {
+  for (const item of items) {
+    const html = item.html;
+    if (/\bclass="[^"]*\bis-open\b/.test(html)) {
+      fail(`${item.name} ships with is-open. Keep sources closed; open only in toPreview.`);
+    }
+    if (/\bclass="[^"]*\bmodal\b[^"]*\bis-active\b/.test(html) || /\bclass="[^"]*\bis-active\b[^"]*\bmodal\b/.test(html)) {
+      fail(`${item.name} ships a modal with is-active. Keep sources closed; open only in toPreview.`);
+    }
+    if (/<input\b[^>]*\bclass="[^"]*\bdrawer-toggle\b[^"]*"[^>]*\bchecked\b/i.test(html)
+      || /<input\b[^>]*\bchecked\b[^>]*\bclass="[^"]*\bdrawer-toggle\b/i.test(html)) {
+      fail(`${item.name} ships a checked drawer-toggle. Keep sources closed; open only in toPreview.`);
+    }
+    if (/<details\b[^>]*\bopen\b/i.test(html)) {
+      fail(`${item.name} ships <details open>. Keep sources closed; open only in toPreview.`);
+    }
+    if (/\baria-expanded="true"/i.test(html)) {
+      fail(`${item.name} ships aria-expanded="true". Keep disclosure closed in the registry.`);
+    }
+  }
+}
+
 function escapeHtml(value) {
   return value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
@@ -194,12 +221,18 @@ function toPreview(item) {
   html = html.replace(/\bclass="popover-panel"/g, 'class="popover-panel is-open"');
   html = html.replace(/\bclass="hover-card-panel"/g, 'class="hover-card-panel is-open"');
   html = html.replace(/\bclass="tooltip"/g, 'class="tooltip is-open"');
+  html = html.replace(/\bclass="combobox-list"/g, 'class="combobox-list is-open"');
+  html = html.replace(/\baria-expanded="false"/g, 'aria-expanded="true"');
   html = html.replace(
-    /(<input\b[^>]*\bclass="drawer-toggle"[^>]*)(\/?>)/g,
-    (all, head, tail) => (/\bchecked\b/.test(all) ? all : `${head} checked${tail}`)
+    /(<input\b[^>]*\bclass="[^"]*\bdrawer-toggle\b[^"]*"[^>]*)(\/?>)/gi,
+    (all, head, tail) => (/\bchecked\b/i.test(all) ? all : `${head} checked${tail}`)
   );
-  html = html.replace(/<details class="accordion">/, '<details class="accordion" open>');
-  html = html.replace(/<details class="faq-item">/, '<details class="faq-item" open>');
+  html = html.replace(/<details(\s[^>]*\bclass="[^"]*\baccordion\b[^"]*"[^>]*)>/i, (all, attrs) => (
+    /\bopen\b/i.test(all) ? all : `<details${attrs} open>`
+  ));
+  html = html.replace(/<details(\s[^>]*\bclass="[^"]*\bfaq-item\b[^"]*"[^>]*)>/i, (all, attrs) => (
+    /\bopen\b/i.test(all) ? all : `<details${attrs} open>`
+  ));
 
   return html;
 }
@@ -258,7 +291,17 @@ function renderMarkdown(items) {
     'axes (`data-accent`, `data-surface`, `data-geometry`, `data-density`, `data-type`,',
     '`data-ambient`) and in which components you compose, not in reinvented markup.',
     '',
+    'Do not read this file end to end. Use the index, jump to `### name`, and paste.',
+    '',
+    '## Index',
+    '',
   ];
+  for (const [id, label] of CATEGORIES) {
+    const group = items.filter((item) => item.category === id);
+    if (!group.length) continue;
+    out.push(`- **${label}:** ${group.map((item) => `\`${item.name}\``).join(', ')}`);
+  }
+  out.push('');
   for (const [id, label] of CATEGORIES) {
     const group = items.filter((item) => item.category === id);
     if (!group.length) continue;
@@ -287,6 +330,7 @@ function build(options = {}) {
   const items = files.map(parseItem);
   assertClassesExist(items);
   assertRequiresResolve(items);
+  assertClosedDefaults(items);
 
   const index = {
     name: 'postrboard',

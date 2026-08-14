@@ -12,7 +12,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - **Human docs vs agent docs** - The showcase page keeps theme options, tokens, components, and layout guidance. AI design tells stay in the skill. The class dump is gone; agents use `components.md` and the registry, and legacy aliases live under Upgrade in the README
 - **22 components restored from 1.x** - Date and time pickers, one-time code, calendar, bar chart, avatar group, sortable table, skeleton, navigation rail, context menu, hover card, toast region, alert dialog, aspect ratio, frame, figure, media embed, scroll area, logo cloud, newsletter, FAQ, and auth card. In 1.x these existed only in the documentation page's own `<style>` block, so a project that loaded `postrboard.css` got nothing for them. They are now framework CSS with registry entries
 - **Component registry** - 103 components in `registry/`, each with complete copy-and-paste markup plus `Use` and `Avoid` guidance. Published as `components.md` for reading and `registry/index.json` for tooling. The documentation page renders the demo and the markup; the `Use` and `Avoid` guidance stays in `components.md` and the JSON index, which is what an agent reads. An agent now retrieves markup by name instead of inferring it from class names
-- **Registry gates** - The build fails when a component uses a class the framework does not define, when a public class has no registry coverage, and when the generated documentation, `components.md`, or the JSON index drift from the source files. Coverage is total: every utility and modifier class is documented, with no exemption list
+- **Registry gates** - The build fails when a component uses a class the framework does not define, when a public class has no registry coverage, when a source ships open overlay defaults, and when the generated documentation, `components.md`, or the JSON index drift from the source files. Coverage is total for public component APIs. A small furniture list (`skip-link`, version badge, and documented legacy aliases) is checked elsewhere so those classes do not need a demo
 - **`--accent-ink`** - Ink that reads on the vivid `--accent` hue. The bright accents are light, so they take dark ink; violet and slate take white. The audit enforces the pairing
 - **Native work-surface anatomy** - Page headers, section headers, panels, stat strips, semantic status badges, description lists, and app-shell navigation
 - **Typography roles** - IBM Plex Sans, Serif, and Mono with a real editorial display axis
@@ -25,6 +25,10 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ### Changed
 
 - Component demos now show the thing they name: open overlays, scrolling lists, four navbar surfaces, action button groups, richer grids, and a capped app shell in the docs frame
+- Registry sources stay closed by default; only the docs Preview path forces open states, so agents copy honest markup from `components.md`
+- `components.md` now starts with a category index so agents jump to `### name` instead of reading the whole file
+- Tabs registry markup uses real tab buttons; date and time pickers and the command palette ship visible labels for assistive tech
+- Skill install path and package CSS preference are documented so agents load a matched skill, registry, and stylesheet
 - List rows stack the title above the meta line, so labels stop running together
 - Overlay menus accept an `is-open` class so documentation and tests can show the open state without focus
 - The default direction is now coral, flat, compact, comfortable, neutral, and without ambience

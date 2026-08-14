@@ -90,10 +90,12 @@ Copy the markup as written. The class names are the API. Change the content, not
 
 ## Use with an AI agent
 
-The bundled [`skill/postrboard/SKILL.md`](skill/postrboard/SKILL.md) tells an agent how to:
+Install the skill by copying [`skill/postrboard/`](skill/postrboard/) into the agent's skills directory (for example `~/.agents/skills/postrboard/`). Prefer package CSS (`node_modules/postrboard-css/postrboard.min.css`) over the unversioned CDN so the skill, registry, and stylesheet stay on the same release.
+
+The skill tells an agent how to:
 
 - Start from who uses the screen and what they are looking at.
-- Look each part of the screen up in `components.md` and paste the markup, instead of guessing class names.
+- Open the `components.md` index, jump to each component by name, and paste the markup instead of guessing class names.
 - Pick theme options that fit the product, instead of defaulting to one look.
 - Avoid the patterns that make a page look machine-generated, and never invent fake logos, metrics, or testimonials.
 - Check hover, focus, disabled, error, empty, and loading states, plus accessibility and small screens.

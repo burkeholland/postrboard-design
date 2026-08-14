@@ -314,8 +314,9 @@ if (fs.existsSync(path.join(rootDir, 'examples'))) {
 
 const documentedClasses = selectorClasses(css);
 
-// Compatibility aliases and page furniture. Both have their own checks below,
-// so a component demo would only be noise.
+// Page furniture and documented legacy aliases. They are covered by dedicated
+// checks (skip-link, README legacy section), so registry demos would only noise.
+// This is a small furniture list, not a free pass for public component APIs.
 const docsOnlyClasses = new Set([
   'skip-link', 'version-badge',
   't-display', 't-h1', 't-h2', 't-card', 't-body', 't-meta', 't-mono',
@@ -432,6 +433,35 @@ for (const step of ['### 1. Ground', '### 2. Map', '### 3. Decide', '### 4. Buil
 }
 assertIncludes(skill, 'Use native Postrboard components before custom equivalents', 'native-component gate in skill');
 assertIncludes(skill, '## AI design tells', 'AI design tells live in the agent skill');
+assertIncludes(skill, '## Install', 'skill install section');
+assertIncludes(skill, 'skills/postrboard', 'skill install path');
+assertIncludes(skill, 'Do not read all of `components.md`', 'skill map jumps by name');
+assertIncludes(skill, 'node_modules/postrboard-css/postrboard.min.css', 'package CSS preferred in skill');
+assertIncludes(readme, 'skill/postrboard/', 'README skill install path');
+assertIncludes(readme, 'node_modules/postrboard-css', 'README prefers package CSS');
+const componentsMd = read('components.md');
+assertIncludes(componentsMd, '## Index', 'components.md index');
+assertIncludes(componentsMd, 'Do not read this file end to end', 'components.md jump guidance');
+// Closed defaults: agents copy registry HTML. Open states belong only in docs preview.
+for (const component of registryIndex.components) {
+  const html = component.html;
+  if (/\bclass="[^"]*\bis-open\b/.test(html)) {
+    fail(`${component.name} ships is-open in registry source.`);
+  }
+  if (/<details\b[^>]*\bopen\b/i.test(html)) {
+    fail(`${component.name} ships open details in registry source.`);
+  }
+  if (/drawer-toggle[\s\S]{0,120}\bchecked\b|\bchecked\b[\s\S]{0,120}drawer-toggle/i.test(html)
+      && /drawer-toggle/.test(html)) {
+    // Only fail when the drawer toggle itself is checked, not sibling checkboxes.
+    if (/<input\b[^>]*drawer-toggle[^>]*checked|<input\b[^>]*checked[^>]*drawer-toggle/i.test(html)) {
+      fail(`${component.name} ships a checked drawer-toggle in registry source.`);
+    }
+  }
+  if (/\baria-expanded="true"/i.test(html)) {
+    fail(`${component.name} ships aria-expanded="true" in registry source.`);
+  }
+}
 if (/\|\s*Ambience\s*\|[^\n]*`flat`/.test(skill) || /\|\s*Ambience\s*\|[^\n]*`flat`/.test(readme)) {
   fail('The legacy flat ambience alias is still presented as canonical.');
 }

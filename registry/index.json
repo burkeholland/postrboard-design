@@ -12,7 +12,7 @@
       "avoid": "Hiding content the user needs to complete the task in front of them.",
       "variants": [],
       "requires": [],
-      "html": "<details class=\"accordion\" open>\n  <summary>What do I still have to build in JavaScript?</summary>\n  <div class=\"accordion-body\">Focus trapping, closing on Escape, arrow-key navigation, tracking which item is selected, and screen-reader announcements. The CSS only styles these components.</div>\n</details>"
+      "html": "<details class=\"accordion\">\n  <summary>What do I still have to build in JavaScript?</summary>\n  <div class=\"accordion-body\">Focus trapping, closing on Escape, arrow-key navigation, tracking which item is selected, and screen-reader announcements. The CSS only styles these components.</div>\n</details>"
     },
     {
       "name": "alert-dialog",
@@ -26,7 +26,7 @@
         "modal"
       ],
       "note": "An alert dialog takes role=\"alertdialog\". Escape should cancel, never confirm. Focus trapping is yours to build.",
-      "html": "<a href=\"#revoke-key\" class=\"btn btn-danger\">Revoke key</a>\n<div class=\"modal modal-alert\" id=\"revoke-key\" role=\"alertdialog\" aria-labelledby=\"revoke-title\">\n  <div class=\"modal-card\">\n    <div class=\"modal-head\">\n      <span class=\"modal-icon\"><svg class=\"icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"M12 9v4\"/><path d=\"M12 17h.01\"/><path d=\"M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z\"/></svg></span>\n      <h3 class=\"modal-title\" id=\"revoke-title\">Revoke this key?</h3>\n    </div>\n    <div class=\"modal-body\">Any service using <code class=\"inline-code\">deploy-bot-prod</code> stops authenticating straight away. This cannot be undone.</div>\n    <div class=\"modal-actions\"><a class=\"btn btn-ghost\" href=\"#components\">Keep the key</a><button class=\"btn btn-danger\" type=\"button\">Revoke the key</button></div>\n  </div>\n</div>"
+      "html": "<a href=\"#revoke-key\" class=\"btn btn-danger\">Revoke key</a>\n<div class=\"modal modal-alert\" id=\"revoke-key\" role=\"alertdialog\" aria-modal=\"true\" aria-labelledby=\"revoke-title\" aria-describedby=\"revoke-body\">\n  <div class=\"modal-card\">\n    <div class=\"modal-head\">\n      <span class=\"modal-icon\"><svg class=\"icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"M12 9v4\"/><path d=\"M12 17h.01\"/><path d=\"M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z\"/></svg></span>\n      <h3 class=\"modal-title\" id=\"revoke-title\">Revoke this key?</h3>\n    </div>\n    <div class=\"modal-body\" id=\"revoke-body\">Any service using <code class=\"inline-code\">deploy-bot-prod</code> stops authenticating straight away. This cannot be undone.</div>\n    <div class=\"modal-actions\">\n      <a class=\"btn btn-ghost\" href=\"#components\">Keep the key</a>\n      <button class=\"btn btn-danger\" type=\"button\">Revoke the key</button>\n    </div>\n  </div>\n</div>"
     },
     {
       "name": "alert",
@@ -242,7 +242,7 @@
       ],
       "requires": [],
       "note": "The grid is presentation. Month changes and selection need JavaScript.",
-      "html": "<div class=\"calendar\">\n  <div class=\"calendar-head\">\n    <button class=\"icon-button\" type=\"button\" aria-label=\"Previous month\"><svg class=\"icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"m15 18-6-6 6-6\"/></svg></button>\n    <span class=\"calendar-title\">June 2026</span>\n    <button class=\"icon-button\" type=\"button\" aria-label=\"Next month\"><svg class=\"icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"m9 18 6-6-6-6\"/></svg></button>\n  </div>\n  <div class=\"calendar-grid\">\n    <span class=\"calendar-dow\">Mo</span><span class=\"calendar-dow\">Tu</span><span class=\"calendar-dow\">We</span><span class=\"calendar-dow\">Th</span><span class=\"calendar-dow\">Fr</span><span class=\"calendar-dow\">Sa</span><span class=\"calendar-dow\">Su</span>\n    <button class=\"calendar-day is-outside\" type=\"button\">31</button>\n    <button class=\"calendar-day\" type=\"button\">1</button>\n    <button class=\"calendar-day\" type=\"button\">2</button>\n    <button class=\"calendar-day\" type=\"button\">3</button>\n    <button class=\"calendar-day\" type=\"button\">4</button>\n    <button class=\"calendar-day\" type=\"button\">5</button>\n    <button class=\"calendar-day\" type=\"button\">6</button>\n    <button class=\"calendar-day\" type=\"button\">7</button>\n    <button class=\"calendar-day\" type=\"button\">8</button>\n    <button class=\"calendar-day is-today\" type=\"button\" aria-current=\"date\">9</button>\n    <button class=\"calendar-day\" type=\"button\" aria-selected=\"true\">10</button>\n    <button class=\"calendar-day\" type=\"button\">11</button>\n    <button class=\"calendar-day\" type=\"button\">12</button>\n    <button class=\"calendar-day\" type=\"button\">13</button>\n  </div>\n</div>"
+      "html": "<div class=\"calendar\">\n  <div class=\"calendar-head\">\n    <button class=\"icon-button\" type=\"button\" aria-label=\"Previous month\"><svg class=\"icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"m15 18-6-6 6-6\"/></svg></button>\n    <span class=\"calendar-title\" id=\"calendar-label\">June 2026</span>\n    <button class=\"icon-button\" type=\"button\" aria-label=\"Next month\"><svg class=\"icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"m9 18 6-6-6-6\"/></svg></button>\n  </div>\n  <div class=\"calendar-grid\" role=\"grid\" aria-labelledby=\"calendar-label\">\n    <span class=\"calendar-dow\" aria-hidden=\"true\">Mo</span><span class=\"calendar-dow\" aria-hidden=\"true\">Tu</span><span class=\"calendar-dow\" aria-hidden=\"true\">We</span><span class=\"calendar-dow\" aria-hidden=\"true\">Th</span><span class=\"calendar-dow\" aria-hidden=\"true\">Fr</span><span class=\"calendar-dow\" aria-hidden=\"true\">Sa</span><span class=\"calendar-dow\" aria-hidden=\"true\">Su</span>\n    <button class=\"calendar-day is-outside\" type=\"button\" aria-label=\"31 May 2026\">31</button>\n    <button class=\"calendar-day\" type=\"button\" aria-label=\"1 June 2026\">1</button>\n    <button class=\"calendar-day\" type=\"button\" aria-label=\"2 June 2026\">2</button>\n    <button class=\"calendar-day\" type=\"button\" aria-label=\"3 June 2026\">3</button>\n    <button class=\"calendar-day\" type=\"button\" aria-label=\"4 June 2026\">4</button>\n    <button class=\"calendar-day\" type=\"button\" aria-label=\"5 June 2026\">5</button>\n    <button class=\"calendar-day\" type=\"button\" aria-label=\"6 June 2026\">6</button>\n    <button class=\"calendar-day\" type=\"button\" aria-label=\"7 June 2026\">7</button>\n    <button class=\"calendar-day\" type=\"button\" aria-label=\"8 June 2026\">8</button>\n    <button class=\"calendar-day is-today\" type=\"button\" aria-label=\"9 June 2026, today\" aria-current=\"date\">9</button>\n    <button class=\"calendar-day is-selected\" type=\"button\" aria-label=\"10 June 2026, selected\" aria-pressed=\"true\">10</button>\n    <button class=\"calendar-day\" type=\"button\" aria-label=\"11 June 2026\">11</button>\n    <button class=\"calendar-day\" type=\"button\" aria-label=\"12 June 2026\">12</button>\n    <button class=\"calendar-day\" type=\"button\" aria-label=\"13 June 2026\">13</button>\n  </div>\n</div>"
     },
     {
       "name": "card",
@@ -312,10 +312,17 @@
       "description": "A text input with a filtered list of options beneath it.",
       "use": "Choosing one item from a set too long for a select.",
       "avoid": "Fewer than about five options. Use a radio group or a select.",
-      "variants": [],
+      "variants": [
+        {
+          "classes": [
+            "is-open"
+          ],
+          "description": "keeps the panel visible without focus, for docs and for click-to-open state"
+        }
+      ],
       "requires": [],
-      "note": "Add <code>is-open</code> to keep the list visible while the user clicks an option.",
-      "html": "<div class=\"combobox\">\n  <input class=\"input w-full\" type=\"text\" placeholder=\"Search services\" role=\"combobox\" aria-expanded=\"true\" aria-controls=\"service-list\">\n  <ul class=\"combobox-list is-open\" id=\"service-list\" role=\"listbox\">\n    <li role=\"option\">api-gateway</li>\n    <li role=\"option\" class=\"is-active\">worker-jobs</li>\n    <li role=\"option\">event-router</li>\n  </ul>\n</div>"
+      "note": "CSS can show the list on focus. Filtering, arrow keys, and committing a choice need JavaScript. Add <code>is-open</code> while the list must stay visible for a click.",
+      "html": "<div class=\"combobox\">\n  <label class=\"sr-only\" for=\"service-search\">Search services</label>\n  <input class=\"input w-full\" id=\"service-search\" type=\"text\" role=\"combobox\" aria-expanded=\"false\" aria-controls=\"service-list\" aria-autocomplete=\"list\" placeholder=\"Search services\">\n  <ul class=\"combobox-list\" id=\"service-list\" role=\"listbox\">\n    <li role=\"option\">api-gateway</li>\n    <li role=\"option\">worker-jobs</li>\n    <li role=\"option\">event-router</li>\n  </ul>\n</div>"
     },
     {
       "name": "command-palette",
@@ -326,7 +333,8 @@
       "avoid": "Adding one because it looks technical. It needs real commands behind it.",
       "variants": [],
       "requires": [],
-      "html": "<div class=\"command-palette\">\n  <input class=\"input\" type=\"text\" placeholder=\"Type a command or search\">\n  <div class=\"command-group\">\n    <div class=\"command-group-label\">Services</div>\n    <div class=\"command-item\">api-gateway <kbd>G A</kbd></div>\n    <div class=\"command-item\">worker-jobs <kbd>G W</kbd></div>\n  </div>\n</div>"
+      "note": "Filtering and keyboard selection need JavaScript.",
+      "html": "<div class=\"command-palette\" role=\"search\">\n  <label class=\"sr-only\" for=\"command-query\">Type a command or search</label>\n  <input class=\"input\" id=\"command-query\" type=\"search\" placeholder=\"Type a command or search\" autocomplete=\"off\">\n  <div class=\"command-group\">\n    <div class=\"command-group-label\" id=\"command-services-label\">Services</div>\n    <button class=\"command-item\" type=\"button\" aria-describedby=\"command-services-label\">api-gateway <kbd>G A</kbd></button>\n    <button class=\"command-item\" type=\"button\" aria-describedby=\"command-services-label\">worker-jobs <kbd>G W</kbd></button>\n  </div>\n</div>"
     },
     {
       "name": "container",
@@ -419,7 +427,7 @@
       "avoid": "Building a custom popup calendar for a plain date field. Use the calendar component only when you must render a month in place.",
       "variants": [],
       "requires": [],
-      "html": "<label class=\"picker-field\" for=\"cutover-date\">\n  <svg class=\"icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"M8 2v4\"/><path d=\"M16 2v4\"/><rect x=\"3\" y=\"4\" width=\"18\" height=\"18\" rx=\"2\"/><path d=\"M3 10h18\"/></svg>\n  <input class=\"picker-input\" id=\"cutover-date\" type=\"date\" value=\"2026-06-10\">\n</label>"
+      "html": "<label class=\"picker-field\" for=\"cutover-date\">\n  <span class=\"sr-only\">Cutover date</span>\n  <svg class=\"icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"M8 2v4\"/><path d=\"M16 2v4\"/><rect x=\"3\" y=\"4\" width=\"18\" height=\"18\" rx=\"2\"/><path d=\"M3 10h18\"/></svg>\n  <input class=\"picker-input\" id=\"cutover-date\" type=\"date\" value=\"2026-06-10\">\n</label>"
     },
     {
       "name": "description-list",
@@ -454,7 +462,7 @@
       "requires": [
         "checkbox"
       ],
-      "html": "<label class=\"btn btn-secondary\" for=\"filter-drawer\">Filters</label>\n<input class=\"drawer-toggle\" type=\"checkbox\" id=\"filter-drawer\" checked>\n<div class=\"drawer-backdrop\"></div>\n<div class=\"drawer-panel\">\n  <div class=\"drawer-head\"><h3 class=\"modal-title\">Filter revisions</h3><label class=\"close-button\" for=\"filter-drawer\" aria-label=\"Close\"><svg class=\"icon\" aria-hidden=\"true\" viewBox=\"0 0 24 24\"><path d=\"M18 6 6 18M6 6l12 12\"/></svg></label></div>\n  <div class=\"stack stack-sm\">\n    <p class=\"text-body text-muted\">Show only failed checks from the last 24 hours.</p>\n    <label class=\"checkbox\"><input type=\"checkbox\" checked> Failed only</label>\n    <label class=\"checkbox\"><input type=\"checkbox\"> Needs review</label>\n  </div>\n</div>"
+      "html": "<label class=\"btn btn-secondary\" for=\"filter-drawer\">Filters</label>\n<input class=\"drawer-toggle\" type=\"checkbox\" id=\"filter-drawer\">\n<div class=\"drawer-backdrop\"></div>\n<div class=\"drawer-panel\">\n  <div class=\"drawer-head\"><h3 class=\"modal-title\">Filter revisions</h3><label class=\"close-button\" for=\"filter-drawer\" aria-label=\"Close\"><svg class=\"icon\" aria-hidden=\"true\" viewBox=\"0 0 24 24\"><path d=\"M18 6 6 18M6 6l12 12\"/></svg></label></div>\n  <div class=\"stack stack-sm\">\n    <p class=\"text-body text-muted\">Show only failed checks from the last 24 hours.</p>\n    <label class=\"checkbox\"><input type=\"checkbox\" checked> Failed only</label>\n    <label class=\"checkbox\"><input type=\"checkbox\"> Needs review</label>\n  </div>\n</div>"
     },
     {
       "name": "dropdown",
@@ -463,7 +471,14 @@
       "description": "A menu of actions attached to a trigger.",
       "use": "Secondary actions on a row or toolbar.",
       "avoid": "Hiding the primary action in a menu.",
-      "variants": [],
+      "variants": [
+        {
+          "classes": [
+            "is-open"
+          ],
+          "description": "keeps the panel visible without focus, for docs and for click-to-open state"
+        }
+      ],
       "requires": [],
       "note": "CSS handles the open state on focus. Keyboard navigation and Escape are yours to build.",
       "html": "<div class=\"dropdown\">\n  <button class=\"btn btn-secondary btn-sm\" type=\"button\">Actions</button>\n  <div class=\"dropdown-menu\">\n    <button type=\"button\">Restart service</button>\n    <button type=\"button\">View logs</button>\n    <button type=\"button\">Roll back</button>\n  </div>\n</div>"
@@ -514,7 +529,7 @@
       "requires": [
         "accordion"
       ],
-      "html": "<div class=\"faq\">\n  <details class=\"accordion\" open>\n    <summary>Does a rollback re-run the build?</summary>\n    <div class=\"accordion-body\">No. A rollback repoints traffic at an artefact that already passed. It takes about four seconds.</div>\n  </details>\n  <details class=\"accordion\">\n    <summary>Can two people deploy at once?</summary>\n    <div class=\"accordion-body\">The queue is per environment. The second deploy waits, and the person who started it sees who is ahead of them.</div>\n  </details>\n  <details class=\"accordion\">\n    <summary>What happens to in-flight requests?</summary>\n    <div class=\"accordion-body\">The old revision keeps serving until it drains, up to 30 seconds. You can raise the limit per service.</div>\n  </details>\n</div>"
+      "html": "<div class=\"faq\">\n  <details class=\"accordion\">\n    <summary>Does a rollback re-run the build?</summary>\n    <div class=\"accordion-body\">No. A rollback repoints traffic at an artefact that already passed. It takes about four seconds.</div>\n  </details>\n  <details class=\"accordion\">\n    <summary>Can two people deploy at once?</summary>\n    <div class=\"accordion-body\">The queue is per environment. The second deploy waits, and the person who started it sees who is ahead of them.</div>\n  </details>\n  <details class=\"accordion\">\n    <summary>What happens to in-flight requests?</summary>\n    <div class=\"accordion-body\">The old revision keeps serving until it drains, up to 30 seconds. You can raise the limit per service.</div>\n  </details>\n</div>"
     },
     {
       "name": "feature-card",
@@ -713,7 +728,14 @@
       "description": "A panel of detail that opens on hover or focus.",
       "use": "Previewing the thing behind a link: a user, a commit, a service. It saves a trip.",
       "avoid": "Putting anything essential or interactive in it. It is unreachable on a touch screen, so the content must be a bonus.",
-      "variants": [],
+      "variants": [
+        {
+          "classes": [
+            "is-open"
+          ],
+          "description": "keeps the panel visible without focus, for docs and for click-to-open state"
+        }
+      ],
       "requires": [
         "badge"
       ],
@@ -869,12 +891,19 @@
       "description": "A centred dialog that blocks the page until it is resolved.",
       "use": "Confirming a destructive or irreversible action.",
       "avoid": "Modals for information. Put it on the page.",
-      "variants": [],
+      "variants": [
+        {
+          "classes": [
+            "is-active"
+          ],
+          "description": "forces the dialog open without :target, for docs and application open state"
+        }
+      ],
       "requires": [
         "button"
       ],
-      "note": "Open it with <code>:target</code> or a checkbox. Focus trapping and Escape are yours to build.",
-      "html": "<a href=\"#confirm-rollback\" class=\"btn btn-danger\">Roll back</a>\n<div class=\"modal\" id=\"confirm-rollback\">\n  <div class=\"modal-card\">\n    <div class=\"modal-head\"><h3 class=\"modal-title\">Confirm rollback</h3><button class=\"close-button\" type=\"button\" aria-label=\"Close\"><svg class=\"icon\" aria-hidden=\"true\" viewBox=\"0 0 24 24\"><path d=\"M18 6 6 18M6 6l12 12\"/></svg></button></div>\n    <div class=\"modal-body\">This reverts api-gateway to v2.8.0. Active sessions are not affected.</div>\n    <div class=\"modal-actions\"><button class=\"btn btn-ghost\" type=\"button\">Cancel</button><button class=\"btn btn-danger\" type=\"button\">Roll back</button></div>\n  </div>\n</div>"
+      "note": "Open it with <code>:target</code>, a checkbox, or application code. Focus trapping, Escape, and restoring focus are yours to build.",
+      "html": "<a href=\"#confirm-rollback\" class=\"btn btn-danger\">Roll back</a>\n<div class=\"modal\" id=\"confirm-rollback\" role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"confirm-rollback-title\">\n  <div class=\"modal-card\">\n    <div class=\"modal-head\">\n      <h3 class=\"modal-title\" id=\"confirm-rollback-title\">Confirm rollback</h3>\n      <a class=\"close-button\" href=\"#components\" aria-label=\"Close\"><svg class=\"icon\" aria-hidden=\"true\" viewBox=\"0 0 24 24\"><path d=\"M18 6 6 18M6 6l12 12\"/></svg></a>\n    </div>\n    <div class=\"modal-body\">This reverts api-gateway to v2.8.0. Active sessions are not affected.</div>\n    <div class=\"modal-actions\">\n      <a class=\"btn btn-ghost\" href=\"#components\">Cancel</a>\n      <button class=\"btn btn-danger\" type=\"button\">Roll back</button>\n    </div>\n  </div>\n</div>"
     },
     {
       "name": "nav-rail",
@@ -1000,7 +1029,14 @@
       "description": "A small panel of detail attached to a trigger.",
       "use": "Detail that would crowd the row it belongs to.",
       "avoid": "Forms. If it needs a save button, use a modal or a drawer.",
-      "variants": [],
+      "variants": [
+        {
+          "classes": [
+            "is-open"
+          ],
+          "description": "keeps the panel visible without focus, for docs and for click-to-open state"
+        }
+      ],
       "requires": [],
       "html": "<div class=\"popover\">\n  <button class=\"btn btn-secondary btn-sm\" type=\"button\">Region details</button>\n  <div class=\"popover-panel\">\n    <div class=\"popover-title\">us-east-1</div>\n    <p class=\"popover-body\">Primary region. Three availability zones.</p>\n  </div>\n</div>"
     },
@@ -1269,7 +1305,8 @@
       "avoid": "Tabs for steps in a sequence. Use a stepper.",
       "variants": [],
       "requires": [],
-      "html": "<nav class=\"tabs\" aria-label=\"Views\" role=\"tablist\">\n  <a class=\"tab\" aria-selected=\"true\" href=\"/activity\" role=\"tab\">Activity</a>\n  <a class=\"tab\" aria-selected=\"false\" href=\"/checks\" role=\"tab\">Checks</a>\n  <a class=\"tab\" aria-selected=\"false\" href=\"/settings\" role=\"tab\">Settings</a>\n</nav>"
+      "note": "Show and hide panels, and move focus with the arrow keys, in application code. This markup is the visual shell.",
+      "html": "<div class=\"tabs\" role=\"tablist\" aria-label=\"Views\">\n  <button class=\"tab\" type=\"button\" role=\"tab\" aria-selected=\"true\" id=\"tab-activity\" aria-controls=\"panel-activity\">Activity</button>\n  <button class=\"tab\" type=\"button\" role=\"tab\" aria-selected=\"false\" id=\"tab-checks\" aria-controls=\"panel-checks\" tabindex=\"-1\">Checks</button>\n  <button class=\"tab\" type=\"button\" role=\"tab\" aria-selected=\"false\" id=\"tab-settings\" aria-controls=\"panel-settings\" tabindex=\"-1\">Settings</button>\n</div>"
     },
     {
       "name": "tag",
@@ -1340,7 +1377,7 @@
       "avoid": "Using it for a duration. A duration is a number with a unit, not a clock time.",
       "variants": [],
       "requires": [],
-      "html": "<label class=\"picker-field\" for=\"cutover-time\">\n  <svg class=\"icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><path d=\"M12 6v6l4 2\"/></svg>\n  <input class=\"picker-input\" id=\"cutover-time\" type=\"time\" value=\"14:30\">\n</label>"
+      "html": "<label class=\"picker-field\" for=\"cutover-time\">\n  <span class=\"sr-only\">Cutover time</span>\n  <svg class=\"icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><path d=\"M12 6v6l4 2\"/></svg>\n  <input class=\"picker-input\" id=\"cutover-time\" type=\"time\" value=\"14:30\">\n</label>"
     },
     {
       "name": "timeline",
@@ -1385,7 +1422,14 @@
       "description": "A short hint attached to a control, shown on hover and focus.",
       "use": "Explaining an icon-only control or an abbreviated value.",
       "avoid": "Essential information. Tooltips are invisible on touch devices.",
-      "variants": [],
+      "variants": [
+        {
+          "classes": [
+            "is-open"
+          ],
+          "description": "keeps the panel visible without focus, for docs and for click-to-open state"
+        }
+      ],
       "requires": [],
       "html": "<span class=\"tooltip\" data-tip=\"Last deployed 12 minutes ago\">\n  <button class=\"icon-button\" type=\"button\" aria-label=\"Deployment info\">\n    <svg class=\"icon\" aria-hidden=\"true\" viewBox=\"0 0 24 24\"><circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M12 16v-4M12 8h.01\"/></svg>\n  </button>\n</span>"
     },

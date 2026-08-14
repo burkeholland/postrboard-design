@@ -6,6 +6,22 @@ Copy the markup as written. The classes are the API. Variance belongs in the the
 axes (`data-accent`, `data-surface`, `data-geometry`, `data-density`, `data-type`,
 `data-ambient`) and in which components you compose, not in reinvented markup.
 
+Do not read this file end to end. Use the index, jump to `### name`, and paste.
+
+## Index
+
+- **Layout:** `app-shell`, `container`, `footer`, `grid-asymmetric`, `grid-auto`, `grid-centered`, `grid-holy-grail`, `grid-masonry`, `grid-sidebar`, `grid-split`, `grid-stack-rail`, `grid-thirds`, `scroll-area`, `stack`
+- **Actions:** `button-group`, `button`, `fab`, `icon-button`
+- **Forms:** `auth-card`, `checkbox`, `date-picker`, `dropzone`, `floating-label`, `form`, `input-group`, `input-validation`, `input`, `otp-input`, `radio`, `range`, `segmented-control`, `select`, `switch`, `textarea`, `time-picker`
+- **Surfaces:** `accordion`, `card`, `divider`, `page-header`, `panel`, `section-header`
+- **Data:** `avatar-group`, `avatar`, `badge`, `calendar`, `chart`, `data-table`, `description-list`, `list-group`, `sortable-table`, `stat-card`, `stat-strip`, `styled-list`, `tag`, `timeline`
+- **Navigation:** `breadcrumb`, `nav-rail`, `navbar`, `pagination`, `sidebar-nav`, `stepper`, `tabs`
+- **Feedback:** `alert`, `banner`, `empty-state`, `progress`, `skeleton`, `spinner`, `toast-region`, `toast`
+- **Overlays:** `alert-dialog`, `combobox`, `command-palette`, `context-menu`, `drawer`, `dropdown`, `hover-card`, `modal`, `popover`, `tooltip`
+- **Content:** `aspect-ratio`, `cmd-pill`, `figure`, `frame`, `icon`, `inline-code`, `media-embed`, `quote-block`, `terminal`, `type`
+- **Marketing:** `cta-band`, `faq`, `feature-card`, `logo-cloud`, `newsletter`, `pricing-card`, `testimonial-card`
+- **Utilities:** `utility-layout`, `utility-responsive`, `utility-sizing`, `utility-spacing`, `utility-surface`, `utility-text`
+
 ## Layout
 
 ### app-shell
@@ -523,6 +539,7 @@ A native date input in a framed field with a leading icon.
 
 ```html
 <label class="picker-field" for="cutover-date">
+  <span class="sr-only">Cutover date</span>
   <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M8 2v4"/><path d="M16 2v4"/><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M3 10h18"/></svg>
   <input class="picker-input" id="cutover-date" type="date" value="2026-06-10">
 </label>
@@ -750,6 +767,7 @@ A native time input in the same framed field as the date picker.
 
 ```html
 <label class="picker-field" for="cutover-time">
+  <span class="sr-only">Cutover time</span>
   <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
   <input class="picker-input" id="cutover-time" type="time" value="14:30">
 </label>
@@ -765,7 +783,7 @@ Native details and summary styled as a disclosure row.
 - **Avoid:** Hiding content the user needs to complete the task in front of them.
 
 ```html
-<details class="accordion" open>
+<details class="accordion">
   <summary>What do I still have to build in JavaScript?</summary>
   <div class="accordion-body">Focus trapping, closing on Escape, arrow-key navigation, tracking which item is selected, and screen-reader announcements. The CSS only styles these components.</div>
 </details>
@@ -932,25 +950,25 @@ A month grid with today, selection, and adjacent-month days.
 <div class="calendar">
   <div class="calendar-head">
     <button class="icon-button" type="button" aria-label="Previous month"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
-    <span class="calendar-title">June 2026</span>
+    <span class="calendar-title" id="calendar-label">June 2026</span>
     <button class="icon-button" type="button" aria-label="Next month"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
   </div>
-  <div class="calendar-grid">
-    <span class="calendar-dow">Mo</span><span class="calendar-dow">Tu</span><span class="calendar-dow">We</span><span class="calendar-dow">Th</span><span class="calendar-dow">Fr</span><span class="calendar-dow">Sa</span><span class="calendar-dow">Su</span>
-    <button class="calendar-day is-outside" type="button">31</button>
-    <button class="calendar-day" type="button">1</button>
-    <button class="calendar-day" type="button">2</button>
-    <button class="calendar-day" type="button">3</button>
-    <button class="calendar-day" type="button">4</button>
-    <button class="calendar-day" type="button">5</button>
-    <button class="calendar-day" type="button">6</button>
-    <button class="calendar-day" type="button">7</button>
-    <button class="calendar-day" type="button">8</button>
-    <button class="calendar-day is-today" type="button" aria-current="date">9</button>
-    <button class="calendar-day" type="button" aria-selected="true">10</button>
-    <button class="calendar-day" type="button">11</button>
-    <button class="calendar-day" type="button">12</button>
-    <button class="calendar-day" type="button">13</button>
+  <div class="calendar-grid" role="grid" aria-labelledby="calendar-label">
+    <span class="calendar-dow" aria-hidden="true">Mo</span><span class="calendar-dow" aria-hidden="true">Tu</span><span class="calendar-dow" aria-hidden="true">We</span><span class="calendar-dow" aria-hidden="true">Th</span><span class="calendar-dow" aria-hidden="true">Fr</span><span class="calendar-dow" aria-hidden="true">Sa</span><span class="calendar-dow" aria-hidden="true">Su</span>
+    <button class="calendar-day is-outside" type="button" aria-label="31 May 2026">31</button>
+    <button class="calendar-day" type="button" aria-label="1 June 2026">1</button>
+    <button class="calendar-day" type="button" aria-label="2 June 2026">2</button>
+    <button class="calendar-day" type="button" aria-label="3 June 2026">3</button>
+    <button class="calendar-day" type="button" aria-label="4 June 2026">4</button>
+    <button class="calendar-day" type="button" aria-label="5 June 2026">5</button>
+    <button class="calendar-day" type="button" aria-label="6 June 2026">6</button>
+    <button class="calendar-day" type="button" aria-label="7 June 2026">7</button>
+    <button class="calendar-day" type="button" aria-label="8 June 2026">8</button>
+    <button class="calendar-day is-today" type="button" aria-label="9 June 2026, today" aria-current="date">9</button>
+    <button class="calendar-day is-selected" type="button" aria-label="10 June 2026, selected" aria-pressed="true">10</button>
+    <button class="calendar-day" type="button" aria-label="11 June 2026">11</button>
+    <button class="calendar-day" type="button" aria-label="12 June 2026">12</button>
+    <button class="calendar-day" type="button" aria-label="13 June 2026">13</button>
   </div>
 </div>
 ```
@@ -1308,13 +1326,14 @@ Switching between views of the same object.
 
 - **Use:** Two to six views that share one context.
 - **Avoid:** Tabs for steps in a sequence. Use a stepper.
+- **Note:** Show and hide panels, and move focus with the arrow keys, in application code. This markup is the visual shell.
 
 ```html
-<nav class="tabs" aria-label="Views" role="tablist">
-  <a class="tab" aria-selected="true" href="/activity" role="tab">Activity</a>
-  <a class="tab" aria-selected="false" href="/checks" role="tab">Checks</a>
-  <a class="tab" aria-selected="false" href="/settings" role="tab">Settings</a>
-</nav>
+<div class="tabs" role="tablist" aria-label="Views">
+  <button class="tab" type="button" role="tab" aria-selected="true" id="tab-activity" aria-controls="panel-activity">Activity</button>
+  <button class="tab" type="button" role="tab" aria-selected="false" id="tab-checks" aria-controls="panel-checks" tabindex="-1">Checks</button>
+  <button class="tab" type="button" role="tab" aria-selected="false" id="tab-settings" aria-controls="panel-settings" tabindex="-1">Settings</button>
+</div>
 ```
 
 ## Feedback
@@ -1468,14 +1487,17 @@ A modal that asks a person to confirm something they cannot undo.
 
 ```html
 <a href="#revoke-key" class="btn btn-danger">Revoke key</a>
-<div class="modal modal-alert" id="revoke-key" role="alertdialog" aria-labelledby="revoke-title">
+<div class="modal modal-alert" id="revoke-key" role="alertdialog" aria-modal="true" aria-labelledby="revoke-title" aria-describedby="revoke-body">
   <div class="modal-card">
     <div class="modal-head">
       <span class="modal-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg></span>
       <h3 class="modal-title" id="revoke-title">Revoke this key?</h3>
     </div>
-    <div class="modal-body">Any service using <code class="inline-code">deploy-bot-prod</code> stops authenticating straight away. This cannot be undone.</div>
-    <div class="modal-actions"><a class="btn btn-ghost" href="#components">Keep the key</a><button class="btn btn-danger" type="button">Revoke the key</button></div>
+    <div class="modal-body" id="revoke-body">Any service using <code class="inline-code">deploy-bot-prod</code> stops authenticating straight away. This cannot be undone.</div>
+    <div class="modal-actions">
+      <a class="btn btn-ghost" href="#components">Keep the key</a>
+      <button class="btn btn-danger" type="button">Revoke the key</button>
+    </div>
   </div>
 </div>
 ```
@@ -1486,14 +1508,16 @@ A text input with a filtered list of options beneath it.
 
 - **Use:** Choosing one item from a set too long for a select.
 - **Avoid:** Fewer than about five options. Use a radio group or a select.
-- **Note:** Add <code>is-open</code> to keep the list visible while the user clicks an option.
+- **`.is-open`:** keeps the panel visible without focus, for docs and for click-to-open state
+- **Note:** CSS can show the list on focus. Filtering, arrow keys, and committing a choice need JavaScript. Add <code>is-open</code> while the list must stay visible for a click.
 
 ```html
 <div class="combobox">
-  <input class="input w-full" type="text" placeholder="Search services" role="combobox" aria-expanded="true" aria-controls="service-list">
-  <ul class="combobox-list is-open" id="service-list" role="listbox">
+  <label class="sr-only" for="service-search">Search services</label>
+  <input class="input w-full" id="service-search" type="text" role="combobox" aria-expanded="false" aria-controls="service-list" aria-autocomplete="list" placeholder="Search services">
+  <ul class="combobox-list" id="service-list" role="listbox">
     <li role="option">api-gateway</li>
-    <li role="option" class="is-active">worker-jobs</li>
+    <li role="option">worker-jobs</li>
     <li role="option">event-router</li>
   </ul>
 </div>
@@ -1505,14 +1529,16 @@ A keyboard-first search over commands and objects.
 
 - **Use:** Products where power users navigate faster than they click.
 - **Avoid:** Adding one because it looks technical. It needs real commands behind it.
+- **Note:** Filtering and keyboard selection need JavaScript.
 
 ```html
-<div class="command-palette">
-  <input class="input" type="text" placeholder="Type a command or search">
+<div class="command-palette" role="search">
+  <label class="sr-only" for="command-query">Type a command or search</label>
+  <input class="input" id="command-query" type="search" placeholder="Type a command or search" autocomplete="off">
   <div class="command-group">
-    <div class="command-group-label">Services</div>
-    <div class="command-item">api-gateway <kbd>G A</kbd></div>
-    <div class="command-item">worker-jobs <kbd>G W</kbd></div>
+    <div class="command-group-label" id="command-services-label">Services</div>
+    <button class="command-item" type="button" aria-describedby="command-services-label">api-gateway <kbd>G A</kbd></button>
+    <button class="command-item" type="button" aria-describedby="command-services-label">worker-jobs <kbd>G W</kbd></button>
   </div>
 </div>
 ```
@@ -1555,7 +1581,7 @@ A panel that slides in from the edge, driven by a checkbox toggle.
 
 ```html
 <label class="btn btn-secondary" for="filter-drawer">Filters</label>
-<input class="drawer-toggle" type="checkbox" id="filter-drawer" checked>
+<input class="drawer-toggle" type="checkbox" id="filter-drawer">
 <div class="drawer-backdrop"></div>
 <div class="drawer-panel">
   <div class="drawer-head"><h3 class="modal-title">Filter revisions</h3><label class="close-button" for="filter-drawer" aria-label="Close"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></label></div>
@@ -1573,6 +1599,7 @@ A menu of actions attached to a trigger.
 
 - **Use:** Secondary actions on a row or toolbar.
 - **Avoid:** Hiding the primary action in a menu.
+- **`.is-open`:** keeps the panel visible without focus, for docs and for click-to-open state
 - **Note:** CSS handles the open state on focus. Keyboard navigation and Escape are yours to build.
 
 ```html
@@ -1592,6 +1619,7 @@ A panel of detail that opens on hover or focus.
 
 - **Use:** Previewing the thing behind a link: a user, a commit, a service. It saves a trip.
 - **Avoid:** Putting anything essential or interactive in it. It is unreachable on a touch screen, so the content must be a bonus.
+- **`.is-open`:** keeps the panel visible without focus, for docs and for click-to-open state
 - **Requires:** badge
 - **Note:** Opens on hover and on focus-within, so keyboard users get it too.
 
@@ -1614,16 +1642,23 @@ A centred dialog that blocks the page until it is resolved.
 
 - **Use:** Confirming a destructive or irreversible action.
 - **Avoid:** Modals for information. Put it on the page.
+- **`.is-active`:** forces the dialog open without :target, for docs and application open state
 - **Requires:** button
-- **Note:** Open it with <code>:target</code> or a checkbox. Focus trapping and Escape are yours to build.
+- **Note:** Open it with <code>:target</code>, a checkbox, or application code. Focus trapping, Escape, and restoring focus are yours to build.
 
 ```html
 <a href="#confirm-rollback" class="btn btn-danger">Roll back</a>
-<div class="modal" id="confirm-rollback">
+<div class="modal" id="confirm-rollback" role="dialog" aria-modal="true" aria-labelledby="confirm-rollback-title">
   <div class="modal-card">
-    <div class="modal-head"><h3 class="modal-title">Confirm rollback</h3><button class="close-button" type="button" aria-label="Close"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+    <div class="modal-head">
+      <h3 class="modal-title" id="confirm-rollback-title">Confirm rollback</h3>
+      <a class="close-button" href="#components" aria-label="Close"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></a>
+    </div>
     <div class="modal-body">This reverts api-gateway to v2.8.0. Active sessions are not affected.</div>
-    <div class="modal-actions"><button class="btn btn-ghost" type="button">Cancel</button><button class="btn btn-danger" type="button">Roll back</button></div>
+    <div class="modal-actions">
+      <a class="btn btn-ghost" href="#components">Cancel</a>
+      <button class="btn btn-danger" type="button">Roll back</button>
+    </div>
   </div>
 </div>
 ```
@@ -1634,6 +1669,7 @@ A small panel of detail attached to a trigger.
 
 - **Use:** Detail that would crowd the row it belongs to.
 - **Avoid:** Forms. If it needs a save button, use a modal or a drawer.
+- **`.is-open`:** keeps the panel visible without focus, for docs and for click-to-open state
 
 ```html
 <div class="popover">
@@ -1651,6 +1687,7 @@ A short hint attached to a control, shown on hover and focus.
 
 - **Use:** Explaining an icon-only control or an abbreviated value.
 - **Avoid:** Essential information. Tooltips are invisible on touch devices.
+- **`.is-open`:** keeps the panel visible without focus, for docs and for click-to-open state
 
 ```html
 <span class="tooltip" data-tip="Last deployed 12 minutes ago">
@@ -1847,7 +1884,7 @@ A stack of accordions for real, repeated questions.
 
 ```html
 <div class="faq">
-  <details class="accordion" open>
+  <details class="accordion">
     <summary>Does a rollback re-run the build?</summary>
     <div class="accordion-body">No. A rollback repoints traffic at an artefact that already passed. It takes about four seconds.</div>
   </details>

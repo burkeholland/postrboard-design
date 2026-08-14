@@ -1625,12 +1625,14 @@
               </div>
               <div class="demo-panel demo-panel-preview">
                 <label class="picker-field" for="date-picker-cutover-date">
+                  <span class="sr-only">Cutover date</span>
                   <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M8 2v4"/><path d="M16 2v4"/><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M3 10h18"/></svg>
                   <input class="picker-input" id="date-picker-cutover-date" type="date" value="2026-06-10">
                 </label>
               </div>
               <div class="demo-panel demo-panel-markup">
                 <pre class="code-sample"><code>&lt;label class="picker-field" for="cutover-date"&gt;
+  &lt;span class="sr-only"&gt;Cutover date&lt;/span&gt;
   &lt;svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"&gt;&lt;path d="M8 2v4"/&gt;&lt;path d="M16 2v4"/&gt;&lt;rect x="3" y="4" width="18" height="18" rx="2"/&gt;&lt;path d="M3 10h18"/&gt;&lt;/svg&gt;
   &lt;input class="picker-input" id="cutover-date" type="date" value="2026-06-10"&gt;
 &lt;/label&gt;</code></pre>
@@ -2016,12 +2018,14 @@
               </div>
               <div class="demo-panel demo-panel-preview">
                 <label class="picker-field" for="time-picker-cutover-time">
+                  <span class="sr-only">Cutover time</span>
                   <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
                   <input class="picker-input" id="time-picker-cutover-time" type="time" value="14:30">
                 </label>
               </div>
               <div class="demo-panel demo-panel-markup">
                 <pre class="code-sample"><code>&lt;label class="picker-field" for="cutover-time"&gt;
+  &lt;span class="sr-only"&gt;Cutover time&lt;/span&gt;
   &lt;svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;path d="M12 6v6l4 2"/&gt;&lt;/svg&gt;
   &lt;input class="picker-input" id="cutover-time" type="time" value="14:30"&gt;
 &lt;/label&gt;</code></pre>
@@ -2048,7 +2052,7 @@
                 </details>
               </div>
               <div class="demo-panel demo-panel-markup">
-                <pre class="code-sample"><code>&lt;details class="accordion" open&gt;
+                <pre class="code-sample"><code>&lt;details class="accordion"&gt;
   &lt;summary&gt;What do I still have to build in JavaScript?&lt;/summary&gt;
   &lt;div class="accordion-body"&gt;Focus trapping, closing on Escape, arrow-key navigation, tracking which item is selected, and screen-reader announcements. The CSS only styles these components.&lt;/div&gt;
 &lt;/details&gt;</code></pre>
@@ -2310,25 +2314,25 @@
                 <div class="calendar">
                   <div class="calendar-head">
                     <button class="icon-button" type="button" aria-label="Previous month"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
-                    <span class="calendar-title">June 2026</span>
+                    <span class="calendar-title" id="calendar-calendar-label">June 2026</span>
                     <button class="icon-button" type="button" aria-label="Next month"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
                   </div>
-                  <div class="calendar-grid">
-                    <span class="calendar-dow">Mo</span><span class="calendar-dow">Tu</span><span class="calendar-dow">We</span><span class="calendar-dow">Th</span><span class="calendar-dow">Fr</span><span class="calendar-dow">Sa</span><span class="calendar-dow">Su</span>
-                    <button class="calendar-day is-outside" type="button">31</button>
-                    <button class="calendar-day" type="button">1</button>
-                    <button class="calendar-day" type="button">2</button>
-                    <button class="calendar-day" type="button">3</button>
-                    <button class="calendar-day" type="button">4</button>
-                    <button class="calendar-day" type="button">5</button>
-                    <button class="calendar-day" type="button">6</button>
-                    <button class="calendar-day" type="button">7</button>
-                    <button class="calendar-day" type="button">8</button>
-                    <button class="calendar-day is-today" type="button" aria-current="date">9</button>
-                    <button class="calendar-day" type="button" aria-selected="true">10</button>
-                    <button class="calendar-day" type="button">11</button>
-                    <button class="calendar-day" type="button">12</button>
-                    <button class="calendar-day" type="button">13</button>
+                  <div class="calendar-grid" role="grid" aria-labelledby="calendar-calendar-label">
+                    <span class="calendar-dow" aria-hidden="true">Mo</span><span class="calendar-dow" aria-hidden="true">Tu</span><span class="calendar-dow" aria-hidden="true">We</span><span class="calendar-dow" aria-hidden="true">Th</span><span class="calendar-dow" aria-hidden="true">Fr</span><span class="calendar-dow" aria-hidden="true">Sa</span><span class="calendar-dow" aria-hidden="true">Su</span>
+                    <button class="calendar-day is-outside" type="button" aria-label="31 May 2026">31</button>
+                    <button class="calendar-day" type="button" aria-label="1 June 2026">1</button>
+                    <button class="calendar-day" type="button" aria-label="2 June 2026">2</button>
+                    <button class="calendar-day" type="button" aria-label="3 June 2026">3</button>
+                    <button class="calendar-day" type="button" aria-label="4 June 2026">4</button>
+                    <button class="calendar-day" type="button" aria-label="5 June 2026">5</button>
+                    <button class="calendar-day" type="button" aria-label="6 June 2026">6</button>
+                    <button class="calendar-day" type="button" aria-label="7 June 2026">7</button>
+                    <button class="calendar-day" type="button" aria-label="8 June 2026">8</button>
+                    <button class="calendar-day is-today" type="button" aria-label="9 June 2026, today" aria-current="date">9</button>
+                    <button class="calendar-day is-selected" type="button" aria-label="10 June 2026, selected" aria-pressed="true">10</button>
+                    <button class="calendar-day" type="button" aria-label="11 June 2026">11</button>
+                    <button class="calendar-day" type="button" aria-label="12 June 2026">12</button>
+                    <button class="calendar-day" type="button" aria-label="13 June 2026">13</button>
                   </div>
                 </div>
                 <p class="text-meta">The grid is presentation. Month changes and selection need JavaScript.</p>
@@ -2337,25 +2341,25 @@
                 <pre class="code-sample"><code>&lt;div class="calendar"&gt;
   &lt;div class="calendar-head"&gt;
     &lt;button class="icon-button" type="button" aria-label="Previous month"&gt;&lt;svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"&gt;&lt;path d="m15 18-6-6 6-6"/&gt;&lt;/svg&gt;&lt;/button&gt;
-    &lt;span class="calendar-title"&gt;June 2026&lt;/span&gt;
+    &lt;span class="calendar-title" id="calendar-label"&gt;June 2026&lt;/span&gt;
     &lt;button class="icon-button" type="button" aria-label="Next month"&gt;&lt;svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"&gt;&lt;path d="m9 18 6-6-6-6"/&gt;&lt;/svg&gt;&lt;/button&gt;
   &lt;/div&gt;
-  &lt;div class="calendar-grid"&gt;
-    &lt;span class="calendar-dow"&gt;Mo&lt;/span&gt;&lt;span class="calendar-dow"&gt;Tu&lt;/span&gt;&lt;span class="calendar-dow"&gt;We&lt;/span&gt;&lt;span class="calendar-dow"&gt;Th&lt;/span&gt;&lt;span class="calendar-dow"&gt;Fr&lt;/span&gt;&lt;span class="calendar-dow"&gt;Sa&lt;/span&gt;&lt;span class="calendar-dow"&gt;Su&lt;/span&gt;
-    &lt;button class="calendar-day is-outside" type="button"&gt;31&lt;/button&gt;
-    &lt;button class="calendar-day" type="button"&gt;1&lt;/button&gt;
-    &lt;button class="calendar-day" type="button"&gt;2&lt;/button&gt;
-    &lt;button class="calendar-day" type="button"&gt;3&lt;/button&gt;
-    &lt;button class="calendar-day" type="button"&gt;4&lt;/button&gt;
-    &lt;button class="calendar-day" type="button"&gt;5&lt;/button&gt;
-    &lt;button class="calendar-day" type="button"&gt;6&lt;/button&gt;
-    &lt;button class="calendar-day" type="button"&gt;7&lt;/button&gt;
-    &lt;button class="calendar-day" type="button"&gt;8&lt;/button&gt;
-    &lt;button class="calendar-day is-today" type="button" aria-current="date"&gt;9&lt;/button&gt;
-    &lt;button class="calendar-day" type="button" aria-selected="true"&gt;10&lt;/button&gt;
-    &lt;button class="calendar-day" type="button"&gt;11&lt;/button&gt;
-    &lt;button class="calendar-day" type="button"&gt;12&lt;/button&gt;
-    &lt;button class="calendar-day" type="button"&gt;13&lt;/button&gt;
+  &lt;div class="calendar-grid" role="grid" aria-labelledby="calendar-label"&gt;
+    &lt;span class="calendar-dow" aria-hidden="true"&gt;Mo&lt;/span&gt;&lt;span class="calendar-dow" aria-hidden="true"&gt;Tu&lt;/span&gt;&lt;span class="calendar-dow" aria-hidden="true"&gt;We&lt;/span&gt;&lt;span class="calendar-dow" aria-hidden="true"&gt;Th&lt;/span&gt;&lt;span class="calendar-dow" aria-hidden="true"&gt;Fr&lt;/span&gt;&lt;span class="calendar-dow" aria-hidden="true"&gt;Sa&lt;/span&gt;&lt;span class="calendar-dow" aria-hidden="true"&gt;Su&lt;/span&gt;
+    &lt;button class="calendar-day is-outside" type="button" aria-label="31 May 2026"&gt;31&lt;/button&gt;
+    &lt;button class="calendar-day" type="button" aria-label="1 June 2026"&gt;1&lt;/button&gt;
+    &lt;button class="calendar-day" type="button" aria-label="2 June 2026"&gt;2&lt;/button&gt;
+    &lt;button class="calendar-day" type="button" aria-label="3 June 2026"&gt;3&lt;/button&gt;
+    &lt;button class="calendar-day" type="button" aria-label="4 June 2026"&gt;4&lt;/button&gt;
+    &lt;button class="calendar-day" type="button" aria-label="5 June 2026"&gt;5&lt;/button&gt;
+    &lt;button class="calendar-day" type="button" aria-label="6 June 2026"&gt;6&lt;/button&gt;
+    &lt;button class="calendar-day" type="button" aria-label="7 June 2026"&gt;7&lt;/button&gt;
+    &lt;button class="calendar-day" type="button" aria-label="8 June 2026"&gt;8&lt;/button&gt;
+    &lt;button class="calendar-day is-today" type="button" aria-label="9 June 2026, today" aria-current="date"&gt;9&lt;/button&gt;
+    &lt;button class="calendar-day is-selected" type="button" aria-label="10 June 2026, selected" aria-pressed="true"&gt;10&lt;/button&gt;
+    &lt;button class="calendar-day" type="button" aria-label="11 June 2026"&gt;11&lt;/button&gt;
+    &lt;button class="calendar-day" type="button" aria-label="12 June 2026"&gt;12&lt;/button&gt;
+    &lt;button class="calendar-day" type="button" aria-label="13 June 2026"&gt;13&lt;/button&gt;
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
               </div>
@@ -2976,18 +2980,19 @@
                 <input class="demo-switch-markup" type="radio" name="sw-tabs" id="sw-tabs-markup"><label class="tab" for="sw-tabs-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
-                <nav class="tabs" aria-label="Views" role="tablist">
-                  <a class="tab" aria-selected="true" href="#components" role="tab">Activity</a>
-                  <a class="tab" aria-selected="false" href="#components" role="tab">Checks</a>
-                  <a class="tab" aria-selected="false" href="#components" role="tab">Settings</a>
-                </nav>
+                <div class="tabs" role="tablist" aria-label="Views">
+                  <button class="tab" type="button" role="tab" aria-selected="true" id="tabs-tab-activity" aria-controls="panel-activity">Activity</button>
+                  <button class="tab" type="button" role="tab" aria-selected="false" id="tabs-tab-checks" aria-controls="panel-checks" tabindex="-1">Checks</button>
+                  <button class="tab" type="button" role="tab" aria-selected="false" id="tabs-tab-settings" aria-controls="panel-settings" tabindex="-1">Settings</button>
+                </div>
+                <p class="text-meta">Show and hide panels, and move focus with the arrow keys, in application code. This markup is the visual shell.</p>
               </div>
               <div class="demo-panel demo-panel-markup">
-                <pre class="code-sample"><code>&lt;nav class="tabs" aria-label="Views" role="tablist"&gt;
-  &lt;a class="tab" aria-selected="true" href="/activity" role="tab"&gt;Activity&lt;/a&gt;
-  &lt;a class="tab" aria-selected="false" href="/checks" role="tab"&gt;Checks&lt;/a&gt;
-  &lt;a class="tab" aria-selected="false" href="/settings" role="tab"&gt;Settings&lt;/a&gt;
-&lt;/nav&gt;</code></pre>
+                <pre class="code-sample"><code>&lt;div class="tabs" role="tablist" aria-label="Views"&gt;
+  &lt;button class="tab" type="button" role="tab" aria-selected="true" id="tab-activity" aria-controls="panel-activity"&gt;Activity&lt;/button&gt;
+  &lt;button class="tab" type="button" role="tab" aria-selected="false" id="tab-checks" aria-controls="panel-checks" tabindex="-1"&gt;Checks&lt;/button&gt;
+  &lt;button class="tab" type="button" role="tab" aria-selected="false" id="tab-settings" aria-controls="panel-settings" tabindex="-1"&gt;Settings&lt;/button&gt;
+&lt;/div&gt;</code></pre>
               </div>
             </div>
           </article>
@@ -3246,14 +3251,17 @@
               <div class="demo-panel demo-panel-preview">
                 <div class="demo-stage">
                   <a href="#alert-dialog-revoke-key" class="btn btn-danger">Revoke key</a>
-                  <div class="modal modal-alert is-active" id="alert-dialog-revoke-key" role="alertdialog" aria-labelledby="alert-dialog-revoke-title">
+                  <div class="modal modal-alert is-active" id="alert-dialog-revoke-key" role="alertdialog" aria-modal="true" aria-labelledby="alert-dialog-revoke-title" aria-describedby="alert-dialog-revoke-body">
                     <div class="modal-card">
                       <div class="modal-head">
                         <span class="modal-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg></span>
                         <h3 class="modal-title" id="alert-dialog-revoke-title">Revoke this key?</h3>
                       </div>
-                      <div class="modal-body">Any service using <code class="inline-code">deploy-bot-prod</code> stops authenticating straight away. This cannot be undone.</div>
-                      <div class="modal-actions"><a class="btn btn-ghost" href="#components">Keep the key</a><button class="btn btn-danger" type="button">Revoke the key</button></div>
+                      <div class="modal-body" id="alert-dialog-revoke-body">Any service using <code class="inline-code">deploy-bot-prod</code> stops authenticating straight away. This cannot be undone.</div>
+                      <div class="modal-actions">
+                        <a class="btn btn-ghost" href="#components">Keep the key</a>
+                        <button class="btn btn-danger" type="button">Revoke the key</button>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -3261,14 +3269,17 @@
               </div>
               <div class="demo-panel demo-panel-markup">
                 <pre class="code-sample"><code>&lt;a href="#revoke-key" class="btn btn-danger"&gt;Revoke key&lt;/a&gt;
-&lt;div class="modal modal-alert" id="revoke-key" role="alertdialog" aria-labelledby="revoke-title"&gt;
+&lt;div class="modal modal-alert" id="revoke-key" role="alertdialog" aria-modal="true" aria-labelledby="revoke-title" aria-describedby="revoke-body"&gt;
   &lt;div class="modal-card"&gt;
     &lt;div class="modal-head"&gt;
       &lt;span class="modal-icon"&gt;&lt;svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"&gt;&lt;path d="M12 9v4"/&gt;&lt;path d="M12 17h.01"/&gt;&lt;path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/&gt;&lt;/svg&gt;&lt;/span&gt;
       &lt;h3 class="modal-title" id="revoke-title"&gt;Revoke this key?&lt;/h3&gt;
     &lt;/div&gt;
-    &lt;div class="modal-body"&gt;Any service using &lt;code class="inline-code"&gt;deploy-bot-prod&lt;/code&gt; stops authenticating straight away. This cannot be undone.&lt;/div&gt;
-    &lt;div class="modal-actions"&gt;&lt;a class="btn btn-ghost" href="#components"&gt;Keep the key&lt;/a&gt;&lt;button class="btn btn-danger" type="button"&gt;Revoke the key&lt;/button&gt;&lt;/div&gt;
+    &lt;div class="modal-body" id="revoke-body"&gt;Any service using &lt;code class="inline-code"&gt;deploy-bot-prod&lt;/code&gt; stops authenticating straight away. This cannot be undone.&lt;/div&gt;
+    &lt;div class="modal-actions"&gt;
+      &lt;a class="btn btn-ghost" href="#components"&gt;Keep the key&lt;/a&gt;
+      &lt;button class="btn btn-danger" type="button"&gt;Revoke the key&lt;/button&gt;
+    &lt;/div&gt;
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
               </div>
@@ -3287,22 +3298,24 @@
               <div class="demo-panel demo-panel-preview">
                 <div class="demo-combobox">
                   <div class="combobox">
-                    <input class="input w-full" type="text" placeholder="Search services" role="combobox" aria-expanded="true" aria-controls="combobox-service-list">
+                    <label class="sr-only" for="combobox-service-search">Search services</label>
+                    <input class="input w-full" id="combobox-service-search" type="text" role="combobox" aria-expanded="true" aria-controls="combobox-service-list" aria-autocomplete="list" placeholder="Search services">
                     <ul class="combobox-list is-open" id="combobox-service-list" role="listbox">
                       <li role="option">api-gateway</li>
-                      <li role="option" class="is-active">worker-jobs</li>
+                      <li role="option">worker-jobs</li>
                       <li role="option">event-router</li>
                     </ul>
                   </div>
                 </div>
-                <p class="text-meta">Add <code>is-open</code> to keep the list visible while the user clicks an option.</p>
+                <p class="text-meta">CSS can show the list on focus. Filtering, arrow keys, and committing a choice need JavaScript. Add <code>is-open</code> while the list must stay visible for a click.</p>
               </div>
               <div class="demo-panel demo-panel-markup">
                 <pre class="code-sample"><code>&lt;div class="combobox"&gt;
-  &lt;input class="input w-full" type="text" placeholder="Search services" role="combobox" aria-expanded="true" aria-controls="service-list"&gt;
-  &lt;ul class="combobox-list is-open" id="service-list" role="listbox"&gt;
+  &lt;label class="sr-only" for="service-search"&gt;Search services&lt;/label&gt;
+  &lt;input class="input w-full" id="service-search" type="text" role="combobox" aria-expanded="false" aria-controls="service-list" aria-autocomplete="list" placeholder="Search services"&gt;
+  &lt;ul class="combobox-list" id="service-list" role="listbox"&gt;
     &lt;li role="option"&gt;api-gateway&lt;/li&gt;
-    &lt;li role="option" class="is-active"&gt;worker-jobs&lt;/li&gt;
+    &lt;li role="option"&gt;worker-jobs&lt;/li&gt;
     &lt;li role="option"&gt;event-router&lt;/li&gt;
   &lt;/ul&gt;
 &lt;/div&gt;</code></pre>
@@ -3321,23 +3334,26 @@
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="demo-measure">
-                  <div class="command-palette">
-                    <input class="input" type="text" placeholder="Type a command or search">
+                  <div class="command-palette" role="search">
+                    <label class="sr-only" for="command-palette-command-query">Type a command or search</label>
+                    <input class="input" id="command-palette-command-query" type="search" placeholder="Type a command or search" autocomplete="off">
                     <div class="command-group">
-                      <div class="command-group-label">Services</div>
-                      <div class="command-item">api-gateway <kbd>G A</kbd></div>
-                      <div class="command-item">worker-jobs <kbd>G W</kbd></div>
+                      <div class="command-group-label" id="command-palette-command-services-label">Services</div>
+                      <button class="command-item" type="button" aria-describedby="command-palette-command-services-label">api-gateway <kbd>G A</kbd></button>
+                      <button class="command-item" type="button" aria-describedby="command-palette-command-services-label">worker-jobs <kbd>G W</kbd></button>
                     </div>
                   </div>
                 </div>
+                <p class="text-meta">Filtering and keyboard selection need JavaScript.</p>
               </div>
               <div class="demo-panel demo-panel-markup">
-                <pre class="code-sample"><code>&lt;div class="command-palette"&gt;
-  &lt;input class="input" type="text" placeholder="Type a command or search"&gt;
+                <pre class="code-sample"><code>&lt;div class="command-palette" role="search"&gt;
+  &lt;label class="sr-only" for="command-query"&gt;Type a command or search&lt;/label&gt;
+  &lt;input class="input" id="command-query" type="search" placeholder="Type a command or search" autocomplete="off"&gt;
   &lt;div class="command-group"&gt;
-    &lt;div class="command-group-label"&gt;Services&lt;/div&gt;
-    &lt;div class="command-item"&gt;api-gateway &lt;kbd&gt;G A&lt;/kbd&gt;&lt;/div&gt;
-    &lt;div class="command-item"&gt;worker-jobs &lt;kbd&gt;G W&lt;/kbd&gt;&lt;/div&gt;
+    &lt;div class="command-group-label" id="command-services-label"&gt;Services&lt;/div&gt;
+    &lt;button class="command-item" type="button" aria-describedby="command-services-label"&gt;api-gateway &lt;kbd&gt;G A&lt;/kbd&gt;&lt;/button&gt;
+    &lt;button class="command-item" type="button" aria-describedby="command-services-label"&gt;worker-jobs &lt;kbd&gt;G W&lt;/kbd&gt;&lt;/button&gt;
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
               </div>
@@ -3419,7 +3435,7 @@
               </div>
               <div class="demo-panel demo-panel-markup">
                 <pre class="code-sample"><code>&lt;label class="btn btn-secondary" for="filter-drawer"&gt;Filters&lt;/label&gt;
-&lt;input class="drawer-toggle" type="checkbox" id="filter-drawer" checked&gt;
+&lt;input class="drawer-toggle" type="checkbox" id="filter-drawer"&gt;
 &lt;div class="drawer-backdrop"&gt;&lt;/div&gt;
 &lt;div class="drawer-panel"&gt;
   &lt;div class="drawer-head"&gt;&lt;h3 class="modal-title"&gt;Filter revisions&lt;/h3&gt;&lt;label class="close-button" for="filter-drawer" aria-label="Close"&gt;&lt;svg class="icon" aria-hidden="true" viewBox="0 0 24 24"&gt;&lt;path d="M18 6 6 18M6 6l12 12"/&gt;&lt;/svg&gt;&lt;/label&gt;&lt;/div&gt;
@@ -3519,23 +3535,35 @@
               <div class="demo-panel demo-panel-preview">
                 <div class="demo-stage">
                   <a href="#modal-confirm-rollback" class="btn btn-danger">Roll back</a>
-                  <div class="modal is-active" id="modal-confirm-rollback">
+                  <div class="modal is-active" id="modal-confirm-rollback" role="dialog" aria-modal="true" aria-labelledby="modal-confirm-rollback-title">
                     <div class="modal-card">
-                      <div class="modal-head"><h3 class="modal-title">Confirm rollback</h3><button class="close-button" type="button" aria-label="Close"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+                      <div class="modal-head">
+                        <h3 class="modal-title" id="modal-confirm-rollback-title">Confirm rollback</h3>
+                        <a class="close-button" href="#components" aria-label="Close"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></a>
+                      </div>
                       <div class="modal-body">This reverts api-gateway to v2.8.0. Active sessions are not affected.</div>
-                      <div class="modal-actions"><button class="btn btn-ghost" type="button">Cancel</button><button class="btn btn-danger" type="button">Roll back</button></div>
+                      <div class="modal-actions">
+                        <a class="btn btn-ghost" href="#components">Cancel</a>
+                        <button class="btn btn-danger" type="button">Roll back</button>
+                      </div>
                     </div>
                   </div>
                 </div>
-                <p class="text-meta">Open it with <code>:target</code> or a checkbox. Focus trapping and Escape are yours to build.</p>
+                <p class="text-meta">Open it with <code>:target</code>, a checkbox, or application code. Focus trapping, Escape, and restoring focus are yours to build.</p>
               </div>
               <div class="demo-panel demo-panel-markup">
                 <pre class="code-sample"><code>&lt;a href="#confirm-rollback" class="btn btn-danger"&gt;Roll back&lt;/a&gt;
-&lt;div class="modal" id="confirm-rollback"&gt;
+&lt;div class="modal" id="confirm-rollback" role="dialog" aria-modal="true" aria-labelledby="confirm-rollback-title"&gt;
   &lt;div class="modal-card"&gt;
-    &lt;div class="modal-head"&gt;&lt;h3 class="modal-title"&gt;Confirm rollback&lt;/h3&gt;&lt;button class="close-button" type="button" aria-label="Close"&gt;&lt;svg class="icon" aria-hidden="true" viewBox="0 0 24 24"&gt;&lt;path d="M18 6 6 18M6 6l12 12"/&gt;&lt;/svg&gt;&lt;/button&gt;&lt;/div&gt;
+    &lt;div class="modal-head"&gt;
+      &lt;h3 class="modal-title" id="confirm-rollback-title"&gt;Confirm rollback&lt;/h3&gt;
+      &lt;a class="close-button" href="#components" aria-label="Close"&gt;&lt;svg class="icon" aria-hidden="true" viewBox="0 0 24 24"&gt;&lt;path d="M18 6 6 18M6 6l12 12"/&gt;&lt;/svg&gt;&lt;/a&gt;
+    &lt;/div&gt;
     &lt;div class="modal-body"&gt;This reverts api-gateway to v2.8.0. Active sessions are not affected.&lt;/div&gt;
-    &lt;div class="modal-actions"&gt;&lt;button class="btn btn-ghost" type="button"&gt;Cancel&lt;/button&gt;&lt;button class="btn btn-danger" type="button"&gt;Roll back&lt;/button&gt;&lt;/div&gt;
+    &lt;div class="modal-actions"&gt;
+      &lt;a class="btn btn-ghost" href="#components"&gt;Cancel&lt;/a&gt;
+      &lt;button class="btn btn-danger" type="button"&gt;Roll back&lt;/button&gt;
+    &lt;/div&gt;
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
               </div>
@@ -3906,7 +3934,7 @@
                     <summary>Does a rollback re-run the build?</summary>
                     <div class="accordion-body">No. A rollback repoints traffic at an artefact that already passed. It takes about four seconds.</div>
                   </details>
-                  <details class="accordion" open>
+                  <details class="accordion">
                     <summary>Can two people deploy at once?</summary>
                     <div class="accordion-body">The queue is per environment. The second deploy waits, and the person who started it sees who is ahead of them.</div>
                   </details>
@@ -3918,7 +3946,7 @@
               </div>
               <div class="demo-panel demo-panel-markup">
                 <pre class="code-sample"><code>&lt;div class="faq"&gt;
-  &lt;details class="accordion" open&gt;
+  &lt;details class="accordion"&gt;
     &lt;summary&gt;Does a rollback re-run the build?&lt;/summary&gt;
     &lt;div class="accordion-body"&gt;No. A rollback repoints traffic at an artefact that already passed. It takes about four seconds.&lt;/div&gt;
   &lt;/details&gt;

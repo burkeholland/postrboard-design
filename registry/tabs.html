@@ -5,9 +5,10 @@ category: navigation
 description: Switching between views of the same object.
 use: Two to six views that share one context.
 avoid: Tabs for steps in a sequence. Use a stepper.
+note: Show and hide panels, and move focus with the arrow keys, in application code. This markup is the visual shell.
 -->
-<nav class="tabs" aria-label="Views" role="tablist">
-  <a class="tab" aria-selected="true" href="/activity" role="tab">Activity</a>
-  <a class="tab" aria-selected="false" href="/checks" role="tab">Checks</a>
-  <a class="tab" aria-selected="false" href="/settings" role="tab">Settings</a>
-</nav>
+<div class="tabs" role="tablist" aria-label="Views">
+  <button class="tab" type="button" role="tab" aria-selected="true" id="tab-activity" aria-controls="panel-activity">Activity</button>
+  <button class="tab" type="button" role="tab" aria-selected="false" id="tab-checks" aria-controls="panel-checks" tabindex="-1">Checks</button>
+  <button class="tab" type="button" role="tab" aria-selected="false" id="tab-settings" aria-controls="panel-settings" tabindex="-1">Settings</button>
+</div>
