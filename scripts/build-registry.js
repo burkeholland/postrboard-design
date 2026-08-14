@@ -210,9 +210,9 @@ function renderDocs(items) {
       out.push('            </div>');
       const sw = `sw-${item.name}`;
       out.push('            <div class="component-demo">');
-      out.push('              <div class="segmented-control demo-switch">');
-      out.push(`                <input type="radio" name="${sw}" id="${sw}-preview" checked><label for="${sw}-preview">Preview</label>`);
-      out.push(`                <input class="demo-switch-markup" type="radio" name="${sw}" id="${sw}-markup"><label for="${sw}-markup">Markup</label>`);
+      out.push('              <div class="tabs demo-switch">');
+      out.push(`                <input type="radio" name="${sw}" id="${sw}-preview" checked><label class="tab" for="${sw}-preview">Preview</label>`);
+      out.push(`                <input class="demo-switch-markup" type="radio" name="${sw}" id="${sw}-markup"><label class="tab" for="${sw}-markup">Markup</label>`);
       out.push('              </div>');
       out.push('              <div class="demo-panel demo-panel-preview">');
       out.push(indent(preview, '                '));

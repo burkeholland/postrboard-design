@@ -277,13 +277,28 @@
     }
 
     .demo-switch {
-      padding: 3px;
+      gap: var(--space-4);
     }
 
-    .demo-switch label {
-      padding: 4px 12px;
-      font-size: 0.75rem;
-      font-weight: 700;
+    .demo-switch input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .demo-switch .tab {
+      padding-inline: 0;
+      font-size: 0.8125rem;
+      cursor: pointer;
+    }
+
+    .demo-switch input:checked + .tab {
+      border-bottom-color: var(--accent-surface);
+      color: var(--accent-text);
+    }
+
+    .demo-switch input:focus-visible + .tab {
+      box-shadow: var(--focus-ring);
     }
 
     .component-demo:has(.demo-switch-markup:checked) .demo-panel-preview,
@@ -734,9 +749,9 @@
               <p class="component-desc">A full-height sidebar and main region, the standard frame for an application.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-app-shell" id="sw-app-shell-preview" checked><label for="sw-app-shell-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-app-shell" id="sw-app-shell-markup"><label for="sw-app-shell-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-app-shell" id="sw-app-shell-preview" checked><label class="tab" for="sw-app-shell-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-app-shell" id="sw-app-shell-markup"><label class="tab" for="sw-app-shell-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="demo-frame">
@@ -776,9 +791,9 @@
               <p class="component-desc">Page width and gutters, in three measures.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-container" id="sw-container-preview" checked><label for="sw-container-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-container" id="sw-container-markup"><label for="sw-container-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-container" id="sw-container-preview" checked><label class="tab" for="sw-container-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-container" id="sw-container-markup"><label class="tab" for="sw-container-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="container">
@@ -798,9 +813,9 @@
               <p class="component-desc">A wide first column for the brand, then three link columns.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-footer" id="sw-footer-preview" checked><label for="sw-footer-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-footer" id="sw-footer-markup"><label for="sw-footer-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-footer" id="sw-footer-preview" checked><label class="tab" for="sw-footer-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-footer" id="sw-footer-markup"><label class="tab" for="sw-footer-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <footer class="footer-grid">
@@ -826,9 +841,9 @@
               <p class="component-desc">Two columns weighted 2:1. Use grid-asymmetric-reverse to lead with the narrow column.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-grid-asymmetric" id="sw-grid-asymmetric-preview" checked><label for="sw-grid-asymmetric-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-grid-asymmetric" id="sw-grid-asymmetric-markup"><label for="sw-grid-asymmetric-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-grid-asymmetric" id="sw-grid-asymmetric-preview" checked><label class="tab" for="sw-grid-asymmetric-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-grid-asymmetric" id="sw-grid-asymmetric-markup"><label class="tab" for="sw-grid-asymmetric-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="grid-asymmetric">
@@ -850,9 +865,9 @@
               <p class="component-desc">As many equal columns as fit, wrapping automatically.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-grid-auto" id="sw-grid-auto-preview" checked><label for="sw-grid-auto-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-grid-auto" id="sw-grid-auto-markup"><label for="sw-grid-auto-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-grid-auto" id="sw-grid-auto-preview" checked><label class="tab" for="sw-grid-auto-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-grid-auto" id="sw-grid-auto-markup"><label class="tab" for="sw-grid-auto-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="grid-auto">
@@ -878,9 +893,9 @@
               <p class="component-desc">A single measured column, centred in the page.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-grid-centered" id="sw-grid-centered-preview" checked><label for="sw-grid-centered-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-grid-centered" id="sw-grid-centered-markup"><label for="sw-grid-centered-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-grid-centered" id="sw-grid-centered-preview" checked><label class="tab" for="sw-grid-centered-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-grid-centered" id="sw-grid-centered-markup"><label class="tab" for="sw-grid-centered-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="grid-centered">
@@ -900,9 +915,9 @@
               <p class="component-desc">A full-width header and footer around three columns.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-grid-holy-grail" id="sw-grid-holy-grail-preview" checked><label for="sw-grid-holy-grail-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-grid-holy-grail" id="sw-grid-holy-grail-markup"><label for="sw-grid-holy-grail-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-grid-holy-grail" id="sw-grid-holy-grail-preview" checked><label class="tab" for="sw-grid-holy-grail-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-grid-holy-grail" id="sw-grid-holy-grail-markup"><label class="tab" for="sw-grid-holy-grail-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="grid-holy-grail">
@@ -930,9 +945,9 @@
               <p class="component-desc">Three columns that flow by height rather than by row.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-grid-masonry" id="sw-grid-masonry-preview" checked><label for="sw-grid-masonry-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-grid-masonry" id="sw-grid-masonry-markup"><label for="sw-grid-masonry-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-grid-masonry" id="sw-grid-masonry-preview" checked><label class="tab" for="sw-grid-masonry-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-grid-masonry" id="sw-grid-masonry-markup"><label class="tab" for="sw-grid-masonry-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="grid-masonry">
@@ -956,9 +971,9 @@
               <p class="component-desc">A fixed-width rail beside a fluid main column.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-grid-sidebar" id="sw-grid-sidebar-preview" checked><label for="sw-grid-sidebar-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-grid-sidebar" id="sw-grid-sidebar-markup"><label for="sw-grid-sidebar-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-grid-sidebar" id="sw-grid-sidebar-preview" checked><label class="tab" for="sw-grid-sidebar-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-grid-sidebar" id="sw-grid-sidebar-markup"><label class="tab" for="sw-grid-sidebar-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="grid-sidebar">
@@ -980,9 +995,9 @@
               <p class="component-desc">Two equal columns.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-grid-split" id="sw-grid-split-preview" checked><label for="sw-grid-split-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-grid-split" id="sw-grid-split-markup"><label for="sw-grid-split-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-grid-split" id="sw-grid-split-preview" checked><label class="tab" for="sw-grid-split-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-grid-split" id="sw-grid-split-markup"><label class="tab" for="sw-grid-split-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="grid-split">
@@ -1004,9 +1019,9 @@
               <p class="component-desc">A fluid main column with a narrower trailing rail.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-grid-stack-rail" id="sw-grid-stack-rail-preview" checked><label for="sw-grid-stack-rail-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-grid-stack-rail" id="sw-grid-stack-rail-markup"><label for="sw-grid-stack-rail-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-grid-stack-rail" id="sw-grid-stack-rail-preview" checked><label class="tab" for="sw-grid-stack-rail-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-grid-stack-rail" id="sw-grid-stack-rail-markup"><label class="tab" for="sw-grid-stack-rail-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="grid-stack-rail">
@@ -1028,9 +1043,9 @@
               <p class="component-desc">Three equal columns.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-grid-thirds" id="sw-grid-thirds-preview" checked><label for="sw-grid-thirds-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-grid-thirds" id="sw-grid-thirds-markup"><label for="sw-grid-thirds-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-grid-thirds" id="sw-grid-thirds-preview" checked><label class="tab" for="sw-grid-thirds-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-grid-thirds" id="sw-grid-thirds-markup"><label class="tab" for="sw-grid-thirds-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="grid-thirds">
@@ -1054,9 +1069,9 @@
               <p class="component-desc">A bounded region that scrolls on its own, with a thin scrollbar.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-scroll-area" id="sw-scroll-area-preview" checked><label for="sw-scroll-area-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-scroll-area" id="sw-scroll-area-markup"><label for="sw-scroll-area-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-scroll-area" id="sw-scroll-area-preview" checked><label class="tab" for="sw-scroll-area-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-scroll-area" id="sw-scroll-area-markup"><label class="tab" for="sw-scroll-area-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="scroll-area">
@@ -1090,9 +1105,9 @@
               <p class="component-desc">Vertical rhythm (stack) and horizontal grouping that wraps (cluster).</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-stack" id="sw-stack-preview" checked><label for="sw-stack-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-stack" id="sw-stack-markup"><label for="sw-stack-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-stack" id="sw-stack-preview" checked><label class="tab" for="sw-stack-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-stack" id="sw-stack-markup"><label class="tab" for="sw-stack-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="stack">
@@ -1123,9 +1138,9 @@
               <p class="component-desc">Buttons joined into a single control for mutually related actions.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-button-group" id="sw-button-group-preview" checked><label for="sw-button-group-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-button-group" id="sw-button-group-markup"><label for="sw-button-group-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-button-group" id="sw-button-group-preview" checked><label class="tab" for="sw-button-group-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-button-group" id="sw-button-group-markup"><label class="tab" for="sw-button-group-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="button-group">
@@ -1149,9 +1164,9 @@
               <p class="component-desc">The standard action control, in four emphasis levels plus busy and disabled states.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-button" id="sw-button-preview" checked><label for="sw-button-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-button" id="sw-button-markup"><label for="sw-button-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-button" id="sw-button-preview" checked><label class="tab" for="sw-button-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-button" id="sw-button-markup"><label class="tab" for="sw-button-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="cluster">
@@ -1181,9 +1196,9 @@
               <p class="component-desc">A single action pinned to the corner of the viewport.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-fab" id="sw-fab-preview" checked><label for="sw-fab-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-fab" id="sw-fab-markup"><label for="sw-fab-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-fab" id="sw-fab-preview" checked><label class="tab" for="sw-fab-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-fab" id="sw-fab-markup"><label class="tab" for="sw-fab-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="demo-fab-stage">
@@ -1205,9 +1220,9 @@
               <p class="component-desc">A square control carrying only an icon. Always needs an accessible label.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-icon-button" id="sw-icon-button-preview" checked><label for="sw-icon-button-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-icon-button" id="sw-icon-button-markup"><label for="sw-icon-button-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-icon-button" id="sw-icon-button-preview" checked><label class="tab" for="sw-icon-button-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-icon-button" id="sw-icon-button-markup"><label class="tab" for="sw-icon-button-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="cluster">
@@ -1240,9 +1255,9 @@
               <p class="component-desc">A narrow card holding a sign-in form and its secondary links.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-auth-card" id="sw-auth-card-preview" checked><label for="sw-auth-card-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-auth-card" id="sw-auth-card-markup"><label for="sw-auth-card-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-auth-card" id="sw-auth-card-preview" checked><label class="tab" for="sw-auth-card-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-auth-card" id="sw-auth-card-markup"><label class="tab" for="sw-auth-card-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="auth-card">
@@ -1302,9 +1317,9 @@
               <p class="component-desc">A boolean control for options that apply independently.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-checkbox" id="sw-checkbox-preview" checked><label for="sw-checkbox-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-checkbox" id="sw-checkbox-markup"><label for="sw-checkbox-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-checkbox" id="sw-checkbox-preview" checked><label class="tab" for="sw-checkbox-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-checkbox" id="sw-checkbox-markup"><label class="tab" for="sw-checkbox-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="stack stack-sm">
@@ -1326,9 +1341,9 @@
               <p class="component-desc">A native date input in a framed field with a leading icon.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-date-picker" id="sw-date-picker-preview" checked><label for="sw-date-picker-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-date-picker" id="sw-date-picker-markup"><label for="sw-date-picker-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-date-picker" id="sw-date-picker-preview" checked><label class="tab" for="sw-date-picker-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-date-picker" id="sw-date-picker-markup"><label class="tab" for="sw-date-picker-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <label class="picker-field" for="date-picker-cutover-date">
@@ -1350,9 +1365,9 @@
               <p class="component-desc">A drop target for uploading a file.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-dropzone" id="sw-dropzone-preview" checked><label for="sw-dropzone-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-dropzone" id="sw-dropzone-markup"><label for="sw-dropzone-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-dropzone" id="sw-dropzone-preview" checked><label class="tab" for="sw-dropzone-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-dropzone" id="sw-dropzone-markup"><label class="tab" for="sw-dropzone-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <label class="dropzone">
@@ -1376,9 +1391,9 @@
               <p class="component-desc">A label that sits inside the field and rises when the field has content.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-floating-label" id="sw-floating-label-preview" checked><label for="sw-floating-label-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-floating-label" id="sw-floating-label-markup"><label for="sw-floating-label-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-floating-label" id="sw-floating-label-preview" checked><label class="tab" for="sw-floating-label-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-floating-label" id="sw-floating-label-markup"><label class="tab" for="sw-floating-label-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="floating-field">
@@ -1400,9 +1415,9 @@
               <p class="component-desc">A vertical stack of labelled fields with helper text and error messages.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-form" id="sw-form-preview" checked><label for="sw-form-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-form" id="sw-form-markup"><label for="sw-form-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-form" id="sw-form-preview" checked><label class="tab" for="sw-form-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-form" id="sw-form-markup"><label class="tab" for="sw-form-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <form class="form-stack">
@@ -1450,9 +1465,9 @@
               <p class="component-desc">An input joined to a fixed prefix or suffix.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-input-group" id="sw-input-group-preview" checked><label for="sw-input-group-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-input-group" id="sw-input-group-markup"><label for="sw-input-group-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-input-group" id="sw-input-group-preview" checked><label class="tab" for="sw-input-group-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-input-group" id="sw-input-group-markup"><label class="tab" for="sw-input-group-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="demo-measure">
@@ -1476,9 +1491,9 @@
               <p class="component-desc">Error and success styling for an input, paired with aria-invalid.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-input-validation" id="sw-input-validation-preview" checked><label for="sw-input-validation-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-input-validation" id="sw-input-validation-markup"><label for="sw-input-validation-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-input-validation" id="sw-input-validation-preview" checked><label class="tab" for="sw-input-validation-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-input-validation" id="sw-input-validation-markup"><label class="tab" for="sw-input-validation-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="cluster">
@@ -1500,9 +1515,9 @@
               <p class="component-desc">A labelled text field with optional helper text. The atom every form is built from.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-input" id="sw-input-preview" checked><label for="sw-input-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-input" id="sw-input-markup"><label for="sw-input-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-input" id="sw-input-preview" checked><label class="tab" for="sw-input-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-input" id="sw-input-markup"><label class="tab" for="sw-input-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="form-field">
@@ -1526,9 +1541,9 @@
               <p class="component-desc">Single-character boxes for a verification code.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-otp-input" id="sw-otp-input-preview" checked><label for="sw-otp-input-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-otp-input" id="sw-otp-input-markup"><label for="sw-otp-input-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-otp-input" id="sw-otp-input-preview" checked><label class="tab" for="sw-otp-input-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-otp-input" id="sw-otp-input-markup"><label class="tab" for="sw-otp-input-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="stack stack-sm">
@@ -1565,9 +1580,9 @@
               <p class="component-desc">A set of mutually exclusive options, all visible at once.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-radio" id="sw-radio-preview" checked><label for="sw-radio-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-radio" id="sw-radio-markup"><label for="sw-radio-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-radio" id="sw-radio-preview" checked><label class="tab" for="sw-radio-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-radio" id="sw-radio-markup"><label class="tab" for="sw-radio-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="radio-group">
@@ -1589,9 +1604,9 @@
               <p class="component-desc">A slider for a value where the approximate position matters more than the exact number.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-range" id="sw-range-preview" checked><label for="sw-range-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-range" id="sw-range-markup"><label for="sw-range-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-range" id="sw-range-preview" checked><label class="tab" for="sw-range-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-range" id="sw-range-markup"><label class="tab" for="sw-range-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="demo-measure">
@@ -1615,9 +1630,9 @@
               <p class="component-desc">A compact joined control for switching between a few views.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-segmented-control" id="sw-segmented-control-preview" checked><label for="sw-segmented-control-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-segmented-control" id="sw-segmented-control-markup"><label for="sw-segmented-control-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-segmented-control" id="sw-segmented-control-preview" checked><label class="tab" for="sw-segmented-control-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-segmented-control" id="sw-segmented-control-markup"><label class="tab" for="sw-segmented-control-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="segmented-control">
@@ -1641,9 +1656,9 @@
               <p class="component-desc">A labelled dropdown for one value from a known, short list.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-select" id="sw-select-preview" checked><label for="sw-select-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-select" id="sw-select-markup"><label for="sw-select-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-select" id="sw-select-preview" checked><label class="tab" for="sw-select-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-select" id="sw-select-markup"><label class="tab" for="sw-select-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="form-field">
@@ -1673,9 +1688,9 @@
               <p class="component-desc">A toggle for a setting that takes effect immediately.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-switch" id="sw-switch-preview" checked><label for="sw-switch-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-switch" id="sw-switch-markup"><label for="sw-switch-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-switch" id="sw-switch-preview" checked><label class="tab" for="sw-switch-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-switch" id="sw-switch-markup"><label class="tab" for="sw-switch-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <label class="switch"><input type="checkbox" checked><span class="switch-track"></span>Pause on failed checks</label>
@@ -1691,9 +1706,9 @@
               <p class="component-desc">A multi-line text input that grows vertically.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-textarea" id="sw-textarea-preview" checked><label for="sw-textarea-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-textarea" id="sw-textarea-markup"><label for="sw-textarea-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-textarea" id="sw-textarea-preview" checked><label class="tab" for="sw-textarea-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-textarea" id="sw-textarea-markup"><label class="tab" for="sw-textarea-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="demo-measure">
@@ -1717,9 +1732,9 @@
               <p class="component-desc">A native time input in the same framed field as the date picker.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-time-picker" id="sw-time-picker-preview" checked><label for="sw-time-picker-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-time-picker" id="sw-time-picker-markup"><label for="sw-time-picker-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-time-picker" id="sw-time-picker-preview" checked><label class="tab" for="sw-time-picker-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-time-picker" id="sw-time-picker-markup"><label class="tab" for="sw-time-picker-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <label class="picker-field" for="time-picker-cutover-time">
@@ -1744,9 +1759,9 @@
               <p class="component-desc">Native details and summary styled as a disclosure row.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-accordion" id="sw-accordion-preview" checked><label for="sw-accordion-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-accordion" id="sw-accordion-markup"><label for="sw-accordion-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-accordion" id="sw-accordion-preview" checked><label class="tab" for="sw-accordion-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-accordion" id="sw-accordion-markup"><label class="tab" for="sw-accordion-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <details class="accordion">
@@ -1768,9 +1783,9 @@
               <p class="component-desc">A compatibility alias for panel, kept for 1.x markup.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-card" id="sw-card-preview" checked><label for="sw-card-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-card" id="sw-card-markup"><label for="sw-card-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-card" id="sw-card-preview" checked><label class="tab" for="sw-card-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-card" id="sw-card-markup"><label class="tab" for="sw-card-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <article class="card">
@@ -1794,9 +1809,9 @@
               <p class="component-desc">A rule, optionally with a centred label.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-divider" id="sw-divider-preview" checked><label for="sw-divider-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-divider" id="sw-divider-markup"><label for="sw-divider-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-divider" id="sw-divider-preview" checked><label class="tab" for="sw-divider-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-divider" id="sw-divider-markup"><label class="tab" for="sw-divider-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <hr class="divider">
@@ -1814,9 +1829,9 @@
               <p class="component-desc">The title block at the top of a work surface, with room for actions.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-page-header" id="sw-page-header-preview" checked><label for="sw-page-header-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-page-header" id="sw-page-header-markup"><label for="sw-page-header-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-page-header" id="sw-page-header-preview" checked><label class="tab" for="sw-page-header-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-page-header" id="sw-page-header-markup"><label class="tab" for="sw-page-header-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <header class="page-header">
@@ -1850,9 +1865,9 @@
               <p class="component-desc">The canonical framed surface, with an optional header, body, and footer.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-panel" id="sw-panel-preview" checked><label for="sw-panel-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-panel" id="sw-panel-markup"><label for="sw-panel-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-panel" id="sw-panel-preview" checked><label class="tab" for="sw-panel-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-panel" id="sw-panel-markup"><label class="tab" for="sw-panel-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <section class="panel">
@@ -1886,9 +1901,9 @@
               <p class="component-desc">A smaller heading block for a section inside a page.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-section-header" id="sw-section-header-preview" checked><label for="sw-section-header-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-section-header" id="sw-section-header-markup"><label for="sw-section-header-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-section-header" id="sw-section-header-preview" checked><label class="tab" for="sw-section-header-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-section-header" id="sw-section-header-markup"><label class="tab" for="sw-section-header-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="section-header">
@@ -1919,9 +1934,9 @@
               <p class="component-desc">Overlapping avatars for the people on a thing.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-avatar-group" id="sw-avatar-group-preview" checked><label for="sw-avatar-group-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-avatar-group" id="sw-avatar-group-markup"><label for="sw-avatar-group-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-avatar-group" id="sw-avatar-group-preview" checked><label class="tab" for="sw-avatar-group-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-avatar-group" id="sw-avatar-group-markup"><label class="tab" for="sw-avatar-group-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="cluster">
@@ -1951,9 +1966,9 @@
               <p class="component-desc">A person or service marker in three sizes.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-avatar" id="sw-avatar-preview" checked><label for="sw-avatar-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-avatar" id="sw-avatar-markup"><label for="sw-avatar-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-avatar" id="sw-avatar-preview" checked><label class="tab" for="sw-avatar-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-avatar" id="sw-avatar-markup"><label class="tab" for="sw-avatar-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="cluster">
@@ -1977,9 +1992,9 @@
               <p class="component-desc">A small label for a status or a category.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-badge" id="sw-badge-preview" checked><label for="sw-badge-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-badge" id="sw-badge-markup"><label for="sw-badge-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-badge" id="sw-badge-preview" checked><label class="tab" for="sw-badge-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-badge" id="sw-badge-markup"><label class="tab" for="sw-badge-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="cluster">
@@ -2007,9 +2022,9 @@
               <p class="component-desc">A month grid with today, selection, and adjacent-month days.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-calendar" id="sw-calendar-preview" checked><label for="sw-calendar-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-calendar" id="sw-calendar-markup"><label for="sw-calendar-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-calendar" id="sw-calendar-preview" checked><label class="tab" for="sw-calendar-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-calendar" id="sw-calendar-markup"><label class="tab" for="sw-calendar-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="calendar">
@@ -2072,9 +2087,9 @@
               <p class="component-desc">Bars sized by a --value custom property, from 0 to 100.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-chart" id="sw-chart-preview" checked><label for="sw-chart-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-chart" id="sw-chart-markup"><label for="sw-chart-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-chart" id="sw-chart-preview" checked><label class="tab" for="sw-chart-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-chart" id="sw-chart-markup"><label class="tab" for="sw-chart-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="panel">
@@ -2113,9 +2128,9 @@
               <p class="component-desc">A scrollable table with numeric alignment and an optional tight density.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-data-table" id="sw-data-table-preview" checked><label for="sw-data-table-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-data-table" id="sw-data-table-markup"><label for="sw-data-table-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-data-table" id="sw-data-table-preview" checked><label class="tab" for="sw-data-table-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-data-table" id="sw-data-table-markup"><label class="tab" for="sw-data-table-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="table-wrap">
@@ -2149,9 +2164,9 @@
               <p class="component-desc">Label and value pairs that reflow when the column is narrow.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-description-list" id="sw-description-list-preview" checked><label for="sw-description-list-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-description-list" id="sw-description-list-markup"><label for="sw-description-list-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-description-list" id="sw-description-list-preview" checked><label class="tab" for="sw-description-list-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-description-list" id="sw-description-list-markup"><label class="tab" for="sw-description-list-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <dl class="description-list">
@@ -2173,9 +2188,9 @@
               <p class="component-desc">Rows sharing one frame, each with a main label and a trailing value.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-list-group" id="sw-list-group-preview" checked><label for="sw-list-group-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-list-group" id="sw-list-group-markup"><label for="sw-list-group-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-list-group" id="sw-list-group-preview" checked><label class="tab" for="sw-list-group-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-list-group" id="sw-list-group-markup"><label class="tab" for="sw-list-group-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="list-group">
@@ -2197,9 +2212,9 @@
               <p class="component-desc">A data table whose headers are buttons that re-sort the rows.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-sortable-table" id="sw-sortable-table-preview" checked><label for="sw-sortable-table-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-sortable-table" id="sw-sortable-table-markup"><label for="sw-sortable-table-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-sortable-table" id="sw-sortable-table-preview" checked><label class="tab" for="sw-sortable-table-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-sortable-table" id="sw-sortable-table-markup"><label class="tab" for="sw-sortable-table-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="table-wrap">
@@ -2246,9 +2261,9 @@
               <p class="component-desc">A single figure in its own frame, with an optional trend.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-stat-card" id="sw-stat-card-preview" checked><label for="sw-stat-card-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-stat-card" id="sw-stat-card-markup"><label for="sw-stat-card-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-stat-card" id="sw-stat-card-preview" checked><label class="tab" for="sw-stat-card-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-stat-card" id="sw-stat-card-markup"><label class="tab" for="sw-stat-card-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="stat-grid">
@@ -2286,9 +2301,9 @@
               <p class="component-desc">A row of related counts sharing one frame.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-stat-strip" id="sw-stat-strip-preview" checked><label for="sw-stat-strip-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-stat-strip" id="sw-stat-strip-markup"><label for="sw-stat-strip-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-stat-strip" id="sw-stat-strip-preview" checked><label class="tab" for="sw-stat-strip-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-stat-strip" id="sw-stat-strip-markup"><label class="tab" for="sw-stat-strip-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <dl class="stat-strip">
@@ -2312,9 +2327,9 @@
               <p class="component-desc">A spaced list for short related points.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-styled-list" id="sw-styled-list-preview" checked><label for="sw-styled-list-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-styled-list" id="sw-styled-list-markup"><label for="sw-styled-list-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-styled-list" id="sw-styled-list-preview" checked><label class="tab" for="sw-styled-list-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-styled-list" id="sw-styled-list-markup"><label class="tab" for="sw-styled-list-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <ul class="styled-list">
@@ -2336,9 +2351,9 @@
               <p class="component-desc">Neutral tags and accent-coloured badges for categories rather than conditions.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-tag" id="sw-tag-preview" checked><label for="sw-tag-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-tag" id="sw-tag-markup"><label for="sw-tag-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-tag" id="sw-tag-preview" checked><label class="tab" for="sw-tag-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-tag" id="sw-tag-markup"><label class="tab" for="sw-tag-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="cluster">
@@ -2365,9 +2380,9 @@
               <p class="component-desc">Events in order, each with a title, timestamp, and body.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-timeline" id="sw-timeline-preview" checked><label for="sw-timeline-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-timeline" id="sw-timeline-markup"><label for="sw-timeline-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-timeline" id="sw-timeline-preview" checked><label class="tab" for="sw-timeline-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-timeline" id="sw-timeline-markup"><label class="tab" for="sw-timeline-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="timeline">
@@ -2412,9 +2427,9 @@
               <p class="component-desc">The path back up a hierarchy.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-breadcrumb" id="sw-breadcrumb-preview" checked><label for="sw-breadcrumb-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-breadcrumb" id="sw-breadcrumb-markup"><label for="sw-breadcrumb-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-breadcrumb" id="sw-breadcrumb-preview" checked><label class="tab" for="sw-breadcrumb-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-breadcrumb" id="sw-breadcrumb-markup"><label class="tab" for="sw-breadcrumb-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <nav class="breadcrumb" aria-label="Breadcrumb">
@@ -2434,9 +2449,9 @@
               <p class="component-desc">A narrow vertical strip of icon-and-label destinations.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-nav-rail" id="sw-nav-rail-preview" checked><label for="sw-nav-rail-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-nav-rail" id="sw-nav-rail-markup"><label for="sw-nav-rail-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-nav-rail" id="sw-nav-rail-preview" checked><label class="tab" for="sw-nav-rail-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-nav-rail" id="sw-nav-rail-markup"><label class="tab" for="sw-nav-rail-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <nav class="nav-rail" aria-label="Sections">
@@ -2479,9 +2494,9 @@
               <p class="component-desc">The top bar, in four surfaces: bordered, glass, solid, and minimal.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-navbar" id="sw-navbar-preview" checked><label for="sw-navbar-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-navbar" id="sw-navbar-markup"><label for="sw-navbar-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-navbar" id="sw-navbar-preview" checked><label class="tab" for="sw-navbar-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-navbar" id="sw-navbar-markup"><label class="tab" for="sw-navbar-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <nav class="navbar-bordered" aria-label="Main">
@@ -2516,9 +2531,9 @@
               <p class="component-desc">Page links with the current page marked by aria-current.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-pagination" id="sw-pagination-preview" checked><label for="sw-pagination-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-pagination" id="sw-pagination-markup"><label for="sw-pagination-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-pagination" id="sw-pagination-preview" checked><label class="tab" for="sw-pagination-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-pagination" id="sw-pagination-markup"><label class="tab" for="sw-pagination-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <nav class="pagination" aria-label="Pagination">
@@ -2546,9 +2561,9 @@
               <p class="component-desc">A vertical navigation list, optionally collapsed to an icon rail.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-sidebar-nav" id="sw-sidebar-nav-preview" checked><label for="sw-sidebar-nav-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-sidebar-nav" id="sw-sidebar-nav-markup"><label for="sw-sidebar-nav-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-sidebar-nav" id="sw-sidebar-nav-preview" checked><label class="tab" for="sw-sidebar-nav-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-sidebar-nav" id="sw-sidebar-nav-markup"><label class="tab" for="sw-sidebar-nav-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <nav class="sidebar-nav" aria-label="Sections">
@@ -2582,9 +2597,9 @@
               <p class="component-desc">Progress through a fixed sequence of stages.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-stepper" id="sw-stepper-preview" checked><label for="sw-stepper-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-stepper" id="sw-stepper-markup"><label for="sw-stepper-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-stepper" id="sw-stepper-preview" checked><label class="tab" for="sw-stepper-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-stepper" id="sw-stepper-markup"><label class="tab" for="sw-stepper-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="stepper">
@@ -2612,9 +2627,9 @@
               <p class="component-desc">Switching between views of the same object.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-tabs" id="sw-tabs-preview" checked><label for="sw-tabs-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-tabs" id="sw-tabs-markup"><label for="sw-tabs-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-tabs" id="sw-tabs-preview" checked><label class="tab" for="sw-tabs-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-tabs" id="sw-tabs-markup"><label class="tab" for="sw-tabs-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <nav class="tabs" aria-label="Views" role="tablist">
@@ -2641,9 +2656,9 @@
               <p class="component-desc">An inline message in four severities, each with a title and body.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-alert" id="sw-alert-preview" checked><label for="sw-alert-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-alert" id="sw-alert-markup"><label for="sw-alert-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-alert" id="sw-alert-preview" checked><label class="tab" for="sw-alert-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-alert" id="sw-alert-markup"><label class="tab" for="sw-alert-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="alert alert-info">
@@ -2689,9 +2704,9 @@
               <p class="component-desc">A dismissible page-level notice.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-banner" id="sw-banner-preview" checked><label for="sw-banner-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-banner" id="sw-banner-markup"><label for="sw-banner-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-banner" id="sw-banner-preview" checked><label class="tab" for="sw-banner-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-banner" id="sw-banner-markup"><label class="tab" for="sw-banner-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="banner">
@@ -2713,9 +2728,9 @@
               <p class="component-desc">What a surface shows before it has data.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-empty-state" id="sw-empty-state-preview" checked><label for="sw-empty-state-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-empty-state" id="sw-empty-state-markup"><label for="sw-empty-state-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-empty-state" id="sw-empty-state-preview" checked><label class="tab" for="sw-empty-state-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-empty-state" id="sw-empty-state-markup"><label class="tab" for="sw-empty-state-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="empty-state">
@@ -2739,9 +2754,9 @@
               <p class="component-desc">A determinate bar for work with a known percentage.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-progress" id="sw-progress-preview" checked><label for="sw-progress-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-progress" id="sw-progress-markup"><label for="sw-progress-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-progress" id="sw-progress-preview" checked><label class="tab" for="sw-progress-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-progress" id="sw-progress-markup"><label class="tab" for="sw-progress-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="demo-measure">
@@ -2763,9 +2778,9 @@
               <p class="component-desc">Grey blocks in the shape of the content that is loading.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-skeleton" id="sw-skeleton-preview" checked><label for="sw-skeleton-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-skeleton" id="sw-skeleton-markup"><label for="sw-skeleton-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-skeleton" id="sw-skeleton-preview" checked><label class="tab" for="sw-skeleton-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-skeleton" id="sw-skeleton-markup"><label class="tab" for="sw-skeleton-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="stack stack-sm" aria-busy="true" aria-label="Loading">
@@ -2796,9 +2811,9 @@
               <p class="component-desc">Indeterminate loading marks: a spinner for actions, a skeleton for content.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-spinner" id="sw-spinner-preview" checked><label for="sw-spinner-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-spinner" id="sw-spinner-markup"><label for="sw-spinner-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-spinner" id="sw-spinner-preview" checked><label class="tab" for="sw-spinner-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-spinner" id="sw-spinner-markup"><label class="tab" for="sw-spinner-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="cluster">
@@ -2822,9 +2837,9 @@
               <p class="component-desc">The fixed corner container that stacks toasts.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-toast-region" id="sw-toast-region-preview" checked><label for="sw-toast-region-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-toast-region" id="sw-toast-region-markup"><label for="sw-toast-region-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-toast-region" id="sw-toast-region-preview" checked><label class="tab" for="sw-toast-region-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-toast-region" id="sw-toast-region-markup"><label class="tab" for="sw-toast-region-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="demo-stage">
@@ -2853,9 +2868,9 @@
               <p class="component-desc">A transient confirmation of something that just happened.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-toast" id="sw-toast-preview" checked><label for="sw-toast-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-toast" id="sw-toast-markup"><label for="sw-toast-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-toast" id="sw-toast-preview" checked><label class="tab" for="sw-toast-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-toast" id="sw-toast-markup"><label class="tab" for="sw-toast-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="toast">
@@ -2880,9 +2895,9 @@
               <p class="component-desc">A modal that asks a person to confirm something they cannot undo.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-alert-dialog" id="sw-alert-dialog-preview" checked><label for="sw-alert-dialog-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-alert-dialog" id="sw-alert-dialog-markup"><label for="sw-alert-dialog-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-alert-dialog" id="sw-alert-dialog-preview" checked><label class="tab" for="sw-alert-dialog-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-alert-dialog" id="sw-alert-dialog-markup"><label class="tab" for="sw-alert-dialog-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <a href="#alert-dialog-revoke-key" class="btn btn-danger">Revoke key</a>
@@ -2919,9 +2934,9 @@
               <p class="component-desc">A text input with a filtered list of options beneath it.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-combobox" id="sw-combobox-preview" checked><label for="sw-combobox-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-combobox" id="sw-combobox-markup"><label for="sw-combobox-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-combobox" id="sw-combobox-preview" checked><label class="tab" for="sw-combobox-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-combobox" id="sw-combobox-markup"><label class="tab" for="sw-combobox-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="demo-combobox">
@@ -2954,9 +2969,9 @@
               <p class="component-desc">A keyboard-first search over commands and objects.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-command-palette" id="sw-command-palette-preview" checked><label for="sw-command-palette-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-command-palette" id="sw-command-palette-markup"><label for="sw-command-palette-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-command-palette" id="sw-command-palette-preview" checked><label class="tab" for="sw-command-palette-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-command-palette" id="sw-command-palette-markup"><label class="tab" for="sw-command-palette-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="demo-measure">
@@ -2988,9 +3003,9 @@
               <p class="component-desc">A small menu of actions for one object.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-context-menu" id="sw-context-menu-preview" checked><label for="sw-context-menu-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-context-menu" id="sw-context-menu-markup"><label for="sw-context-menu-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-context-menu" id="sw-context-menu-preview" checked><label class="tab" for="sw-context-menu-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-context-menu" id="sw-context-menu-markup"><label class="tab" for="sw-context-menu-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="context-menu" role="menu" aria-label="Deploy actions">
@@ -3037,9 +3052,9 @@
               <p class="component-desc">A panel that slides in from the edge, driven by a checkbox toggle.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-drawer" id="sw-drawer-preview" checked><label for="sw-drawer-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-drawer" id="sw-drawer-markup"><label for="sw-drawer-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-drawer" id="sw-drawer-preview" checked><label class="tab" for="sw-drawer-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-drawer" id="sw-drawer-markup"><label class="tab" for="sw-drawer-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <label class="btn btn-secondary" for="drawer-filter-drawer">Filters</label>
@@ -3067,9 +3082,9 @@
               <p class="component-desc">A menu of actions attached to a trigger.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-dropdown" id="sw-dropdown-preview" checked><label for="sw-dropdown-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-dropdown" id="sw-dropdown-markup"><label for="sw-dropdown-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-dropdown" id="sw-dropdown-preview" checked><label class="tab" for="sw-dropdown-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-dropdown" id="sw-dropdown-markup"><label class="tab" for="sw-dropdown-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="dropdown">
@@ -3100,9 +3115,9 @@
               <p class="component-desc">A panel of detail that opens on hover or focus.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-hover-card" id="sw-hover-card-preview" checked><label for="sw-hover-card-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-hover-card" id="sw-hover-card-markup"><label for="sw-hover-card-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-hover-card" id="sw-hover-card-preview" checked><label class="tab" for="sw-hover-card-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-hover-card" id="sw-hover-card-markup"><label class="tab" for="sw-hover-card-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <span class="hover-card">
@@ -3137,9 +3152,9 @@
               <p class="component-desc">A centred dialog that blocks the page until it is resolved.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-modal" id="sw-modal-preview" checked><label for="sw-modal-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-modal" id="sw-modal-markup"><label for="sw-modal-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-modal" id="sw-modal-preview" checked><label class="tab" for="sw-modal-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-modal" id="sw-modal-markup"><label class="tab" for="sw-modal-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <a href="#modal-confirm-rollback" class="btn btn-danger">Roll back</a>
@@ -3170,9 +3185,9 @@
               <p class="component-desc">A small panel of detail attached to a trigger.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-popover" id="sw-popover-preview" checked><label for="sw-popover-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-popover" id="sw-popover-markup"><label for="sw-popover-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-popover" id="sw-popover-preview" checked><label class="tab" for="sw-popover-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-popover" id="sw-popover-markup"><label class="tab" for="sw-popover-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="popover">
@@ -3200,9 +3215,9 @@
               <p class="component-desc">A short hint attached to a control, shown on hover and focus.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-tooltip" id="sw-tooltip-preview" checked><label for="sw-tooltip-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-tooltip" id="sw-tooltip-markup"><label for="sw-tooltip-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-tooltip" id="sw-tooltip-preview" checked><label class="tab" for="sw-tooltip-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-tooltip" id="sw-tooltip-markup"><label class="tab" for="sw-tooltip-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <span class="tooltip" data-tip="Last deployed 12 minutes ago">
@@ -3229,9 +3244,9 @@
               <p class="component-desc">A box that holds its shape while the media inside fills it.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-aspect-ratio" id="sw-aspect-ratio-preview" checked><label for="sw-aspect-ratio-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-aspect-ratio" id="sw-aspect-ratio-markup"><label for="sw-aspect-ratio-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-aspect-ratio" id="sw-aspect-ratio-preview" checked><label class="tab" for="sw-aspect-ratio-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-aspect-ratio" id="sw-aspect-ratio-markup"><label class="tab" for="sw-aspect-ratio-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="aspect aspect-4-3">
@@ -3252,9 +3267,9 @@
               <p class="component-desc">A single copyable command shown as a compact pill.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-cmd-pill" id="sw-cmd-pill-preview" checked><label for="sw-cmd-pill-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-cmd-pill" id="sw-cmd-pill-markup"><label for="sw-cmd-pill-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-cmd-pill" id="sw-cmd-pill-preview" checked><label class="tab" for="sw-cmd-pill-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-cmd-pill" id="sw-cmd-pill-markup"><label class="tab" for="sw-cmd-pill-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <span class="cmd-pill"><span class="dollar">$</span> npm install postrboard-css</span>
@@ -3270,9 +3285,9 @@
               <p class="component-desc">Media with a caption underneath.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-figure" id="sw-figure-preview" checked><label for="sw-figure-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-figure" id="sw-figure-markup"><label for="sw-figure-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-figure" id="sw-figure-preview" checked><label class="tab" for="sw-figure-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-figure" id="sw-figure-markup"><label class="tab" for="sw-figure-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <figure class="figure">
@@ -3298,9 +3313,9 @@
               <p class="component-desc">A bordered, rounded, clipping container for an image or a screenshot.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-frame" id="sw-frame-preview" checked><label for="sw-frame-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-frame" id="sw-frame-markup"><label for="sw-frame-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-frame" id="sw-frame-preview" checked><label class="tab" for="sw-frame-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-frame" id="sw-frame-markup"><label class="tab" for="sw-frame-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="frame">
@@ -3320,9 +3335,9 @@
               <p class="component-desc">The four icon size tokens.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-icon" id="sw-icon-preview" checked><label for="sw-icon-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-icon" id="sw-icon-markup"><label for="sw-icon-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-icon" id="sw-icon-preview" checked><label class="tab" for="sw-icon-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-icon" id="sw-icon-markup"><label class="tab" for="sw-icon-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="cluster">
@@ -3348,9 +3363,9 @@
               <p class="component-desc">Identifiers inside prose, and keyboard keys.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-inline-code" id="sw-inline-code-preview" checked><label for="sw-inline-code-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-inline-code" id="sw-inline-code-markup"><label for="sw-inline-code-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-inline-code" id="sw-inline-code-preview" checked><label class="tab" for="sw-inline-code-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-inline-code" id="sw-inline-code-markup"><label class="tab" for="sw-inline-code-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <p class="text-body">Run <code class="inline-code">npm run build</code>, then press <kbd class="kbd">Ctrl</kbd> <kbd class="kbd">C</kbd> to stop the watcher.</p>
@@ -3366,9 +3381,9 @@
               <p class="component-desc">A fixed-shape frame with a play control over it.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-media-embed" id="sw-media-embed-preview" checked><label for="sw-media-embed-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-media-embed" id="sw-media-embed-markup"><label for="sw-media-embed-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-media-embed" id="sw-media-embed-preview" checked><label class="tab" for="sw-media-embed-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-media-embed" id="sw-media-embed-markup"><label class="tab" for="sw-media-embed-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="aspect media-embed">
@@ -3394,9 +3409,9 @@
               <p class="component-desc">A pull quote with attribution.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-quote-block" id="sw-quote-block-preview" checked><label for="sw-quote-block-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-quote-block" id="sw-quote-block-markup"><label for="sw-quote-block-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-quote-block" id="sw-quote-block-preview" checked><label class="tab" for="sw-quote-block-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-quote-block" id="sw-quote-block-markup"><label class="tab" for="sw-quote-block-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <blockquote class="quote-block">
@@ -3418,9 +3433,9 @@
               <p class="component-desc">A command and its output, with a labelled title bar.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-terminal" id="sw-terminal-preview" checked><label for="sw-terminal-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-terminal" id="sw-terminal-markup"><label for="sw-terminal-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-terminal" id="sw-terminal-preview" checked><label class="tab" for="sw-terminal-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-terminal" id="sw-terminal-markup"><label class="tab" for="sw-terminal-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="terminal">
@@ -3452,9 +3467,9 @@
               <p class="component-desc">The full type scale, from the display size down to metadata.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-type" id="sw-type-preview" checked><label for="sw-type-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-type" id="sw-type-markup"><label for="sw-type-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-type" id="sw-type-preview" checked><label class="tab" for="sw-type-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-type" id="sw-type-markup"><label class="tab" for="sw-type-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="stack">
@@ -3489,9 +3504,9 @@
               <p class="component-desc">A closing block with one action.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-cta-band" id="sw-cta-band-preview" checked><label for="sw-cta-band-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-cta-band" id="sw-cta-band-markup"><label for="sw-cta-band-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-cta-band" id="sw-cta-band-preview" checked><label class="tab" for="sw-cta-band-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-cta-band" id="sw-cta-band-markup"><label class="tab" for="sw-cta-band-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="cta-band">
@@ -3515,9 +3530,9 @@
               <p class="component-desc">A stack of accordions for real, repeated questions.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-faq" id="sw-faq-preview" checked><label for="sw-faq-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-faq" id="sw-faq-markup"><label for="sw-faq-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-faq" id="sw-faq-preview" checked><label class="tab" for="sw-faq-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-faq" id="sw-faq-markup"><label class="tab" for="sw-faq-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="faq">
@@ -3559,9 +3574,9 @@
               <p class="component-desc">A rule-separated block for one capability.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-feature-card" id="sw-feature-card-preview" checked><label for="sw-feature-card-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-feature-card" id="sw-feature-card-markup"><label for="sw-feature-card-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-feature-card" id="sw-feature-card-preview" checked><label class="tab" for="sw-feature-card-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-feature-card" id="sw-feature-card-markup"><label class="tab" for="sw-feature-card-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="feature-card">
@@ -3585,9 +3600,9 @@
               <p class="component-desc">A labelled row of integration or customer slots.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-logo-cloud" id="sw-logo-cloud-preview" checked><label for="sw-logo-cloud-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-logo-cloud" id="sw-logo-cloud-markup"><label for="sw-logo-cloud-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-logo-cloud" id="sw-logo-cloud-preview" checked><label class="tab" for="sw-logo-cloud-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-logo-cloud" id="sw-logo-cloud-markup"><label class="tab" for="sw-logo-cloud-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="logo-cloud">
@@ -3619,9 +3634,9 @@
               <p class="component-desc">One field and one button, with a line about what arrives.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-newsletter" id="sw-newsletter-preview" checked><label for="sw-newsletter-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-newsletter" id="sw-newsletter-markup"><label for="sw-newsletter-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-newsletter" id="sw-newsletter-preview" checked><label class="tab" for="sw-newsletter-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-newsletter" id="sw-newsletter-markup"><label class="tab" for="sw-newsletter-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="newsletter">
@@ -3651,9 +3666,9 @@
               <p class="component-desc">A plan with a price and a feature list. Add popular to mark one.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-pricing-card" id="sw-pricing-card-preview" checked><label for="sw-pricing-card-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-pricing-card" id="sw-pricing-card-markup"><label for="sw-pricing-card-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-pricing-card" id="sw-pricing-card-preview" checked><label class="tab" for="sw-pricing-card-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-pricing-card" id="sw-pricing-card-markup"><label class="tab" for="sw-pricing-card-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="pricing-card popular">
@@ -3679,9 +3694,9 @@
               <p class="component-desc">A quote with attribution, framed by rules.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-testimonial-card" id="sw-testimonial-card-preview" checked><label for="sw-testimonial-card-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-testimonial-card" id="sw-testimonial-card-markup"><label for="sw-testimonial-card-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-testimonial-card" id="sw-testimonial-card-preview" checked><label class="tab" for="sw-testimonial-card-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-testimonial-card" id="sw-testimonial-card-markup"><label class="tab" for="sw-testimonial-card-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="testimonial-card">
@@ -3706,9 +3721,9 @@
               <p class="component-desc">Display mode, flex direction, alignment, and positioning.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-utility-layout" id="sw-utility-layout-preview" checked><label for="sw-utility-layout-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-utility-layout" id="sw-utility-layout-markup"><label for="sw-utility-layout-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-utility-layout" id="sw-utility-layout-preview" checked><label class="tab" for="sw-utility-layout-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-utility-layout" id="sw-utility-layout-markup"><label class="tab" for="sw-utility-layout-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="flex items-center justify-between">
@@ -3730,9 +3745,9 @@
               <p class="component-desc">Show or hide an element at a breakpoint.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-utility-responsive" id="sw-utility-responsive-preview" checked><label for="sw-utility-responsive-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-utility-responsive" id="sw-utility-responsive-markup"><label for="sw-utility-responsive-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-utility-responsive" id="sw-utility-responsive-preview" checked><label class="tab" for="sw-utility-responsive-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-utility-responsive" id="sw-utility-responsive-markup"><label class="tab" for="sw-utility-responsive-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="cluster">
@@ -3753,9 +3768,9 @@
               <p class="component-desc">Width caps, full height, flexible growth, and overflow.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-utility-sizing" id="sw-utility-sizing-preview" checked><label for="sw-utility-sizing-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-utility-sizing" id="sw-utility-sizing-markup"><label for="sw-utility-sizing-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-utility-sizing" id="sw-utility-sizing-preview" checked><label class="tab" for="sw-utility-sizing-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-utility-sizing" id="sw-utility-sizing-markup"><label class="tab" for="sw-utility-sizing-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="flex gap-3 items-center">
@@ -3777,9 +3792,9 @@
               <p class="component-desc">Margin, padding, and gap on the shared space scale, from 1 to 8.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-utility-spacing" id="sw-utility-spacing-preview" checked><label for="sw-utility-spacing-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-utility-spacing" id="sw-utility-spacing-markup"><label for="sw-utility-spacing-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-utility-spacing" id="sw-utility-spacing-preview" checked><label class="tab" for="sw-utility-spacing-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-utility-spacing" id="sw-utility-spacing-markup"><label class="tab" for="sw-utility-spacing-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="panel">
@@ -3805,9 +3820,9 @@
               <p class="component-desc">Background, border, and corner rounding that match the framework tokens.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-utility-surface" id="sw-utility-surface-preview" checked><label for="sw-utility-surface-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-utility-surface" id="sw-utility-surface-markup"><label for="sw-utility-surface-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-utility-surface" id="sw-utility-surface-preview" checked><label class="tab" for="sw-utility-surface-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-utility-surface" id="sw-utility-surface-markup"><label class="tab" for="sw-utility-surface-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="bg-code border rounded p-4">
@@ -3827,9 +3842,9 @@
               <p class="component-desc">Alignment, semantic colour, and truncation for text.</p>
             </div>
             <div class="component-demo">
-              <div class="segmented-control demo-switch">
-                <input type="radio" name="sw-utility-text" id="sw-utility-text-preview" checked><label for="sw-utility-text-preview">Preview</label>
-                <input class="demo-switch-markup" type="radio" name="sw-utility-text" id="sw-utility-text-markup"><label for="sw-utility-text-markup">Markup</label>
+              <div class="tabs demo-switch">
+                <input type="radio" name="sw-utility-text" id="sw-utility-text-preview" checked><label class="tab" for="sw-utility-text-preview">Preview</label>
+                <input class="demo-switch-markup" type="radio" name="sw-utility-text" id="sw-utility-text-markup"><label class="tab" for="sw-utility-text-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
                 <div class="stack stack-sm">
