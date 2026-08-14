@@ -509,31 +509,13 @@ a {
 }
 
 .gallery-head {
-  display: grid;
-  grid-template-columns: minmax(0, 1.3fr) minmax(280px, 0.7fr);
-  gap: var(--space-6);
-  align-items: end;
+  display: block;
   margin-bottom: var(--space-7);
 }
 
 .gallery-head .page-title {
   max-width: 900px;
   font-size: clamp(3rem, 6vw, 6rem);
-}
-
-.brief-list {
-  display: grid;
-  gap: var(--space-2);
-  padding: var(--space-4);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-surface);
-  background: var(--surface);
-}
-
-.brief-list span {
-  color: var(--text-muted);
-  font-family: var(--mono);
-  font-size: 11px;
 }
 
 .gallery-grid {
@@ -652,8 +634,7 @@ a {
   }
 
   .studio-hero,
-  .ledger-hero,
-  .gallery-head {
+  .ledger-hero {
     grid-template-columns: 1fr;
   }
 
