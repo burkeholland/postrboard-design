@@ -51,9 +51,11 @@
     .docs-nav {
       display: grid;
       gap: var(--space-1);
+      min-height: 0;
     }
 
     .docs-nav a {
+      display: block;
       padding: var(--space-2) var(--space-3);
       border-radius: var(--radius-field);
       color: var(--text-muted);
@@ -66,6 +68,50 @@
     .docs-nav a:focus-visible {
       background: var(--surface-subtle);
       color: var(--text);
+    }
+
+    .docs-nav-group {
+      display: grid;
+      gap: var(--space-1);
+    }
+
+    .docs-nav-tree {
+      display: grid;
+      gap: var(--space-3);
+      margin: var(--space-1) 0 var(--space-2);
+      padding-left: var(--space-2);
+      border-left: 1px solid var(--border);
+    }
+
+    .docs-nav-branch {
+      display: grid;
+      gap: 2px;
+    }
+
+    .docs-nav-category {
+      color: var(--text) !important;
+      font-size: 0.75rem !important;
+      font-weight: 700 !important;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .docs-nav-children {
+      display: grid;
+      gap: 1px;
+    }
+
+    .docs-nav-children a {
+      padding: 4px var(--space-3);
+      color: var(--text-meta);
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+
+    .component-category,
+    .component-row {
+      scroll-margin-top: var(--space-5);
     }
 
     .docs-main {
@@ -514,8 +560,13 @@
         overflow-x: auto;
       }
 
-      .docs-nav a {
+      .docs-nav > a,
+      .docs-nav-group > a:first-child {
         flex: 0 0 auto;
+      }
+
+      .docs-nav-tree {
+        display: none;
       }
 
       .docs-main {
@@ -559,7 +610,171 @@
         <a href="#start">Start</a>
         <a href="#direction">Theme options</a>
         <a href="#foundations">Tokens</a>
-        <a href="#components">Components</a>
+        <div class="docs-nav-group">
+          <a href="#components">Components</a>
+          <div class="docs-nav-tree">
+        <!-- registry:nav:start -->
+          <div class="docs-nav-branch">
+            <a class="docs-nav-category" href="#cat-layout">Layout</a>
+            <div class="docs-nav-children">
+              <a href="#c-app-shell">app-shell</a>
+              <a href="#c-container">container</a>
+              <a href="#c-footer">footer</a>
+              <a href="#c-grid-asymmetric">grid-asymmetric</a>
+              <a href="#c-grid-auto">grid-auto</a>
+              <a href="#c-grid-centered">grid-centered</a>
+              <a href="#c-grid-holy-grail">grid-holy-grail</a>
+              <a href="#c-grid-masonry">grid-masonry</a>
+              <a href="#c-grid-sidebar">grid-sidebar</a>
+              <a href="#c-grid-split">grid-split</a>
+              <a href="#c-grid-stack-rail">grid-stack-rail</a>
+              <a href="#c-grid-thirds">grid-thirds</a>
+              <a href="#c-scroll-area">scroll-area</a>
+              <a href="#c-stack">stack</a>
+            </div>
+          </div>
+          <div class="docs-nav-branch">
+            <a class="docs-nav-category" href="#cat-actions">Actions</a>
+            <div class="docs-nav-children">
+              <a href="#c-button-group">button-group</a>
+              <a href="#c-button">button</a>
+              <a href="#c-fab">fab</a>
+              <a href="#c-icon-button">icon-button</a>
+            </div>
+          </div>
+          <div class="docs-nav-branch">
+            <a class="docs-nav-category" href="#cat-forms">Forms</a>
+            <div class="docs-nav-children">
+              <a href="#c-auth-card">auth-card</a>
+              <a href="#c-checkbox">checkbox</a>
+              <a href="#c-date-picker">date-picker</a>
+              <a href="#c-dropzone">dropzone</a>
+              <a href="#c-floating-label">floating-label</a>
+              <a href="#c-form">form</a>
+              <a href="#c-input-group">input-group</a>
+              <a href="#c-input-validation">input-validation</a>
+              <a href="#c-input">input</a>
+              <a href="#c-otp-input">otp-input</a>
+              <a href="#c-radio">radio</a>
+              <a href="#c-range">range</a>
+              <a href="#c-segmented-control">segmented-control</a>
+              <a href="#c-select">select</a>
+              <a href="#c-switch">switch</a>
+              <a href="#c-textarea">textarea</a>
+              <a href="#c-time-picker">time-picker</a>
+            </div>
+          </div>
+          <div class="docs-nav-branch">
+            <a class="docs-nav-category" href="#cat-surfaces">Surfaces</a>
+            <div class="docs-nav-children">
+              <a href="#c-accordion">accordion</a>
+              <a href="#c-card">card</a>
+              <a href="#c-divider">divider</a>
+              <a href="#c-page-header">page-header</a>
+              <a href="#c-panel">panel</a>
+              <a href="#c-section-header">section-header</a>
+            </div>
+          </div>
+          <div class="docs-nav-branch">
+            <a class="docs-nav-category" href="#cat-data">Data</a>
+            <div class="docs-nav-children">
+              <a href="#c-avatar-group">avatar-group</a>
+              <a href="#c-avatar">avatar</a>
+              <a href="#c-badge">badge</a>
+              <a href="#c-calendar">calendar</a>
+              <a href="#c-chart">chart</a>
+              <a href="#c-data-table">data-table</a>
+              <a href="#c-description-list">description-list</a>
+              <a href="#c-list-group">list-group</a>
+              <a href="#c-sortable-table">sortable-table</a>
+              <a href="#c-stat-card">stat-card</a>
+              <a href="#c-stat-strip">stat-strip</a>
+              <a href="#c-styled-list">styled-list</a>
+              <a href="#c-tag">tag</a>
+              <a href="#c-timeline">timeline</a>
+            </div>
+          </div>
+          <div class="docs-nav-branch">
+            <a class="docs-nav-category" href="#cat-navigation">Navigation</a>
+            <div class="docs-nav-children">
+              <a href="#c-breadcrumb">breadcrumb</a>
+              <a href="#c-nav-rail">nav-rail</a>
+              <a href="#c-navbar">navbar</a>
+              <a href="#c-pagination">pagination</a>
+              <a href="#c-sidebar-nav">sidebar-nav</a>
+              <a href="#c-stepper">stepper</a>
+              <a href="#c-tabs">tabs</a>
+            </div>
+          </div>
+          <div class="docs-nav-branch">
+            <a class="docs-nav-category" href="#cat-feedback">Feedback</a>
+            <div class="docs-nav-children">
+              <a href="#c-alert">alert</a>
+              <a href="#c-banner">banner</a>
+              <a href="#c-empty-state">empty-state</a>
+              <a href="#c-progress">progress</a>
+              <a href="#c-skeleton">skeleton</a>
+              <a href="#c-spinner">spinner</a>
+              <a href="#c-toast-region">toast-region</a>
+              <a href="#c-toast">toast</a>
+            </div>
+          </div>
+          <div class="docs-nav-branch">
+            <a class="docs-nav-category" href="#cat-overlays">Overlays</a>
+            <div class="docs-nav-children">
+              <a href="#c-alert-dialog">alert-dialog</a>
+              <a href="#c-combobox">combobox</a>
+              <a href="#c-command-palette">command-palette</a>
+              <a href="#c-context-menu">context-menu</a>
+              <a href="#c-drawer">drawer</a>
+              <a href="#c-dropdown">dropdown</a>
+              <a href="#c-hover-card">hover-card</a>
+              <a href="#c-modal">modal</a>
+              <a href="#c-popover">popover</a>
+              <a href="#c-tooltip">tooltip</a>
+            </div>
+          </div>
+          <div class="docs-nav-branch">
+            <a class="docs-nav-category" href="#cat-content">Content</a>
+            <div class="docs-nav-children">
+              <a href="#c-aspect-ratio">aspect-ratio</a>
+              <a href="#c-cmd-pill">cmd-pill</a>
+              <a href="#c-figure">figure</a>
+              <a href="#c-frame">frame</a>
+              <a href="#c-icon">icon</a>
+              <a href="#c-inline-code">inline-code</a>
+              <a href="#c-media-embed">media-embed</a>
+              <a href="#c-quote-block">quote-block</a>
+              <a href="#c-terminal">terminal</a>
+              <a href="#c-type">type</a>
+            </div>
+          </div>
+          <div class="docs-nav-branch">
+            <a class="docs-nav-category" href="#cat-marketing">Marketing</a>
+            <div class="docs-nav-children">
+              <a href="#c-cta-band">cta-band</a>
+              <a href="#c-faq">faq</a>
+              <a href="#c-feature-card">feature-card</a>
+              <a href="#c-logo-cloud">logo-cloud</a>
+              <a href="#c-newsletter">newsletter</a>
+              <a href="#c-pricing-card">pricing-card</a>
+              <a href="#c-testimonial-card">testimonial-card</a>
+            </div>
+          </div>
+          <div class="docs-nav-branch">
+            <a class="docs-nav-category" href="#cat-utilities">Utilities</a>
+            <div class="docs-nav-children">
+              <a href="#c-utility-layout">utility-layout</a>
+              <a href="#c-utility-responsive">utility-responsive</a>
+              <a href="#c-utility-sizing">utility-sizing</a>
+              <a href="#c-utility-spacing">utility-spacing</a>
+              <a href="#c-utility-surface">utility-surface</a>
+              <a href="#c-utility-text">utility-text</a>
+            </div>
+          </div>
+        <!-- registry:nav:end -->
+          </div>
+        </div>
         <a href="#patterns">Layouts</a>
       </nav>
     </aside>
@@ -703,7 +918,7 @@
         </div>
 
         <!-- registry:components:start -->
-        <h3 class="text-h2 component-category">Layout</h3>
+        <h3 class="text-h2 component-category" id="cat-layout">Layout</h3>
         <div class="component-list">
           <article class="component-row" id="c-app-shell">
             <div class="component-meta">
@@ -1408,7 +1623,7 @@
             </div>
           </article>
         </div>
-        <h3 class="text-h2 component-category">Actions</h3>
+        <h3 class="text-h2 component-category" id="cat-actions">Actions</h3>
         <div class="component-list">
           <article class="component-row" id="c-button-group">
             <div class="component-meta">
@@ -1525,7 +1740,7 @@
             </div>
           </article>
         </div>
-        <h3 class="text-h2 component-category">Forms</h3>
+        <h3 class="text-h2 component-category" id="cat-forms">Forms</h3>
         <div class="component-list">
           <article class="component-row" id="c-auth-card">
             <div class="component-meta">
@@ -2033,7 +2248,7 @@
             </div>
           </article>
         </div>
-        <h3 class="text-h2 component-category">Surfaces</h3>
+        <h3 class="text-h2 component-category" id="cat-surfaces">Surfaces</h3>
         <div class="component-list">
           <article class="component-row" id="c-accordion">
             <div class="component-meta">
@@ -2210,7 +2425,7 @@
             </div>
           </article>
         </div>
-        <h3 class="text-h2 component-category">Data</h3>
+        <h3 class="text-h2 component-category" id="cat-data">Data</h3>
         <div class="component-list">
           <article class="component-row" id="c-avatar-group">
             <div class="component-meta">
@@ -2703,7 +2918,7 @@
             </div>
           </article>
         </div>
-        <h3 class="text-h2 component-category">Navigation</h3>
+        <h3 class="text-h2 component-category" id="cat-navigation">Navigation</h3>
         <div class="component-list">
           <article class="component-row" id="c-breadcrumb">
             <div class="component-meta">
@@ -3019,7 +3234,7 @@
             </div>
           </article>
         </div>
-        <h3 class="text-h2 component-category">Feedback</h3>
+        <h3 class="text-h2 component-category" id="cat-feedback">Feedback</h3>
         <div class="component-list">
           <article class="component-row" id="c-alert">
             <div class="component-meta">
@@ -3258,7 +3473,7 @@
             </div>
           </article>
         </div>
-        <h3 class="text-h2 component-category">Overlays</h3>
+        <h3 class="text-h2 component-category" id="cat-overlays">Overlays</h3>
         <div class="component-list">
           <article class="component-row" id="c-alert-dialog">
             <div class="component-meta">
@@ -3653,7 +3868,7 @@
             </div>
           </article>
         </div>
-        <h3 class="text-h2 component-category">Content</h3>
+        <h3 class="text-h2 component-category" id="cat-content">Content</h3>
         <div class="component-list">
           <article class="component-row" id="c-aspect-ratio">
             <div class="component-meta">
@@ -3913,7 +4128,7 @@
             </div>
           </article>
         </div>
-        <h3 class="text-h2 component-category">Marketing</h3>
+        <h3 class="text-h2 component-category" id="cat-marketing">Marketing</h3>
         <div class="component-list">
           <article class="component-row" id="c-cta-band">
             <div class="component-meta">
@@ -4130,7 +4345,7 @@
             </div>
           </article>
         </div>
-        <h3 class="text-h2 component-category">Utilities</h3>
+        <h3 class="text-h2 component-category" id="cat-utilities">Utilities</h3>
         <div class="component-list">
           <article class="component-row" id="c-utility-layout">
             <div class="component-meta">

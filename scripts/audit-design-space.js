@@ -425,6 +425,16 @@ if (generatedBlock.trimEnd() !== `<!-- registry:components:start -->\n${regenera
 if (docs.slice(generatedEnd).includes('class="component-row"')) {
   fail('A component row was hand-written outside the generated block. Add it to registry/ instead.');
 }
+const navStart = docs.indexOf('<!-- registry:nav:start -->');
+const navEnd = docs.indexOf('<!-- registry:nav:end -->');
+if (navStart < 0 || navEnd < 0) fail('index.html lost its registry:nav markers.');
+const navBlock = docs.slice(navStart, navEnd).replace(/\r\n/g, '\n');
+if (navBlock.trimEnd() !== `<!-- registry:nav:start -->\n${regenerated.nav}`) {
+  fail('The components side nav of index.html is stale. Run npm run build and commit the result.');
+}
+assertIncludes(docs, 'href="#c-button"', 'side nav link for button component');
+assertIncludes(docs, 'href="#cat-layout"', 'side nav link for layout category');
+assertIncludes(docs, 'id="cat-layout"', 'layout category anchor target');
 
 const skill = read('skill/postrboard/SKILL.md');
 if (skill.split(/\r?\n/).length > 220) fail('The Postrboard skill exceeds its 220-line simplicity budget.');

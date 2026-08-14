@@ -262,7 +262,7 @@ function renderDocs(items) {
   for (const [id, label] of CATEGORIES) {
     const group = items.filter((item) => item.category === id);
     if (!group.length) continue;
-    out.push(`        <h3 class="text-h2 component-category">${label}</h3>`);
+    out.push(`        <h3 class="text-h2 component-category" id="cat-${id}">${label}</h3>`);
     out.push('        <div class="component-list">');
     for (const item of group) {
       const preview = item.preview
@@ -290,6 +290,24 @@ function renderDocs(items) {
       out.push('          </article>');
     }
     out.push('        </div>');
+  }
+  return out.join('\n');
+}
+
+/** Nested docs rail links for every category and component. */
+function renderNav(items) {
+  const out = [];
+  for (const [id, label] of CATEGORIES) {
+    const group = items.filter((item) => item.category === id);
+    if (!group.length) continue;
+    out.push('          <div class="docs-nav-branch">');
+    out.push(`            <a class="docs-nav-category" href="#cat-${id}">${label}</a>`);
+    out.push('            <div class="docs-nav-children">');
+    for (const item of group) {
+      out.push(`              <a href="#c-${item.name}">${item.name}</a>`);
+    }
+    out.push('            </div>');
+    out.push('          </div>');
   }
   return out.join('\n');
 }
@@ -371,7 +389,7 @@ function build(options = {}) {
     fs.writeFileSync(path.join(root, 'components.md'), markdown);
   }
 
-  return { items, json, markdown, docs: renderDocs(items) };
+  return { items, json, markdown, docs: renderDocs(items), nav: renderNav(items) };
 }
 
 module.exports = { build, CATEGORIES };

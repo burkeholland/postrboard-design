@@ -25,20 +25,25 @@ function compileCss(input) {
   };
 }
 
-function renderDocs() {
-  const { items, docs } = require('./build-registry').build();
-  const file = path.join(__dirname, '..', 'index.html');
-  const raw = fs.readFileSync(file, 'utf8');
-  const nl = raw.includes('\r\n') ? '\r\n' : '\n';
-  const start = '        <!-- registry:components:start -->';
-  const end = '        <!-- registry:components:end -->';
+function replaceMarkedBlock(raw, marker, body, nl) {
+  const start = `        <!-- registry:${marker}:start -->`;
+  const end = `        <!-- registry:${marker}:end -->`;
   const from = raw.indexOf(start);
   const to = raw.indexOf(end);
   if (from === -1 || to === -1 || to < from) {
-    throw new Error('index.html is missing the registry:components markers.');
+    throw new Error(`index.html is missing the registry:${marker} markers.`);
   }
-  const block = docs.split('\n').join(nl);
-  const next = `${raw.slice(0, from)}${start}${nl}${block}${nl}${raw.slice(to)}`;
+  const block = body.split('\n').join(nl);
+  return `${raw.slice(0, from)}${start}${nl}${block}${nl}${raw.slice(to)}`;
+}
+
+function renderDocs() {
+  const { items, docs, nav } = require('./build-registry').build();
+  const file = path.join(__dirname, '..', 'index.html');
+  const raw = fs.readFileSync(file, 'utf8');
+  const nl = raw.includes('\r\n') ? '\r\n' : '\n';
+  let next = replaceMarkedBlock(raw, 'components', docs, nl);
+  next = replaceMarkedBlock(next, 'nav', nav, nl);
   fs.writeFileSync(file, next);
   return items.length;
 }
