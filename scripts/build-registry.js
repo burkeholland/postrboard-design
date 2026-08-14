@@ -169,6 +169,10 @@ function assertClosedDefaults(items) {
     if (/\bclass="[^"]*\bmodal\b[^"]*\bis-active\b/.test(html) || /\bclass="[^"]*\bis-active\b[^"]*\bmodal\b/.test(html)) {
       fail(`${item.name} ships a modal with is-active. Keep sources closed; open only in toPreview.`);
     }
+    if (/\bclass="[^"]*\bdrawer-(?:panel|backdrop)\b[^"]*\bis-active\b/.test(html)
+      || /\bclass="[^"]*\bis-active\b[^"]*\bdrawer-(?:panel|backdrop)\b/.test(html)) {
+      fail(`${item.name} ships a drawer with is-active. Keep sources closed; open only in toPreview.`);
+    }
     if (/<input\b[^>]*\bclass="[^"]*\bdrawer-toggle\b[^"]*"[^>]*\bchecked\b/i.test(html)
       || /<input\b[^>]*\bchecked\b[^>]*\bclass="[^"]*\bdrawer-toggle\b/i.test(html)) {
       fail(`${item.name} ships a checked drawer-toggle. Keep sources closed; open only in toPreview.`);
@@ -226,6 +230,15 @@ function toPreview(item) {
   html = html.replace(
     /(<input\b[^>]*\bclass="[^"]*\bdrawer-toggle\b[^"]*"[^>]*)(\/?>)/gi,
     (all, head, tail) => (/\bchecked\b/i.test(all) ? all : `${head} checked${tail}`)
+  );
+  // Checkbox checked already opens the drawer; is-active covers script-driven open demos.
+  html = html.replace(
+    /\bclass="((?:[\w-]+\s+)*)drawer-backdrop((?:\s[\w-]+)*)"/g,
+    (all, pre, post) => (/\bis-active\b/.test(pre + post) ? all : `class="${pre}drawer-backdrop${post} is-active"`.replace(/\s+/g, ' '))
+  );
+  html = html.replace(
+    /\bclass="((?:[\w-]+\s+)*)drawer-panel((?:\s[\w-]+)*)"/g,
+    (all, pre, post) => (/\bis-active\b/.test(pre + post) ? all : `class="${pre}drawer-panel${post} is-active"`.replace(/\s+/g, ' '))
   );
   html = html.replace(/<details(\s[^>]*\bclass="[^"]*\baccordion\b[^"]*"[^>]*)>/i, (all, attrs) => (
     /\bopen\b/i.test(all) ? all : `<details${attrs} open>`

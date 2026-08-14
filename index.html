@@ -2317,7 +2317,7 @@
                     <span class="calendar-title" id="calendar-calendar-label">June 2026</span>
                     <button class="icon-button" type="button" aria-label="Next month"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
                   </div>
-                  <div class="calendar-grid" role="grid" aria-labelledby="calendar-calendar-label">
+                  <div class="calendar-grid" role="group" aria-labelledby="calendar-calendar-label">
                     <span class="calendar-dow" aria-hidden="true">Mo</span><span class="calendar-dow" aria-hidden="true">Tu</span><span class="calendar-dow" aria-hidden="true">We</span><span class="calendar-dow" aria-hidden="true">Th</span><span class="calendar-dow" aria-hidden="true">Fr</span><span class="calendar-dow" aria-hidden="true">Sa</span><span class="calendar-dow" aria-hidden="true">Su</span>
                     <button class="calendar-day is-outside" type="button" aria-label="31 May 2026">31</button>
                     <button class="calendar-day" type="button" aria-label="1 June 2026">1</button>
@@ -2335,7 +2335,7 @@
                     <button class="calendar-day" type="button" aria-label="13 June 2026">13</button>
                   </div>
                 </div>
-                <p class="text-meta">The grid is presentation. Month changes and selection need JavaScript.</p>
+                <p class="text-meta">The month is a labelled group of day buttons. Month changes and selection need JavaScript. Prefer this presentation shell over a fake ARIA grid unless you implement full grid keyboard behaviour.</p>
               </div>
               <div class="demo-panel demo-panel-markup">
                 <pre class="code-sample"><code>&lt;div class="calendar"&gt;
@@ -2344,7 +2344,7 @@
     &lt;span class="calendar-title" id="calendar-label"&gt;June 2026&lt;/span&gt;
     &lt;button class="icon-button" type="button" aria-label="Next month"&gt;&lt;svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"&gt;&lt;path d="m9 18 6-6-6-6"/&gt;&lt;/svg&gt;&lt;/button&gt;
   &lt;/div&gt;
-  &lt;div class="calendar-grid" role="grid" aria-labelledby="calendar-label"&gt;
+  &lt;div class="calendar-grid" role="group" aria-labelledby="calendar-label"&gt;
     &lt;span class="calendar-dow" aria-hidden="true"&gt;Mo&lt;/span&gt;&lt;span class="calendar-dow" aria-hidden="true"&gt;Tu&lt;/span&gt;&lt;span class="calendar-dow" aria-hidden="true"&gt;We&lt;/span&gt;&lt;span class="calendar-dow" aria-hidden="true"&gt;Th&lt;/span&gt;&lt;span class="calendar-dow" aria-hidden="true"&gt;Fr&lt;/span&gt;&lt;span class="calendar-dow" aria-hidden="true"&gt;Sa&lt;/span&gt;&lt;span class="calendar-dow" aria-hidden="true"&gt;Su&lt;/span&gt;
     &lt;button class="calendar-day is-outside" type="button" aria-label="31 May 2026"&gt;31&lt;/button&gt;
     &lt;button class="calendar-day" type="button" aria-label="1 June 2026"&gt;1&lt;/button&gt;
@@ -2980,18 +2980,40 @@
                 <input class="demo-switch-markup" type="radio" name="sw-tabs" id="sw-tabs-markup"><label class="tab" for="sw-tabs-markup">Markup</label>
               </div>
               <div class="demo-panel demo-panel-preview">
-                <div class="tabs" role="tablist" aria-label="Views">
-                  <button class="tab" type="button" role="tab" aria-selected="true" id="tabs-tab-activity" aria-controls="panel-activity">Activity</button>
-                  <button class="tab" type="button" role="tab" aria-selected="false" id="tabs-tab-checks" aria-controls="panel-checks" tabindex="-1">Checks</button>
-                  <button class="tab" type="button" role="tab" aria-selected="false" id="tabs-tab-settings" aria-controls="panel-settings" tabindex="-1">Settings</button>
+                <div class="stack stack-sm">
+                  <div class="tabs" role="tablist" aria-label="Views">
+                    <button class="tab" type="button" role="tab" aria-selected="true" id="tabs-tab-activity" aria-controls="tabs-panel-activity">Activity</button>
+                    <button class="tab" type="button" role="tab" aria-selected="false" id="tabs-tab-checks" aria-controls="tabs-panel-checks" tabindex="-1">Checks</button>
+                    <button class="tab" type="button" role="tab" aria-selected="false" id="tabs-tab-settings" aria-controls="tabs-panel-settings" tabindex="-1">Settings</button>
+                  </div>
+                  <div class="panel" id="tabs-panel-activity" role="tabpanel" aria-labelledby="tabs-tab-activity">
+                    <div class="panel-content text-body">Three deploys finished in the last hour.</div>
+                  </div>
+                  <div class="panel" id="tabs-panel-checks" role="tabpanel" aria-labelledby="tabs-tab-checks" hidden>
+                    <div class="panel-content text-body">All required checks are green.</div>
+                  </div>
+                  <div class="panel" id="tabs-panel-settings" role="tabpanel" aria-labelledby="tabs-tab-settings" hidden>
+                    <div class="panel-content text-body">Notification preferences for this service.</div>
+                  </div>
                 </div>
-                <p class="text-meta">Show and hide panels, and move focus with the arrow keys, in application code. This markup is the visual shell.</p>
+                <p class="text-meta">Show and hide panels, and move focus with the arrow keys, in application code. This markup is the visual shell plus one sample panel.</p>
               </div>
               <div class="demo-panel demo-panel-markup">
-                <pre class="code-sample"><code>&lt;div class="tabs" role="tablist" aria-label="Views"&gt;
-  &lt;button class="tab" type="button" role="tab" aria-selected="true" id="tab-activity" aria-controls="panel-activity"&gt;Activity&lt;/button&gt;
-  &lt;button class="tab" type="button" role="tab" aria-selected="false" id="tab-checks" aria-controls="panel-checks" tabindex="-1"&gt;Checks&lt;/button&gt;
-  &lt;button class="tab" type="button" role="tab" aria-selected="false" id="tab-settings" aria-controls="panel-settings" tabindex="-1"&gt;Settings&lt;/button&gt;
+                <pre class="code-sample"><code>&lt;div class="stack stack-sm"&gt;
+  &lt;div class="tabs" role="tablist" aria-label="Views"&gt;
+    &lt;button class="tab" type="button" role="tab" aria-selected="true" id="tab-activity" aria-controls="panel-activity"&gt;Activity&lt;/button&gt;
+    &lt;button class="tab" type="button" role="tab" aria-selected="false" id="tab-checks" aria-controls="panel-checks" tabindex="-1"&gt;Checks&lt;/button&gt;
+    &lt;button class="tab" type="button" role="tab" aria-selected="false" id="tab-settings" aria-controls="panel-settings" tabindex="-1"&gt;Settings&lt;/button&gt;
+  &lt;/div&gt;
+  &lt;div class="panel" id="panel-activity" role="tabpanel" aria-labelledby="tab-activity"&gt;
+    &lt;div class="panel-content text-body"&gt;Three deploys finished in the last hour.&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="panel" id="panel-checks" role="tabpanel" aria-labelledby="tab-checks" hidden&gt;
+    &lt;div class="panel-content text-body"&gt;All required checks are green.&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="panel" id="panel-settings" role="tabpanel" aria-labelledby="tab-settings" hidden&gt;
+    &lt;div class="panel-content text-body"&gt;Notification preferences for this service.&lt;/div&gt;
+  &lt;/div&gt;
 &lt;/div&gt;</code></pre>
               </div>
             </div>
@@ -3421,10 +3443,10 @@
               <div class="demo-panel demo-panel-preview">
                 <div class="demo-stage">
                   <label class="btn btn-secondary" for="drawer-filter-drawer">Filters</label>
-                  <input class="drawer-toggle" type="checkbox" id="drawer-filter-drawer" checked>
-                  <div class="drawer-backdrop"></div>
-                  <div class="drawer-panel">
-                    <div class="drawer-head"><h3 class="modal-title">Filter revisions</h3><label class="close-button" for="drawer-filter-drawer" aria-label="Close"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></label></div>
+                  <input class="drawer-toggle" type="checkbox" id="drawer-filter-drawer" aria-controls="drawer-filter-drawer-panel" checked>
+                  <div class="drawer-backdrop is-active" aria-hidden="true"></div>
+                  <div class="drawer-panel is-active" id="drawer-filter-drawer-panel" role="dialog" aria-modal="true" aria-labelledby="drawer-filter-drawer-title">
+                    <div class="drawer-head"><h3 class="modal-title" id="drawer-filter-drawer-title">Filter revisions</h3><label class="close-button" for="drawer-filter-drawer" aria-label="Close"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></label></div>
                     <div class="stack stack-sm">
                       <p class="text-body text-muted">Show only failed checks from the last 24 hours.</p>
                       <label class="checkbox"><input type="checkbox" checked> Failed only</label>
@@ -3432,13 +3454,14 @@
                     </div>
                   </div>
                 </div>
+                <p class="text-meta">The checkbox is visually hidden but stays in the tab order so keyboard users can open and close it. Focus trapping and Escape still need application code. Add <code>is-active</code> on the backdrop and panel when you drive open state from script.</p>
               </div>
               <div class="demo-panel demo-panel-markup">
                 <pre class="code-sample"><code>&lt;label class="btn btn-secondary" for="filter-drawer"&gt;Filters&lt;/label&gt;
-&lt;input class="drawer-toggle" type="checkbox" id="filter-drawer"&gt;
-&lt;div class="drawer-backdrop"&gt;&lt;/div&gt;
-&lt;div class="drawer-panel"&gt;
-  &lt;div class="drawer-head"&gt;&lt;h3 class="modal-title"&gt;Filter revisions&lt;/h3&gt;&lt;label class="close-button" for="filter-drawer" aria-label="Close"&gt;&lt;svg class="icon" aria-hidden="true" viewBox="0 0 24 24"&gt;&lt;path d="M18 6 6 18M6 6l12 12"/&gt;&lt;/svg&gt;&lt;/label&gt;&lt;/div&gt;
+&lt;input class="drawer-toggle" type="checkbox" id="filter-drawer" aria-controls="filter-drawer-panel"&gt;
+&lt;div class="drawer-backdrop" aria-hidden="true"&gt;&lt;/div&gt;
+&lt;div class="drawer-panel" id="filter-drawer-panel" role="dialog" aria-modal="true" aria-labelledby="filter-drawer-title"&gt;
+  &lt;div class="drawer-head"&gt;&lt;h3 class="modal-title" id="filter-drawer-title"&gt;Filter revisions&lt;/h3&gt;&lt;label class="close-button" for="filter-drawer" aria-label="Close"&gt;&lt;svg class="icon" aria-hidden="true" viewBox="0 0 24 24"&gt;&lt;path d="M18 6 6 18M6 6l12 12"/&gt;&lt;/svg&gt;&lt;/label&gt;&lt;/div&gt;
   &lt;div class="stack stack-sm"&gt;
     &lt;p class="text-body text-muted"&gt;Show only failed checks from the last 24 hours.&lt;/p&gt;
     &lt;label class="checkbox"&gt;&lt;input type="checkbox" checked&gt; Failed only&lt;/label&gt;

@@ -944,7 +944,7 @@ A month grid with today, selection, and adjacent-month days.
 - **`.is-today`:** a ring on the current day
 - **`.is-selected`:** the chosen day
 - **`.is-outside`:** a day from the neighbouring month
-- **Note:** The grid is presentation. Month changes and selection need JavaScript.
+- **Note:** The month is a labelled group of day buttons. Month changes and selection need JavaScript. Prefer this presentation shell over a fake ARIA grid unless you implement full grid keyboard behaviour.
 
 ```html
 <div class="calendar">
@@ -953,7 +953,7 @@ A month grid with today, selection, and adjacent-month days.
     <span class="calendar-title" id="calendar-label">June 2026</span>
     <button class="icon-button" type="button" aria-label="Next month"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
   </div>
-  <div class="calendar-grid" role="grid" aria-labelledby="calendar-label">
+  <div class="calendar-grid" role="group" aria-labelledby="calendar-label">
     <span class="calendar-dow" aria-hidden="true">Mo</span><span class="calendar-dow" aria-hidden="true">Tu</span><span class="calendar-dow" aria-hidden="true">We</span><span class="calendar-dow" aria-hidden="true">Th</span><span class="calendar-dow" aria-hidden="true">Fr</span><span class="calendar-dow" aria-hidden="true">Sa</span><span class="calendar-dow" aria-hidden="true">Su</span>
     <button class="calendar-day is-outside" type="button" aria-label="31 May 2026">31</button>
     <button class="calendar-day" type="button" aria-label="1 June 2026">1</button>
@@ -1326,13 +1326,24 @@ Switching between views of the same object.
 
 - **Use:** Two to six views that share one context.
 - **Avoid:** Tabs for steps in a sequence. Use a stepper.
-- **Note:** Show and hide panels, and move focus with the arrow keys, in application code. This markup is the visual shell.
+- **Note:** Show and hide panels, and move focus with the arrow keys, in application code. This markup is the visual shell plus one sample panel.
 
 ```html
-<div class="tabs" role="tablist" aria-label="Views">
-  <button class="tab" type="button" role="tab" aria-selected="true" id="tab-activity" aria-controls="panel-activity">Activity</button>
-  <button class="tab" type="button" role="tab" aria-selected="false" id="tab-checks" aria-controls="panel-checks" tabindex="-1">Checks</button>
-  <button class="tab" type="button" role="tab" aria-selected="false" id="tab-settings" aria-controls="panel-settings" tabindex="-1">Settings</button>
+<div class="stack stack-sm">
+  <div class="tabs" role="tablist" aria-label="Views">
+    <button class="tab" type="button" role="tab" aria-selected="true" id="tab-activity" aria-controls="panel-activity">Activity</button>
+    <button class="tab" type="button" role="tab" aria-selected="false" id="tab-checks" aria-controls="panel-checks" tabindex="-1">Checks</button>
+    <button class="tab" type="button" role="tab" aria-selected="false" id="tab-settings" aria-controls="panel-settings" tabindex="-1">Settings</button>
+  </div>
+  <div class="panel" id="panel-activity" role="tabpanel" aria-labelledby="tab-activity">
+    <div class="panel-content text-body">Three deploys finished in the last hour.</div>
+  </div>
+  <div class="panel" id="panel-checks" role="tabpanel" aria-labelledby="tab-checks" hidden>
+    <div class="panel-content text-body">All required checks are green.</div>
+  </div>
+  <div class="panel" id="panel-settings" role="tabpanel" aria-labelledby="tab-settings" hidden>
+    <div class="panel-content text-body">Notification preferences for this service.</div>
+  </div>
 </div>
 ```
 
@@ -1577,14 +1588,16 @@ A panel that slides in from the edge, driven by a checkbox toggle.
 
 - **Use:** Filters and detail views that sit beside the main content.
 - **Avoid:** Destructive confirmations. Use a modal so the choice is unmissable.
+- **`.is-active`:** open state on backdrop and panel when not using the checkbox
 - **Requires:** checkbox
+- **Note:** The checkbox is visually hidden but stays in the tab order so keyboard users can open and close it. Focus trapping and Escape still need application code. Add <code>is-active</code> on the backdrop and panel when you drive open state from script.
 
 ```html
 <label class="btn btn-secondary" for="filter-drawer">Filters</label>
-<input class="drawer-toggle" type="checkbox" id="filter-drawer">
-<div class="drawer-backdrop"></div>
-<div class="drawer-panel">
-  <div class="drawer-head"><h3 class="modal-title">Filter revisions</h3><label class="close-button" for="filter-drawer" aria-label="Close"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></label></div>
+<input class="drawer-toggle" type="checkbox" id="filter-drawer" aria-controls="filter-drawer-panel">
+<div class="drawer-backdrop" aria-hidden="true"></div>
+<div class="drawer-panel" id="filter-drawer-panel" role="dialog" aria-modal="true" aria-labelledby="filter-drawer-title">
+  <div class="drawer-head"><h3 class="modal-title" id="filter-drawer-title">Filter revisions</h3><label class="close-button" for="filter-drawer" aria-label="Close"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></label></div>
   <div class="stack stack-sm">
     <p class="text-body text-muted">Show only failed checks from the last 24 hours.</p>
     <label class="checkbox"><input type="checkbox" checked> Failed only</label>

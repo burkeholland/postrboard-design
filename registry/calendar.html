@@ -5,7 +5,7 @@ category: data
 description: A month grid with today, selection, and adjacent-month days.
 use: Showing a month in place, when the dates carry information a person must see: bookings, incidents, or scheduled runs.
 avoid: Using it as a date field. A date input is smaller, faster, and already accessible.
-note: The grid is presentation. Month changes and selection need JavaScript.
+note: The month is a labelled group of day buttons. Month changes and selection need JavaScript. Prefer this presentation shell over a fake ARIA grid unless you implement full grid keyboard behaviour.
 variants: is-today = a ring on the current day; is-selected = the chosen day; is-outside = a day from the neighbouring month
 -->
 <div class="calendar">
@@ -14,7 +14,7 @@ variants: is-today = a ring on the current day; is-selected = the chosen day; is
     <span class="calendar-title" id="calendar-label">June 2026</span>
     <button class="icon-button" type="button" aria-label="Next month"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
   </div>
-  <div class="calendar-grid" role="grid" aria-labelledby="calendar-label">
+  <div class="calendar-grid" role="group" aria-labelledby="calendar-label">
     <span class="calendar-dow" aria-hidden="true">Mo</span><span class="calendar-dow" aria-hidden="true">Tu</span><span class="calendar-dow" aria-hidden="true">We</span><span class="calendar-dow" aria-hidden="true">Th</span><span class="calendar-dow" aria-hidden="true">Fr</span><span class="calendar-dow" aria-hidden="true">Sa</span><span class="calendar-dow" aria-hidden="true">Su</span>
     <button class="calendar-day is-outside" type="button" aria-label="31 May 2026">31</button>
     <button class="calendar-day" type="button" aria-label="1 June 2026">1</button>

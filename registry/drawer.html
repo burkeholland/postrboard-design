@@ -5,14 +5,16 @@ category: overlays
 description: A panel that slides in from the edge, driven by a checkbox toggle.
 use: Filters and detail views that sit beside the main content.
 avoid: Destructive confirmations. Use a modal so the choice is unmissable.
+note: The checkbox is visually hidden but stays in the tab order so keyboard users can open and close it. Focus trapping and Escape still need application code. Add <code>is-active</code> on the backdrop and panel when you drive open state from script.
 preview: stage
 requires: checkbox
+variants: is-active = open state on backdrop and panel when not using the checkbox
 -->
 <label class="btn btn-secondary" for="filter-drawer">Filters</label>
-<input class="drawer-toggle" type="checkbox" id="filter-drawer">
-<div class="drawer-backdrop"></div>
-<div class="drawer-panel">
-  <div class="drawer-head"><h3 class="modal-title">Filter revisions</h3><label class="close-button" for="filter-drawer" aria-label="Close"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></label></div>
+<input class="drawer-toggle" type="checkbox" id="filter-drawer" aria-controls="filter-drawer-panel">
+<div class="drawer-backdrop" aria-hidden="true"></div>
+<div class="drawer-panel" id="filter-drawer-panel" role="dialog" aria-modal="true" aria-labelledby="filter-drawer-title">
+  <div class="drawer-head"><h3 class="modal-title" id="filter-drawer-title">Filter revisions</h3><label class="close-button" for="filter-drawer" aria-label="Close"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></label></div>
   <div class="stack stack-sm">
     <p class="text-body text-muted">Show only failed checks from the last 24 hours.</p>
     <label class="checkbox"><input type="checkbox" checked> Failed only</label>
