@@ -1,0 +1,20 @@
+<!--
+name: otp-input
+title: One-time code
+category: forms
+description: Single-character boxes for a verification code.
+use: A code sent by mail or an authenticator app, where the length is fixed and known.
+avoid: Using it for a password or a long token. Split boxes stop working once a person cannot see the whole value.
+note: The boxes are presentation. Advancing focus on input, and handling a pasted code, needs JavaScript. Set aria-invalid="true" on every box when a code is rejected.
+-->
+<div class="stack stack-sm">
+  <div class="otp-row" role="group" aria-label="Verification code">
+    <input class="otp-input" inputmode="numeric" maxlength="1" value="4" aria-label="Digit 1">
+    <input class="otp-input" inputmode="numeric" maxlength="1" value="2" aria-label="Digit 2">
+    <input class="otp-input" inputmode="numeric" maxlength="1" value="8" aria-label="Digit 3">
+    <input class="otp-input" inputmode="numeric" maxlength="1" aria-label="Digit 4">
+    <input class="otp-input" inputmode="numeric" maxlength="1" aria-label="Digit 5">
+    <input class="otp-input" inputmode="numeric" maxlength="1" aria-label="Digit 6">
+  </div>
+  <p class="form-helper">Six characters, sent to the address on the account.</p>
+</div>

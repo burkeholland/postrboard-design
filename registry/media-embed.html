@@ -1,0 +1,15 @@
+<!--
+name: media-embed
+title: Media embed
+category: content
+description: A fixed-shape frame with a play control over it.
+use: A video you load only after a person asks for it, which keeps the third-party script off the first paint.
+avoid: Autoplay with sound. Also avoid a play button that does nothing; wire it up or use a plain image.
+requires: aspect-ratio
+-->
+<div class="aspect media-embed">
+  <img src="/media/walkthrough-poster.png" alt="">
+  <button class="media-play" type="button" aria-label="Play the walkthrough">
+    <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+  </button>
+</div>

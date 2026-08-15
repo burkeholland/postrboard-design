@@ -1,0 +1,19 @@
+<!--
+name: dropdown
+title: Dropdown menu
+category: overlays
+description: A menu of actions attached to a trigger.
+use: Secondary actions on a row or toolbar.
+avoid: Hiding the primary action in a menu.
+note: CSS handles the open state on focus. Keyboard navigation and Escape are yours to build.
+preview: overlay
+variants: is-open = keeps the panel visible without focus, for docs and for click-to-open state
+-->
+<div class="dropdown">
+  <button class="btn btn-secondary btn-sm" type="button">Actions</button>
+  <div class="dropdown-menu">
+    <button type="button">Restart service</button>
+    <button type="button">View logs</button>
+    <button type="button">Roll back</button>
+  </div>
+</div>

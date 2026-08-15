@@ -1,0 +1,13 @@
+<!--
+name: utility-sizing
+title: Sizing utilities
+category: utilities
+description: Width caps, full height, flexible growth, and overflow.
+use: Capping a measure, letting one flex child take the remaining space, or scrolling a bounded region.
+avoid: max-w on prose that already sits in a container or text-body. Both cap the measure for you.
+variants: max-w-sm max-w-md max-w-lg max-w-xl = width caps; w-full h-full = fill the parent; flex-1 = take the remaining space in a flex row; overflow-auto overflow-hidden = scroll or clip a bounded region
+-->
+<div class="flex gap-3 items-center">
+  <input class="input flex-1" value="api-gateway" aria-label="Service">
+  <button class="btn btn-secondary" type="button">Find</button>
+</div>

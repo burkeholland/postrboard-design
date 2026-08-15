@@ -1,0 +1,17 @@
+<!--
+name: skeleton
+title: Skeleton
+category: feedback
+description: Grey blocks in the shape of the content that is loading.
+use: A first load where you know the shape of what is coming. It reads faster than a spinner because the page does not jump.
+avoid: Skeletons for an action a person just took. Use a busy state on the control they pressed.
+note: skeleton-text shortens each following line so it reads as a paragraph. Mark the region aria-busy so it is announced.
+-->
+<div class="stack stack-sm" aria-busy="true" aria-label="Loading">
+  <div class="skeleton-text">
+    <div class="skeleton"></div>
+    <div class="skeleton"></div>
+    <div class="skeleton"></div>
+    <div class="skeleton"></div>
+  </div>
+</div>

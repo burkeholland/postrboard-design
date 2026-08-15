@@ -1,0 +1,26 @@
+<!--
+name: sortable-table
+title: Sortable table
+category: data
+description: A data table whose headers are buttons that re-sort the rows.
+use: A table a person will scan by different columns: newest, slowest, largest.
+avoid: Making every column sortable. Sort the columns people compare, not the ones they read.
+requires: data-table
+note: aria-sort goes on the sorted th, and takes "ascending" or "descending". Sorting itself needs JavaScript.
+-->
+<div class="table-wrap">
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th scope="col" class="sortable"><button type="button">Service<svg class="sort-indicator" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 15 6 6 6-6"/><path d="m6 9 6-6 6 6"/></svg></button></th>
+        <th scope="col" class="sortable" aria-sort="descending"><button type="button">Duration<svg class="sort-indicator" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 15 6 6 6-6"/><path d="m6 9 6-6 6 6"/></svg></button></th>
+        <th scope="col">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>image-resizer</td><td class="is-numeric">4m 12s</td><td><span class="badge badge-danger">Failed</span></td></tr>
+      <tr><td>api-gateway</td><td class="is-numeric">1m 48s</td><td><span class="badge badge-success">Passed</span></td></tr>
+      <tr><td>webhook-relay</td><td class="is-numeric">0m 39s</td><td><span class="badge badge-success">Passed</span></td></tr>
+    </tbody>
+  </table>
+</div>

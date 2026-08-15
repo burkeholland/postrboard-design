@@ -1,0 +1,12 @@
+<!--
+name: utility-surface
+title: Surface utilities
+category: utilities
+description: Background, border, and corner rounding that match the framework tokens.
+use: A small framed region inside a component, using the same tokens as the rest of the page.
+avoid: Framing everything. Nested borders inside a panel are how a page starts to look like a stack of boxes.
+variants: bg-surface bg-code = token backgrounds; border border-top border-bottom = token borders; rounded rounded-lg rounded-full = corner radius, from the geometry setting
+-->
+<div class="bg-code border rounded p-4">
+  <p class="text-mono">GET /v1/deploys?status=ready</p>
+</div>

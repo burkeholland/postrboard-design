@@ -1,0 +1,16 @@
+<!--
+name: card
+title: Card
+category: surfaces
+variants: card-interactive = hover response, when the whole card is a link
+description: A compatibility alias for panel, kept for 1.x markup.
+use: Existing pages already written against the 1.x card API.
+avoid: New work. Use panel, which is the canonical name.
+preview: measure
+requires: badge
+-->
+<article class="card">
+  <div class="card-header"><h3 class="card-title">api-gateway</h3><span class="badge badge-status" data-state="success">Healthy</span></div>
+  <div class="card-content"><p class="card-body">Three replicas healthy in us-east-1. Last check 40 seconds ago.</p></div>
+  <div class="card-footer"><button class="btn btn-secondary btn-sm" type="button">Open</button></div>
+</article>

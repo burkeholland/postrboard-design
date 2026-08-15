@@ -1,0 +1,26 @@
+<!--
+name: form
+title: Form
+category: forms
+description: A vertical stack of labelled fields with helper text and error messages.
+use: Any set of inputs the user submits together.
+avoid: Placeholder text instead of a label. Every field needs a real label.
+requires: input, select, switch
+-->
+<form class="form-stack">
+  <div class="form-field">
+    <label class="form-label" for="project-name">Project name</label>
+    <input class="input w-full" id="project-name" value="release-monitor">
+    <p class="form-helper">Used in URLs and deployment labels.</p>
+  </div>
+  <div class="form-field">
+    <label class="form-label" for="region">Region</label>
+    <select class="select" id="region"><option>us-east-1</option><option>eu-west-1</option></select>
+  </div>
+  <div class="form-field">
+    <label class="form-label" for="invalid-key">API key</label>
+    <input class="input w-full" id="invalid-key" aria-invalid="true" aria-describedby="key-error" value="expired-key">
+    <p class="form-message error" id="key-error">This key expired. Create a new key and try again.</p>
+  </div>
+  <label class="switch"><input type="checkbox" checked><span class="switch-track"></span>Pause on failed checks</label>
+</form>

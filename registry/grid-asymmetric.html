@@ -1,0 +1,29 @@
+<!--
+name: grid-asymmetric
+title: Asymmetric grid
+category: layout
+variants: grid-asymmetric-reverse = the narrow column leads
+description: Two columns weighted 2:1. Use grid-asymmetric-reverse to lead with the narrow column.
+use: Content beside supporting metadata.
+avoid: Splitting equal-weight content. Use grid-split.
+-->
+<div class="grid-asymmetric">
+  <div class="panel">
+    <div class="panel-content stack stack-sm">
+      <p class="text-card">Deploy notes</p>
+      <p class="text-body text-muted">This revision only changes the health probe path. No schema migration runs.</p>
+    </div>
+  </div>
+  <div class="panel">
+    <div class="panel-content stack stack-sm">
+      <div>
+        <p class="text-meta">region</p>
+        <p class="text-body">us-east-1</p>
+      </div>
+      <div>
+        <p class="text-meta">owner</p>
+        <p class="text-body">Platform</p>
+      </div>
+    </div>
+  </div>
+</div>

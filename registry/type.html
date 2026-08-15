@@ -1,0 +1,18 @@
+<!--
+name: type
+title: Type scale
+category: content
+description: The full type scale, from the display size down to metadata.
+use: Every piece of text. One text-display per page at most, then text-h1 and text-h2 for structure.
+avoid: Two display-sized lines on one screen. The scale only reads as a hierarchy if the top of it is rare.
+variants: text-mono = monospace body, for identifiers and log lines; t-mono-display = a display line set in monospace; gradient-text = tints a run of text with the active accent
+-->
+<div class="stack">
+  <p class="text-display">Deploy history</p>
+  <h2 class="text-h1">Roll back in one action</h2>
+  <h3 class="text-h2">Section heading</h3>
+  <p class="text-card">Card heading, for titles inside a panel.</p>
+  <p class="text-body">Body copy. Capped at 72 characters so long paragraphs stay readable without a wrapper.</p>
+  <p class="text-body text-muted">Muted body, for a second line that supports the first.</p>
+  <p class="text-meta">METADATA &middot; TIMESTAMPS &middot; LABELS</p>
+</div>

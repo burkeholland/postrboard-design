@@ -1,0 +1,1787 @@
+{
+  "name": "postrboard",
+  "version": "2.0.0",
+  "docs": "https://burkeholland.github.io/postrboard-design",
+  "components": [
+    {
+      "name": "accordion",
+      "title": "Accordion",
+      "category": "surfaces",
+      "description": "Native details and summary styled as a disclosure row.",
+      "use": "Reference content most readers skip, such as troubleshooting.",
+      "avoid": "Hiding content the user needs to complete the task in front of them.",
+      "variants": [],
+      "requires": [],
+      "html": "<details class=\"accordion\">\n  <summary>What do I still have to build in JavaScript?</summary>\n  <div class=\"accordion-body\">Focus trapping, closing on Escape, arrow-key navigation, tracking which item is selected, and screen-reader announcements. The CSS only styles these components.</div>\n</details>"
+    },
+    {
+      "name": "alert-dialog",
+      "title": "Alert dialog",
+      "category": "overlays",
+      "description": "A modal that asks a person to confirm something they cannot undo.",
+      "use": "Deleting, revoking, or anything irreversible. Name the object in the button, not just \"Confirm\".",
+      "avoid": "Using it for a save or a routine action. If it can be undone, do it and offer an undo instead.",
+      "variants": [],
+      "requires": [
+        "modal"
+      ],
+      "note": "An alert dialog takes role=\"alertdialog\". Escape should cancel, never confirm. Focus trapping is yours to build.",
+      "html": "<a href=\"#revoke-key\" class=\"btn btn-danger\">Revoke key</a>\n<div class=\"modal modal-alert\" id=\"revoke-key\" role=\"alertdialog\" aria-modal=\"true\" aria-labelledby=\"revoke-title\" aria-describedby=\"revoke-body\">\n  <div class=\"modal-card\">\n    <div class=\"modal-head\">\n      <span class=\"modal-icon\"><svg class=\"icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"M12 9v4\"/><path d=\"M12 17h.01\"/><path d=\"M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z\"/></svg></span>\n      <h3 class=\"modal-title\" id=\"revoke-title\">Revoke this key?</h3>\n    </div>\n    <div class=\"modal-body\" id=\"revoke-body\">Any service using <code class=\"inline-code\">deploy-bot-prod</code> stops authenticating straight away. This cannot be undone.</div>\n    <div class=\"modal-actions\">\n      <a class=\"btn btn-ghost\" href=\"#components\">Keep the key</a>\n      <button class=\"btn btn-danger\" type=\"button\">Revoke the key</button>\n    </div>\n  </div>\n</div>"
+    },
+    {
+      "name": "alert",
+      "title": "Alert",
+      "category": "feedback",
+      "description": "An inline message in four severities, each with a title and body.",
+      "use": "A condition the user must understand before acting.",
+      "avoid": "Stacking three alerts at the top of a page. Show the one that matters.",
+      "variants": [],
+      "requires": [],
+      "html": "<div class=\"alert alert-info\">\n  <svg class=\"icon\" aria-hidden=\"true\" viewBox=\"0 0 24 24\"><circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M12 16v-4M12 8h.01\"/></svg>\n  <div><strong class=\"alert-title\">Revision queued</strong><p class=\"alert-body\">It starts when the current deploy finishes.</p></div>\n</div>\n<div class=\"alert alert-success\">\n  <svg class=\"icon\" aria-hidden=\"true\" viewBox=\"0 0 24 24\"><path d=\"M20 6 9 17l-5-5\"/></svg>\n  <div><strong class=\"alert-title\">All checks passed</strong><p class=\"alert-body\">This revision is ready to promote.</p></div>\n</div>\n<div class=\"alert alert-warning\">\n  <svg class=\"icon\" aria-hidden=\"true\" viewBox=\"0 0 24 24\"><path d=\"M12 3 2 20h20L12 3Z\"/><path d=\"M12 9v4M12 17h.01\"/></svg>\n  <div><strong class=\"alert-title\">Two checks need review</strong><p class=\"alert-body\">Open the failed checks before you promote this revision.</p></div>\n</div>\n<div class=\"alert alert-danger\">\n  <svg class=\"icon\" aria-hidden=\"true\" viewBox=\"0 0 24 24\"><circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M15 9l-6 6M9 9l6 6\"/></svg>\n  <div><strong class=\"alert-title\">Deploy failed</strong><p class=\"alert-body\">api-gateway rolled back to v2.8.0 automatically.</p></div>\n</div>"
+    },
+    {
+      "name": "app-shell",
+      "title": "App shell",
+      "category": "layout",
+      "description": "A full-height sidebar and main region, the standard frame for an application.",
+      "use": "Any signed-in product surface with persistent navigation.",
+      "avoid": "Marketing pages. A landing page does not need an app frame.",
+      "variants": [],
+      "requires": [
+        "sidebar-nav",
+        "page-header",
+        "stat-strip"
+      ],
+      "html": "<div class=\"grid-sidebar is-app-shell\">\n  <aside class=\"app-sidebar\">\n    <a class=\"brand\" href=\"/\"><span class=\"brand-mark\">R/</span> relay</a>\n    <nav class=\"sidebar-nav\" aria-label=\"Sections\">\n      <a href=\"/\" aria-current=\"page\">Overview</a>\n      <a href=\"/deploys\">Deploys</a>\n      <a href=\"/logs\">Logs</a>\n    </nav>\n  </aside>\n  <main class=\"app-main\" id=\"main\">\n    <header class=\"page-header\">\n      <div class=\"page-header-main\">\n        <h1 class=\"page-title\">Overview</h1>\n        <p class=\"page-summary\">Live services in us-east-1.</p>\n      </div>\n    </header>\n    <dl class=\"stat-strip\">\n      <div class=\"stat-item\"><dt class=\"stat-label\">Ready</dt><dd class=\"stat-value\">12</dd></div>\n      <div class=\"stat-item\"><dt class=\"stat-label\">Building</dt><dd class=\"stat-value\">4</dd></div>\n      <div class=\"stat-item\"><dt class=\"stat-label\">Failed</dt><dd class=\"stat-value\">1</dd></div>\n    </dl>\n  </main>\n</div>"
+    },
+    {
+      "name": "aspect-ratio",
+      "title": "Aspect ratio",
+      "category": "content",
+      "description": "A box that holds its shape while the media inside fills it.",
+      "use": "Any image, video, or map that must not change the page height as it loads.",
+      "avoid": "Wrapping text in it. Text should set its own height.",
+      "variants": [
+        {
+          "classes": [
+            "aspect-16-9",
+            "aspect-4-3",
+            "aspect-1-1"
+          ],
+          "description": "the shape of the box"
+        }
+      ],
+      "requires": [],
+      "note": "The default shape is 16 by 9.",
+      "html": "<div class=\"aspect aspect-4-3\">\n  <img src=\"/media/deploy-graph.png\" alt=\"Deploy frequency over the last 30 days\">\n</div>"
+    },
+    {
+      "name": "auth-card",
+      "title": "Auth card",
+      "category": "forms",
+      "description": "A narrow card holding a sign-in form and its secondary links.",
+      "use": "Sign in, sign up, and reset, on a page with nothing else competing for attention.",
+      "avoid": "A marketing panel beside it. The person is here to get in.",
+      "variants": [],
+      "requires": [
+        "form"
+      ],
+      "html": "<div class=\"auth-card\">\n  <div class=\"stack\">\n    <div class=\"stack stack-sm\">\n      <h1 class=\"text-card\">Sign in</h1>\n      <p class=\"text-body text-muted\">Use the account your organisation issued.</p>\n    </div>\n    <form class=\"form-stack\">\n      <div class=\"form-field\">\n        <label class=\"form-label\" for=\"auth-mail\">Email</label>\n        <input class=\"input\" id=\"auth-mail\" type=\"email\" autocomplete=\"username\">\n      </div>\n      <div class=\"form-field\">\n        <label class=\"form-label\" for=\"auth-pass\">Password</label>\n        <input class=\"input\" id=\"auth-pass\" type=\"password\" autocomplete=\"current-password\">\n      </div>\n      <button class=\"btn btn-primary\" type=\"submit\">Sign in</button>\n    </form>\n    <div class=\"auth-links\">\n      <a href=\"/reset\">Forgot password</a>\n      <a href=\"/sso\">Use single sign-on</a>\n    </div>\n  </div>\n</div>"
+    },
+    {
+      "name": "avatar-group",
+      "title": "Avatar group",
+      "category": "data",
+      "description": "Overlapping avatars for the people on a thing.",
+      "use": "Showing who is assigned, watching, or reviewing, when the count is small.",
+      "avoid": "More than about five. Past that, show three and a count.",
+      "variants": [],
+      "requires": [
+        "avatar"
+      ],
+      "html": "<div class=\"cluster\">\n  <div class=\"avatar-group\">\n    <span class=\"avatar avatar-md\">AR</span>\n    <span class=\"avatar avatar-md\">MK</span>\n    <span class=\"avatar avatar-md\">JT</span>\n  </div>\n  <span class=\"text-meta\">and 4 more</span>\n</div>"
+    },
+    {
+      "name": "avatar",
+      "title": "Avatar",
+      "category": "data",
+      "description": "A person or service marker in three sizes.",
+      "use": "Attribution in lists, comments, and audit trails.",
+      "avoid": "Inventing faces. Initials are honest; stock portraits are not.",
+      "variants": [],
+      "requires": [],
+      "html": "<div class=\"cluster\">\n  <span class=\"avatar avatar-sm\">JK</span>\n  <span class=\"avatar avatar-md\">JK</span>\n  <span class=\"avatar avatar-lg\">JK</span>\n</div>"
+    },
+    {
+      "name": "badge",
+      "title": "Badge",
+      "category": "data",
+      "description": "A small label for a status or a category.",
+      "use": "badge-status with data-state for a condition; an accent badge for a team or category.",
+      "avoid": "Badges as decoration. If it does not encode state or category, drop it.",
+      "variants": [
+        {
+          "classes": [
+            "badge-success"
+          ],
+          "description": "passed or healthy"
+        },
+        {
+          "classes": [
+            "badge-warning"
+          ],
+          "description": "needs attention"
+        },
+        {
+          "classes": [
+            "badge-danger"
+          ],
+          "description": "failed or blocked"
+        },
+        {
+          "classes": [
+            "badge-info"
+          ],
+          "description": "in progress or neutral"
+        }
+      ],
+      "requires": [],
+      "html": "<div class=\"cluster\">\n  <span class=\"badge badge-status\" data-state=\"success\">Ready</span>\n  <span class=\"badge badge-status\" data-state=\"info\">Running</span>\n  <span class=\"badge badge-status\" data-state=\"warning\">Review</span>\n  <span class=\"badge badge-status\" data-state=\"danger\">Failed</span>\n  <span class=\"badge badge-status badge-neutral\">Queued</span>\n</div>"
+    },
+    {
+      "name": "banner",
+      "title": "Banner",
+      "category": "feedback",
+      "description": "A dismissible page-level notice.",
+      "use": "Scheduled maintenance and account-wide conditions.",
+      "avoid": "Marketing announcements the user cannot act on.",
+      "variants": [],
+      "requires": [
+        "button"
+      ],
+      "html": "<div class=\"banner\">\n  <div><strong class=\"banner-title\">Scheduled maintenance</strong><p class=\"banner-body\">api-gateway restarts at 02:00 UTC on Thursday.</p></div>\n  <button class=\"btn btn-ghost btn-sm\" type=\"button\">Dismiss</button>\n</div>"
+    },
+    {
+      "name": "breadcrumb",
+      "title": "Breadcrumb",
+      "category": "navigation",
+      "description": "The path back up a hierarchy.",
+      "use": "Nested records where the parent is not otherwise visible.",
+      "avoid": "Flat apps with two levels. It adds a row and says nothing.",
+      "variants": [],
+      "requires": [],
+      "html": "<nav class=\"breadcrumb\" aria-label=\"Breadcrumb\">\n  <a href=\"/services\">Services</a><span class=\"breadcrumb-sep\">/</span><a href=\"/services/api-gateway\">api-gateway</a><span class=\"breadcrumb-sep\">/</span><span>Revisions</span>\n</nav>"
+    },
+    {
+      "name": "button-group",
+      "title": "Button group",
+      "category": "actions",
+      "description": "Buttons joined into a single control for mutually related actions.",
+      "use": "A small set of actions on one object, such as edit, duplicate, and archive.",
+      "avoid": "Unrelated actions. Use a cluster of separate buttons instead. For exclusive choices, use segmented-control.",
+      "variants": [],
+      "requires": [],
+      "html": "<div class=\"button-group\">\n  <button class=\"btn btn-secondary btn-sm\" type=\"button\">Edit</button>\n  <button class=\"btn btn-secondary btn-sm\" type=\"button\">Duplicate</button>\n  <button class=\"btn btn-secondary btn-sm\" type=\"button\">Archive</button>\n</div>"
+    },
+    {
+      "name": "button",
+      "title": "Button",
+      "category": "actions",
+      "description": "The standard action control, in four emphasis levels plus busy and disabled states.",
+      "use": "One primary button per surface. Everything else is secondary or ghost.",
+      "avoid": "Two primary buttons side by side. If both matter equally, neither is primary.",
+      "variants": [
+        {
+          "classes": [
+            "btn-lg"
+          ],
+          "description": "taller target for a single hero action"
+        },
+        {
+          "classes": [
+            "btn-gradient"
+          ],
+          "description": "accent-filled fill"
+        },
+        {
+          "classes": [
+            "is-disabled"
+          ],
+          "description": "disabled look without the disabled attribute, when a real button must stay focusable"
+        }
+      ],
+      "requires": [],
+      "html": "<div class=\"cluster\">\n  <button class=\"btn btn-primary\" type=\"button\">Save changes</button>\n  <button class=\"btn btn-secondary\" type=\"button\">Preview</button>\n  <button class=\"btn btn-ghost\" type=\"button\">Cancel</button>\n  <button class=\"btn btn-danger\" type=\"button\">Delete</button>\n  <button class=\"btn btn-primary\" type=\"button\" aria-busy=\"true\">Saving</button>\n  <button class=\"btn btn-secondary\" type=\"button\" disabled>Unavailable</button>\n</div>"
+    },
+    {
+      "name": "calendar",
+      "title": "Calendar",
+      "category": "data",
+      "description": "A month grid with today, selection, and adjacent-month days.",
+      "use": "Showing a month in place, when the dates carry information a person must see: bookings, incidents, or scheduled runs.",
+      "avoid": "Using it as a date field. A date input is smaller, faster, and already accessible.",
+      "variants": [
+        {
+          "classes": [
+            "is-today"
+          ],
+          "description": "a ring on the current day"
+        },
+        {
+          "classes": [
+            "is-selected"
+          ],
+          "description": "the chosen day"
+        },
+        {
+          "classes": [
+            "is-outside"
+          ],
+          "description": "a day from the neighbouring month"
+        }
+      ],
+      "requires": [],
+      "note": "The month is a labelled group of day buttons. Month changes and selection need JavaScript. Prefer this presentation shell over a fake ARIA grid unless you implement full grid keyboard behaviour.",
+      "html": "<div class=\"calendar\">\n  <div class=\"calendar-head\">\n    <button class=\"icon-button\" type=\"button\" aria-label=\"Previous month\"><svg class=\"icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"m15 18-6-6 6-6\"/></svg></button>\n    <span class=\"calendar-title\" id=\"calendar-label\">June 2026</span>\n    <button class=\"icon-button\" type=\"button\" aria-label=\"Next month\"><svg class=\"icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"m9 18 6-6-6-6\"/></svg></button>\n  </div>\n  <div class=\"calendar-grid\" role=\"group\" aria-labelledby=\"calendar-label\">\n    <span class=\"calendar-dow\" aria-hidden=\"true\">Mo</span><span class=\"calendar-dow\" aria-hidden=\"true\">Tu</span><span class=\"calendar-dow\" aria-hidden=\"true\">We</span><span class=\"calendar-dow\" aria-hidden=\"true\">Th</span><span class=\"calendar-dow\" aria-hidden=\"true\">Fr</span><span class=\"calendar-dow\" aria-hidden=\"true\">Sa</span><span class=\"calendar-dow\" aria-hidden=\"true\">Su</span>\n    <button class=\"calendar-day is-outside\" type=\"button\" aria-label=\"31 May 2026\">31</button>\n    <button class=\"calendar-day\" type=\"button\" aria-label=\"1 June 2026\">1</button>\n    <button class=\"calendar-day\" type=\"button\" aria-label=\"2 June 2026\">2</button>\n    <button class=\"calendar-day\" type=\"button\" aria-label=\"3 June 2026\">3</button>\n    <button class=\"calendar-day\" type=\"button\" aria-label=\"4 June 2026\">4</button>\n    <button class=\"calendar-day\" type=\"button\" aria-label=\"5 June 2026\">5</button>\n    <button class=\"calendar-day\" type=\"button\" aria-label=\"6 June 2026\">6</button>\n    <button class=\"calendar-day\" type=\"button\" aria-label=\"7 June 2026\">7</button>\n    <button class=\"calendar-day\" type=\"button\" aria-label=\"8 June 2026\">8</button>\n    <button class=\"calendar-day is-today\" type=\"button\" aria-label=\"9 June 2026, today\" aria-current=\"date\">9</button>\n    <button class=\"calendar-day is-selected\" type=\"button\" aria-label=\"10 June 2026, selected\" aria-pressed=\"true\">10</button>\n    <button class=\"calendar-day\" type=\"button\" aria-label=\"11 June 2026\">11</button>\n    <button class=\"calendar-day\" type=\"button\" aria-label=\"12 June 2026\">12</button>\n    <button class=\"calendar-day\" type=\"button\" aria-label=\"13 June 2026\">13</button>\n  </div>\n</div>"
+    },
+    {
+      "name": "card",
+      "title": "Card",
+      "category": "surfaces",
+      "description": "A compatibility alias for panel, kept for 1.x markup.",
+      "use": "Existing pages already written against the 1.x card API.",
+      "avoid": "New work. Use panel, which is the canonical name.",
+      "variants": [
+        {
+          "classes": [
+            "card-interactive"
+          ],
+          "description": "hover response, when the whole card is a link"
+        }
+      ],
+      "requires": [
+        "badge"
+      ],
+      "html": "<article class=\"card\">\n  <div class=\"card-header\"><h3 class=\"card-title\">api-gateway</h3><span class=\"badge badge-status\" data-state=\"success\">Healthy</span></div>\n  <div class=\"card-content\"><p class=\"card-body\">Three replicas healthy in us-east-1. Last check 40 seconds ago.</p></div>\n  <div class=\"card-footer\"><button class=\"btn btn-secondary btn-sm\" type=\"button\">Open</button></div>\n</article>"
+    },
+    {
+      "name": "chart",
+      "title": "Bar chart",
+      "category": "data",
+      "description": "Bars sized by a --value custom property, from 0 to 100.",
+      "use": "A small comparison that sits beside prose or inside a panel, where a charting library would be too much.",
+      "avoid": "Inventing the numbers. If you have no data, say so with an empty state. A chart of made-up bars is the clearest AI tell there is.",
+      "variants": [
+        {
+          "classes": [
+            "is-active"
+          ],
+          "description": "the highlighted bar, in the solid accent"
+        }
+      ],
+      "requires": [],
+      "note": "Set --value per bar as a percentage of the tallest value. For real analysis, use a charting library and keep these tokens.",
+      "html": "<div class=\"panel\">\n  <div class=\"panel-content stack stack-sm\">\n    <p class=\"text-meta\">Build minutes by day. Connect a data source to populate this chart.</p>\n    <div class=\"chart\">\n      <span class=\"chart-bar\" style=\"--value: 42\">Mon</span>\n      <span class=\"chart-bar\" style=\"--value: 61\">Tue</span>\n      <span class=\"chart-bar\" style=\"--value: 38\">Wed</span>\n      <span class=\"chart-bar is-active\" style=\"--value: 88\">Thu</span>\n      <span class=\"chart-bar\" style=\"--value: 54\">Fri</span>\n    </div>\n  </div>\n</div>"
+    },
+    {
+      "name": "checkbox",
+      "title": "Checkbox",
+      "category": "forms",
+      "description": "A boolean control for options that apply independently.",
+      "use": "Several options where any number can be on at once.",
+      "avoid": "Mutually exclusive choices. Use a radio group.",
+      "variants": [],
+      "requires": [],
+      "html": "<div class=\"stack stack-sm\">\n  <label class=\"checkbox\"><input type=\"checkbox\" checked> Include failed jobs</label>\n  <label class=\"checkbox\"><input type=\"checkbox\"> Notify the on-call channel</label>\n</div>"
+    },
+    {
+      "name": "cmd-pill",
+      "title": "Command pill",
+      "category": "content",
+      "description": "A single copyable command shown as a compact pill.",
+      "use": "The one install or run command in a hero or a quickstart.",
+      "avoid": "Multi-line scripts. Use a terminal block.",
+      "variants": [],
+      "requires": [],
+      "html": "<span class=\"cmd-pill\"><span class=\"dollar\">$</span> npm install postrboard-css</span>"
+    },
+    {
+      "name": "combobox",
+      "title": "Combobox",
+      "category": "overlays",
+      "description": "A text input with a filtered list of options beneath it.",
+      "use": "Choosing one item from a set too long for a select.",
+      "avoid": "Fewer than about five options. Use a radio group or a select.",
+      "variants": [
+        {
+          "classes": [
+            "is-open"
+          ],
+          "description": "keeps the panel visible without focus, for docs and for click-to-open state"
+        }
+      ],
+      "requires": [],
+      "note": "CSS can show the list on focus. Filtering, arrow keys, and committing a choice need JavaScript. Add <code>is-open</code> while the list must stay visible for a click.",
+      "html": "<div class=\"combobox\">\n  <label class=\"sr-only\" for=\"service-search\">Search services</label>\n  <input class=\"input w-full\" id=\"service-search\" type=\"text\" role=\"combobox\" aria-expanded=\"false\" aria-controls=\"service-list\" aria-autocomplete=\"list\" placeholder=\"Search services\">\n  <ul class=\"combobox-list\" id=\"service-list\" role=\"listbox\">\n    <li role=\"option\">api-gateway</li>\n    <li role=\"option\">worker-jobs</li>\n    <li role=\"option\">event-router</li>\n  </ul>\n</div>"
+    },
+    {
+      "name": "command-palette",
+      "title": "Command palette",
+      "category": "overlays",
+      "description": "A keyboard-first search over commands and objects.",
+      "use": "Products where power users navigate faster than they click.",
+      "avoid": "Adding one because it looks technical. It needs real commands behind it.",
+      "variants": [],
+      "requires": [],
+      "note": "Filtering and keyboard selection need JavaScript.",
+      "html": "<div class=\"command-palette\" role=\"search\">\n  <label class=\"sr-only\" for=\"command-query\">Type a command or search</label>\n  <input class=\"input\" id=\"command-query\" type=\"search\" placeholder=\"Type a command or search\" autocomplete=\"off\">\n  <div class=\"command-group\">\n    <div class=\"command-group-label\" id=\"command-services-label\">Services</div>\n    <button class=\"command-item\" type=\"button\" aria-describedby=\"command-services-label\">api-gateway <kbd>G A</kbd></button>\n    <button class=\"command-item\" type=\"button\" aria-describedby=\"command-services-label\">worker-jobs <kbd>G W</kbd></button>\n  </div>\n</div>"
+    },
+    {
+      "name": "container",
+      "title": "Container",
+      "category": "layout",
+      "description": "Page width and gutters, in three measures.",
+      "use": "Wrapping page content so it does not run to the viewport edge.",
+      "avoid": "Nesting containers. The inner one adds a second gutter.",
+      "variants": [
+        {
+          "classes": [
+            "container-sm"
+          ],
+          "description": "720px, the prose measure"
+        },
+        {
+          "classes": [
+            "container-lg"
+          ],
+          "description": "1440px, for dense tools"
+        },
+        {
+          "classes": [
+            "section"
+          ],
+          "description": "vertical rhythm between the major blocks of a page"
+        }
+      ],
+      "requires": [],
+      "html": "<div class=\"stack\">\n  <div class=\"container-sm\">\n    <div class=\"panel\">\n      <div class=\"panel-content stack stack-sm\">\n        <span class=\"text-meta\">container-sm</span>\n        <p class=\"text-body\">720px prose measure</p>\n      </div>\n    </div>\n  </div>\n  <div class=\"container\">\n    <div class=\"panel\">\n      <div class=\"panel-content stack stack-sm\">\n        <span class=\"text-meta\">container</span>\n        <p class=\"text-body\">1200px default page width</p>\n      </div>\n    </div>\n  </div>\n  <div class=\"container-lg\">\n    <div class=\"panel\">\n      <div class=\"panel-content stack stack-sm\">\n        <span class=\"text-meta\">container-lg</span>\n        <p class=\"text-body\">1440px dense tools</p>\n      </div>\n    </div>\n  </div>\n</div>"
+    },
+    {
+      "name": "context-menu",
+      "title": "Context menu",
+      "category": "overlays",
+      "description": "A small menu of actions for one object.",
+      "use": "Row actions, right-click menus, and overflow menus where the actions belong to a specific item.",
+      "avoid": "Hiding the primary action in here. A menu is for the secondary and the rare.",
+      "variants": [
+        {
+          "classes": [
+            "is-danger"
+          ],
+          "description": "a destructive item, in the danger colour"
+        }
+      ],
+      "requires": [],
+      "note": "Position it and handle Escape, arrow keys, and outside clicks in application code.",
+      "html": "<div class=\"context-menu\" role=\"menu\" aria-label=\"Deploy actions\">\n  <button class=\"context-menu-item\" type=\"button\" role=\"menuitem\">\n    <svg class=\"icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"M12 19V5\"/><path d=\"m5 12 7-7 7 7\"/></svg>\n    Promote to production\n  </button>\n  <button class=\"context-menu-item\" type=\"button\" role=\"menuitem\">\n    <svg class=\"icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"M3 12a9 9 0 1 0 3-6.7L3 8\"/><path d=\"M3 3v5h5\"/></svg>\n    Roll back\n    <kbd>R</kbd>\n  </button>\n  <hr class=\"context-menu-separator\">\n  <button class=\"context-menu-item is-danger\" type=\"button\" role=\"menuitem\">\n    <svg class=\"icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"M3 6h18\"/><path d=\"M8 6V4h8v2\"/><path d=\"M19 6v14H5V6\"/></svg>\n    Delete build\n  </button>\n</div>"
+    },
+    {
+      "name": "cta-band",
+      "title": "Call to action band",
+      "category": "marketing",
+      "description": "A closing block with one action.",
+      "use": "The end of a marketing page, naming the next practical step.",
+      "avoid": "Restating the headline in a gradient box. Link to docs, a command, or a trial.",
+      "variants": [
+        {
+          "classes": [
+            "btn-gradient"
+          ],
+          "description": "accent-filled button, for the one action that ends a page"
+        }
+      ],
+      "requires": [
+        "button"
+      ],
+      "html": "<div class=\"cta-band\">\n  <h2 class=\"cta-title\">Read the deploy guide</h2>\n  <p class=\"cta-body\">Set up a pipeline in about ten minutes.</p>\n  <a class=\"btn\" href=\"/docs/deploy\">Open the guide</a>\n</div>"
+    },
+    {
+      "name": "data-table",
+      "title": "Data table",
+      "category": "data",
+      "description": "A scrollable table with numeric alignment and an optional tight density.",
+      "use": "Records the user compares across columns.",
+      "avoid": "Roomy density. Comparison needs rows close enough to scan.",
+      "variants": [],
+      "requires": [
+        "badge"
+      ],
+      "html": "<div class=\"table-wrap\">\n  <table class=\"data-table is-tight\">\n    <caption class=\"sr-only\">Deployment revisions</caption>\n    <thead><tr><th>Service</th><th>Revision</th><th>Status</th><th class=\"is-numeric\">Duration</th></tr></thead>\n    <tbody>\n      <tr><td>api-gateway</td><td><code>6f82ae1</code></td><td><span class=\"badge badge-status\" data-state=\"success\">Ready</span></td><td class=\"is-numeric\">1m 18s</td></tr>\n      <tr><td>worker-jobs</td><td><code>d1c904b</code></td><td><span class=\"badge badge-status\" data-state=\"info\">Building</span></td><td class=\"is-numeric\">0m 47s</td></tr>\n    </tbody>\n  </table>\n</div>"
+    },
+    {
+      "name": "date-picker",
+      "title": "Date picker",
+      "category": "forms",
+      "description": "A native date input in a framed field with a leading icon.",
+      "use": "Picking a single date. The native control brings the calendar, the keyboard support, and the locale format for free.",
+      "avoid": "Building a custom popup calendar for a plain date field. Use the calendar component only when you must render a month in place.",
+      "variants": [],
+      "requires": [],
+      "html": "<label class=\"picker-field\" for=\"cutover-date\">\n  <span class=\"sr-only\">Cutover date</span>\n  <svg class=\"icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"M8 2v4\"/><path d=\"M16 2v4\"/><rect x=\"3\" y=\"4\" width=\"18\" height=\"18\" rx=\"2\"/><path d=\"M3 10h18\"/></svg>\n  <input class=\"picker-input\" id=\"cutover-date\" type=\"date\" value=\"2026-06-10\">\n</label>"
+    },
+    {
+      "name": "description-list",
+      "title": "Description list",
+      "category": "data",
+      "description": "Label and value pairs that reflow when the column is narrow.",
+      "use": "Metadata about one object: region, image, owner, version.",
+      "avoid": "Long prose in the value slot. Keep values short enough to scan.",
+      "variants": [],
+      "requires": [],
+      "html": "<dl class=\"description-list\">\n  <dt>Region</dt><dd>us-east-1</dd>\n  <dt>Image</dt><dd><code>api-gateway:2.8.1</code></dd>\n</dl>"
+    },
+    {
+      "name": "divider",
+      "title": "Divider",
+      "category": "surfaces",
+      "description": "A rule, optionally with a centred label.",
+      "use": "Separating two alternatives, such as a form and a third-party option.",
+      "avoid": "A rule between every block. Spacing usually does the job.",
+      "variants": [],
+      "requires": [],
+      "html": "<hr class=\"divider\">\n<div class=\"divider-label\">or</div>"
+    },
+    {
+      "name": "drawer",
+      "title": "Drawer",
+      "category": "overlays",
+      "description": "A panel that slides in from the edge, driven by a checkbox toggle.",
+      "use": "Filters and detail views that sit beside the main content.",
+      "avoid": "Destructive confirmations. Use a modal so the choice is unmissable.",
+      "variants": [
+        {
+          "classes": [
+            "is-active"
+          ],
+          "description": "open state on backdrop and panel when not using the checkbox"
+        }
+      ],
+      "requires": [
+        "checkbox"
+      ],
+      "note": "The checkbox is visually hidden but stays in the tab order so keyboard users can open and close it. Focus trapping and Escape still need application code. Add <code>is-active</code> on the backdrop and panel when you drive open state from script.",
+      "html": "<label class=\"btn btn-secondary\" for=\"filter-drawer\">Filters</label>\n<input class=\"drawer-toggle\" type=\"checkbox\" id=\"filter-drawer\" aria-controls=\"filter-drawer-panel\">\n<div class=\"drawer-backdrop\" aria-hidden=\"true\"></div>\n<div class=\"drawer-panel\" id=\"filter-drawer-panel\" role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"filter-drawer-title\">\n  <div class=\"drawer-head\"><h3 class=\"modal-title\" id=\"filter-drawer-title\">Filter revisions</h3><label class=\"close-button\" for=\"filter-drawer\" aria-label=\"Close\"><svg class=\"icon\" aria-hidden=\"true\" viewBox=\"0 0 24 24\"><path d=\"M18 6 6 18M6 6l12 12\"/></svg></label></div>\n  <div class=\"stack stack-sm\">\n    <p class=\"text-body text-muted\">Show only failed checks from the last 24 hours.</p>\n    <label class=\"checkbox\"><input type=\"checkbox\" checked> Failed only</label>\n    <label class=\"checkbox\"><input type=\"checkbox\"> Needs review</label>\n  </div>\n</div>"
+    },
+    {
+      "name": "dropdown",
+      "title": "Dropdown menu",
+      "category": "overlays",
+      "description": "A menu of actions attached to a trigger.",
+      "use": "Secondary actions on a row or toolbar.",
+      "avoid": "Hiding the primary action in a menu.",
+      "variants": [
+        {
+          "classes": [
+            "is-open"
+          ],
+          "description": "keeps the panel visible without focus, for docs and for click-to-open state"
+        }
+      ],
+      "requires": [],
+      "note": "CSS handles the open state on focus. Keyboard navigation and Escape are yours to build.",
+      "html": "<div class=\"dropdown\">\n  <button class=\"btn btn-secondary btn-sm\" type=\"button\">Actions</button>\n  <div class=\"dropdown-menu\">\n    <button type=\"button\">Restart service</button>\n    <button type=\"button\">View logs</button>\n    <button type=\"button\">Roll back</button>\n  </div>\n</div>"
+    },
+    {
+      "name": "dropzone",
+      "title": "Dropzone",
+      "category": "forms",
+      "description": "A drop target for uploading a file.",
+      "use": "Imports and attachments where dragging is natural.",
+      "avoid": "Drag as the only route. Keep the browse control that this markup already includes.",
+      "variants": [],
+      "requires": [],
+      "html": "<label class=\"dropzone\">\n  <input type=\"file\">\n  <svg class=\"icon\" aria-hidden=\"true\" viewBox=\"0 0 24 24\"><path d=\"M12 16V4M6 10l6-6 6 6M4 20h16\"/></svg>\n  <span><strong>Drop a file</strong> or browse</span>\n</label>"
+    },
+    {
+      "name": "empty-state",
+      "title": "Empty state",
+      "category": "feedback",
+      "description": "What a surface shows before it has data.",
+      "use": "First run, cleared filters, and genuinely empty results. Say which.",
+      "avoid": "A shrug illustration and no next step. Give the user an action.",
+      "variants": [],
+      "requires": [
+        "button"
+      ],
+      "html": "<div class=\"empty-state\">\n  <h3 class=\"empty-title\">No failed checks</h3>\n  <p class=\"empty-body\">Everything in this pipeline passes right now.</p>\n  <a class=\"btn btn-secondary btn-sm\" href=\"/runs/latest\">Review the last run</a>\n</div>"
+    },
+    {
+      "name": "fab",
+      "title": "Floating action button",
+      "category": "actions",
+      "description": "A single action pinned to the corner of the viewport.",
+      "use": "One creation action on a dense list or board where the toolbar scrolls away.",
+      "avoid": "Desktop layouts that already have a visible toolbar. It covers content.",
+      "variants": [],
+      "requires": [],
+      "html": "<button class=\"fab\" type=\"button\" aria-label=\"Create deployment\">\n  <svg class=\"icon\" aria-hidden=\"true\" viewBox=\"0 0 24 24\"><path d=\"M12 5v14M5 12h14\"/></svg>\n</button>"
+    },
+    {
+      "name": "faq",
+      "title": "FAQ",
+      "category": "marketing",
+      "description": "A stack of accordions for real, repeated questions.",
+      "use": "Questions your support channel actually receives. Write the question the way a person asks it.",
+      "avoid": "Inventing questions to fill a section, and answering with a sales line. If the answer is \"yes, and it is great\", delete the entry.",
+      "variants": [],
+      "requires": [
+        "accordion"
+      ],
+      "html": "<div class=\"faq\">\n  <details class=\"accordion\">\n    <summary>Does a rollback re-run the build?</summary>\n    <div class=\"accordion-body\">No. A rollback repoints traffic at an artefact that already passed. It takes about four seconds.</div>\n  </details>\n  <details class=\"accordion\">\n    <summary>Can two people deploy at once?</summary>\n    <div class=\"accordion-body\">The queue is per environment. The second deploy waits, and the person who started it sees who is ahead of them.</div>\n  </details>\n  <details class=\"accordion\">\n    <summary>What happens to in-flight requests?</summary>\n    <div class=\"accordion-body\">The old revision keeps serving until it drains, up to 30 seconds. You can raise the limit per service.</div>\n  </details>\n</div>"
+    },
+    {
+      "name": "feature-card",
+      "title": "Feature card",
+      "category": "marketing",
+      "description": "A rule-separated block for one capability.",
+      "use": "Capabilities that genuinely differ in kind, described in concrete terms.",
+      "avoid": "Three of these in a row with an icon on each. That is the single most recognisable AI landing-page tell. Prefer a workflow, a table, or a real artifact.",
+      "variants": [
+        {
+          "classes": [
+            "feature-grid"
+          ],
+          "description": "three-column wrapper, if you have three capabilities that genuinely differ"
+        }
+      ],
+      "requires": [],
+      "html": "<div class=\"feature-card\">\n  <svg class=\"icon feature-icon\" aria-hidden=\"true\" viewBox=\"0 0 24 24\"><path d=\"M12 19V5M5 12l7-7 7 7\"/></svg>\n  <h3 class=\"feature-title\">Promote by revision</h3>\n  <p class=\"feature-body\">Pick any revision that passed checks and move traffic to it.</p>\n</div>"
+    },
+    {
+      "name": "figure",
+      "title": "Figure",
+      "category": "content",
+      "description": "Media with a caption underneath.",
+      "use": "A diagram or screenshot that needs a sentence to explain what a person is looking at.",
+      "avoid": "A caption that repeats the alt text. The alt text describes it; the caption says why it matters.",
+      "variants": [],
+      "requires": [],
+      "html": "<figure class=\"figure\">\n  <div class=\"frame\">\n    <img src=\"/media/pipeline.png\" alt=\"A pipeline with build, test, and deploy stages\">\n  </div>\n  <figcaption class=\"figure-caption\">Each stage runs on the merge commit, not the branch tip.</figcaption>\n</figure>"
+    },
+    {
+      "name": "floating-label",
+      "title": "Floating label",
+      "category": "forms",
+      "description": "A label that sits inside the field and rises when the field has content.",
+      "use": "Dense forms where a stacked label would cost too much vertical space.",
+      "avoid": "Mixing with stacked labels in the same form. Pick one and keep it.",
+      "variants": [],
+      "requires": [],
+      "html": "<div class=\"floating-field\">\n  <input class=\"floating-input\" id=\"cluster-name\" placeholder=\" \">\n  <label class=\"floating-label\" for=\"cluster-name\">Cluster name</label>\n</div>"
+    },
+    {
+      "name": "footer",
+      "title": "Footer",
+      "category": "layout",
+      "description": "A wide first column for the brand, then three link columns.",
+      "use": "Site-level navigation and legal links.",
+      "avoid": "Padding it with empty columns to fill the row.",
+      "variants": [],
+      "requires": [],
+      "html": "<footer class=\"footer-grid\">\n  <div><a class=\"brand\" href=\"/\"><span class=\"brand-mark\">R/</span> relay</a><p class=\"text-meta\">Deploy tooling for small teams.</p></div>\n  <div class=\"stack stack-sm\"><strong class=\"text-meta\">Product</strong><a class=\"styled-link\" href=\"/deploys\">Deploys</a><a class=\"styled-link\" href=\"/api\">API</a></div>\n  <div class=\"stack stack-sm\"><strong class=\"text-meta\">Docs</strong><a class=\"styled-link\" href=\"/docs\">Guides</a><a class=\"styled-link\" href=\"/changelog\">Changelog</a></div>\n  <div class=\"stack stack-sm\"><strong class=\"text-meta\">Legal</strong><a class=\"styled-link\" href=\"/privacy\">Privacy</a><a class=\"styled-link\" href=\"/terms\">Terms</a></div>\n</footer>"
+    },
+    {
+      "name": "form",
+      "title": "Form",
+      "category": "forms",
+      "description": "A vertical stack of labelled fields with helper text and error messages.",
+      "use": "Any set of inputs the user submits together.",
+      "avoid": "Placeholder text instead of a label. Every field needs a real label.",
+      "variants": [],
+      "requires": [
+        "input",
+        "select",
+        "switch"
+      ],
+      "html": "<form class=\"form-stack\">\n  <div class=\"form-field\">\n    <label class=\"form-label\" for=\"project-name\">Project name</label>\n    <input class=\"input w-full\" id=\"project-name\" value=\"release-monitor\">\n    <p class=\"form-helper\">Used in URLs and deployment labels.</p>\n  </div>\n  <div class=\"form-field\">\n    <label class=\"form-label\" for=\"region\">Region</label>\n    <select class=\"select\" id=\"region\"><option>us-east-1</option><option>eu-west-1</option></select>\n  </div>\n  <div class=\"form-field\">\n    <label class=\"form-label\" for=\"invalid-key\">API key</label>\n    <input class=\"input w-full\" id=\"invalid-key\" aria-invalid=\"true\" aria-describedby=\"key-error\" value=\"expired-key\">\n    <p class=\"form-message error\" id=\"key-error\">This key expired. Create a new key and try again.</p>\n  </div>\n  <label class=\"switch\"><input type=\"checkbox\" checked><span class=\"switch-track\"></span>Pause on failed checks</label>\n</form>"
+    },
+    {
+      "name": "frame",
+      "title": "Frame",
+      "category": "content",
+      "description": "A bordered, rounded, clipping container for an image or a screenshot.",
+      "use": "Giving a screenshot an edge, so a light interface does not bleed into a light page.",
+      "avoid": "Framing an illustration that already has its own edge.",
+      "variants": [],
+      "requires": [],
+      "html": "<div class=\"frame\">\n  <img src=\"/media/console.png\" alt=\"The deploy console showing three queued builds\">\n</div>"
+    },
+    {
+      "name": "grid-asymmetric",
+      "title": "Asymmetric grid",
+      "category": "layout",
+      "description": "Two columns weighted 2:1. Use grid-asymmetric-reverse to lead with the narrow column.",
+      "use": "Content beside supporting metadata.",
+      "avoid": "Splitting equal-weight content. Use grid-split.",
+      "variants": [
+        {
+          "classes": [
+            "grid-asymmetric-reverse"
+          ],
+          "description": "the narrow column leads"
+        }
+      ],
+      "requires": [],
+      "html": "<div class=\"grid-asymmetric\">\n  <div class=\"panel\">\n    <div class=\"panel-content stack stack-sm\">\n      <p class=\"text-card\">Deploy notes</p>\n      <p class=\"text-body text-muted\">This revision only changes the health probe path. No schema migration runs.</p>\n    </div>\n  </div>\n  <div class=\"panel\">\n    <div class=\"panel-content stack stack-sm\">\n      <div>\n        <p class=\"text-meta\">region</p>\n        <p class=\"text-body\">us-east-1</p>\n      </div>\n      <div>\n        <p class=\"text-meta\">owner</p>\n        <p class=\"text-body\">Platform</p>\n      </div>\n    </div>\n  </div>\n</div>"
+    },
+    {
+      "name": "grid-auto",
+      "title": "Auto grid",
+      "category": "layout",
+      "description": "As many equal columns as fit, wrapping automatically.",
+      "use": "Collections whose length you do not control.",
+      "avoid": "A fixed count you already know. Use grid-thirds or grid-split.",
+      "variants": [],
+      "requires": [],
+      "html": "<div class=\"grid-auto\">\n  <div class=\"panel\">\n    <div class=\"panel-content stack stack-sm\">\n      <p class=\"text-card\">us-east-1</p>\n      <p class=\"text-meta\">3 replicas</p>\n    </div>\n  </div>\n  <div class=\"panel\">\n    <div class=\"panel-content stack stack-sm\">\n      <p class=\"text-card\">us-west-2</p>\n      <p class=\"text-meta\">2 replicas</p>\n    </div>\n  </div>\n  <div class=\"panel\">\n    <div class=\"panel-content stack stack-sm\">\n      <p class=\"text-card\">eu-west-1</p>\n      <p class=\"text-meta\">2 replicas</p>\n    </div>\n  </div>\n  <div class=\"panel\">\n    <div class=\"panel-content stack stack-sm\">\n      <p class=\"text-card\">ap-south-1</p>\n      <p class=\"text-meta\">1 replica</p>\n    </div>\n  </div>\n</div>"
+    },
+    {
+      "name": "grid-centered",
+      "title": "Centered grid",
+      "category": "layout",
+      "description": "A single measured column, centred in the page.",
+      "use": "Prose, focused flows, and anything read top to bottom.",
+      "avoid": "Data tables. They need the width.",
+      "variants": [],
+      "requires": [],
+      "html": "<div class=\"grid-centered\">\n  <div class=\"panel\">\n    <div class=\"panel-content stack stack-sm\">\n      <p class=\"text-card\">Confirm the rollback target</p>\n      <p class=\"text-body text-muted\">Production traffic moves to v2.8.0. Active sessions stay open until they expire.</p>\n    </div>\n  </div>\n</div>"
+    },
+    {
+      "name": "grid-holy-grail",
+      "title": "Holy grail grid",
+      "category": "layout",
+      "description": "A full-width header and footer around three columns.",
+      "use": "Dense tools that need context on both sides of the work area.",
+      "avoid": "Simple pages. Two rails is a lot of chrome.",
+      "variants": [],
+      "requires": [],
+      "html": "<div class=\"grid-holy-grail\">\n  <div class=\"panel\"><div class=\"panel-content\"><span class=\"text-meta\">header</span> · api-gateway</div></div>\n  <div class=\"panel\"><div class=\"panel-content stack stack-sm\"><span class=\"text-meta\">nav</span><span class=\"text-body\">Overview</span><span class=\"text-body\">Revisions</span></div></div>\n  <div class=\"panel\"><div class=\"panel-content stack stack-sm\"><span class=\"text-meta\">main</span><span class=\"text-body\">Work surface for the selected revision.</span></div></div>\n  <div class=\"panel\"><div class=\"panel-content stack stack-sm\"><span class=\"text-meta\">aside</span><span class=\"text-body\">Checks</span><span class=\"text-body\">Owners</span></div></div>\n  <div class=\"panel\"><div class=\"panel-content\"><span class=\"text-meta\">footer</span> · last synced 12s ago</div></div>\n</div>"
+    },
+    {
+      "name": "grid-masonry",
+      "title": "Masonry grid",
+      "category": "layout",
+      "description": "Three columns that flow by height rather than by row.",
+      "use": "Items with genuinely different heights, such as notes or clips.",
+      "avoid": "Uniform cards. It just looks unaligned.",
+      "variants": [],
+      "requires": [],
+      "html": "<div class=\"grid-masonry\">\n  <div class=\"panel\">\n    <div class=\"panel-content stack stack-sm\">\n      <p class=\"text-card\">Probe path</p>\n      <p class=\"text-body text-muted\">/healthz</p>\n    </div>\n  </div>\n  <div class=\"panel\">\n    <div class=\"panel-content stack stack-sm\">\n      <p class=\"text-card\">Rollback notes</p>\n      <p class=\"text-body text-muted\">Keeps the previous revision warm for one hour so a second rollback is instant. Sessions are not drained.</p>\n      <p class=\"text-body text-muted\">Use only after checks are green on the target revision.</p>\n    </div>\n  </div>\n  <div class=\"panel\">\n    <div class=\"panel-content stack stack-sm\">\n      <p class=\"text-card\">Owner</p>\n      <p class=\"text-body text-muted\">Platform</p>\n    </div>\n  </div>\n  <div class=\"panel\">\n    <div class=\"panel-content stack stack-sm\">\n      <p class=\"text-card\">Canary</p>\n      <p class=\"text-body text-muted\">5% of production traffic for fifteen minutes, then promote or abort.</p>\n    </div>\n  </div>\n  <div class=\"panel\">\n    <div class=\"panel-content stack stack-sm\">\n      <p class=\"text-card\">Region</p>\n      <p class=\"text-body text-muted\">us-east-1</p>\n    </div>\n  </div>\n</div>"
+    },
+    {
+      "name": "grid-sidebar",
+      "title": "Sidebar grid",
+      "category": "layout",
+      "description": "A fixed-width rail beside a fluid main column.",
+      "use": "Docs and settings pages with persistent section navigation.",
+      "avoid": "A rail with two links in it.",
+      "variants": [],
+      "requires": [],
+      "html": "<div class=\"grid-sidebar\">\n  <div class=\"panel\">\n    <div class=\"panel-content stack stack-sm\">\n      <p class=\"text-meta\">sections</p>\n      <p class=\"text-body\">Overview</p>\n      <p class=\"text-body\">Retention</p>\n      <p class=\"text-body\">Access</p>\n    </div>\n  </div>\n  <div class=\"panel\">\n    <div class=\"panel-content stack stack-sm\">\n      <p class=\"text-card\">Retention policy</p>\n      <p class=\"text-body text-muted\">Keep failed job logs for 30 days, then drop them.</p>\n    </div>\n  </div>\n</div>"
+    },
+    {
+      "name": "grid-split",
+      "title": "Split grid",
+      "category": "layout",
+      "description": "Two equal columns.",
+      "use": "A claim beside the artifact it describes, where neither outweighs the other.",
+      "avoid": "Three or more children. They wrap into an uneven last row.",
+      "variants": [
+        {
+          "classes": [
+            "grid-two"
+          ],
+          "description": "the old name for this grid, kept working"
+        }
+      ],
+      "requires": [],
+      "html": "<div class=\"grid-split\">\n  <div class=\"panel\">\n    <div class=\"panel-content stack stack-sm\">\n      <p class=\"text-card\">Rollback is one action</p>\n      <p class=\"text-body text-muted\">Revert production traffic to any green revision without a runbook.</p>\n    </div>\n  </div>\n  <div class=\"panel\">\n    <div class=\"panel-content stack stack-sm\">\n      <p class=\"text-meta\">artifact</p>\n      <p class=\"text-mono\">kubectl rollout undo deploy/api-gateway</p>\n    </div>\n  </div>\n</div>"
+    },
+    {
+      "name": "grid-stack-rail",
+      "title": "Stack rail grid",
+      "category": "layout",
+      "description": "A fluid main column with a narrower trailing rail.",
+      "use": "Primary content with secondary context beside it, such as activity or help.",
+      "avoid": "Putting the primary action in the rail.",
+      "variants": [],
+      "requires": [],
+      "html": "<div class=\"grid-stack-rail\">\n  <div class=\"panel\">\n    <div class=\"panel-content stack stack-sm\">\n      <p class=\"text-card\">Revision 6f82ae1</p>\n      <p class=\"text-body text-muted\">All required checks passed. Ready to promote to production.</p>\n    </div>\n  </div>\n  <div class=\"panel\">\n    <div class=\"panel-content stack stack-sm\">\n      <p class=\"text-meta\">activity</p>\n      <p class=\"text-body\">Build finished</p>\n      <p class=\"text-body\">Checks green</p>\n    </div>\n  </div>\n</div>"
+    },
+    {
+      "name": "grid-thirds",
+      "title": "Thirds grid",
+      "category": "layout",
+      "description": "Three equal columns.",
+      "use": "Three genuinely parallel items, such as environments or regions.",
+      "avoid": "Three invented benefits. That is the feature-grid tell.",
+      "variants": [],
+      "requires": [],
+      "html": "<div class=\"grid-thirds\">\n  <div class=\"panel\">\n    <div class=\"panel-content stack stack-sm\">\n      <p class=\"text-meta\">environment</p>\n      <p class=\"text-card\">Staging</p>\n      <p class=\"text-body text-muted\">v2.8.1-rc.3</p>\n    </div>\n  </div>\n  <div class=\"panel\">\n    <div class=\"panel-content stack stack-sm\">\n      <p class=\"text-meta\">environment</p>\n      <p class=\"text-card\">Canary</p>\n      <p class=\"text-body text-muted\">v2.8.1 · 5%</p>\n    </div>\n  </div>\n  <div class=\"panel\">\n    <div class=\"panel-content stack stack-sm\">\n      <p class=\"text-meta\">environment</p>\n      <p class=\"text-card\">Production</p>\n      <p class=\"text-body text-muted\">v2.8.0</p>\n    </div>\n  </div>\n</div>"
+    },
+    {
+      "name": "hover-card",
+      "title": "Hover card",
+      "category": "overlays",
+      "description": "A panel of detail that opens on hover or focus.",
+      "use": "Previewing the thing behind a link: a user, a commit, a service. It saves a trip.",
+      "avoid": "Putting anything essential or interactive in it. It is unreachable on a touch screen, so the content must be a bonus.",
+      "variants": [
+        {
+          "classes": [
+            "is-open"
+          ],
+          "description": "keeps the panel visible without focus, for docs and for click-to-open state"
+        }
+      ],
+      "requires": [
+        "badge"
+      ],
+      "note": "Opens on hover and on focus-within, so keyboard users get it too.",
+      "html": "<span class=\"hover-card\">\n  <a class=\"text-accent\" href=\"/services/api-gateway\">api-gateway</a>\n  <span class=\"hover-card-panel\">\n    <span class=\"stack stack-sm\">\n      <span class=\"text-card\">api-gateway</span>\n      <span class=\"text-meta\">Owned by Platform. Last deployed 2 hours ago.</span>\n      <span class=\"badge badge-status\" data-state=\"success\">Healthy</span>\n    </span>\n  </span>\n</span>"
+    },
+    {
+      "name": "icon-button",
+      "title": "Icon button",
+      "category": "actions",
+      "description": "A square control carrying only an icon. Always needs an accessible label.",
+      "use": "Repeated row actions and toolbar controls where a text label would crowd the layout.",
+      "avoid": "Primary actions. If it matters, give it a word.",
+      "variants": [
+        {
+          "classes": [
+            "subtle"
+          ],
+          "description": "filled instead of outlined, for a dense toolbar"
+        }
+      ],
+      "requires": [],
+      "html": "<div class=\"cluster\">\n  <button class=\"icon-button\" type=\"button\" aria-label=\"Refresh\">\n    <svg class=\"icon\" aria-hidden=\"true\" viewBox=\"0 0 24 24\"><path d=\"M21 12a9 9 0 1 1-3-6.7M21 4v5h-5\"/></svg>\n  </button>\n  <button class=\"close-button\" type=\"button\" aria-label=\"Close\">\n    <svg class=\"icon\" aria-hidden=\"true\" viewBox=\"0 0 24 24\"><path d=\"M18 6 6 18M6 6l12 12\"/></svg>\n  </button>\n</div>"
+    },
+    {
+      "name": "icon",
+      "title": "Icon sizes",
+      "category": "content",
+      "description": "The four icon size tokens.",
+      "use": "Sizing SVGs to the type beside them. Always set aria-hidden or role.",
+      "avoid": "An icon above every heading. Icons clarify controls, not sections.",
+      "variants": [],
+      "requires": [],
+      "html": "<div class=\"cluster\">\n  <svg class=\"icon icon-sm\" aria-hidden=\"true\" viewBox=\"0 0 24 24\"><circle cx=\"12\" cy=\"12\" r=\"9\"/></svg>\n  <svg class=\"icon icon-md\" aria-hidden=\"true\" viewBox=\"0 0 24 24\"><circle cx=\"12\" cy=\"12\" r=\"9\"/></svg>\n  <svg class=\"icon icon-lg\" aria-hidden=\"true\" viewBox=\"0 0 24 24\"><circle cx=\"12\" cy=\"12\" r=\"9\"/></svg>\n  <svg class=\"icon icon-xl\" aria-hidden=\"true\" viewBox=\"0 0 24 24\"><circle cx=\"12\" cy=\"12\" r=\"9\"/></svg>\n</div>"
+    },
+    {
+      "name": "inline-code",
+      "title": "Inline code and keys",
+      "category": "content",
+      "description": "Identifiers inside prose, and keyboard keys.",
+      "use": "Class names, flags, paths, and shortcuts mentioned in a sentence.",
+      "avoid": "Styling ordinary words as code for texture.",
+      "variants": [],
+      "requires": [],
+      "html": "<p class=\"text-body\">Run <code class=\"inline-code\">npm run build</code>, then press <kbd class=\"kbd\">Ctrl</kbd> <kbd class=\"kbd\">C</kbd> to stop the watcher.</p>"
+    },
+    {
+      "name": "input-group",
+      "title": "Input with affix",
+      "category": "forms",
+      "description": "An input joined to a fixed prefix or suffix.",
+      "use": "Showing a protocol, unit, or domain the user should not have to type.",
+      "avoid": "Putting a button in the affix slot. Use a separate control.",
+      "variants": [],
+      "requires": [],
+      "html": "<div class=\"input-group\">\n  <span class=\"input-affix\">https://</span>\n  <input class=\"input\" type=\"text\" value=\"status.example.com\" aria-label=\"Status page domain\">\n</div>"
+    },
+    {
+      "name": "input-validation",
+      "title": "Validation states",
+      "category": "forms",
+      "description": "Error and success styling for an input, paired with aria-invalid.",
+      "use": "After a field has been checked. Always pair colour with a message.",
+      "avoid": "Colour alone. Red border with no explanation tells the user nothing.",
+      "variants": [
+        {
+          "classes": [
+            "success"
+          ],
+          "description": "the confirming form-message colour, the counterpart of error"
+        }
+      ],
+      "requires": [],
+      "html": "<div class=\"cluster\">\n  <input class=\"input input-error\" type=\"text\" value=\"expired-key\" aria-invalid=\"true\" aria-label=\"API key, invalid\">\n  <input class=\"input input-success\" type=\"text\" value=\"a1b2-c3d4-e5f6\" aria-label=\"API key, verified\">\n</div>"
+    },
+    {
+      "name": "input",
+      "title": "Text input",
+      "category": "forms",
+      "description": "A labelled text field with optional helper text. The atom every form is built from.",
+      "use": "Any single-line value. Pair every input with a real label element.",
+      "avoid": "Using placeholder text as the label. It disappears on typing and fails screen readers.",
+      "variants": [
+        {
+          "classes": [
+            "input-sm"
+          ],
+          "description": "compact rows and toolbars"
+        },
+        {
+          "classes": [
+            "input-lg"
+          ],
+          "description": "a single prominent field"
+        },
+        {
+          "classes": [
+            "is-error"
+          ],
+          "description": "failed validation"
+        },
+        {
+          "classes": [
+            "is-success"
+          ],
+          "description": "confirmed value"
+        }
+      ],
+      "requires": [],
+      "html": "<div class=\"form-field\">\n  <label class=\"form-label\" for=\"service-name\">Service name</label>\n  <input class=\"input w-full\" id=\"service-name\" value=\"api-gateway\">\n  <p class=\"form-helper\">Lowercase, hyphen separated.</p>\n</div>"
+    },
+    {
+      "name": "list-group",
+      "title": "Grouped list",
+      "category": "data",
+      "description": "Rows sharing one frame, each with a main label and a trailing value.",
+      "use": "A list of objects where each row has one status.",
+      "avoid": "More than two pieces of metadata per row. Use a table.",
+      "variants": [],
+      "requires": [
+        "badge"
+      ],
+      "html": "<div class=\"list-group\">\n  <div class=\"list-item\"><div class=\"list-item-main\"><span class=\"list-title\">api-gateway</span><span class=\"list-meta\">v2.8.1 &middot; 3 replicas</span></div><span class=\"list-item-value\"><span class=\"badge badge-status\" data-state=\"success\">Healthy</span></span></div>\n  <div class=\"list-item\"><div class=\"list-item-main\"><span class=\"list-title\">worker-jobs</span><span class=\"list-meta\">v1.14.0 &middot; 6 replicas</span></div><span class=\"list-item-value\"><span class=\"badge badge-status\" data-state=\"info\">Deploying</span></span></div>\n</div>"
+    },
+    {
+      "name": "logo-cloud",
+      "title": "Logo cloud",
+      "category": "marketing",
+      "description": "A labelled row of integration or customer slots.",
+      "use": "Naming the systems you connect to, when those names are real and you may show them.",
+      "avoid": "Filling it with invented companies or grey blobs. The dashed slots are honest placeholders. Leave them until you have permission to use a real mark.",
+      "variants": [],
+      "requires": [],
+      "html": "<div class=\"logo-cloud\">\n  <p class=\"logo-cloud-label\">Connects to</p>\n  <div class=\"logo-cloud-row\">\n    <span class=\"logo-cloud-item\">Integration name</span>\n    <span class=\"logo-cloud-item\">Integration name</span>\n    <span class=\"logo-cloud-item\">Integration name</span>\n    <span class=\"logo-cloud-item\">Integration name</span>\n  </div>\n</div>"
+    },
+    {
+      "name": "media-embed",
+      "title": "Media embed",
+      "category": "content",
+      "description": "A fixed-shape frame with a play control over it.",
+      "use": "A video you load only after a person asks for it, which keeps the third-party script off the first paint.",
+      "avoid": "Autoplay with sound. Also avoid a play button that does nothing; wire it up or use a plain image.",
+      "variants": [],
+      "requires": [
+        "aspect-ratio"
+      ],
+      "html": "<div class=\"aspect media-embed\">\n  <img src=\"/media/walkthrough-poster.png\" alt=\"\">\n  <button class=\"media-play\" type=\"button\" aria-label=\"Play the walkthrough\">\n    <svg class=\"icon\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M8 5v14l11-7z\"/></svg>\n  </button>\n</div>"
+    },
+    {
+      "name": "modal",
+      "title": "Modal",
+      "category": "overlays",
+      "description": "A centred dialog that blocks the page until it is resolved.",
+      "use": "Confirming a destructive or irreversible action.",
+      "avoid": "Modals for information. Put it on the page.",
+      "variants": [
+        {
+          "classes": [
+            "is-active"
+          ],
+          "description": "forces the dialog open without :target, for docs and application open state"
+        }
+      ],
+      "requires": [
+        "button"
+      ],
+      "note": "Open it with <code>:target</code>, a checkbox, or application code. Focus trapping, Escape, and restoring focus are yours to build.",
+      "html": "<a href=\"#confirm-rollback\" class=\"btn btn-danger\">Roll back</a>\n<div class=\"modal\" id=\"confirm-rollback\" role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"confirm-rollback-title\">\n  <div class=\"modal-card\">\n    <div class=\"modal-head\">\n      <h3 class=\"modal-title\" id=\"confirm-rollback-title\">Confirm rollback</h3>\n      <a class=\"close-button\" href=\"#components\" aria-label=\"Close\"><svg class=\"icon\" aria-hidden=\"true\" viewBox=\"0 0 24 24\"><path d=\"M18 6 6 18M6 6l12 12\"/></svg></a>\n    </div>\n    <div class=\"modal-body\">This reverts api-gateway to v2.8.0. Active sessions are not affected.</div>\n    <div class=\"modal-actions\">\n      <a class=\"btn btn-ghost\" href=\"#components\">Cancel</a>\n      <button class=\"btn btn-danger\" type=\"button\">Roll back</button>\n    </div>\n  </div>\n</div>"
+    },
+    {
+      "name": "nav-rail",
+      "title": "Navigation rail",
+      "category": "navigation",
+      "description": "A narrow vertical strip of icon-and-label destinations.",
+      "use": "An app with a handful of top-level areas, where a full sidebar would waste width.",
+      "avoid": "A rail with icon-only items. An unlabelled icon is a guess. Keep the label, however small.",
+      "variants": [],
+      "requires": [],
+      "note": "Mark the current destination with aria-current=\"page\", or with the is-active class.",
+      "html": "<nav class=\"nav-rail\" aria-label=\"Sections\">\n  <a class=\"nav-rail-item\" href=\"/overview\" aria-current=\"page\">\n    <svg class=\"icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><rect x=\"3\" y=\"3\" width=\"7\" height=\"9\" rx=\"1\"/><rect x=\"14\" y=\"3\" width=\"7\" height=\"5\" rx=\"1\"/><rect x=\"14\" y=\"12\" width=\"7\" height=\"9\" rx=\"1\"/><rect x=\"3\" y=\"16\" width=\"7\" height=\"5\" rx=\"1\"/></svg>\n    Overview\n  </a>\n  <a class=\"nav-rail-item\" href=\"/deploys\">\n    <svg class=\"icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"M12 19V5\"/><path d=\"m5 12 7-7 7 7\"/></svg>\n    Deploys\n  </a>\n  <a class=\"nav-rail-item\" href=\"/logs\">\n    <svg class=\"icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"M4 6h16\"/><path d=\"M4 12h16\"/><path d=\"M4 18h10\"/></svg>\n    Logs\n  </a>\n</nav>"
+    },
+    {
+      "name": "navbar",
+      "title": "Navbar",
+      "category": "navigation",
+      "description": "The top bar, in four surfaces: bordered, glass, solid, and minimal.",
+      "use": "One per site. Mark the current page with aria-current.",
+      "avoid": "Mixing two navbar surfaces on one page.",
+      "variants": [
+        {
+          "classes": [
+            "navbar"
+          ],
+          "description": "plain, no surface treatment"
+        },
+        {
+          "classes": [
+            "navbar-glass"
+          ],
+          "description": "blurred over content that scrolls under it"
+        },
+        {
+          "classes": [
+            "navbar-solid"
+          ],
+          "description": "opaque, for dense apps"
+        },
+        {
+          "classes": [
+            "navbar-minimal"
+          ],
+          "description": "no bar at all, links only, and it does not stick"
+        }
+      ],
+      "requires": [],
+      "note": "Pick one surface and keep it. The four below are alternatives, not a set.",
+      "html": "<div class=\"stack\">\n  <nav class=\"navbar-bordered\" aria-label=\"Bordered\">\n    <div class=\"nav-inner\">\n      <a class=\"brand\" href=\"/\"><span class=\"brand-mark\">R/</span> relay</a>\n      <div class=\"nav-links\">\n        <a class=\"nav-link\" aria-current=\"page\" href=\"/\">Overview</a>\n        <a class=\"nav-link\" href=\"/deploys\">Deploys</a>\n        <a class=\"nav-link\" href=\"/api\">API</a>\n      </div>\n    </div>\n  </nav>\n  <nav class=\"navbar-solid\" aria-label=\"Solid\">\n    <div class=\"nav-inner\">\n      <a class=\"brand\" href=\"/\"><span class=\"brand-mark\">R/</span> relay</a>\n      <div class=\"nav-links\">\n        <a class=\"nav-link\" aria-current=\"page\" href=\"/\">Overview</a>\n        <a class=\"nav-link\" href=\"/deploys\">Deploys</a>\n        <a class=\"nav-link\" href=\"/api\">API</a>\n      </div>\n    </div>\n  </nav>\n  <nav class=\"navbar-glass\" aria-label=\"Glass\">\n    <div class=\"nav-inner\">\n      <a class=\"brand\" href=\"/\"><span class=\"brand-mark\">R/</span> relay</a>\n      <div class=\"nav-links\">\n        <a class=\"nav-link\" aria-current=\"page\" href=\"/\">Overview</a>\n        <a class=\"nav-link\" href=\"/deploys\">Deploys</a>\n        <a class=\"nav-link\" href=\"/api\">API</a>\n      </div>\n    </div>\n  </nav>\n  <nav class=\"navbar-minimal\" aria-label=\"Minimal\">\n    <div class=\"nav-inner\">\n      <a class=\"brand\" href=\"/\"><span class=\"brand-mark\">R/</span> relay</a>\n      <div class=\"nav-links\">\n        <a class=\"nav-link\" aria-current=\"page\" href=\"/\">Overview</a>\n        <a class=\"nav-link\" href=\"/deploys\">Deploys</a>\n        <a class=\"nav-link\" href=\"/api\">API</a>\n      </div>\n    </div>\n  </nav>\n</div>"
+    },
+    {
+      "name": "newsletter",
+      "title": "Newsletter form",
+      "category": "marketing",
+      "description": "One field and one button, with a line about what arrives.",
+      "use": "A changelog or release list a person can opt into.",
+      "avoid": "A whole section built around it. This is a footer-sized thing. And say what you send, and how often, before you ask.",
+      "variants": [],
+      "requires": [],
+      "html": "<div class=\"newsletter\">\n  <p class=\"text-body\">Release notes, once a fortnight. No other mail.</p>\n  <form class=\"newsletter-form\">\n    <label class=\"sr-only\" for=\"release-mail\">Email address</label>\n    <input class=\"input\" id=\"release-mail\" type=\"email\" placeholder=\"you@company.com\" autocomplete=\"email\">\n    <button class=\"btn btn-primary\" type=\"submit\">Subscribe</button>\n  </form>\n</div>"
+    },
+    {
+      "name": "otp-input",
+      "title": "One-time code",
+      "category": "forms",
+      "description": "Single-character boxes for a verification code.",
+      "use": "A code sent by mail or an authenticator app, where the length is fixed and known.",
+      "avoid": "Using it for a password or a long token. Split boxes stop working once a person cannot see the whole value.",
+      "variants": [],
+      "requires": [],
+      "note": "The boxes are presentation. Advancing focus on input, and handling a pasted code, needs JavaScript. Set aria-invalid=\"true\" on every box when a code is rejected.",
+      "html": "<div class=\"stack stack-sm\">\n  <div class=\"otp-row\" role=\"group\" aria-label=\"Verification code\">\n    <input class=\"otp-input\" inputmode=\"numeric\" maxlength=\"1\" value=\"4\" aria-label=\"Digit 1\">\n    <input class=\"otp-input\" inputmode=\"numeric\" maxlength=\"1\" value=\"2\" aria-label=\"Digit 2\">\n    <input class=\"otp-input\" inputmode=\"numeric\" maxlength=\"1\" value=\"8\" aria-label=\"Digit 3\">\n    <input class=\"otp-input\" inputmode=\"numeric\" maxlength=\"1\" aria-label=\"Digit 4\">\n    <input class=\"otp-input\" inputmode=\"numeric\" maxlength=\"1\" aria-label=\"Digit 5\">\n    <input class=\"otp-input\" inputmode=\"numeric\" maxlength=\"1\" aria-label=\"Digit 6\">\n  </div>\n  <p class=\"form-helper\">Six characters, sent to the address on the account.</p>\n</div>"
+    },
+    {
+      "name": "page-header",
+      "title": "Page header",
+      "category": "surfaces",
+      "description": "The title block at the top of a work surface, with room for actions.",
+      "use": "The first element inside the main region of an app page.",
+      "avoid": "Repeating the navigation label verbatim. Say what this page is for.",
+      "variants": [],
+      "requires": [
+        "button"
+      ],
+      "html": "<header class=\"page-header\">\n  <div class=\"page-header-main\">\n    <h1 class=\"page-title\">Deployments</h1>\n    <p class=\"page-summary\">Every revision pushed to production in the last 30 days.</p>\n  </div>\n  <div class=\"page-actions\">\n    <button class=\"btn btn-secondary\" type=\"button\">Export</button>\n    <button class=\"btn btn-primary\" type=\"button\">New deployment</button>\n  </div>\n</header>"
+    },
+    {
+      "name": "pagination",
+      "title": "Pagination",
+      "category": "navigation",
+      "description": "Page links with the current page marked by aria-current.",
+      "use": "Long result sets where the user needs a stable position.",
+      "avoid": "Pagination over fewer than two pages.",
+      "variants": [],
+      "requires": [],
+      "html": "<nav class=\"pagination\" aria-label=\"Pagination\">\n  <a class=\"page-link\" href=\"/revisions?page=0\" aria-label=\"Previous page\">&lsaquo;</a>\n  <a class=\"page-link\" href=\"/revisions?page=1\" aria-current=\"page\">1</a>\n  <a class=\"page-link\" href=\"/revisions?page=2\">2</a>\n  <a class=\"page-link\" href=\"/revisions?page=3\">3</a>\n  <a class=\"page-link\" href=\"/revisions?page=2\" aria-label=\"Next page\">&rsaquo;</a>\n</nav>"
+    },
+    {
+      "name": "panel",
+      "title": "Panel",
+      "category": "surfaces",
+      "description": "The canonical framed surface, with an optional header, body, and footer.",
+      "use": "Grouping controls or data that belong to one object.",
+      "avoid": "Wrapping every idea on the page. Frame the work area, not the prose.",
+      "variants": [
+        {
+          "classes": [
+            "panel-interactive"
+          ],
+          "description": "hover response, when the whole panel is a link"
+        }
+      ],
+      "requires": [
+        "badge",
+        "button"
+      ],
+      "html": "<section class=\"panel\">\n  <header class=\"panel-header\">\n    <div><h3 class=\"panel-title\">Retention policy</h3><p class=\"panel-body\">Keep deployment logs for the selected period.</p></div>\n    <span class=\"badge badge-status\" data-state=\"info\">Draft</span>\n  </header>\n  <div class=\"panel-content\">\n    <label class=\"checkbox\"><input type=\"checkbox\" checked> Include failed jobs</label>\n  </div>\n  <footer class=\"panel-footer\"><button class=\"btn btn-primary btn-sm\" type=\"button\">Apply policy</button></footer>\n</section>"
+    },
+    {
+      "name": "popover",
+      "title": "Popover",
+      "category": "overlays",
+      "description": "A small panel of detail attached to a trigger.",
+      "use": "Detail that would crowd the row it belongs to.",
+      "avoid": "Forms. If it needs a save button, use a modal or a drawer.",
+      "variants": [
+        {
+          "classes": [
+            "is-open"
+          ],
+          "description": "keeps the panel visible without focus, for docs and for click-to-open state"
+        }
+      ],
+      "requires": [],
+      "html": "<div class=\"popover\">\n  <button class=\"btn btn-secondary btn-sm\" type=\"button\">Region details</button>\n  <div class=\"popover-panel\">\n    <div class=\"popover-title\">us-east-1</div>\n    <p class=\"popover-body\">Primary region. Three availability zones.</p>\n  </div>\n</div>"
+    },
+    {
+      "name": "pricing-card",
+      "title": "Pricing card",
+      "category": "marketing",
+      "description": "A plan with a price and a feature list. Add popular to mark one.",
+      "use": "Real published plans, when the user asks for pricing.",
+      "avoid": "Inventing tiers or prices. If they are unknown, say so instead.",
+      "variants": [
+        {
+          "classes": [
+            "pricing-grid"
+          ],
+          "description": "three-column wrapper"
+        },
+        {
+          "classes": [
+            "popular"
+          ],
+          "description": "marks one plan with the accent border"
+        }
+      ],
+      "requires": [
+        "button",
+        "styled-list"
+      ],
+      "html": "<div class=\"pricing-card popular\">\n  <h3 class=\"text-card\">Team</h3>\n  <p class=\"text-h2\">Price pending</p>\n  <ul class=\"styled-list\"><li>Unlimited revisions</li><li>Audit log export</li></ul>\n  <button class=\"btn btn-primary\" type=\"button\">Start a trial</button>\n</div>"
+    },
+    {
+      "name": "progress",
+      "title": "Progress bar",
+      "category": "feedback",
+      "description": "A determinate bar for work with a known percentage.",
+      "use": "Uploads, builds, and imports that report real progress.",
+      "avoid": "Faking progress for an unknown duration. Use a spinner.",
+      "variants": [],
+      "requires": [],
+      "html": "<div class=\"progress\" role=\"progressbar\" aria-valuenow=\"64\" aria-valuemin=\"0\" aria-valuemax=\"100\" aria-label=\"Build progress\">\n  <div class=\"progress-fill\" style=\"--value: 64%\"></div>\n</div>"
+    },
+    {
+      "name": "quote-block",
+      "title": "Quote block",
+      "category": "content",
+      "description": "A pull quote with attribution.",
+      "use": "Words someone actually said or wrote, with a real source.",
+      "avoid": "Inventing a quote or an attribution. If you have no source, cut it.",
+      "variants": [],
+      "requires": [],
+      "html": "<blockquote class=\"quote-block\">\n  Rollback has to be one action, not a runbook.\n  <cite>Quote and attribution pending</cite>\n</blockquote>"
+    },
+    {
+      "name": "radio",
+      "title": "Radio group",
+      "category": "forms",
+      "description": "A set of mutually exclusive options, all visible at once.",
+      "use": "Two to five choices where seeing every option matters.",
+      "avoid": "Long option lists. Use a select past about five.",
+      "variants": [],
+      "requires": [],
+      "html": "<div class=\"radio-group\">\n  <label class=\"radio\"><input type=\"radio\" name=\"region\" checked> us-east-1</label>\n  <label class=\"radio\"><input type=\"radio\" name=\"region\"> eu-west-1</label>\n</div>"
+    },
+    {
+      "name": "range",
+      "title": "Range slider",
+      "category": "forms",
+      "description": "A slider for a value where the approximate position matters more than the exact number.",
+      "use": "Limits, thresholds, and weightings the user tunes by feel.",
+      "avoid": "Values that need precision. Use a number input.",
+      "variants": [],
+      "requires": [],
+      "html": "<div class=\"range-field\">\n  <div class=\"range-top\"><label class=\"form-label\" for=\"memory\">Memory limit</label><span>70%</span></div>\n  <input class=\"range-input\" id=\"memory\" type=\"range\" min=\"0\" max=\"100\" value=\"70\">\n</div>"
+    },
+    {
+      "name": "scroll-area",
+      "title": "Scroll area",
+      "category": "layout",
+      "description": "A bounded region that scrolls on its own, with a thin scrollbar.",
+      "use": "A long list inside a panel, where the page itself should not grow: log lines, results, a picker.",
+      "avoid": "Nesting one inside another scrolling region. Two scrollbars in one place is a trap.",
+      "variants": [],
+      "requires": [],
+      "html": "<div class=\"scroll-area\">\n  <ul class=\"list-group\">\n    <li class=\"list-item\"><span class=\"list-title\">api-gateway</span><span class=\"list-meta\">2h ago</span></li>\n    <li class=\"list-item\"><span class=\"list-title\">billing-worker</span><span class=\"list-meta\">5h ago</span></li>\n    <li class=\"list-item\"><span class=\"list-title\">webhook-relay</span><span class=\"list-meta\">yesterday</span></li>\n    <li class=\"list-item\"><span class=\"list-title\">search-indexer</span><span class=\"list-meta\">2d ago</span></li>\n    <li class=\"list-item\"><span class=\"list-title\">image-resizer</span><span class=\"list-meta\">4d ago</span></li>\n    <li class=\"list-item\"><span class=\"list-title\">audit-log</span><span class=\"list-meta\">5d ago</span></li>\n    <li class=\"list-item\"><span class=\"list-title\">event-router</span><span class=\"list-meta\">6d ago</span></li>\n    <li class=\"list-item\"><span class=\"list-title\">metrics-sink</span><span class=\"list-meta\">last week</span></li>\n    <li class=\"list-item\"><span class=\"list-title\">cache-warmer</span><span class=\"list-meta\">last week</span></li>\n    <li class=\"list-item\"><span class=\"list-title\">schema-migrator</span><span class=\"list-meta\">2 weeks ago</span></li>\n  </ul>\n</div>"
+    },
+    {
+      "name": "section-header",
+      "title": "Section header",
+      "category": "surfaces",
+      "description": "A smaller heading block for a section inside a page.",
+      "use": "Separating groups of content that each have their own action.",
+      "avoid": "Using it for every paragraph. A plain heading is often enough.",
+      "variants": [],
+      "requires": [],
+      "html": "<div class=\"section-header\">\n  <div class=\"section-header-main\">\n    <h2 class=\"section-title\">Recent revisions</h2>\n    <p class=\"section-meta\">Updated 4 minutes ago</p>\n  </div>\n  <div class=\"section-actions\"><button class=\"btn btn-ghost btn-sm\" type=\"button\">View all</button></div>\n</div>"
+    },
+    {
+      "name": "segmented-control",
+      "title": "Segmented control",
+      "category": "forms",
+      "description": "A compact joined control for switching between a few views.",
+      "use": "Changing the range or mode of the data already on screen.",
+      "avoid": "Submitting a value in a form. It reads as navigation, not input.",
+      "variants": [],
+      "requires": [],
+      "html": "<div class=\"segmented-control\">\n  <input type=\"radio\" name=\"window\" id=\"seg-day\" checked><label for=\"seg-day\">Day</label>\n  <input type=\"radio\" name=\"window\" id=\"seg-week\"><label for=\"seg-week\">Week</label>\n  <input type=\"radio\" name=\"window\" id=\"seg-month\"><label for=\"seg-month\">Month</label>\n</div>"
+    },
+    {
+      "name": "select",
+      "title": "Select",
+      "category": "forms",
+      "description": "A labelled dropdown for one value from a known, short list.",
+      "use": "Fewer than about a dozen fixed options, such as regions or environments.",
+      "avoid": "Long or searchable lists. Use the combobox instead.",
+      "variants": [],
+      "requires": [],
+      "html": "<div class=\"form-field\">\n  <label class=\"form-label\" for=\"deploy-region\">Region</label>\n  <select class=\"select\" id=\"deploy-region\">\n    <option>us-east-1</option>\n    <option>eu-west-1</option>\n    <option>ap-southeast-2</option>\n  </select>\n</div>"
+    },
+    {
+      "name": "sidebar-nav",
+      "title": "Sidebar nav",
+      "category": "navigation",
+      "description": "A vertical navigation list, optionally collapsed to an icon rail.",
+      "use": "App shells with more than about five destinations.",
+      "avoid": "Icon-only rails without labels or titles. Nobody can guess the icons.",
+      "variants": [
+        {
+          "classes": [
+            "is-rail"
+          ],
+          "description": "collapsed to icons only"
+        }
+      ],
+      "requires": [],
+      "html": "<nav class=\"sidebar-nav\" aria-label=\"Sections\">\n  <a href=\"/\" aria-current=\"page\">\n    <svg class=\"icon\" aria-hidden=\"true\" viewBox=\"0 0 24 24\"><path d=\"M3 12h18M3 6h18M3 18h18\"/></svg>\n    Overview\n  </a>\n  <a href=\"/deploys\">\n    <svg class=\"icon\" aria-hidden=\"true\" viewBox=\"0 0 24 24\"><path d=\"M12 19V5M5 12l7-7 7 7\"/></svg>\n    Deploys\n  </a>\n</nav>"
+    },
+    {
+      "name": "skeleton",
+      "title": "Skeleton",
+      "category": "feedback",
+      "description": "Grey blocks in the shape of the content that is loading.",
+      "use": "A first load where you know the shape of what is coming. It reads faster than a spinner because the page does not jump.",
+      "avoid": "Skeletons for an action a person just took. Use a busy state on the control they pressed.",
+      "variants": [],
+      "requires": [],
+      "note": "skeleton-text shortens each following line so it reads as a paragraph. Mark the region aria-busy so it is announced.",
+      "html": "<div class=\"stack stack-sm\" aria-busy=\"true\" aria-label=\"Loading\">\n  <div class=\"skeleton-text\">\n    <div class=\"skeleton\"></div>\n    <div class=\"skeleton\"></div>\n    <div class=\"skeleton\"></div>\n    <div class=\"skeleton\"></div>\n  </div>\n</div>"
+    },
+    {
+      "name": "sortable-table",
+      "title": "Sortable table",
+      "category": "data",
+      "description": "A data table whose headers are buttons that re-sort the rows.",
+      "use": "A table a person will scan by different columns: newest, slowest, largest.",
+      "avoid": "Making every column sortable. Sort the columns people compare, not the ones they read.",
+      "variants": [],
+      "requires": [
+        "data-table"
+      ],
+      "note": "aria-sort goes on the sorted th, and takes \"ascending\" or \"descending\". Sorting itself needs JavaScript.",
+      "html": "<div class=\"table-wrap\">\n  <table class=\"data-table\">\n    <thead>\n      <tr>\n        <th scope=\"col\" class=\"sortable\"><button type=\"button\">Service<svg class=\"sort-indicator\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"m6 15 6 6 6-6\"/><path d=\"m6 9 6-6 6 6\"/></svg></button></th>\n        <th scope=\"col\" class=\"sortable\" aria-sort=\"descending\"><button type=\"button\">Duration<svg class=\"sort-indicator\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"m6 15 6 6 6-6\"/><path d=\"m6 9 6-6 6 6\"/></svg></button></th>\n        <th scope=\"col\">Status</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr><td>image-resizer</td><td class=\"is-numeric\">4m 12s</td><td><span class=\"badge badge-danger\">Failed</span></td></tr>\n      <tr><td>api-gateway</td><td class=\"is-numeric\">1m 48s</td><td><span class=\"badge badge-success\">Passed</span></td></tr>\n      <tr><td>webhook-relay</td><td class=\"is-numeric\">0m 39s</td><td><span class=\"badge badge-success\">Passed</span></td></tr>\n    </tbody>\n  </table>\n</div>"
+    },
+    {
+      "name": "spinner",
+      "title": "Spinner and skeleton",
+      "category": "feedback",
+      "description": "Indeterminate loading marks: a spinner for actions, a skeleton for content.",
+      "use": "Spinner for a pending action; skeleton where content will land.",
+      "avoid": "A full-page spinner when only one region is loading.",
+      "variants": [],
+      "requires": [],
+      "html": "<div class=\"cluster\">\n  <span class=\"spinner\" role=\"status\" aria-label=\"Loading\"></span>\n  <span class=\"skeleton\" style=\"width: 160px\"></span>\n  <span class=\"skeleton\" style=\"width: 90px\"></span>\n</div>"
+    },
+    {
+      "name": "stack",
+      "title": "Stack and cluster",
+      "category": "layout",
+      "description": "Vertical rhythm (stack) and horizontal grouping that wraps (cluster).",
+      "use": "Almost every layout. These replace ad-hoc margins.",
+      "avoid": "Hand-written margin utilities between siblings when a stack would do.",
+      "variants": [
+        {
+          "classes": [
+            "stack-sm"
+          ],
+          "description": "tight rhythm inside a component"
+        },
+        {
+          "classes": [
+            "stack-lg"
+          ],
+          "description": "section spacing"
+        }
+      ],
+      "requires": [],
+      "html": "<div class=\"stack\">\n  <div class=\"cluster\">\n    <button class=\"btn btn-primary\" type=\"button\">Promote</button>\n    <button class=\"btn btn-secondary\" type=\"button\">Compare</button>\n  </div>\n  <p class=\"text-body text-muted\">Stack spaces its children vertically; cluster groups them horizontally and wraps.</p>\n</div>"
+    },
+    {
+      "name": "stat-card",
+      "title": "Stat card",
+      "category": "data",
+      "description": "A single figure in its own frame, with an optional trend.",
+      "use": "A number that needs more room than a stat strip gives it.",
+      "avoid": "A grid of four identical stat cards at the top of every page. That is the decorative dashboard tell.",
+      "variants": [],
+      "requires": [],
+      "html": "<div class=\"stat-grid\">\n  <div class=\"stat-card\">\n    <div class=\"stat-label\">Median deploy time</div>\n    <div class=\"stat-value\">1m 18s</div>\n    <div class=\"stat-trend down\">12s faster than last week</div>\n  </div>\n  <div class=\"stat-card\">\n    <div class=\"stat-label\">Failed checks</div>\n    <div class=\"stat-value\">3</div>\n    <div class=\"stat-trend up\">2 more than last week</div>\n  </div>\n</div>"
+    },
+    {
+      "name": "stat-strip",
+      "title": "Stat strip",
+      "category": "data",
+      "description": "A row of related counts sharing one frame.",
+      "use": "Three to five numbers that are read together.",
+      "avoid": "Padding counts to two digits, or inventing figures to fill the row.",
+      "variants": [
+        {
+          "classes": [
+            "stats-row"
+          ],
+          "description": "the old name for this strip, kept working"
+        }
+      ],
+      "requires": [],
+      "html": "<dl class=\"stat-strip\">\n  <div class=\"stat-item\"><dt class=\"stat-label\">Ready</dt><dd class=\"stat-value\">12</dd><dd class=\"stat-detail\">Waiting to promote</dd></div>\n  <div class=\"stat-item\"><dt class=\"stat-label\">Building</dt><dd class=\"stat-value\">4</dd><dd class=\"stat-detail\">In progress now</dd></div>\n  <div class=\"stat-item\"><dt class=\"stat-label\">Needs review</dt><dd class=\"stat-value\">1</dd><dd class=\"stat-detail\">Checks failed</dd></div>\n</dl>"
+    },
+    {
+      "name": "stepper",
+      "title": "Stepper",
+      "category": "navigation",
+      "description": "Progress through a fixed sequence of stages.",
+      "use": "A flow with a known number of steps the user cannot skip.",
+      "avoid": "Navigation between unrelated pages. Use tabs.",
+      "variants": [],
+      "requires": [],
+      "html": "<div class=\"stepper\">\n  <div class=\"step done\"><span class=\"step-circle\">&check;</span>Build</div>\n  <div class=\"step-line\"></div>\n  <div class=\"step active\"><span class=\"step-circle\">2</span>Review</div>\n  <div class=\"step-line\"></div>\n  <div class=\"step\"><span class=\"step-circle\">3</span>Release</div>\n</div>"
+    },
+    {
+      "name": "styled-list",
+      "title": "Styled list",
+      "category": "data",
+      "description": "A spaced list for short related points.",
+      "use": "Requirements, constraints, and checklists in prose.",
+      "avoid": "Turning every list into three feature cards.",
+      "variants": [],
+      "requires": [],
+      "html": "<ul class=\"styled-list\">\n  <li>Checks must pass before a revision can be promoted.</li>\n  <li>Rollback keeps the previous revision warm for one hour.</li>\n</ul>"
+    },
+    {
+      "name": "switch",
+      "title": "Switch",
+      "category": "forms",
+      "description": "A toggle for a setting that takes effect immediately.",
+      "use": "Turning a behaviour on or off with no separate save step.",
+      "avoid": "Fields inside a form that only apply after submit. Use a checkbox.",
+      "variants": [],
+      "requires": [],
+      "html": "<label class=\"switch\"><input type=\"checkbox\" checked><span class=\"switch-track\"></span>Pause on failed checks</label>"
+    },
+    {
+      "name": "tabs",
+      "title": "Tabs",
+      "category": "navigation",
+      "description": "Switching between views of the same object.",
+      "use": "Two to six views that share one context.",
+      "avoid": "Tabs for steps in a sequence. Use a stepper.",
+      "variants": [],
+      "requires": [],
+      "note": "Show and hide panels, and move focus with the arrow keys, in application code. This markup is the visual shell plus one sample panel.",
+      "html": "<div class=\"stack stack-sm\">\n  <div class=\"tabs\" role=\"tablist\" aria-label=\"Views\">\n    <button class=\"tab\" type=\"button\" role=\"tab\" aria-selected=\"true\" id=\"tab-activity\" aria-controls=\"panel-activity\">Activity</button>\n    <button class=\"tab\" type=\"button\" role=\"tab\" aria-selected=\"false\" id=\"tab-checks\" aria-controls=\"panel-checks\" tabindex=\"-1\">Checks</button>\n    <button class=\"tab\" type=\"button\" role=\"tab\" aria-selected=\"false\" id=\"tab-settings\" aria-controls=\"panel-settings\" tabindex=\"-1\">Settings</button>\n  </div>\n  <div class=\"panel\" id=\"panel-activity\" role=\"tabpanel\" aria-labelledby=\"tab-activity\">\n    <div class=\"panel-content text-body\">Three deploys finished in the last hour.</div>\n  </div>\n  <div class=\"panel\" id=\"panel-checks\" role=\"tabpanel\" aria-labelledby=\"tab-checks\" hidden>\n    <div class=\"panel-content text-body\">All required checks are green.</div>\n  </div>\n  <div class=\"panel\" id=\"panel-settings\" role=\"tabpanel\" aria-labelledby=\"tab-settings\" hidden>\n    <div class=\"panel-content text-body\">Notification preferences for this service.</div>\n  </div>\n</div>"
+    },
+    {
+      "name": "tag",
+      "title": "Tags and accent badges",
+      "category": "data",
+      "description": "Neutral tags and accent-coloured badges for categories rather than conditions.",
+      "use": "Naming a team, region, or topic.",
+      "avoid": "Encoding status with an accent colour. Use badge-status with data-state.",
+      "variants": [],
+      "requires": [],
+      "note": "Accent badges name a category. A condition belongs in <code>badge-status</code>.",
+      "html": "<div class=\"cluster\">\n  <span class=\"badge badge-coral\">Platform</span>\n  <span class=\"badge badge-azure\">Data</span>\n  <span class=\"badge badge-sage\">Growth</span>\n  <span class=\"tag\">us-east-1</span>\n</div>"
+    },
+    {
+      "name": "terminal",
+      "title": "Terminal",
+      "category": "content",
+      "description": "A command and its output, with a labelled title bar.",
+      "use": "Products driven by a CLI or config. Show a command you could really run.",
+      "avoid": "Terminal chrome with no real command in it. That is decorative code.",
+      "variants": [
+        {
+          "classes": [
+            "terminal-dot"
+          ],
+          "description": "window dots in the title bar, off by default because they are decoration"
+        },
+        {
+          "classes": [
+            "red",
+            "yellow",
+            "green"
+          ],
+          "description": "colours for the window dots, though the framework renders all three grey on purpose"
+        }
+      ],
+      "requires": [],
+      "html": "<div class=\"terminal\">\n  <div class=\"terminal-bar\">\n    <span class=\"terminal-title\">ci-runner &middot; us-east-1</span>\n  </div>\n  <div class=\"terminal-body\">\n    <div><span class=\"prompt\">$</span> <span class=\"cmd\">kubectl rollout status deploy/api-gateway</span></div>\n    <div class=\"dim\">deployment \"api-gateway\" successfully rolled out</div>\n  </div>\n</div>"
+    },
+    {
+      "name": "testimonial-card",
+      "title": "Testimonial",
+      "category": "marketing",
+      "description": "A quote with attribution, framed by rules.",
+      "use": "Only when the user supplies the quote and the source.",
+      "avoid": "Fabricated names, companies, avatars, or logos. Leave the placeholder visible instead.",
+      "variants": [],
+      "requires": [],
+      "html": "<div class=\"testimonial-card\">\n  <p class=\"testimonial-quote\">Customer quote pending</p>\n  <p class=\"text-meta\">Name and company pending</p>\n</div>"
+    },
+    {
+      "name": "textarea",
+      "title": "Textarea",
+      "category": "forms",
+      "description": "A multi-line text input that grows vertically.",
+      "use": "Descriptions, notes, commit messages, and pasted payloads.",
+      "avoid": "Single-line values. Use an input so the Enter key submits.",
+      "variants": [],
+      "requires": [],
+      "html": "<div class=\"form-field\">\n  <label class=\"form-label\" for=\"release-notes\">Release notes</label>\n  <textarea class=\"textarea\" id=\"release-notes\" placeholder=\"What changed in this revision?\"></textarea>\n</div>"
+    },
+    {
+      "name": "time-picker",
+      "title": "Time picker",
+      "category": "forms",
+      "description": "A native time input in the same framed field as the date picker.",
+      "use": "Picking a time of day, usually beside a date picker in a scheduling row.",
+      "avoid": "Using it for a duration. A duration is a number with a unit, not a clock time.",
+      "variants": [],
+      "requires": [],
+      "html": "<label class=\"picker-field\" for=\"cutover-time\">\n  <span class=\"sr-only\">Cutover time</span>\n  <svg class=\"icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><path d=\"M12 6v6l4 2\"/></svg>\n  <input class=\"picker-input\" id=\"cutover-time\" type=\"time\" value=\"14:30\">\n</label>"
+    },
+    {
+      "name": "timeline",
+      "title": "Timeline",
+      "category": "data",
+      "description": "Events in order, each with a title, timestamp, and body.",
+      "use": "Audit trails, incident history, and deploy logs.",
+      "avoid": "Marketing roadmaps with invented dates.",
+      "variants": [],
+      "requires": [],
+      "html": "<div class=\"timeline\">\n  <div class=\"timeline-item\">\n    <div class=\"timeline-dot\"></div>\n    <div class=\"timeline-title\">Deploy started</div>\n    <div class=\"timeline-meta\">14:02:11 UTC</div>\n    <div class=\"timeline-body\">Rolling restart began for api-gateway.</div>\n  </div>\n  <div class=\"timeline-item\">\n    <div class=\"timeline-dot\"></div>\n    <div class=\"timeline-title\">Health checks passed</div>\n    <div class=\"timeline-meta\">14:03:47 UTC</div>\n    <div class=\"timeline-body\">All three replicas reported healthy.</div>\n  </div>\n</div>"
+    },
+    {
+      "name": "toast-region",
+      "title": "Toast region",
+      "category": "feedback",
+      "description": "The fixed corner container that stacks toasts.",
+      "use": "One per page. Put every toast in it so they queue instead of overlapping.",
+      "avoid": "Toasting an error a person must act on. A toast leaves. Use an alert or keep the error beside the control.",
+      "variants": [],
+      "requires": [
+        "toast"
+      ],
+      "note": "aria-live=\"polite\" announces new toasts without cutting off the current sentence.",
+      "html": "<div class=\"toast-region\" role=\"status\" aria-live=\"polite\">\n  <div class=\"toast\">\n    <svg class=\"icon\" aria-hidden=\"true\" viewBox=\"0 0 24 24\"><path d=\"M12 6v6l4 2\"/><circle cx=\"12\" cy=\"12\" r=\"10\"/></svg>\n    <div><strong class=\"toast-title\">Build queued</strong><p class=\"toast-body\">Revision 4f2c1ab is waiting for a runner.</p></div>\n  </div>\n</div>"
+    },
+    {
+      "name": "toast",
+      "title": "Toast",
+      "category": "feedback",
+      "description": "A transient confirmation of something that just happened.",
+      "use": "Confirming a completed background action.",
+      "avoid": "Errors the user must act on. Those belong inline, where the problem is.",
+      "variants": [],
+      "requires": [],
+      "html": "<div class=\"toast\">\n  <svg class=\"icon\" aria-hidden=\"true\" viewBox=\"0 0 24 24\"><path d=\"M20 6 9 17l-5-5\"/></svg>\n  <div><strong class=\"toast-title\">Deploy complete</strong><p class=\"toast-body\">worker-jobs v1.14.0 is live.</p></div>\n</div>"
+    },
+    {
+      "name": "tooltip",
+      "title": "Tooltip",
+      "category": "overlays",
+      "description": "A short hint attached to a control, shown on hover and focus.",
+      "use": "Explaining an icon-only control or an abbreviated value.",
+      "avoid": "Essential information. Tooltips are invisible on touch devices.",
+      "variants": [
+        {
+          "classes": [
+            "is-open"
+          ],
+          "description": "keeps the panel visible without focus, for docs and for click-to-open state"
+        }
+      ],
+      "requires": [],
+      "html": "<span class=\"tooltip\" data-tip=\"Last deployed 12 minutes ago\">\n  <button class=\"icon-button\" type=\"button\" aria-label=\"Deployment info\">\n    <svg class=\"icon\" aria-hidden=\"true\" viewBox=\"0 0 24 24\"><circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M12 16v-4M12 8h.01\"/></svg>\n  </button>\n</span>"
+    },
+    {
+      "name": "type",
+      "title": "Type scale",
+      "category": "content",
+      "description": "The full type scale, from the display size down to metadata.",
+      "use": "Every piece of text. One text-display per page at most, then text-h1 and text-h2 for structure.",
+      "avoid": "Two display-sized lines on one screen. The scale only reads as a hierarchy if the top of it is rare.",
+      "variants": [
+        {
+          "classes": [
+            "text-mono"
+          ],
+          "description": "monospace body, for identifiers and log lines"
+        },
+        {
+          "classes": [
+            "t-mono-display"
+          ],
+          "description": "a display line set in monospace"
+        },
+        {
+          "classes": [
+            "gradient-text"
+          ],
+          "description": "tints a run of text with the active accent"
+        }
+      ],
+      "requires": [],
+      "html": "<div class=\"stack\">\n  <p class=\"text-display\">Deploy history</p>\n  <h2 class=\"text-h1\">Roll back in one action</h2>\n  <h3 class=\"text-h2\">Section heading</h3>\n  <p class=\"text-card\">Card heading, for titles inside a panel.</p>\n  <p class=\"text-body\">Body copy. Capped at 72 characters so long paragraphs stay readable without a wrapper.</p>\n  <p class=\"text-body text-muted\">Muted body, for a second line that supports the first.</p>\n  <p class=\"text-meta\">METADATA &middot; TIMESTAMPS &middot; LABELS</p>\n</div>"
+    },
+    {
+      "name": "utility-layout",
+      "title": "Layout utilities",
+      "category": "utilities",
+      "description": "Display mode, flex direction, alignment, and positioning.",
+      "use": "Arranging the inside of a component the grids do not cover.",
+      "avoid": "Recreating grid-split or cluster out of flex utilities. Use the named layout instead.",
+      "variants": [
+        {
+          "classes": [
+            "block",
+            "inline-block",
+            "inline-flex",
+            "flex",
+            "grid",
+            "hidden"
+          ],
+          "description": "display mode"
+        },
+        {
+          "classes": [
+            "flex-col",
+            "flex-wrap"
+          ],
+          "description": "flex direction and wrapping"
+        },
+        {
+          "classes": [
+            "items-start",
+            "items-center",
+            "items-end"
+          ],
+          "description": "cross-axis alignment"
+        },
+        {
+          "classes": [
+            "justify-start",
+            "justify-center",
+            "justify-end",
+            "justify-between"
+          ],
+          "description": "main-axis alignment"
+        },
+        {
+          "classes": [
+            "relative",
+            "absolute",
+            "fixed",
+            "sticky"
+          ],
+          "description": "positioning"
+        },
+        {
+          "classes": [
+            "spacer"
+          ],
+          "description": "push the next flex child to the far end"
+        }
+      ],
+      "requires": [],
+      "html": "<div class=\"flex items-center justify-between\">\n  <span class=\"text-meta\">api-gateway</span>\n  <span class=\"badge badge-success\">Healthy</span>\n</div>"
+    },
+    {
+      "name": "utility-responsive",
+      "title": "Responsive utilities",
+      "category": "utilities",
+      "description": "Show or hide an element at a breakpoint.",
+      "use": "Swapping a dense desktop control for a compact one on a phone.",
+      "avoid": "Hiding a primary action on small screens. Move it or shorten it, but keep it reachable.",
+      "variants": [
+        {
+          "classes": [
+            "hidden"
+          ],
+          "description": "hide at every width"
+        },
+        {
+          "classes": [
+            "hide-sm",
+            "hide-md"
+          ],
+          "description": "hide at that breakpoint and below"
+        },
+        {
+          "classes": [
+            "show-sm",
+            "show-md"
+          ],
+          "description": "show only at that breakpoint and below"
+        }
+      ],
+      "requires": [],
+      "note": "hide-sm and show-sm act at the phone breakpoint; hide-md and show-md act at the tablet breakpoint.",
+      "html": "<div class=\"cluster\">\n  <button class=\"btn btn-primary\" type=\"button\"><span class=\"hide-sm\">Promote revision</span><span class=\"show-sm\">Promote</span></button>\n</div>"
+    },
+    {
+      "name": "utility-sizing",
+      "title": "Sizing utilities",
+      "category": "utilities",
+      "description": "Width caps, full height, flexible growth, and overflow.",
+      "use": "Capping a measure, letting one flex child take the remaining space, or scrolling a bounded region.",
+      "avoid": "max-w on prose that already sits in a container or text-body. Both cap the measure for you.",
+      "variants": [
+        {
+          "classes": [
+            "max-w-sm",
+            "max-w-md",
+            "max-w-lg",
+            "max-w-xl"
+          ],
+          "description": "width caps"
+        },
+        {
+          "classes": [
+            "w-full",
+            "h-full"
+          ],
+          "description": "fill the parent"
+        },
+        {
+          "classes": [
+            "flex-1"
+          ],
+          "description": "take the remaining space in a flex row"
+        },
+        {
+          "classes": [
+            "overflow-auto",
+            "overflow-hidden"
+          ],
+          "description": "scroll or clip a bounded region"
+        }
+      ],
+      "requires": [],
+      "html": "<div class=\"flex gap-3 items-center\">\n  <input class=\"input flex-1\" value=\"api-gateway\" aria-label=\"Service\">\n  <button class=\"btn btn-secondary\" type=\"button\">Find</button>\n</div>"
+    },
+    {
+      "name": "utility-spacing",
+      "title": "Spacing utilities",
+      "category": "utilities",
+      "description": "Margin, padding, and gap on the shared space scale, from 1 to 8.",
+      "use": "A one-off nudge that does not deserve a wrapper. Reach for stack, cluster, or a grid first.",
+      "avoid": "Building a layout out of margin utilities. If you are setting three in a row, you wanted a stack.",
+      "variants": [
+        {
+          "classes": [
+            "mt-1",
+            "mt-2",
+            "mt-3",
+            "mt-4",
+            "mt-5",
+            "mt-6",
+            "mt-7",
+            "mt-8"
+          ],
+          "description": "top margin, step 1 to 8 of the space scale"
+        },
+        {
+          "classes": [
+            "mb-1",
+            "mb-2",
+            "mb-3",
+            "mb-4",
+            "mb-5",
+            "mb-6",
+            "mb-7",
+            "mb-8"
+          ],
+          "description": "bottom margin, same scale"
+        },
+        {
+          "classes": [
+            "p-1",
+            "p-2",
+            "p-3",
+            "p-4",
+            "p-5",
+            "p-6",
+            "p-7",
+            "p-8"
+          ],
+          "description": "padding on all sides"
+        },
+        {
+          "classes": [
+            "px-1",
+            "px-2",
+            "px-3",
+            "px-4",
+            "px-5",
+            "px-6"
+          ],
+          "description": "horizontal padding"
+        },
+        {
+          "classes": [
+            "py-1",
+            "py-2",
+            "py-3",
+            "py-4",
+            "py-5",
+            "py-6"
+          ],
+          "description": "vertical padding"
+        },
+        {
+          "classes": [
+            "gap-1",
+            "gap-2",
+            "gap-3",
+            "gap-4",
+            "gap-5",
+            "gap-6",
+            "gap-7",
+            "gap-8"
+          ],
+          "description": "gap between flex or grid children"
+        },
+        {
+          "classes": [
+            "m-auto",
+            "mx-auto"
+          ],
+          "description": "centre a fixed-width block"
+        }
+      ],
+      "requires": [],
+      "html": "<div class=\"panel\">\n  <div class=\"panel-content\">\n    <p class=\"text-body\">Promoting a revision moves production traffic.</p>\n    <button class=\"btn btn-primary mt-4\" type=\"button\">Promote</button>\n  </div>\n</div>"
+    },
+    {
+      "name": "utility-surface",
+      "title": "Surface utilities",
+      "category": "utilities",
+      "description": "Background, border, and corner rounding that match the framework tokens.",
+      "use": "A small framed region inside a component, using the same tokens as the rest of the page.",
+      "avoid": "Framing everything. Nested borders inside a panel are how a page starts to look like a stack of boxes.",
+      "variants": [
+        {
+          "classes": [
+            "bg-surface",
+            "bg-code"
+          ],
+          "description": "token backgrounds"
+        },
+        {
+          "classes": [
+            "border",
+            "border-top",
+            "border-bottom"
+          ],
+          "description": "token borders"
+        },
+        {
+          "classes": [
+            "rounded",
+            "rounded-lg",
+            "rounded-full"
+          ],
+          "description": "corner radius, from the geometry setting"
+        }
+      ],
+      "requires": [],
+      "html": "<div class=\"bg-code border rounded p-4\">\n  <p class=\"text-mono\">GET /v1/deploys?status=ready</p>\n</div>"
+    },
+    {
+      "name": "utility-text",
+      "title": "Text utilities",
+      "category": "utilities",
+      "description": "Alignment, semantic colour, and truncation for text.",
+      "use": "Right-aligning a numeric column, tinting a status word, or clipping a long identifier to one line.",
+      "avoid": "text-center on body copy. Left-aligned prose is easier to read, and centred blocks are a landing-page habit.",
+      "variants": [
+        {
+          "classes": [
+            "text-left",
+            "text-center",
+            "text-right"
+          ],
+          "description": "alignment"
+        },
+        {
+          "classes": [
+            "text-accent"
+          ],
+          "description": "the active accent"
+        },
+        {
+          "classes": [
+            "text-success",
+            "text-warning",
+            "text-danger",
+            "text-info"
+          ],
+          "description": "semantic state colours"
+        },
+        {
+          "classes": [
+            "truncate"
+          ],
+          "description": "clip to one line with an ellipsis"
+        },
+        {
+          "classes": [
+            "clamp-2",
+            "clamp-3"
+          ],
+          "description": "clip to that many lines"
+        }
+      ],
+      "requires": [],
+      "html": "<div class=\"stack stack-sm\">\n  <p class=\"text-body\">Build <span class=\"text-success\">passed</span> on <span class=\"text-accent\">main</span>.</p>\n  <p class=\"text-meta truncate\">sha256:9f2c1ab4de7810b3c5e6f4a2d8b90c1e3f5a7b9d2c4e6f8a0b1c3d5e7f9a1b3c</p>\n</div>"
+    }
+  ]
+}

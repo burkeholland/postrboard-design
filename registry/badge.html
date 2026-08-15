@@ -1,0 +1,16 @@
+<!--
+name: badge
+title: Badge
+category: data
+variants: badge-success = passed or healthy; badge-warning = needs attention; badge-danger = failed or blocked; badge-info = in progress or neutral
+description: A small label for a status or a category.
+use: badge-status with data-state for a condition; an accent badge for a team or category.
+avoid: Badges as decoration. If it does not encode state or category, drop it.
+-->
+<div class="cluster">
+  <span class="badge badge-status" data-state="success">Ready</span>
+  <span class="badge badge-status" data-state="info">Running</span>
+  <span class="badge badge-status" data-state="warning">Review</span>
+  <span class="badge badge-status" data-state="danger">Failed</span>
+  <span class="badge badge-status badge-neutral">Queued</span>
+</div>

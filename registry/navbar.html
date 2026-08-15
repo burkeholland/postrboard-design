@@ -1,0 +1,52 @@
+<!--
+name: navbar
+title: Navbar
+category: navigation
+variants: navbar = plain, no surface treatment; navbar-glass = blurred over content that scrolls under it; navbar-solid = opaque, for dense apps; navbar-minimal = no bar at all, links only, and it does not stick
+description: The top bar, in four surfaces: bordered, glass, solid, and minimal.
+use: One per site. Mark the current page with aria-current.
+avoid: Mixing two navbar surfaces on one page.
+note: Pick one surface and keep it. The four below are alternatives, not a set.
+-->
+<div class="stack">
+  <nav class="navbar-bordered" aria-label="Bordered">
+    <div class="nav-inner">
+      <a class="brand" href="/"><span class="brand-mark">R/</span> relay</a>
+      <div class="nav-links">
+        <a class="nav-link" aria-current="page" href="/">Overview</a>
+        <a class="nav-link" href="/deploys">Deploys</a>
+        <a class="nav-link" href="/api">API</a>
+      </div>
+    </div>
+  </nav>
+  <nav class="navbar-solid" aria-label="Solid">
+    <div class="nav-inner">
+      <a class="brand" href="/"><span class="brand-mark">R/</span> relay</a>
+      <div class="nav-links">
+        <a class="nav-link" aria-current="page" href="/">Overview</a>
+        <a class="nav-link" href="/deploys">Deploys</a>
+        <a class="nav-link" href="/api">API</a>
+      </div>
+    </div>
+  </nav>
+  <nav class="navbar-glass" aria-label="Glass">
+    <div class="nav-inner">
+      <a class="brand" href="/"><span class="brand-mark">R/</span> relay</a>
+      <div class="nav-links">
+        <a class="nav-link" aria-current="page" href="/">Overview</a>
+        <a class="nav-link" href="/deploys">Deploys</a>
+        <a class="nav-link" href="/api">API</a>
+      </div>
+    </div>
+  </nav>
+  <nav class="navbar-minimal" aria-label="Minimal">
+    <div class="nav-inner">
+      <a class="brand" href="/"><span class="brand-mark">R/</span> relay</a>
+      <div class="nav-links">
+        <a class="nav-link" aria-current="page" href="/">Overview</a>
+        <a class="nav-link" href="/deploys">Deploys</a>
+        <a class="nav-link" href="/api">API</a>
+      </div>
+    </div>
+  </nav>
+</div>

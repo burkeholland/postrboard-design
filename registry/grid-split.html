@@ -1,0 +1,23 @@
+<!--
+name: grid-split
+title: Split grid
+category: layout
+variants: grid-two = the old name for this grid, kept working
+description: Two equal columns.
+use: A claim beside the artifact it describes, where neither outweighs the other.
+avoid: Three or more children. They wrap into an uneven last row.
+-->
+<div class="grid-split">
+  <div class="panel">
+    <div class="panel-content stack stack-sm">
+      <p class="text-card">Rollback is one action</p>
+      <p class="text-body text-muted">Revert production traffic to any green revision without a runbook.</p>
+    </div>
+  </div>
+  <div class="panel">
+    <div class="panel-content stack stack-sm">
+      <p class="text-meta">artifact</p>
+      <p class="text-mono">kubectl rollout undo deploy/api-gateway</p>
+    </div>
+  </div>
+</div>

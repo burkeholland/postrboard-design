@@ -1,0 +1,18 @@
+<!--
+name: terminal
+title: Terminal
+category: content
+description: A command and its output, with a labelled title bar.
+use: Products driven by a CLI or config. Show a command you could really run.
+avoid: Terminal chrome with no real command in it. That is decorative code.
+variants: terminal-dot = window dots in the title bar, off by default because they are decoration; red yellow green = colours for the window dots, though the framework renders all three grey on purpose
+-->
+<div class="terminal">
+  <div class="terminal-bar">
+    <span class="terminal-title">ci-runner &middot; us-east-1</span>
+  </div>
+  <div class="terminal-body">
+    <div><span class="prompt">$</span> <span class="cmd">kubectl rollout status deploy/api-gateway</span></div>
+    <div class="dim">deployment "api-gateway" successfully rolled out</div>
+  </div>
+</div>

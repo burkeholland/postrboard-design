@@ -1,0 +1,25 @@
+<!--
+name: tabs
+title: Tabs
+category: navigation
+description: Switching between views of the same object.
+use: Two to six views that share one context.
+avoid: Tabs for steps in a sequence. Use a stepper.
+note: Show and hide panels, and move focus with the arrow keys, in application code. This markup is the visual shell plus one sample panel.
+-->
+<div class="stack stack-sm">
+  <div class="tabs" role="tablist" aria-label="Views">
+    <button class="tab" type="button" role="tab" aria-selected="true" id="tab-activity" aria-controls="panel-activity">Activity</button>
+    <button class="tab" type="button" role="tab" aria-selected="false" id="tab-checks" aria-controls="panel-checks" tabindex="-1">Checks</button>
+    <button class="tab" type="button" role="tab" aria-selected="false" id="tab-settings" aria-controls="panel-settings" tabindex="-1">Settings</button>
+  </div>
+  <div class="panel" id="panel-activity" role="tabpanel" aria-labelledby="tab-activity">
+    <div class="panel-content text-body">Three deploys finished in the last hour.</div>
+  </div>
+  <div class="panel" id="panel-checks" role="tabpanel" aria-labelledby="tab-checks" hidden>
+    <div class="panel-content text-body">All required checks are green.</div>
+  </div>
+  <div class="panel" id="panel-settings" role="tabpanel" aria-labelledby="tab-settings" hidden>
+    <div class="panel-content text-body">Notification preferences for this service.</div>
+  </div>
+</div>

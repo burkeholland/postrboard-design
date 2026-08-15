@@ -1,0 +1,20 @@
+<!--
+name: panel
+title: Panel
+category: surfaces
+variants: panel-interactive = hover response, when the whole panel is a link
+description: The canonical framed surface, with an optional header, body, and footer.
+use: Grouping controls or data that belong to one object.
+avoid: Wrapping every idea on the page. Frame the work area, not the prose.
+requires: badge, button
+-->
+<section class="panel">
+  <header class="panel-header">
+    <div><h3 class="panel-title">Retention policy</h3><p class="panel-body">Keep deployment logs for the selected period.</p></div>
+    <span class="badge badge-status" data-state="info">Draft</span>
+  </header>
+  <div class="panel-content">
+    <label class="checkbox"><input type="checkbox" checked> Include failed jobs</label>
+  </div>
+  <footer class="panel-footer"><button class="btn btn-primary btn-sm" type="button">Apply policy</button></footer>
+</section>

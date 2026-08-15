@@ -1,0 +1,32 @@
+<!--
+name: auth-card
+title: Auth card
+category: forms
+description: A narrow card holding a sign-in form and its secondary links.
+use: Sign in, sign up, and reset, on a page with nothing else competing for attention.
+avoid: A marketing panel beside it. The person is here to get in.
+requires: form
+-->
+<div class="auth-card">
+  <div class="stack">
+    <div class="stack stack-sm">
+      <h1 class="text-card">Sign in</h1>
+      <p class="text-body text-muted">Use the account your organisation issued.</p>
+    </div>
+    <form class="form-stack">
+      <div class="form-field">
+        <label class="form-label" for="auth-mail">Email</label>
+        <input class="input" id="auth-mail" type="email" autocomplete="username">
+      </div>
+      <div class="form-field">
+        <label class="form-label" for="auth-pass">Password</label>
+        <input class="input" id="auth-pass" type="password" autocomplete="current-password">
+      </div>
+      <button class="btn btn-primary" type="submit">Sign in</button>
+    </form>
+    <div class="auth-links">
+      <a href="/reset">Forgot password</a>
+      <a href="/sso">Use single sign-on</a>
+    </div>
+  </div>
+</div>

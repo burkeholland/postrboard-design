@@ -1,0 +1,15 @@
+<!--
+name: tooltip
+title: Tooltip
+category: overlays
+description: A short hint attached to a control, shown on hover and focus.
+use: Explaining an icon-only control or an abbreviated value.
+avoid: Essential information. Tooltips are invisible on touch devices.
+preview: overlay
+variants: is-open = keeps the panel visible without focus, for docs and for click-to-open state
+-->
+<span class="tooltip" data-tip="Last deployed 12 minutes ago">
+  <button class="icon-button" type="button" aria-label="Deployment info">
+    <svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg>
+  </button>
+</span>

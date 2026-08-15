@@ -1,0 +1,19 @@
+<!--
+name: command-palette
+title: Command palette
+category: overlays
+description: A keyboard-first search over commands and objects.
+use: Products where power users navigate faster than they click.
+avoid: Adding one because it looks technical. It needs real commands behind it.
+note: Filtering and keyboard selection need JavaScript.
+preview: measure
+-->
+<div class="command-palette" role="search">
+  <label class="sr-only" for="command-query">Type a command or search</label>
+  <input class="input" id="command-query" type="search" placeholder="Type a command or search" autocomplete="off">
+  <div class="command-group">
+    <div class="command-group-label" id="command-services-label">Services</div>
+    <button class="command-item" type="button" aria-describedby="command-services-label">api-gateway <kbd>G A</kbd></button>
+    <button class="command-item" type="button" aria-describedby="command-services-label">worker-jobs <kbd>G W</kbd></button>
+  </div>
+</div>

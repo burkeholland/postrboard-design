@@ -1,0 +1,13 @@
+<!--
+name: utility-text
+title: Text utilities
+category: utilities
+description: Alignment, semantic colour, and truncation for text.
+use: Right-aligning a numeric column, tinting a status word, or clipping a long identifier to one line.
+avoid: text-center on body copy. Left-aligned prose is easier to read, and centred blocks are a landing-page habit.
+variants: text-left text-center text-right = alignment; text-accent = the active accent; text-success text-warning text-danger text-info = semantic state colours; truncate = clip to one line with an ellipsis; clamp-2 clamp-3 = clip to that many lines
+-->
+<div class="stack stack-sm">
+  <p class="text-body">Build <span class="text-success">passed</span> on <span class="text-accent">main</span>.</p>
+  <p class="text-meta truncate">sha256:9f2c1ab4de7810b3c5e6f4a2d8b90c1e3f5a7b9d2c4e6f8a0b1c3d5e7f9a1b3c</p>
+</div>
